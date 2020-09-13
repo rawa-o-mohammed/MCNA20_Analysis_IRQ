@@ -229,7 +229,7 @@ r <- r %>% mutate(s_16 = case_when(
 #PROTECTION - HLP
 ##############
 r <- r %>% mutate(s_18 = case_when(
-  r$nr_docs == 1 ~ 1,
+  r$hh_risk_eviction == "no" ~ 1,
   (r$hh_risk_eviction == "yes" & r$hh_main_risks.lack_funds == 1) |
     (r$hh_risk_eviction == "yes" & r$hh_main_risks.no_agreement == 1) |
     (r$hh_risk_eviction == "yes" & r$hh_main_risks.owner_request == 1) |
