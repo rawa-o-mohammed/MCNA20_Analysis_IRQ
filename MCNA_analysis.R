@@ -86,16 +86,16 @@ rm(list=ls(all=T))
   
   
   
-  response <- response[!is.na(response$num_hh_member), ]
+response <- response[!is.na(response$num_hh_member), ]
 
-  strata_weight_fun <- map_to_weighting(sampling.frame = samplingframe_strata,
+strata_weight_fun <- map_to_weighting(sampling.frame = samplingframe_strata,
                                         sampling.frame.population.column = "population",
                                         sampling.frame.stratum.column = "stratum",
                                         data.stratum.column = "strata",
                                         data = response)
   
 # weight_fun <- combine_weighting_functions(strata_weight_fun, clusters_weight_fun)
-  weight_fun<-strata_weight_fun
+weight_fun<-strata_weight_fun
   
   
 response$weights<-weight_fun(response)
