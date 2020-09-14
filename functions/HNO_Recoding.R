@@ -103,18 +103,6 @@ r <- r %>% mutate(s_10 = case_when(
   r$food_share >= 0.85 & r$food_share <1 ~ 5
 ))
 
-r$fcs <- r$cereals * 2 + r$nuts_seed * 3 + r$milk_dairy * 4 + r$meat * 4 + 
-  r$vegetables + r$fruits + r$oil_fats * 0.5 + r$sweets * 0.5
-r$poor_fcs <- ifelse(r$fcs <= 21, 1,0)
-r$borderline_fcs <- ifelse(r$fcs > 21 & r$fcs <=35,1,0)
-r$acceptable_fcs <- ifelse(r$fcs > 35,1,0)
-r <- r %>% mutate(s_11 = case_when(
-  r$acceptable_fcs == 1 ~ 1,
-  r$borderline_fcs == 1 ~ 3,
-  r$poor_fcs == 1 ~ 4
-))
-
-
 r$hhh1_1 <- ifelse(r$no_food == "yes",1,0)
 r <- r %>% mutate(hhh1_2 = case_when(
   no_food_freq == "rarely" ~ 1,
@@ -148,6 +136,25 @@ r <- r %>% mutate(s_12 = case_when(
   r$hhs == 5 | r$hhs == 6 ~ 5
 ))
 
+r$fcs <- r$cereals * 2 + r$nuts_seed * 3 + r$milk_dairy * 4 + r$meat * 4 + 
+  r$vegetables + r$fruits + r$oil_fats * 0.5 + r$sweets * 0.5
+#r$poor_fcs <- ifelse(r$fcs <= 21, 1,0)
+#r$borderline_fcs <- ifelse(r$fcs > 21 & r$fcs <=35,1,0)
+#r$acceptable_fcs <- ifelse(r$fcs > 35,1,0)
+
+r <- r %>% mutate(s_11 = case_when(
+  r$fcs >= 42.5 & r$hhs == 0 ~ 1,
+  r$fcs >= 42.5 & r$hhs > 0 ~ 2,
+  r$fcs <= 42 & r$fcs >= 28.5 ~ 3,
+  r$fcs <= 28 & r$hhs <= 4 ~ 4,
+  r$fcs <= 28 & r$hhs >= 5 ~ 5
+))
+
+#r <- r %>% mutate(s_11_old = case_when(
+#  r$acceptable_fcs == 1 ~ 1,
+#  r$borderline_fcs == 1 ~ 3,
+#  r$poor_fcs == 1 ~ 4
+#))
 
 #HEALTH
 ##########
@@ -344,7 +351,7 @@ hno$mean <-  apply(hno, 1, function(y) {
 
 #CRITICAL INDICATORS
 hno$critical <-  apply(hno, 1, function(y) {
-  max(y[c("s_3", "s_9", "s_24")], na.rm = T)
+  max(y[c("s_3", "s_11", "s_24")], na.rm = T)
 })
 hno$final_severity <- ifelse(hno$critical > hno$mean, hno$critical, hno$mean)
 #hno$final_severity <- as.character(as.numeric(hno$final_severity))
