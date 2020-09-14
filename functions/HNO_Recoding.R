@@ -1,5 +1,5 @@
-r <- response
-l <- loop
+#r <- response
+#l <- loop
 individual_to_HH_numeric <- function(loop, response, varname, indicator) {
   r <- loop[,c("X_uuid", varname)]
   r <-r[complete.cases(r), ]
@@ -53,8 +53,8 @@ r <- r %>% mutate(s_3 = case_when(
 #LIVELIHOODS
 ############
 r$perc_unemp <- apply(r, 1, FUN=function(x){
-  (l %>% filter(X_submission__uuid == x["X_uuid"] & age > 17 & work == "no" & actively_seek_work %in% c("yes")) %>% nrow) / 
-    (l %>% filter(X_submission__uuid == x["X_uuid"] & age > 17) %>% nrow)
+  (loop %>% filter(X_submission__uuid == x["X_uuid"] & age > 17 & work == "no" & actively_seek_work %in% c("yes")) %>% nrow) / 
+    (loop %>% filter(X_submission__uuid == x["X_uuid"] & age > 17) %>% nrow)
 })
 r <- r %>% mutate(s_6 = case_when(
   r$perc_unemp == 0 ~ 1,
@@ -182,11 +182,11 @@ r <- r %>% mutate(s_13 = case_when(
 #  ifelse(any(loop$age[which(loop$X_submission__uuid == x["X_uuid"])] > 50), 1, 0)
 #})
 
-names(l)[names(l) == "X_submission__uuid"] <- "X_uuid"
-l$above_50 <- ifelse(l$age > 50,1,0)
-l$chronic_and_age <- ifelse(l$age > 50 & l$health_issue.chronic == 1, 1,0)
-r <- individual_to_HH_numeric(l, r, "above_50", "above_50")
-r <- individual_to_HH_numeric(l, r, "health_issue.chronic", "health_issue.chronic")
+names(loop)[names(loop) == "X_submission__uuid"] <- "X_uuid"
+loop$above_50 <- ifelse(loop$age > 50,1,0)
+loop$chronic_and_age <- ifelse(loop$age > 50 & loop$health_issue.chronic == 1, 1,0)
+r <- individual_to_HH_numeric(loop, r, "above_50", "above_50")
+r <- individual_to_HH_numeric(loop, r, "health_issue.chronic", "health_issue.chronic")
 
 r <- r %>% mutate(s_14 = case_when(
   rowSums(cbind(r$health_issue.chronic, r$above_50), na.rm = T) == 0 ~ 1,

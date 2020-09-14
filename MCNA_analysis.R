@@ -41,7 +41,7 @@ rm(list=ls(all=T))
   
 #MERGE INCAMP AND OUT-OF CAMP DATASETS 
 #PREPARE SAMPLING FRAMES AND CLUSTER_IDs
-  source("Merger.R", local = T)
+  source("merge_inputs.R", local = T)
   #' matching all inputs:
   #' 1. combine in and out of camp data for each, HH and loops 
   #' 2. prepare sampling frames:
