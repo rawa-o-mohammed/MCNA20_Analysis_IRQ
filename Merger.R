@@ -1,8 +1,4 @@
-#setwd("~/REACH2020/MCNA VIII/6. Data Analysis/4. Merging Datasets")
-#idp_in_camp <- read.csv("Input/incamp_household.csv")
-#loop_incamp <- read.csv("Input/incamp_loop.csv")
-#response_outcamp <- read.csv("Input/outcamp_household.csv")
-#loop_outcamp <- read.csv("Input/outcamp_loop.csv")
+#ADD POPGROUP FOR INCAMP IDPs
 idp_in_camp$population_group <- "idp_in_camp"
 loop_in_camp$population_group <- "idp_in_camp"
 
@@ -17,16 +13,18 @@ response <- plyr::rbind.fill(response, idp_in_camp_mcna)
 loop <- plyr::rbind.fill(loop, loop_in_camp)
 
 
-# prepare samplingframes
+#PREPARE SAMPLINGFRAMES
 
-## cluster sampling frame: make values that can be matched with data
+##CLUSTER SAMPLING FRAME: MAKE VALUES THAT CAN BE MATCHED WITH DATA
 samplingframe$popgroup[samplingframe$popgroup=="out_of_camp"]<-"idp_out_camp"
 samplingframe$district <- to_alphanumeric_lowercase(samplingframe$district)
 samplingframe$stratum <- paste0(samplingframe$district, samplingframe$popgroup)
 
+
 #ADD DISTRICT NAMES BASED ON LOCATION IDS IN SAMPLING FRAME
 strata_clusters_population <- read.csv("input_modified/Strata_clusters_population.csv",
                                        stringsAsFactors = F, check.names = T)
+names(strata_clusters_population)[names(strata_clusters_population) == "psu"] <- "cluster_location_id"
 district_location_ids <- strata_clusters_population[,c("district", "cluster_location_id")]
 response <- merge(response, district_location_ids, by="cluster_location_id", all.x = T)  
 response$district_mcna <- ifelse(response$district_mcna == "" &
@@ -36,15 +34,15 @@ response$district_mcna <- ifelse(response$district_mcna == "" &
 #samplingframe$cluster_strata_ID <- paste(samplingframe$cluster_ID, samplingframe$popgroup, sep = "_")
 
 
-## add cluster ids to data:
+##ADD CLUSTER IDs TO DATA
 
-### any pop group or cluster ids that can't be found individually?
+##ANY POPGROUP OR CLUSTER IDs THAT CAN'T BE FOUND INDIVIDUALLY? 
 `%find those not in%`<-function(x,y){x[!(x%in%y)] %>% unique}
 
 response$population_group %find those not in% samplingframe$popgroup
 #response$cluster_location_id[response$population_group != "idp_in_camp"] %find those not in% samplingframe$cluster_ID
 
-### create id in samplingframe and in data
+##CREATE ID IN SAMPLINGFRAME AND IN DATA 
 samplingframe$cluster_strata_ID <- paste(samplingframe$cluster_ID, samplingframe$popgroup, sep = "_")
 #response$cluster_location_id <- ifelse(response$dc_method == "remote" & 
 #                                is.na(response$cluster_location_id), "r", 
@@ -69,25 +67,21 @@ response$cluster_id <- ifelse(response$population_group == "returnee" & response
                               paste0(no_cluster, "_returnee"), response$cluster_id)
 
 
-
-# samplingframe$stratum<-gsub("idp$","idp_out_camp",samplingframe$stratum) # should not be run; sampling frame  
-
-
-## in camp: make values match data
+##MAKE INCAMP VALUES MATCH DATA
 samplingframe_in_camp$stratum<-paste0(samplingframe_in_camp$camp,"idp_in_camp")
 
-## in camp: make columns match other sampling frame:
+##MAKE INCAMP COLUMNS MATCH OTHER SAMPLINGFRAM
 samplingframe_in_camp <- samplingframe_in_camp %>% dplyr::select(stratum,"population" = population)
-## combine in camp and out of camp sampling frames
+##COMBINE INCAMP AND OUTOFCAMP SAMPLING FRAME
 samplingframe_strata <- rbind(samplingframe[,c("stratum", "population")],samplingframe_in_camp)
 
-# add strata names to data
+#ADD STRATA NAMES TO DATA 
 
-## out of camp:
+##OUT OF CAMP:
 response <- response %>% 
   mutate(strata = paste0(district_mcna,population_group))
 
-## in camp: (replace district with camp name for idp_in_camp population group)
+##INCAMP (REPLACE DISTRICT WITH CAMP NAME FOR ALL INCAMP ENTRIES)
 response <- response[!is.na(response$population_group), ]
 response$strata[response$population_group=="idp_in_camp"]<- (paste0(response$camp_name,response$population_group))[response$population_group=="idp_in_camp"]
 
@@ -98,7 +92,7 @@ response$strata[response$population_group=="idp_in_camp"]<- (paste0(response$cam
 
 
 
-## Check if all match:
+##CHECK IF ALL MATCH SAMPLINGFRAME:
 
 if(any(!(response$strata %in% samplingframe_strata$stratum))){
   warning("some strata not found in samplingframe")
@@ -116,3 +110,6 @@ response<-response[!(response$strata=="al.hawigaidp_out_camp" |
 if(any(is.na(response$strata))){
   warning("strata can not be NA")
 }
+
+# MERGE QUESTIONNAIRES
+questionnaire <- load_questionnaire(response,questions,choices, choices.label.column.to.use = "name")

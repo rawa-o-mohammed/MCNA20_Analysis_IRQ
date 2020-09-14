@@ -1,2 +1,6 @@
 Indicator Group / Sector,research.question,sub.research.question,repeat.for.variable,independent.variable,independent.variable.type,dependent.variable,dependent.variable.type,hypothesis.type
-Intersectoral Severity,Intersectoral Severity,Intersectoral Severity,district_mcna,population_group,categorical,final_severity,categorical,direct_reporting
+Inter-Sectoral Severity,1,None/Minimal,district_mcna,population_group,categorical,hno_severity_1,categorical,direct_reporting
+Inter-Sectoral Severity,2,Stress,district_mcna,population_group,categorical,hno_severity_2,categorical,direct_reporting
+Inter-Sectoral Severity,3,Severe,district_mcna,population_group,categorical,hno_severity_3,categorical,direct_reporting
+Inter-Sectoral Severity,4,Extreme,district_mcna,population_group,categorical,hno_severity_4,categorical,direct_reporting
+Inter-Sectoral Severity,5,Catastrophic,district_mcna,population_group,categorical,hno_severity_5,categorical,direct_reporting

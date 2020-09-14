@@ -20,7 +20,8 @@ response$shelter_type_remote <- NULL
 
 idp_in_camp$dc_method <- "remote"
 
-#RECODE SHARED SANITATION FACILITY VARIABLE CP
+
+#RECODE SHARED SANITATION FACILITY VARIABLE INCAMP DATA COLLECTION
 idp_in_camp <- idp_in_camp %>% mutate(shared_sanitation = case_when(
   (idp_in_camp$latrines.private_camp == 1 | 
     idp_in_camp$latrines.private_self == 1) ~ "no",
@@ -57,7 +58,7 @@ names(idp_in_camp)[names(idp_in_camp) == "hlp_docs"] <- "hlp_document"
 names(response)[names(response) == "movement_intentions12"] <- "movement_intentions_12"
 
 
-#CREATE COLUMNS IN RESPONSE DATASET FOR VARIABLES ONLY INCLUDED IN INCAMP
+#CREATE COLUMNS IN RESPONSE DATASET FOR VARIABLES ONLY INCLUDED IN INCAMP DATASET
 #AND VICE VERSA
 idp_in_camp$sufficient_water <- NA
 idp_in_camp$sufficient_water_drinking <- NA

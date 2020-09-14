@@ -1,7 +1,5 @@
-  # setup
+#SETUP
 rm(list=ls(all=T))
-  setwd("~/REACH2020/MCNA VIII/6. Data Analysis/MCNAVIII_Analysis_IRQ")
-  install.packages("rlang")
   library(rlang)
   library(xlsx)
   library(plyr) # rbind.fill
@@ -16,13 +14,11 @@ rm(list=ls(all=T))
   source("postprocessing_functions.R")
   source("functions/to_alphanumeric_lowercase.R")
   source("functions/analysisplan_factory.R")
-#  source("functions/HNO_Recoding.R")
- # source("functions/percentages_msni.R")
- # source("functions/percentages_msni.R")
+  source("functions/HNO_Recoding.R")
 
   
   
-  #' load input files & make everything match:
+#LOAD INPUT FILES 
   source("load_inputs.R",local = T)
   #' creates objects:
   #' 
@@ -37,12 +33,18 @@ rm(list=ls(all=T))
   #'    samplingframe
   #'    samplingframe_in_camp
   
+#PREPARE BOTH DATASETS
   source("prepare_datasets.R", local = T)
+  #'  1. merge values from remote and in-person data collection
+  #'  2. add columns to in-camp dataset which are only included in outcamp data collection
+
+  
+#MERGE INCAMP AND OUT-OF CAMP DATASETS 
+#PREPARE SAMPLING FRAMES AND CLUSTER_IDs
   source("Merger.R", local = T)
   #' matching all inputs:
   #' 1. combine in and out of camp data for each, HH and loops 
-  #' 2. put together questionnaire
-  #' 3. prepare sampling frames:
+  #' 2. prepare sampling frames:
   #'     3.1 prepare columns in out of camp cluster level sampling frame
   #'     3.2 aggregate out-of-camp to stratum level
   #'     3.3.make strata id for in-camp sampling frame
@@ -51,7 +53,7 @@ rm(list=ls(all=T))
   #'     3.6. throw error if any don't match
   
   
-  # any further problems with the sampling frame matching?
+#IDENTIFY ANY FURTHER PROBLEMS WITH THE SAMPLING FRAMES MATCHING
   
   strata_samplingframe_issues <- as.data.frame(response[which(!response$strata %in% samplingframe_strata$stratum), c("X_uuid", "strata")])
   if(nrow(strata_samplingframe_issues)!=0){
@@ -83,16 +85,6 @@ rm(list=ls(all=T))
   #                                         data = response[response$population_group!="idp_in_camp",])
   
   
-  # only in camp idps have cluster weight of 1:
-  
-  
-  # cluster_weight_fun<-function(df){
-  #   weights<-rep(NA,nrow(df))
-  #   in_camp<-df$population_group=="idp_in_camp"
-  #   weights[!in_camp]<-clusters_weight_fun_out_of_camp(df[!in_camp,])
-  #   weights[in_camp]<-1
-  #   weights
-  #   }
   
   response <- response[!is.na(response$num_hh_member), ]
 
@@ -102,7 +94,7 @@ rm(list=ls(all=T))
                                         data.stratum.column = "strata",
                                         data = response)
   
-  # weight_fun <- combine_weighting_functions(strata_weight_fun, clusters_weight_fun)
+# weight_fun <- combine_weighting_functions(strata_weight_fun, clusters_weight_fun)
   weight_fun<-strata_weight_fun
   
   
@@ -125,26 +117,17 @@ response_with_composites <- recoding_hno(response, loop)
 #response_male <- recoding_preliminary(male_headed, loop)
 
 
-#CALCULATE PERCENTAGES FOR THE MSNI FACTSHEETS
-#percentages_msni_factsheet2 <- percent_msni(response_with_composites)
-#write.csv(percentages_msni_factsheet2, "output/percentages_msni_factsheet2.csv")
-
-
 dap_name <- "hno"
 analysisplan <- read.csv(sprintf("input/dap_%s.csv",dap_name), stringsAsFactors = F)
-#analysisplan <- analysisplan[-which(analysisplan$ignore),]
-#analysisplan <- analysisplan[which(startsWith(analysisplan$dependent.variable, "g51a") 
-                                  #  | startsWith(analysisplan$dependent.variable, "s7") 
-                                  #  | startsWith(analysisplan$dependent.variable, "s21") 
-                                  #  | startsWith(analysisplan$dependent.variable, "s22")
-#                                   ),]
+
+#AGGREGATE ACROSS DISTRICTS OR/AND POPULATION GROUPS
+
 #analysisplan <- analysisplan_nationwide(analysisplan)
 #analysisplan <- analysisplan_pop_group_aggregated(analysisplan)
 #analysisplan$hypothesis.type <- "group_difference"
 
-#response_with_composites<-response_with_composites[!(response_with_composites$strata=="al.daurreturnee" |
-#                                       response_with_composites$strata=="al.fallujareturnee" | 
-#                                       response_with_composites$strata=="al.hatraidp_out_camp"),]
+response_with_composites<-subset(response_with_composites, response_with_composites$district_mcna!="al.hatra" | 
+                is.na(response_with_composites$district_mcna))
 
 result <- from_analysisplan_map_to_output(response_with_composites, analysisplan = analysisplan,
                                           weighting = weight_fun,

@@ -347,15 +347,21 @@ hno$critical <-  apply(hno, 1, function(y) {
   max(y[c("s_3", "s_9", "s_24")], na.rm = T)
 })
 hno$final_severity <- ifelse(hno$critical > hno$mean, hno$critical, hno$mean)
-hno$final_severity <- as.character(as.numeric(hno$final_severity))
+#hno$final_severity <- as.character(as.numeric(hno$final_severity))
 r$final_severity <- hno$final_severity
-r <- r %>% mutate(final_severity = case_when(
-  r$final_severity == "1" ~ "one",
-  r$final_severity == "2" ~ "two",
-  r$final_severity == "3" ~ "three",
-  r$final_severity == "4" ~ "four",
-  r$final_severity == "5" ~ "five",
-))
+r$hno_severity_1 <- ifelse(r$final_severity == 1, 1,0)
+r$hno_severity_2 <- ifelse(r$final_severity == 2, 1,0)
+r$hno_severity_3 <- ifelse(r$final_severity == 3, 1,0)
+r$hno_severity_4 <- ifelse(r$final_severity == 4, 1,0)
+r$hno_severity_5 <- ifelse(r$final_severity == 5, 1,0)
+
+#r <- r %>% mutate(final_severity = case_when(
+#  r$final_severity == "1" ~ "one",
+#  r$final_severity == "2" ~ "two",
+#  r$final_severity == "3" ~ "three",
+#  r$final_severity == "4" ~ "four",
+#  r$final_severity == "5" ~ "five",
+#))
 
 return(r)
 }
