@@ -1,6 +1,5 @@
-
+#PREPARE INCAMP AND OUTOFCAMP DATASETS TO BE MERGED
 idp_in_camp$district <- to_alphanumeric_lowercase(samplingframe_in_camp$district[match(idp_in_camp$camp_name, samplingframe_in_camp$camp)])
-#loop_in_camp <- read.csv("input/incamp_loop.csv", stringsAsFactors = F)
 
 
 #MERGE COLUMNS MCNA REMOTE AND INPERSON

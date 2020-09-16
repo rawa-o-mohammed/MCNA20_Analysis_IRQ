@@ -1,8 +1,6 @@
 # PACKAGE INSTALLATION
 # run this once on your system (or to update)
 # do not source this file
-
-
 install.packages("assertthat")
 install.packages("crayon")
 install.packages("data.table")

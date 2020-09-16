@@ -16,8 +16,6 @@ rm(list=ls(all=T))
   source("functions/analysisplan_factory.R")
   source("functions/HNO_Recoding.R")
 
-  
-  
 #LOAD INPUT FILES 
   source("load_inputs.R",local = T)
   #' creates objects:
@@ -101,6 +99,7 @@ response <- response[!is.na(response$num_hh_member), ]
 response <- response[!is.na(response$strata), ]
 ########
 
+#STRATA WEIGHTING
 strata_weight_fun <- map_to_weighting(sampling.frame = samplingframe_strata,
                                         sampling.frame.population.column = "population",
                                         sampling.frame.stratum.column = "stratum",
