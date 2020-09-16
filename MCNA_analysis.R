@@ -87,6 +87,8 @@ rm(list=ls(all=T))
   
   
 response <- response[!is.na(response$num_hh_member), ]
+response <- response[!is.na(response$strata), ]
+table(response$strata)
 
 strata_weight_fun <- map_to_weighting(sampling.frame = samplingframe_strata,
                                         sampling.frame.population.column = "population",
@@ -95,14 +97,16 @@ strata_weight_fun <- map_to_weighting(sampling.frame = samplingframe_strata,
                                         data = response)
   
 # weight_fun <- combine_weighting_functions(strata_weight_fun, clusters_weight_fun)
-weight_fun<-strata_weight_fun
+weight_fun <-strata_weight_fun
   
   
-response$weights<-weight_fun(response)
+response$weights<- weight_fun(response)
   
 #CHANGE WEIGHTS OF REMOTELY COLLECTED STRATAS TO 1
 response$weights <- ifelse(response$dc_method == "remote", 1,
                            response$weights)
+response <- response[!is.na(response$weights), ]
+
 # for speedy speed we can not recalculate weights on every run):
  weight_fun<-function(df){
    df$weights
@@ -118,7 +122,7 @@ response_with_composites <- recoding_hno(response, loop)
 
 
 dap_name <- "hno"
-analysisplan <- read.csv(sprintf("input/dap_%s.csv",dap_name), stringsAsFactors = F)
+analysisplan <- read.csv(sprintf("input/dap/dap_%s.csv",dap_name), stringsAsFactors = F)
 
 #AGGREGATE ACROSS DISTRICTS OR/AND POPULATION GROUPS
 
@@ -129,6 +133,7 @@ analysisplan <- read.csv(sprintf("input/dap_%s.csv",dap_name), stringsAsFactors 
 response_with_composites<-subset(response_with_composites, response_with_composites$district_mcna!="al.hatra" | 
                 is.na(response_with_composites$district_mcna))
 
+
 result <- from_analysisplan_map_to_output(response_with_composites, analysisplan = analysisplan,
                                           weighting = weight_fun,
                                           cluster_variable_name = "cluster_id",
@@ -138,27 +143,27 @@ name <- "preliminary_national_aggregates_popgroupagg"
 saveRDS(result,paste(sprintf("output/result_%s.RDS", name)))
 #summary[which(summary$dependent.var == "g51a"),]
 
-lookup_in_camp<-load_samplingframe("./input/sampling_frame_in_camp.csv")
+lookup_in_camp<-load_samplingframe("./input/sampling_frame/sampling_frame_in_camp.csv")
 names(lookup_in_camp)[which(names(lookup_in_camp) == "camp")] <- "name"
 names(lookup_in_camp)[which(names(lookup_in_camp) == "camp.long.name")] <- "english"
 names(lookup_in_camp)[which(names(lookup_in_camp) == "governorate")] <- "filter"
 
 summary <- bind_rows(lapply(result[[1]], function(x){x$summary.statistic}))
-write.csv(summary, sprintf("output/raw_results_%s.csv", name), row.names=F)
-summary <- read.csv(sprintf("output/raw_results_%s.csv", name), stringsAsFactors = F)
+write.csv(summary, sprintf("output/raw_results/raw_results_%s.csv", name), row.names=F)
+summary <- read.csv(sprintf("output/raw_results/raw_results_%s.csv", name), stringsAsFactors = F)
 summary <- correct.zeroes(summary)
 summary <- summary %>% filter(dependent.var.value %in% c(NA,1))
-write.csv(summary, sprintf("output/raw_results_%s_filtered.csv", name), row.names=F)
+write.csv(summary, sprintf("output/raw_results/raw_results_%s_filtered.csv", name), row.names=F)
 if(all(is.na(summary$independent.var.value))){summary$independent.var.value <- "all"}
 groups <- unique(summary$independent.var.value)
 groups <- groups[!is.na(groups)]
 for (i in 1:length(groups)) {
   df <- pretty.output(summary, groups[i], analysisplan, cluster_lookup_table, lookup_table, severity = name == "severity", camp = F)
-  write.csv(df, sprintf("output/summary_sorted_%s_%s.csv", name, groups[i]), row.names = F)
+  write.csv(df, sprintf("output/summary_sorted/summary_sorted_%s_%s.csv", name, groups[i]), row.names = F)
   if(i == 1){
-    write.xlsx(df, file=sprintf("output/summary_sorted_%s.xlsx", name), sheetName=groups[i], row.names=FALSE)
+    write.xlsx(df, file=sprintf("output/summary_sorted/summary_sorted_%s.xlsx", name), sheetName=groups[i], row.names=FALSE)
   } else {
-    write.xlsx(df, file=sprintf("output/summary_sorted_%s.xlsx", name), sheetName=groups[i], append=TRUE, row.names=FALSE)
+    write.xlsx(df, file=sprintf("output/summary_sorted/summary_sorted_%s.xlsx", name), sheetName=groups[i], append=TRUE, row.names=FALSE)
   }
 }
 

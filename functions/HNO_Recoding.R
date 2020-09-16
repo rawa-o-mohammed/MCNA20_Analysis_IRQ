@@ -343,6 +343,9 @@ r <- r %>% mutate(s_26 = case_when(
   r$access_soap == "no" ~ 5
 ))
 
+r <- merge(r, ila_analysis, by="strata", all.x = T)
+
+
 #MEAN OF MAX 50% CALCULATION
 hno <-  r[c(which(startsWith(names(r), "s_")))]                   
 hno$mean <-  apply(hno, 1, function(y) {
