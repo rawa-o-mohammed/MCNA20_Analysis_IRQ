@@ -34,5 +34,3 @@ write.xlsx(dem_in_camp, file="output/demographics.xlsx", sheetName="in_camp", ro
 write.xlsx(dem_out_camp, file="output/demographics.xlsx", sheetName="out_camp", append=TRUE, row.names=FALSE)
 write.xlsx(dem_returnee, file="output/demographics.xlsx", sheetName="returnee", append=TRUE, row.names=FALSE)
 
-
-

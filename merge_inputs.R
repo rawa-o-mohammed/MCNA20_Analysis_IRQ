@@ -21,7 +21,7 @@ samplingframe$district <- to_alphanumeric_lowercase(samplingframe$district)
 samplingframe$stratum <- paste0(samplingframe$district, samplingframe$popgroup)
 
 
-#ADD DISTRICT NAMES BASED ON LOCATION IDS IN SAMPLING FRAME
+#ADD DISTRICT NAMES BASED ON LOCATION IDS IN SAMPLING FRAME (to be deleted once dataset final)
 strata_clusters_population <- read.csv("input_modified/Strata_clusters_population.csv",
                                        stringsAsFactors = F, check.names = T)
 names(strata_clusters_population)[names(strata_clusters_population) == "psu"] <- "cluster_location_id"
@@ -44,9 +44,6 @@ response$population_group %find those not in% samplingframe$popgroup
 
 ##CREATE ID IN SAMPLINGFRAME AND IN DATA 
 samplingframe$cluster_strata_ID <- paste(samplingframe$cluster_ID, samplingframe$popgroup, sep = "_")
-#response$cluster_location_id <- ifelse(response$dc_method == "remote" & 
-#                                is.na(response$cluster_location_id), "r", 
-#                              response$cluster_location_id)
 response$cluster_id <- paste("cluster_location_id", response$cluster_location_id, response$population_group, sep = "_")
 
 # any id that can't be found in combination?
@@ -86,12 +83,6 @@ response <- response[!is.na(response$population_group), ]
 response$strata[response$population_group=="idp_in_camp"]<- (paste0(response$camp_name,response$population_group))[response$population_group=="idp_in_camp"]
 
 
-
-## add rows to cluster samplingframe where no cluster sampling was used
-# samplingframe<-bind_rows(samplingframe,in_camp_cluster_sampling_frame)
-
-
-
 ##CHECK IF ALL MATCH SAMPLINGFRAME:
 
 if(any(!(response$strata %in% samplingframe_strata$stratum))){
@@ -100,12 +91,13 @@ if(any(!(response$strata %in% samplingframe_strata$stratum))){
 }
 response$strata %find those not in% samplingframe_strata$stratum
 
+##### (TO BE DELETED ONCE FINAL DATASET READY)
 response<-response[!(response$strata=="al.hawigaidp_out_camp" |
                        response$strata=="al.sulaymaniyahreturnee" | 
                        response$strata=="dokanreturnee" | 
                        response$strata == "kalarreturnee" | 
                        response$strata == "idp_in_camp"),]
-
+#####
 
 if(any(is.na(response$strata))){
   warning("strata can not be NA")
