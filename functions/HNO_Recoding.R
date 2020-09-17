@@ -26,16 +26,18 @@ r <- r %>% mutate(s_2 = case_when(
 #DISABILITY
 #############
 count_difficulty_level <- function(df) {
-  df <-  df[c(which(startsWith(names(df), "difficulty_")))]                   
-  df$no_diff <- rowSums(df == "no_difficulty")
-  df$some_diff <- rowSums(df == "some_difficulty")
-  df$lot_diff <- rowSums(df == "a_lot_of_difficulty")
-  df$cannot_diff <- rowSums(df == "cannot_do_at_all")
+  diff <-  df[c(which(startsWith(names(df), "difficulty_")))]                   
+  diff$no_diff <- rowSums(diff == "no_difficulty")
+  diff$some_diff <- rowSums(diff == "some_difficulty")
+  diff$lot_diff <- rowSums(diff == "a_lot_of_difficulty")
+  diff$cannot_diff <- rowSums(diff == "cannot_do_at_all")
+  diff <- diff[, c("no_diff", "some_diff", "lot_diff", "cannot_diff")]
+  df <- cbind(df, diff)
   return(df)
 }
-difficulty <- count_difficulty_level(r)
-difficulty <- difficulty[, c("no_diff", "some_diff", "lot_diff", "cannot_diff")]
-r <- cbind(r, difficulty)
+r <- count_difficulty_level(r)
+#difficulty <- difficulty[, c("no_diff", "some_diff", "lot_diff", "cannot_diff")]
+#r <- cbind(r, difficulty)
 
 r <- r %>% mutate(s_3 = case_when(
   r$some_diff == 0 & r$lot_diff == 0 & r$cannot_diff == 0 ~ 1,
@@ -48,6 +50,20 @@ r <- r %>% mutate(s_3 = case_when(
   r$cannot_diff >= 4 ~ 5
 ))
 
+
+#EDUCATION
+############
+r$perc_edu <- apply(r, 1, FUN=function(x){
+  (loop %>% filter(X_submission__uuid == x["X_uuid"] & (attend_formal_ed == "yes" | attend_informal_ed == "yes")) %>% nrow) / 
+    (loop %>% filter(X_submission__uuid == x["X_uuid"] & attend_formal_ed != "") %>% nrow)
+})
+r <- r %>% mutate(s_4 = case_when(
+  r$perc_edu >= 0.9 ~ 1,
+  r$perc_edu >= 0.7 & r$perc_edu < 0.9 ~ 2,
+  r$perc_edu >= 0.55 & r$perc_edu < 0.7 ~ 3,
+  r$perc_edu >= 0.3 & r$perc_edu < 0.55 ~ 4,
+  r$perc_edu >= 0 & r$perc_edu < 0.3 ~ 5
+))
 
 
 #LIVELIHOODS
@@ -66,6 +82,7 @@ r <- r %>% mutate(s_6 = case_when(
 
 
 r <- r %>% mutate(s_7 = case_when(
+  is.na(r$reasons_for_debt) ~ 1,
   r$reasons_for_debt %in% c("", "clothing", "other", "purchase_pro_assets") ~ 1,
   r$reasons_for_debt %in% c("education", "basic_hh_expenditure") ~ 3,
   r$reasons_for_debt == "health" ~ 4,
@@ -267,7 +284,7 @@ r$child_education <- apply(r, 1, FUN=function(x){
 r$child_documents <- ifelse(r$id_card_u18 == "no" | r$birth_cert_u18 == "no" | 
                               r$nationality_cert_u18 == "no", 1, 0)
 r$child_distress <- ifelse(r$child_distress_number < 1 | is.na(r$child_distress_number), 0, 1)
-r$child_composite <- rowSums(r[,c("child_marriage", "child_labor", "child_documents", "child_distress", "child_education")])
+r$child_composite <- rowSums(r[,c("child_marriage", "child_labor", "child_documents", "child_distress", "child_education")], na.rm = T)
 r <- r %>% mutate(s_20 = case_when(
   r$child_composite == 0 ~ 1,
   r$child_composite == 1 ~ 3,
@@ -324,7 +341,7 @@ r <- r %>% mutate(s_24_1 = case_when(
 #MERGE INCAMP AND OUTCAMP WATER SUFFICIENCY INDICATORS 
 r$s_24 <- ifelse(r$population_group == "idp_in_camp", r$s_24_1, 
                  r$s_24)
-
+r$s_24_1 <- NULL
 
 
 r$impr_san <- ifelse(r$latrines == "flush" | r$latrines == "vip_pit",1,0)
@@ -349,8 +366,12 @@ r <- merge(r, ila_analysis, by="strata", all.x = T)
 #MEAN OF MAX 50% CALCULATION
 hno <-  r[c(which(startsWith(names(r), "s_")))]                   
 hno$mean <-  apply(hno, 1, function(y) {
-  ceiling(mean(tail(sort(y), (floor(ncol(hno)/2)))))
+  round(mean(tail(sort(y), (floor(ncol(hno)/2)))))
 })
+#d <- density(hno$mean) 
+#plot(d)
+#abline(v=c(2,2.5), col=c("black", "black"), lty=c(2,2), lwd=c(1, 1))
+
 
 #CRITICAL INDICATORS
 hno$critical <-  apply(hno, 1, function(y) {

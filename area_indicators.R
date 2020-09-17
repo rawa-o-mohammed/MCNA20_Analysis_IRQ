@@ -1,10 +1,7 @@
 ila <- read.csv("./input/datasets/ILA5_dataset_REACH_OCHA_names.csv")
 ila$district_ocha <- to_alphanumeric_lowercase(ila$district_ocha)
-ila <- ila %>%
-  mutate(district_ocha = tolower(district_ocha))
 
-ila <- ila[!is.na(ila$district_ocha), ]
-
+#S_27 - CRITICAL SHELTER INDICATOR
 ila <- ila %>% mutate(idp_critical_shelter = 
                       (Q3.6.1..IDPFamiliesByRentalDestroyed + 
                          Q3.6.1..IDPFamiliesByUnfinishedBuilding + 
@@ -62,3 +59,34 @@ ila_analysis <- ila_analysis[,c("strata", "s_27")]
 #MERGE WITH RESPONSE_WITH_COMPOSITES
 #response_with_composites <- merge(response_with_composites, ila_analysis, by="strata", all.x = T)
 
+
+#s_28 - MINE ACTION INDICATOR
+ila <- ila %>%
+  mutate(Q5.1.2.SecIncident_ImprovisedExplosiveDevices = 
+           case_when(Q5.1.2.SecIncident_ImprovisedExplosiveDevices == "Yes" ~ 1, TRUE ~ 0),
+         Q5.1.3.SecIncident_Landmines = 
+           case_when(Q5.1.3.SecIncident_Landmines == "Yes" ~ 1, TRUE ~ 0),
+         Q5.5.1.Concernce_UXO = case_when(Q5.5.1.Concernce_UXO == "Not concerned" ~ 0, TRUE ~ 1))
+
+explosive_analysis <- ila %>%
+  group_by(district_ocha) %>%
+  summarize(reported_incidents = sum(Q5.1.2.SecIncident_ImprovisedExplosiveDevices) 
+            + sum(Q5.1.3.SecIncident_Landmines),
+            concern_uxo = sum(Q5.5.1.Concernce_UXO),
+            total_group_entries = n())
+
+explosive_analysis <- explosive_analysis %>%
+  mutate(rate_reported_incidents =  reported_incidents/total_group_entries,
+         rate_concern_uxo = concern_uxo/total_group_entries)
+
+
+explosive_analysis <- explosive_analysis %>%
+  mutate(s_28 = 
+           case_when(rate_reported_incidents == 0 & rate_concern_uxo == 0 ~ 1,
+                     rate_reported_incidents == 0 & rate_concern_uxo > 0 ~ 2,
+                     rate_reported_incidents > 0 & rate_reported_incidents <= 0.1 ~ 3,
+                     rate_reported_incidents > 0.1 & rate_concern_uxo < 0.2 ~ 4, 
+                     rate_reported_incidents > 0.1 & rate_concern_uxo >= 0.2 ~ 5))
+
+
+write.csv(explosive_analysis, "output/ila_analysis_explosive_s28.csv")

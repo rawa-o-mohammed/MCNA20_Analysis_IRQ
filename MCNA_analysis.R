@@ -67,7 +67,7 @@ rm(list=ls(all=T))
   }
   
 
-###################
+####################################
 #CLUSTER WEIGHTING (NOT TO BE USED)
   
   #cluster_samplingframe_issues <- as.data.frame(response[which(!response$cluster_id[which(response$population_group != "idp_in_camp")] %in% samplingframe$cluster_strata_ID), c("X_uuid", "strata")])
@@ -90,8 +90,7 @@ rm(list=ls(all=T))
   #                                         sampling.frame.stratum.column = "cluster_strata_ID",
   #                                         data.stratum.column = "cluster_id",
   #                                         data = response[response$population_group!="idp_in_camp",])
-
-#####################
+#######################################
   
   
 ####(TO BE DELETED ONCE FINAL DATASET READY)
@@ -177,7 +176,4 @@ for (i in 1:length(groups)) {
     write.xlsx(df, file=sprintf("output/summary_sorted/summary_sorted_%s.xlsx", name), sheetName=groups[i], append=TRUE, row.names=FALSE)
   }
 }
-
-
-
 
