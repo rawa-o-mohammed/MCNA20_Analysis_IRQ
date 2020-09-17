@@ -366,7 +366,7 @@ r <- merge(r, ila_analysis, by="strata", all.x = T)
 #MEAN OF MAX 50% CALCULATION
 hno <-  r[c(which(startsWith(names(r), "s_")))]                   
 hno$mean <-  apply(hno, 1, function(y) {
-  round(mean(tail(sort(y), (floor(ncol(hno)/2)))))
+  ceiling(mean(tail(sort(y), (floor(ncol(hno)/2)))))
 })
 #d <- density(hno$mean) 
 #plot(d)

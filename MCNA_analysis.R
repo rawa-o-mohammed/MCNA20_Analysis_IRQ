@@ -140,7 +140,8 @@ analysisplan <- read.csv(sprintf("input/dap/dap_%s.csv",dap_name), stringsAsFact
 #analysisplan$hypothesis.type <- "group_difference"
 
 #####(TO BE DELETED ONCE FINAL DATASET READY)
-response_with_composites<-subset(response_with_composites, response_with_composites$district_mcna!="al.hatra" | 
+response_with_composites<-subset(response_with_composites, response_with_composites$district_mcna!="al.hatra" & 
+                                   response_with_composites$district_mcna != "haditha" |
                 is.na(response_with_composites$district_mcna))
 #####
 

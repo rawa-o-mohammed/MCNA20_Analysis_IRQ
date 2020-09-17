@@ -96,7 +96,8 @@ response<-response[!(response$strata=="al.hawigaidp_out_camp" |
                        response$strata=="al.sulaymaniyahreturnee" | 
                        response$strata=="dokanreturnee" | 
                        response$strata == "kalarreturnee" | 
-                       response$strata == "idp_in_camp"),]
+                       response$strata == "idp_in_camp" | 
+                       response$strata == "NAidp_in_camp"),]
 #####
 
 if(any(is.na(response$strata))){
