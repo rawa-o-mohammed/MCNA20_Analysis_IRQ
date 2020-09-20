@@ -11,13 +11,14 @@ rm(list=ls(all=T))
   library(surveyweights) # calculate weights from samplingframes
   library(hypegrammaR) # simple stats 4 complex samples
   library(composr) # horziontal operations
-  source("postprocessing_functions.R")
-  source("functions/to_alphanumeric_lowercase.R")
-  source("functions/analysisplan_factory.R")
-  source("functions/HNO_Recoding.R")
+
+  source("R/functions/postprocessing_functions.R")
+  source("R/functions/to_alphanumeric_lowercase.R")
+  source("R/functions/analysisplan_factory.R")
+  source("R/functions/HNO_Recoding.R")
 
 #LOAD INPUT FILES 
-  source("load_inputs.R",local = T)
+  source("R/1_load_inputs.R",local = T)
   #' creates objects:
   #' 
   #'    response
@@ -32,14 +33,14 @@ rm(list=ls(all=T))
   #'    samplingframe_in_camp
   
 #PREPARE BOTH DATASETS
-  source("prepare_datasets.R", local = T)
+  source("R/2_prepare_datasets.R", local = T)
   #'  1. merge values from remote and in-person data collection
   #'  2. add columns to in-camp dataset which are only included in outcamp data collection
 
   
 #MERGE INCAMP AND OUT-OF CAMP DATASETS 
 #PREPARE SAMPLING FRAMES AND CLUSTER_IDs
-  source("merge_inputs.R", local = T)
+  source("R/3_merge_inputs.R", local = T)
   #' matching all inputs:
   #' 1. combine in and out of camp data for each, HH and loops 
   #' 2. prepare sampling frames:
@@ -52,7 +53,7 @@ rm(list=ls(all=T))
 
 
 #CALCULATE DISTRICT LEVEL SEVERITY FOR AREA-LEVEL INDICATORS (s_27, s_28, s_29)
-  source("area_indicators.R", local = T)
+  source("R/4_area_indicators.R", local = T)
   #' Indicators
   #' s_27 - % of people living under critical shelter condition
   #' s_28 - % of locations reporting incidents with explosive devices
@@ -151,7 +152,7 @@ result <- from_analysisplan_map_to_output(response_with_composites, analysisplan
                                           questionnaire = questionnaire, confidence_level = 0.9)
 
 name <- "preliminary_national_aggregates_popgroupagg"
-saveRDS(result,paste(sprintf("output/result_%s.RDS", name)))
+saveRDS(result,paste(sprintf("output/RDS/result_%s.RDS", name)))
 #summary[which(summary$dependent.var == "g51a"),]
 
 lookup_in_camp<-load_samplingframe("./input/sampling_frame/sampling_frame_in_camp.csv")
