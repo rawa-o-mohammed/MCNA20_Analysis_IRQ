@@ -23,7 +23,7 @@ ila <- ila %>% mutate(returnee_critical_shelter =
                          Q3.7.1.RetFamiliesByOtherSettlement +
                          Q3.7.1.RetFamiliesByUnknown))
 
-
+#unloadNamespace("plyr")
 ila_analysis <- ila %>%
   group_by(district_ocha) %>%
   summarize(sum_idp_critical = sum(idp_critical_shelter, na.rm = T),
@@ -88,5 +88,8 @@ explosive_analysis <- explosive_analysis %>%
                      rate_reported_incidents > 0.1 & rate_concern_uxo < 0.2 ~ 4, 
                      rate_reported_incidents > 0.1 & rate_concern_uxo >= 0.2 ~ 5))
 
+#write.csv(explosive_analysis, "output/ila_analysis_explosive_s28.csv")
+#SUBSET INDICATOR
+names(explosive_analysis)[names(explosive_analysis) == "district_ocha"] <- "district_mcna"
+explosive_analysis <- explosive_analysis[,c("district_mcna", "s_28")]
 
-write.csv(explosive_analysis, "output/ila_analysis_explosive_s28.csv")

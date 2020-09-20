@@ -361,6 +361,7 @@ r <- r %>% mutate(s_26 = case_when(
 ))
 
 r <- merge(r, ila_analysis, by="strata", all.x = T)
+r <- merge(r, explosive_analysis, by="district_mcna", all.x = T)
 
 
 #MEAN OF MAX 50% CALCULATION
