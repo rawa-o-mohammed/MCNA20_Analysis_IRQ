@@ -23,7 +23,7 @@ ila <- ila %>% mutate(returnee_critical_shelter =
                          Q3.7.1.RetFamiliesByOtherSettlement +
                          Q3.7.1.RetFamiliesByUnknown))
 
-#unloadNamespace("plyr")
+detach("package:plyr")
 ila_analysis <- ila %>%
   group_by(district_ocha) %>%
   summarize(sum_idp_critical = sum(idp_critical_shelter, na.rm = T),

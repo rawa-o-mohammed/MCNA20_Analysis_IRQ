@@ -22,7 +22,7 @@ samplingframe$stratum <- paste0(samplingframe$district, samplingframe$popgroup)
 
 
 #ADD DISTRICT NAMES BASED ON LOCATION IDS IN SAMPLING FRAME (to be deleted once dataset final)
-strata_clusters_population <- read.csv("input_modified/Strata_clusters_population.csv",
+strata_clusters_population <- read.csv("input/sampling_frame/Strata_clusters_population.csv",
                                        stringsAsFactors = F, check.names = T)
 names(strata_clusters_population)[names(strata_clusters_population) == "psu"] <- "cluster_location_id"
 district_location_ids <- strata_clusters_population[,c("district", "cluster_location_id")]

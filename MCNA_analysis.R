@@ -151,7 +151,7 @@ result <- from_analysisplan_map_to_output(response_with_composites, analysisplan
                                           cluster_variable_name = "cluster_id",
                                           questionnaire = questionnaire, confidence_level = 0.9)
 
-name <- "preliminary_national_aggregates_popgroupagg"
+name <- "preliminary_national_aggregates_popgroupagg_2"
 saveRDS(result,paste(sprintf("output/RDS/result_%s.RDS", name)))
 #summary[which(summary$dependent.var == "g51a"),]
 
