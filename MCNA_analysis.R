@@ -4,6 +4,8 @@ rm(list=ls(all=T))
   library(xlsx)
   library(plyr) # rbind.fill
   library(dplyr)
+  library(reshape)
+  library(data.table)
   library(questionr)
   library(koboquest) # manage kobo questionnairs
   library(kobostandards) # check inputs for inconsistencies
