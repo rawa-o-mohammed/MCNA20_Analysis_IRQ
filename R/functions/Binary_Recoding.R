@@ -1,3 +1,13 @@
+round2 <- function(x, n=0) {
+  posneg <- sign(x)
+  z <- abs(x)*10^n
+  z <- z + 0.5
+  z <- trunc(z)
+  z <- z/10^n
+  z <- z*posneg
+  return(z)
+}
+
 r <- response
 loop <- loop
 
@@ -14,8 +24,9 @@ loop <- loop
     mutate(sex = loop_hoh$sex[match(r$X_uuid, loop_hoh$`X_submission__uuid`)])
   
   loop_children <- loop[which(loop$age < 18), ]
-  r$femal_hh   <- ifelse(r$sex == "female", 1, 0)
-  
+  female_headed <- response[which(response$X_uuid %in% loop$X_submission__uuid[which(loop$sex == "female" & loop$relationship == "head")]),]
+  r$gender_hhh <- loop_hoh$sex[match(r$X_uuid, loop_hoh$X_submission__uuid)]
+
   ############################################### a #############################
   r$a7        <- as.numeric(r$num_hh_member)
   r$a8        <- as.numeric(r$num_family_member)
@@ -49,80 +60,74 @@ loop <- loop
     ifelse(loop$age[match(r$X_uuid, loop_hoh$`X_submission__uuid`)] < 18 &
              loop$work[match(r$X_uuid, loop_hoh$`X_submission__uuid`)] == "yes", 1, 0)
   
-  r$a14 <-
-    ifelse(
-      r$femal_hh == 1 &
-        r$gender_respondent == "female" &
-        loop$relationship[match(r$X_uuid, loop$`X_submission__uuid`)] == "head",
-      1,
-      0
-    )
+  r$a14 <- ifelse(r$gender_hhh == "female", 1, 0)
+  
   
   r$a15_i     <-
-    ifelse(r$`why_not_return/fear_trauma` %in% c(NA, 0), 0, 1)
+    ifelse(r$`why_not_return.fear_trauma` %in% c(NA, 0), 0, 1)
   r$a15_ii    <-
-    ifelse(r$`why_not_return/lack_of_security_forces` %in% c(NA, 0), 0, 1)
+    ifelse(r$`why_not_return.lack_of_security_forces` %in% c(NA, 0), 0, 1)
   r$a15_ii    <-
-    ifelse(r$`why_not_return/presence_of_mines` %in% c(NA, 0), 0, 1)
+    ifelse(r$`why_not_return.presence_of_mines` %in% c(NA, 0), 0, 1)
   r$a15_iv    <-
-    ifelse(r$`why_not_return/discrimination` %in% c(NA, 0), 0, 1)
+    ifelse(r$`why_not_return.discrimination` %in% c(NA, 0), 0, 1)
   r$a15_v     <-
-    ifelse(r$`why_not_return/lack_security_women` %in% c(NA, 0), 0, 1)
+    ifelse(r$`why_not_return.lack_security_women` %in% c(NA, 0), 0, 1)
   r$a15_vi    <-
-    ifelse(r$`why_not_return/movement_restrictions` %in% c(NA, 0), 0, 1)
+    ifelse(r$`why_not_return.movement_restrictions` %in% c(NA, 0), 0, 1)
   r$a15_vii   <-
-    ifelse(r$`why_not_return/no_personal_id` %in% c(NA, 0), 0, 1)
+    ifelse(r$`why_not_return.no_personal_id` %in% c(NA, 0), 0, 1)
   r$a15_viii  <-
-    ifelse(r$`why_not_return/no_transport_return` %in% c(NA, 0), 0, 1)
+    ifelse(r$`why_not_return.no_transport_return` %in% c(NA, 0), 0, 1)
   r$a15_ix    <-
-    ifelse(r$`why_not_return/no_money_return` %in% c(NA, 0), 0, 1)
+    ifelse(r$`why_not_return.no_money_return` %in% c(NA, 0), 0, 1)
   r$a15_x     <-
-    ifelse(r$`why_not_return/lack_livelihoods_aoo` %in% c(NA, 0), 0, 1)
+    ifelse(r$`why_not_return.lack_livelihoods_aoo` %in% c(NA, 0), 0, 1)
   r$a15_xi    <-
-    ifelse(r$`why_not_return/hh_assets_stolen_damaged` %in% c(NA, 0),
+    ifelse(r$`why_not_return.hh_assets_stolen_damaged` %in% c(NA, 0),
            0,
            1)
   r$a15_xii   <-
-    ifelse(r$`why_not_return/house_land_occupied` %in% c(NA, 0), 0, 1)
+    ifelse(r$`why_not_return.house_land_occupied` %in% c(NA, 0), 0, 1)
   r$a15_xiii  <-
-    ifelse(r$`why_not_return/house_damaged_destroyed` %in% c(NA, 0), 0, 1)
+    ifelse(r$`why_not_return.house_damaged_destroyed` %in% c(NA, 0), 0, 1)
   r$a15_xiv   <-
-    ifelse(r$`why_not_return/lack_court` %in% c(NA, 0), 0, 1)
+    ifelse(r$`why_not_return.lack_court` %in% c(NA, 0), 0, 1)
   r$a15_xv    <-
-    ifelse(r$`why_not_return/local_markets_not_working` %in% c(NA, 0),
+    ifelse(r$`why_not_return.local_markets_not_working` %in% c(NA, 0),
            0,
            1)
   r$a15_xvi   <-
-    ifelse(r$`why_not_return/basic_services_not_enough` %in% c(NA, 0),
+    ifelse(r$`why_not_return.basic_services_not_enough` %in% c(NA, 0),
            0,
            1)
   r$a15_xvii  <-
-    ifelse(r$`why_not_return/lack_of_education_oppotunities` %in% c(NA, 0),
+    ifelse(r$`why_not_return.lack_of_education_oppotunities` %in% c(NA, 0),
            0,
            1)
   r$a15_xviii <-
-    ifelse(r$`why_not_return/immediate_family_wont_return` %in% c(NA, 0),
+    ifelse(r$`why_not_return.immediate_family_wont_return` %in% c(NA, 0),
            0,
            1)
   r$a15_xix   <-
-    ifelse(r$`why_not_return/health_conditions` %in% c(NA, 0), 0, 1)
+    ifelse(r$`why_not_return.health_conditions` %in% c(NA, 0), 0, 1)
   r$a15_xx    <-
-    ifelse(r$`why_not_return/children_enrolled_in_displacement` %in% c(NA, 0),
+    ifelse(r$`why_not_return.children_enrolled_in_displacement` %in% c(NA, 0),
            0,
            1)
   r$a15_xxi   <-
-    ifelse(r$`why_not_return/living_conditions_better` %in% c(NA, 0),
+    ifelse(r$`why_not_return.living_conditions_better` %in% c(NA, 0),
            0,
            1)
   r$a15_xxii  <-
-    ifelse(r$`why_not_return/other` %in% c(NA, 0), 0, 1)
+    ifelse(r$`why_not_return.other` %in% c(NA, 0), 0, 1)
   r$a15_xxiii <-
-    ifelse(r$`why_not_return/do_not_know` %in% c(NA, 0), 0, 1)
+    ifelse(r$`why_not_return.do_not_know` %in% c(NA, 0), 0, 1)
   r$a15_xxiv  <-
-    ifelse(r$`why_not_return/decline_to_answer` %in% c(NA, 0), 0, 1)
+    ifelse(r$`why_not_return.decline_to_answer` %in% c(NA, 0), 0, 1)
   
   r$a16 <- ifelse(
-    r$shelter_type_inperson %in%
+    r$shelter_type %in%
       c(
         "unfinished_abandoned_building",
         "damaged_building",
@@ -145,63 +150,63 @@ loop <- loop
   r$a25 <- ifelse(r$movement_intentions_12 %in% c("remain"), 1, 0)
   
   r$a26_i    <-
-    ifelse(r$`reason_to_return_to_aoo/security_stable` %in% c(NA, "0"),
+    ifelse(r$`reason_to_return_to_aoo.security_stable` %in% c(NA, "0"),
            0,
            1)
   r$a26_ii   <-
-    ifelse(r$`reason_to_return_to_aoo/uxo` %in% c(NA, "0"), 0, 1)
+    ifelse(r$`reason_to_return_to_aoo.uxo` %in% c(NA, "0"), 0, 1)
   r$a26_iii  <-
-    ifelse(r$`reason_to_return_to_aoo/other_members_returned` %in% c(NA, "0"),
+    ifelse(r$`reason_to_return_to_aoo.other_members_returned` %in% c(NA, "0"),
            0,
            1)
   r$a26_iv   <-
-    ifelse(r$`reason_to_return_to_aoo/livelihood_availability_there` %in% c(NA, "0"),
+    ifelse(r$`reason_to_return_to_aoo.livelihood_availability_there` %in% c(NA, "0"),
            0,
            1)
   r$a26_v    <-
-    ifelse(r$`reason_to_return_to_aoo/basic_services` %in% c(NA, "0"),
+    ifelse(r$`reason_to_return_to_aoo.basic_services` %in% c(NA, "0"),
            0,
            1)
   r$a26_vi   <-
-    ifelse(r$`reason_to_return_to_aoo/emotional_desire` %in% c(NA, "0"),
+    ifelse(r$`reason_to_return_to_aoo.emotional_desire` %in% c(NA, "0"),
            0,
            1)
   r$a26_vii  <-
-    ifelse(r$`reason_to_return_to_aoo/secure_house_land` %in% c(NA, "0"),
+    ifelse(r$`reason_to_return_to_aoo.secure_house_land` %in% c(NA, "0"),
            0,
            1)
   r$a26_viii <-
-    ifelse(r$`reason_to_return_to_aoo/secure_civil_doc` %in% c(NA, "0"),
+    ifelse(r$`reason_to_return_to_aoo.secure_civil_doc` %in% c(NA, "0"),
            0,
            1)
   r$a26_ix   <-
-    ifelse(r$`reason_to_return_to_aoo/limited_livelihoods_aod` %in% c(NA, "0"),
+    ifelse(r$`reason_to_return_to_aoo.limited_livelihoods_aod` %in% c(NA, "0"),
            0,
            1)
   r$a26_x    <-
-    ifelse(r$`reason_to_return_to_aoo/limited_services` %in% c(NA, "0"),
+    ifelse(r$`reason_to_return_to_aoo.limited_services` %in% c(NA, "0"),
            0,
            1)
   r$a26_xi   <-
-    ifelse(r$`reason_to_return_to_aoo/no_safe_aod` %in% c(NA, "0"), 0, 1)
+    ifelse(r$`reason_to_return_to_aoo.no_safe_aod` %in% c(NA, "0"), 0, 1)
   r$a26_xii  <-
-    ifelse(r$`reason_to_return_to_aoo/no_integrated_aod` %in% c(NA, "0"),
+    ifelse(r$`reason_to_return_to_aoo.no_integrated_aod` %in% c(NA, "0"),
            0,
            1)
   r$a26_xiii <-
-    ifelse(r$`reason_to_return_to_aoo/facing_eviction` %in% c(NA, "0"),
+    ifelse(r$`reason_to_return_to_aoo.facing_eviction` %in% c(NA, "0"),
            0,
            1)
   r$a26_xiv  <-
-    ifelse(r$`reason_to_return_to_aoo/forced_security` %in% c(NA, "0"),
+    ifelse(r$`reason_to_return_to_aoo.forced_security` %in% c(NA, "0"),
            0,
            1)
   r$a26_xv   <-
-    ifelse(r$`reason_to_return_to_aoo/lack_security_women` %in% c(NA, "0"),
+    ifelse(r$`reason_to_return_to_aoo.fam_released` %in% c(NA, "0"),
            0,
            1)
   
-  r$a27    <- ifelse(r$movement_intentions_b %in% c("remain"), 1, 0)
+  r$a27    <- ifelse(r$movement_intentions_b3 %in% c("remain"), 1, 0)
   r$a28    <-
     ifelse(r$movement_intentions_b12 %in% c("remain"), 1, 0)
   r$a29    <-
@@ -214,10 +219,9 @@ loop <- loop
   
   r$b1     <- ifelse(r$inc_employment_pension < 480000, 1, 0)
   r$b2     <-
-    ifelse(r$`primary_livelihood/ngo_charity_assistance` == 1, 1, 0)
+    ifelse(r$`primary_livelihood.ngo_charity_assistance` == 1, 1, 0)
   r$b3     <-
-    ifelse(r$inc_employment_pension < 480000 &
-             r$g14 == 1 , 1, 0)
+    ifelse(r$inc_employment_pension < 480000, 1, 0)
   r$b5     <-
     ifelse(
       r$selling_assets %in% c("no_already_did", "yes") |
@@ -270,75 +274,75 @@ loop <- loop
   
   # ################################################### d ########################################
   
-  r$d1_i    <- ifelse(r$`info_aid/aid` %in% c(NA, 0), 0, 1)
-  r$d1_ii   <- ifelse(r$`info_aid/safety`  %in% c(NA, 0), 0, 1)
-  r$d1_iii  <- ifelse(r$`info_aid/housing`  %in% c(NA, 0), 0, 1)
-  r$d1_iv   <- ifelse(r$`info_aid/livelihoods` %in% c(NA, 0), 0, 1)
-  r$d1_v    <- ifelse(r$`info_aid/water` %in% c(NA, 0), 0, 1)
-  r$d1_vi   <- ifelse(r$`info_aid/electricity` %in% c(NA, 0), 0, 1)
-  r$d1_vii  <- ifelse(r$`info_aid/education` %in% c(NA, 0), 0, 1)
-  r$d1_viii <- ifelse(r$`info_aid/healthcare` %in% c(NA, 0), 0, 1)
-  r$d1_ix   <- ifelse(r$`info_aid/legal` %in% c(NA, 0), 0, 1)
-  r$d1_x    <- ifelse(r$`info_aid/property` %in% c(NA, 0), 0, 1)
-  r$d1_xi   <- ifelse(r$`info_aid/uxo` %in% c(NA, 0), 0, 1)
+  r$d1_i    <- ifelse(r$`info_aid.aid` %in% c(NA, 0), 0, 1)
+  r$d1_ii   <- ifelse(r$`info_aid.safety`  %in% c(NA, 0), 0, 1)
+  r$d1_iii  <- ifelse(r$`info_aid.housing`  %in% c(NA, 0), 0, 1)
+  r$d1_iv   <- ifelse(r$`info_aid.livelihoods` %in% c(NA, 0), 0, 1)
+  r$d1_v    <- ifelse(r$`info_aid.water` %in% c(NA, 0), 0, 1)
+  r$d1_vi   <- ifelse(r$`info_aid.electricity` %in% c(NA, 0), 0, 1)
+  r$d1_vii  <- ifelse(r$`info_aid.education` %in% c(NA, 0), 0, 1)
+  r$d1_viii <- ifelse(r$`info_aid.healthcare` %in% c(NA, 0), 0, 1)
+  r$d1_ix   <- ifelse(r$`info_aid.legal` %in% c(NA, 0), 0, 1)
+  r$d1_x    <- ifelse(r$`info_aid.property` %in% c(NA, 0), 0, 1)
+  r$d1_xi   <- ifelse(r$`info_aid.uxo` %in% c(NA, 0), 0, 1)
   r$d1_xii  <-
-    ifelse(r$`info_aid/documentation` %in% c(NA, 0), 0, 1)
-  r$d1_xiii <- ifelse(r$`info_aid/none` %in% c(NA, 0), 0, 1)
+    ifelse(r$`info_aid.documentation` %in% c(NA, 0), 0, 1)
+  r$d1_xiii <- ifelse(r$`info_aid.none` %in% c(NA, 0), 0, 1)
   
-  r$d2_i    <- ifelse(r$`info_provider/ngo` %in% c(NA, 0), 0, 1)
+  r$d2_i    <- ifelse(r$`info_provider.ngo` %in% c(NA, 0), 0, 1)
   r$d2_ii   <-
-    ifelse(r$`info_provider/friends_in_aoo` %in% c(NA, 0), 0, 1)
+    ifelse(r$`info_provider.friends_in_aoo` %in% c(NA, 0), 0, 1)
   r$d2_iii  <-
-    ifelse(r$`info_provider/friends_visited_aoo` %in% c(NA, 0), 0, 1)
+    ifelse(r$`info_provider.friends_visited_aoo` %in% c(NA, 0), 0, 1)
   r$d2_iv   <-
-    ifelse(r$`info_provider/friends_not_been_in_aoo` %in% c(NA, 0), 0, 1)
+    ifelse(r$`info_provider.friends_not_been_in_aoo` %in% c(NA, 0), 0, 1)
   r$d2_v    <-
-    ifelse(r$`info_provider/local_authorities` %in% c(NA, 0), 0, 1)
+    ifelse(r$`info_provider.local_authorities` %in% c(NA, 0), 0, 1)
   r$d2_vi   <-
-    ifelse(r$`info_provider/national_authorities` %in% c(NA, 0), 0, 1)
+    ifelse(r$`info_provider.national_authorities` %in% c(NA, 0), 0, 1)
   r$d2_vii  <-
-    ifelse(r$`info_provider/religious` %in% c(NA, 0), 0, 1)
+    ifelse(r$`info_provider.religious` %in% c(NA, 0), 0, 1)
   r$d2_viii <-
-    ifelse(r$`info_provider/mukhtars` %in% c(NA, 0), 0, 1)
+    ifelse(r$`info_provider.mukhtars` %in% c(NA, 0), 0, 1)
   r$d2_ix   <-
-    ifelse(r$`info_provider/sector_leaders` %in% c(NA, 0), 0, 1)
-  r$d2_x    <- ifelse(r$`info_provider/schools` %in% c(NA, 0), 0, 1)
+    ifelse(r$`info_provider.sector_leaders` %in% c(NA, 0), 0, 1)
+  r$d2_x    <- ifelse(r$`info_provider.schools` %in% c(NA, 0), 0, 1)
   
-  r$d3_i    <- ifelse(r$`info_mode/mobile` %in% c(NA, 0), 0, 1)
-  r$d3_ii   <- ifelse(r$`info_mode/direct_obs` %in% c(NA, 0), 0, 1)
+  r$d3_i    <- ifelse(r$`info_mode.mobile` %in% c(NA, 0), 0, 1)
+  r$d3_ii   <- ifelse(r$`info_mode.direct_obs` %in% c(NA, 0), 0, 1)
   r$d3_iii  <-
-    ifelse(r$`info_mode/face_cmmunic` %in% c(NA, 0), 0, 1)
-  r$d3_iv   <- ifelse(r$`info_mode/television` %in% c(NA, 0), 0, 1)
-  r$d3_v    <- ifelse(r$`info_mode/telephone` %in% c(NA, 0), 0, 1)
+    ifelse(r$`info_mode.face_cmmunic` %in% c(NA, 0), 0, 1)
+  r$d3_iv   <- ifelse(r$`info_mode.television` %in% c(NA, 0), 0, 1)
+  r$d3_v    <- ifelse(r$`info_mode.telephone` %in% c(NA, 0), 0, 1)
   r$d3_vi   <-
-    ifelse(r$`info_mode/facebook_app` %in% c(NA, 0), 0, 1)
+    ifelse(r$`info_mode.facebook_app` %in% c(NA, 0), 0, 1)
   r$d3_vii  <-
-    ifelse(r$`info_mode/facebook_messenger` %in% c(NA, 0), 0, 1)
-  r$d3_viii <- ifelse(r$`info_mode/whatsapp` %in% c(NA, 0), 0, 1)
-  r$d3_ix   <- ifelse(r$`info_mode/viber` %in% c(NA, 0), 0, 1)
+    ifelse(r$`info_mode.facebook_messenger` %in% c(NA, 0), 0, 1)
+  r$d3_viii <- ifelse(r$`info_mode.whatsapp` %in% c(NA, 0), 0, 1)
+  r$d3_ix   <- ifelse(r$`info_mode.viber` %in% c(NA, 0), 0, 1)
   r$d3_x    <-
-    ifelse(r$`info_mode/other_social` %in% c(NA, 0), 0, 1)
+    ifelse(r$`info_mode.other_social` %in% c(NA, 0), 0, 1)
   r$d3_xi   <-
-    ifelse(r$`info_mode/notice_board` %in% c(NA, 0), 0, 1)
-  r$d3_xii  <- ifelse(r$`info_mode/newspapers` %in% c(NA, 0), 0, 1)
-  r$d3_xiii <- ifelse(r$`info_mode/leaflet` %in% c(NA, 0), 0, 1)
+    ifelse(r$`info_mode.notice_board` %in% c(NA, 0), 0, 1)
+  r$d3_xii  <- ifelse(r$`info_mode.newspapers` %in% c(NA, 0), 0, 1)
+  r$d3_xiii <- ifelse(r$`info_mode.leaflet` %in% c(NA, 0), 0, 1)
   r$d3_xiv  <-
-    ifelse(r$`info_mode/loud_speakers` %in% c(NA, 0), 0, 1)
-  r$d3_xv   <- ifelse(r$`info_mode/radio` %in% c(NA, 0), 0, 1)
+    ifelse(r$`info_mode.loud_speakers` %in% c(NA, 0), 0, 1)
+  r$d3_xv   <- ifelse(r$`info_mode.radio` %in% c(NA, 0), 0, 1)
   
   r$d4      <- ifelse(r$aid_received == "yes", 1, 0)
   
-  r$d5_i    <- ifelse(r$`aid_type/cash` %in% c(NA, 0), 0, 1)
-  r$d5_ii   <- ifelse(r$`aid_type/food`  %in% c(NA, 0), 0, 1)
-  r$d5_iii  <- ifelse(r$`aid_type/water`  %in% c(NA, 0), 0, 1)
-  r$d5_iv   <- ifelse(r$`aid_type/fuel` %in% c(NA, 0), 0, 1)
-  r$d5_v    <- ifelse(r$`aid_type/shelter` %in% c(NA, 0), 0, 1)
+  r$d5_i    <- ifelse(r$`aid_type.cash` %in% c(NA, 0), 0, 1)
+  r$d5_ii   <- ifelse(r$`aid_type.food`  %in% c(NA, 0), 0, 1)
+  r$d5_iii  <- ifelse(r$`aid_type.water`  %in% c(NA, 0), 0, 1)
+  r$d5_iv   <- ifelse(r$`aid_type.fuel` %in% c(NA, 0), 0, 1)
+  r$d5_v    <- ifelse(r$`aid_type.shelter` %in% c(NA, 0), 0, 1)
   r$d5_vi   <-
-    ifelse(r$`aid_type/seasonal_items`  %in% c(NA, 0), 0, 1)
-  r$d5_vii  <- ifelse(r$`aid_type/healthcare` %in% c(NA, 0), 0, 1)
-  r$d5_viii <- ifelse(r$`aid_type/other_nfi` %in% c(NA, 0), 0, 1)
-  r$d5_ix   <- ifelse(r$`aid_type/education` %in% c(NA, 0), 0, 1)
-  r$d5_x    <- ifelse(r$`aid_type/protection` %in% c(NA, 0), 0, 1)
+    ifelse(r$`aid_type.seasonal_items`  %in% c(NA, 0), 0, 1)
+  r$d5_vii  <- ifelse(r$`aid_type.healthcare` %in% c(NA, 0), 0, 1)
+  r$d5_viii <- ifelse(r$`aid_type.other_nfi` %in% c(NA, 0), 0, 1)
+  r$d5_ix   <- ifelse(r$`aid_type.education` %in% c(NA, 0), 0, 1)
+  r$d5_x    <- ifelse(r$`aid_type.protection` %in% c(NA, 0), 0, 1)
   
   r$d6      <-
     ifelse(r$aid_satisfaction == "yes",
@@ -349,7 +353,7 @@ loop <- loop
              NA
            ))
   r$d7      <-
-    ifelse(r$`aid_not_satisfied/quantity`  %in% c(NA, 0), 0, 1)
+    ifelse(r$`aid_not_satisfied.quantity`  %in% c(NA, 0), 0, 1)
   r$d10     <-
     ifelse(r$aid_workers_satisfied == "",
            NA,
@@ -423,35 +427,35 @@ loop <- loop
   rm(loop_females)
   rm(loop_hoh)
   r$g7_i    <-
-    ifelse(r$`reasons_not_attend/school_closed` %in% c(NA, 0), 0, 1)
+    ifelse(r$`reasons_not_attend.school_closed` %in% c(NA, 0), 0, 1)
   r$g7_ii   <-
-    ifelse(r$`reasons_not_attend/not_safe` %in% c(NA, 0), 0, 1)
+    ifelse(r$`reasons_not_attend.not_safe` %in% c(NA, 0), 0, 1)
   r$g7_iii  <-
-    ifelse(r$`reasons_not_attend/cannot_afford` %in% c(NA, 0), 0, 1)
+    ifelse(r$`reasons_not_attend.cannot_afford` %in% c(NA, 0), 0, 1)
   r$g7_iv   <-
-    ifelse(r$`reasons_not_attend/impossible_to_enrol` %in% c(NA, 0), 0, 1)
+    ifelse(r$`reasons_not_attend.impossible_to_enrol` %in% c(NA, 0), 0, 1)
   r$g7_v    <-
-    ifelse(r$`reasons_not_attend/cannot_go_physically` %in% c(NA, 0),
+    ifelse(r$`reasons_not_attend.cannot_go_physically` %in% c(NA, 0),
            0,
            1)
   r$g7_vi   <-
-    ifelse(r$`reasons_not_attend/overcrowded` %in% c(NA, 0), 0, 1)
+    ifelse(r$`reasons_not_attend.overcrowded` %in% c(NA, 0), 0, 1)
   r$g7_vii  <-
-    ifelse(r$`reasons_not_attend/lack_of_staff` %in% c(NA, 0), 0, 1)
+    ifelse(r$`reasons_not_attend.lack_of_staff` %in% c(NA, 0), 0, 1)
   r$g7_viii <-
-    ifelse(r$`reasons_not_attend/poor_infrastructure` %in% c(NA, 0), 0, 1)
+    ifelse(r$`reasons_not_attend.poor_infrastructure` %in% c(NA, 0), 0, 1)
   r$g7_ix   <-
-    ifelse(r$`reasons_not_attend/curriculum` %in% c(NA, 0), 0, 1)
+    ifelse(r$`reasons_not_attend.curriculum` %in% c(NA, 0), 0, 1)
   r$g7_x    <-
-    ifelse(r$`reasons_not_attend/children_working` %in% c(NA, 0), 0, 1)
+    ifelse(r$`reasons_not_attend.children_working` %in% c(NA, 0), 0, 1)
   r$g7_xi   <-
-    ifelse(r$`reasons_not_attend/parental_refusal` %in% c(NA, 0), 0, 1)
+    ifelse(r$`reasons_not_attend.parental_refusal` %in% c(NA, 0), 0, 1)
   r$g7_xii  <-
-    ifelse(r$`reasons_not_attend/uninterested` %in% c(NA, 0), 0, 1)
+    ifelse(r$`reasons_not_attend.uninterested` %in% c(NA, 0), 0, 1)
   r$g7_xiii <-
-    ifelse(r$`reasons_not_attend/lack_doc` %in% c(NA, 0), 0, 1)
+    ifelse(r$`reasons_not_attend.lack_doc` %in% c(NA, 0), 0, 1)
   r$g7_xiv  <-
-    ifelse(r$`reasons_not_attend/other` %in% c(NA, 0), 0, 1)
+    ifelse(r$`reasons_not_attend.other` %in% c(NA, 0), 0, 1)
   
   
   r$g8 <-
@@ -618,32 +622,32 @@ loop <- loop
            0)
   r$g32 <- ifelse(r$women_specialised_services == "yes", 1, 0)
   
-  r$g34_i    <- ifelse(r$`health_barriers/cost` %in% c(NA, 0), 0, 1)
+  r$g34_i    <- ifelse(r$`health_barriers.cost` %in% c(NA, 0), 0, 1)
   r$g34_ii   <-
-    ifelse(r$`health_barriers/unqualified_staff` %in% c(NA, 0), 0, 1)
+    ifelse(r$`health_barriers.unqualified_staff` %in% c(NA, 0), 0, 1)
   r$g34_iii  <-
-    ifelse(r$`health_barriers/civ_docs_problems` %in% c(NA, 0), 0, 1)
+    ifelse(r$`health_barriers.civ_docs_problems` %in% c(NA, 0), 0, 1)
   r$g34_iv   <-
-    ifelse(r$`health_barriers/no_referral_phc` %in% c(NA, 0), 0, 1)
+    ifelse(r$`health_barriers.no_referral_phc` %in% c(NA, 0), 0, 1)
   r$g34_v    <-
-    ifelse(r$`health_barriers/phc_closed` %in% c(NA, 0), 0, 1)
+    ifelse(r$`health_barriers.phc_closed` %in% c(NA, 0), 0, 1)
   r$g34_vi   <-
-    ifelse(r$`health_barriers/distance_to_treatmentcenter` %in% c(NA, 0),
+    ifelse(r$`health_barriers.distance_to_treatmentcenter` %in% c(NA, 0),
            0,
            1)
   r$g34_vii  <-
-    ifelse(r$`health_barriers/refused_treatment` %in% c(NA, 0), 0, 1)
+    ifelse(r$`health_barriers.refused_treatment` %in% c(NA, 0), 0, 1)
   r$g34_viii <-
-    ifelse(r$`health_barriers/no_medicine` %in% c(NA, 0), 0, 1)
+    ifelse(r$`health_barriers.no_medicine` %in% c(NA, 0), 0, 1)
   r$g34_ix   <-
-    ifelse(r$`health_barriers/no_offered_treatment` %in% c(NA, 0), 0, 1)
+    ifelse(r$`health_barriers.no_offered_treatment` %in% c(NA, 0), 0, 1)
   r$g34_x    <-
-    ifelse(r$`health_barriers/not_inclusive` %in% c(NA, 0), 0, 1)
+    ifelse(r$`health_barriers.not_inclusive` %in% c(NA, 0), 0, 1)
   r$g34_xi   <-
-    ifelse(r$`health_barriers/no_fem_staff` %in% c(NA, 0), 0, 1)
+    ifelse(r$`health_barriers.no_fem_staff` %in% c(NA, 0), 0, 1)
   
   r$g35 <-
-    ifelse(loop$`health_issue/chronic`[match(r$X_uuid, loop$`X_submission__uuid`)] %in% c(NA, 0), 0, 1)
+    ifelse(loop$`health_issue.chronic`[match(r$X_uuid, loop$`X_submission__uuid`)] %in% c(NA, 0), 0, 1)
   
   r$g37 <- ifelse(r$how_much_debt > 505000, 1, 0)
   r$g38 <-
@@ -664,27 +668,27 @@ loop <- loop
              loop$actively_seek_work[match(r$X_uuid, loop$`X_submission__uuid`)] == "yes", 1, 0)
   
   r$g45_i    <-
-    ifelse(r$`employment_primary_barriers/increased_competition` == 1,
+    ifelse(r$`employment_primary_barriers.increased_competition` == 1,
            1,
            0)
   r$g45_ii   <-
-    ifelse(r$`employment_primary_barriers/jobs_far` == 1, 1, 0)
+    ifelse(r$`employment_primary_barriers.jobs_far` == 1, 1, 0)
   r$g45_iii  <-
-    ifelse(r$`employment_primary_barriers/only_low_available` == 1, 1, 0)
+    ifelse(r$`employment_primary_barriers.only_low_available` == 1, 1, 0)
   r$g45_iv   <-
-    ifelse(r$`employment_primary_barriers/underqualified_for_jobs` == 1,
+    ifelse(r$`employment_primary_barriers.underqualified_for_jobs` == 1,
            1,
            0)
   r$g45_v    <-
-    ifelse(r$`employment_primary_barriers/lack_of_connections` == 1,
+    ifelse(r$`employment_primary_barriers.lack_of_connections` == 1,
            1,
            0)
   r$g45_vi   <-
-    ifelse(r$`employment_primary_barriers/lack_jobs_women` == 1, 1, 0)
+    ifelse(r$`employment_primary_barriers.lack_jobs_women` == 1, 1, 0)
   r$g45_vii  <-
-    ifelse(r$`employment_primary_barriers/none` == 1, 1, 0)
+    ifelse(r$`employment_primary_barriers.none` == 1, 1, 0)
   r$g45_viii <-
-    ifelse(r$`employment_primary_barriers/other` == 1, 1, 0)
+    ifelse(r$`employment_primary_barriers.other` == 1, 1, 0)
   
   
   r$g46 <- ifelse(r$employment_seasonal == "yes", 1, 0)
@@ -722,8 +726,8 @@ loop <- loop
            1,
            0)
   r$g52 <- ifelse(
-    r$`disciplinary_measures/shouted` == 1 |
-      r$`disciplinary_measures/spanked` == 1 ,
+    r$`disciplinary_measures.shouted` == 1 |
+      r$`disciplinary_measures.spanked` == 1 ,
     1,
     0
   )
@@ -733,8 +737,29 @@ loop <- loop
            0,
            1)
   r$g53b_i <-
-    ifelse(r$not_residing %in% c(NA, "decline_to_answer", 'no', "do_not_know") &
-             r$married)
+    ifelse(r$not_residing %in% c("yes") &
+             r$married > 0, 1, 0)
+  r$g53b_ii <-
+    ifelse(r$not_residing %in% c("yes") &
+             r$seek_employment > 0, 1, 0)
+  r$g53b_iii <-
+    ifelse(r$not_residing %in% c("yes") &
+             r$study > 0, 1, 0)
+  r$g53b_iv <-
+    ifelse(r$not_residing %in% c("yes") &
+             r$family > 0, 1, 0)
+  r$g53b_v <-
+    ifelse(r$not_residing %in% c("yes") &
+             r$armed_actors > 0, 1, 0)
+  r$g53b_vi <-
+    ifelse(r$not_residing %in% c("yes") &
+             r$kidnapped > 0, 1, 0)
+  r$g53b_vii <-
+    ifelse(r$not_residing %in% c("yes") &
+             r$missing > 0, 1, 0)
+  r$g53b_ix <-
+    ifelse(r$not_residing %in% c("yes") &
+             r$detained > 0, 1, 0)
   
   r$g54_i   <-
     ifelse(
@@ -814,25 +839,25 @@ loop <- loop
   
   r$g64 <- ifelse(r$hh_risk_eviction == "yes", 1, 0)
   
-  r$g65_i    <- ifelse(r$`hh_main_risks/lack_funds` == 1, 1, 0)
+  r$g65_i    <- ifelse(r$`hh_main_risks.lack_funds` == 1, 1, 0)
   r$g65_ii   <-
-    ifelse(r$`hh_main_risks/no_longer_hosted` == 1, 1, 0)
+    ifelse(r$`hh_main_risks.no_longer_hosted` == 1, 1, 0)
   r$g65_iii  <-
-    ifelse(r$`hh_main_risks/unaccepted_by_community` == 1, 1, 0)
+    ifelse(r$`hh_main_risks.unaccepted_by_community` == 1, 1, 0)
   r$g65_iv   <-
-    ifelse(r$`hh_main_risks/authorities_request` == 1, 1, 0)
-  r$g65_v    <- ifelse(r$`hh_main_risks/owner_request` == 1, 1, 0)
-  r$g65_vi   <- ifelse(r$`hh_main_risks/no_agreement` == 1, 1, 0)
-  r$g65_vii  <- ifelse(r$`hh_main_risks/inadequate` == 1, 1, 0)
-  r$g65_viii <- ifelse(r$`hh_main_risks/occupied` == 1, 1, 0)
-  r$g65_ix   <- ifelse(r$`hh_main_risks/confiscation` == 1, 1, 0)
-  r$g65_x    <- ifelse(r$`hh_main_risks/dispute` == 1, 1, 0)
+    ifelse(r$`hh_main_risks.authorities_request` == 1, 1, 0)
+  r$g65_v    <- ifelse(r$`hh_main_risks.owner_request` == 1, 1, 0)
+  r$g65_vi   <- ifelse(r$`hh_main_risks.no_agreement` == 1, 1, 0)
+  r$g65_vii  <- ifelse(r$`hh_main_risks.inadequate` == 1, 1, 0)
+  r$g65_viii <- ifelse(r$`hh_main_risks.occupied` == 1, 1, 0)
+  r$g65_ix   <- ifelse(r$`hh_main_risks.confiscation` == 1, 1, 0)
+  r$g65_x    <- ifelse(r$`hh_main_risks.dispute` == 1, 1, 0)
   
   r$g66 <- ifelse(r$hlp_document == "yes", 1, 0)
   
   r$g67 <- ifelse(
-    r$`why_not_return/house_land_occupied` %in% c(NA, 0) |
-      r$`why_not_return/house_damaged_destroyed` %in% c(NA, 0),
+    r$`why_not_return.house_land_occupied` %in% c(NA, 0) |
+      r$`why_not_return.house_damaged_destroyed` %in% c(NA, 0),
     0,
     1
   )
@@ -842,21 +867,21 @@ loop <- loop
            0,
            1)
   r$g73 <-
-    ifelse(r$`why_not_return/presence_of_mines` %in% c(NA, 0), 0, 1)
+    ifelse(r$`why_not_return.presence_of_mines` %in% c(NA, 0), 0, 1)
   r$g74 <-
     ifelse(r$risk_education %in% c('no', "do_not_know", NA), 0, 1)
   
   r$g85 <- ifelse(
-    r$`nfi_priority_needs/bedding_items` == 1 |
-      r$`nfi_priority_needs/mattresses_sleeping_mats` == 1 |
-      r$`nfi_priority_needs/blankets` == 1 |
-      r$`nfi_priority_needs/cooking_utensils` == 1 |
-      r$`nfi_priority_needs/cooking_stove` == 1 |
-      r$`nfi_priority_needs/winter_heaters` == 1 |
-      r$`nfi_priority_needs/clothing` == 1 |
-      r$`nfi_priority_needs/heating_cooking_fuel` == 1 |
-      r$`nfi_priority_needs/other` == 1 |
-      r$`nfi_priority_needs/none` == 1 ,
+    r$`nfi_priority_needs.bedding_items` == 1 |
+      r$`nfi_priority_needs.mattresses_sleeping_mats` == 1 |
+      r$`nfi_priority_needs.blankets` == 1 |
+      r$`nfi_priority_needs.cooking_utensils` == 1 |
+      r$`nfi_priority_needs.cooking_stove` == 1 |
+      r$`nfi_priority_needs.winter_heaters` == 1 |
+      r$`nfi_priority_needs.clothing` == 1 |
+      r$`nfi_priority_needs.heating_cooking_fuel` == 1 |
+      r$`nfi_priority_needs.other` == 1 |
+      r$`nfi_priority_needs.none` == 1 ,
     1,
     0
   )
@@ -864,12 +889,12 @@ loop <- loop
   r$g89 <-
     ifelse(rowSums(
       cbind(
-        as.numeric(r$`shelter_better/protec_hazards`),
-        as.numeric(r$`shelter_better/improve_safety`),
-        as.numeric(r$`shelter_better/improve_privacy`),
-        as.numeric(r$`shelter_better/protect_climate`),
-        as.numeric(r$`shelter_better/other`),
-        as.numeric(r$`shelter_better/none`)
+        as.numeric(r$`shelter_better.protec_hazards`),
+        as.numeric(r$`shelter_better.improve_safety`),
+        as.numeric(r$`shelter_better.improve_privacy`),
+        as.numeric(r$`shelter_better.protect_climate`),
+        as.numeric(r$`shelter_better.other`),
+        as.numeric(r$`shelter_better.none`)
       ),
       na.rm = T
     ) >= 2, 1, 0)
@@ -906,7 +931,7 @@ loop <- loop
            0)
   r$g99 <-
     ifelse(r$access_soap == "yes" &
-             r$`use_of_soap/handwashing` == 1,
+             r$`use_of_soap.handwashing` == 1,
            1,
            0)
   
@@ -931,3 +956,4 @@ round2 <- function(x, n=0) {
   z <- z*posneg
   return(z)
 }
+

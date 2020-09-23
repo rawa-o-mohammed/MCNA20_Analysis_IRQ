@@ -963,46 +963,47 @@ recoded_handler <- function(df, indiv_df) {
   df$g53b_i <-
     ifelse(df$not_residing %in% c(NA, "decline_to_answer", 'no', "do_not_know") &
              df$married)
+
   
   df$g54_i   <-
     ifelse(
-      df$restriction_clearance %in% c(NA, "decline_to_answer", 'no', "do_not_know") &
-        df$restriction_clearance_covid %in% c(NA, "dnt_know", "no_answer", "yes"),
-      0,
-      1
+      df$restriction_clearance %in% c("yes") &
+        df$restriction_clearance_covid %in% c("similar", "no"),
+      1,
+      0
     )
   df$g54_ii  <-
     ifelse(
-      df$restriction_documents %in% c(NA, "decline_to_answer", 'no', "do_not_know") &
-        df$restriction_documents_covid %in% c(NA, "dnt_know", "no_answer", "yes"),
-      0,
-      1
+      df$restriction_documents %in% c("yes") &
+        df$restriction_documents_covid %in% c("similar", "no"),
+      1,
+      0
     )
   df$g54_iii <-
     ifelse(
-      df$restriction_time %in% c(NA, "decline_to_answer", 'no', "do_not_know") &
-        df$restriction_time_covid %in% c(NA, "dnt_know", "no_answer", "yes"),
-      0,
-      1
+      df$restriction_time %in% c("yes") &
+        df$restriction_time_covid %in% c("similar", "no"),
+      1,
+      0
     )
   df$g54_iv   <-
     ifelse(
-      df$restriction_reason %in% c(NA, "decline_to_answer", 'no', "do_not_know") &
-        df$restriction_reason_covid %in% c(NA, "dnt_know", "no_answer", "yes"),
-      0,
-      1
+      df$restriction_reason %in% c("yes") &
+        df$restriction_reason_covid %in% c("similar", "no"),
+      1,
+      0
     )
   df$g54_v  <-
     ifelse(
-      df$restriction_physical %in% c(NA, "decline_to_answer", 'no', "do_not_know") &
-        df$restriction_physical_covid %in% c(NA, "dnt_know", "no_answer", "yes"),
-      0,
-      1
+      df$restriction_physical %in% c("yes") &
+        df$restriction_physical_covid %in% c("similar", "no"),
+      1,
+      0
     )
   df$g54_vi <-
-    ifelse(df$restriction_other %in% c(NA, "decline_to_answer", 'no', "do_not_know"),
-           0,
-           1)
+    ifelse(df$restriction_other %in% c("yes"),
+           1,
+           0)
   df$g54 <-
     ifelse(
       df$g54_i == 1 |
