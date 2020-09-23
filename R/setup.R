@@ -55,7 +55,7 @@ devtools::install_github('mabafaba/surveyweights', ref = "force_atomic_weights")
 
 
 devtools::install_github(
-  "ellieallien/hypegrammaR", 
+  "impact-initiatives/hypegrammaR", 
   ref = "master", 
   build_vignettes = TRUE
 )
@@ -64,12 +64,4 @@ devtools::install_github(
 #  "mabafaba/hypegrammaR", 
 #  ref = "use_srvyr", 
 #  build_vignettes = TRUE)
-
-
-
-
-
-
-
-
 
