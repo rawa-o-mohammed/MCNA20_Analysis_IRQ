@@ -1,3 +1,12 @@
+round2 = function(x, n=0) {
+  posneg = sign(x)
+  z = abs(x)*10^n
+  z = z + 0.5
+  z = trunc(z)
+  z = z/10^n
+  z*posneg
+}
+
 #r <- response
 #l <- loop
 individual_to_HH_numeric <- function(loop, response, varname, indicator) {
@@ -367,7 +376,7 @@ r <- merge(r, explosive_analysis, by="district_mcna", all.x = T)
 #MEAN OF MAX 50% CALCULATION
 hno <-  r[c(which(startsWith(names(r), "s_")))]                   
 hno$mean <-  apply(hno, 1, function(y) {
-  ceiling(mean(tail(sort(y), (floor(ncol(hno)/2)))))
+  round2(mean(tail(sort(y), (floor(ncol(hno)/2)))))
 })
 #d <- density(hno$mean) 
 #plot(d)
