@@ -25,14 +25,25 @@ samplingframe_in_camp<-load_samplingframe("./input/sampling_frame/sampling_frame
 
 
 # LOAD DATA
-response <- read.csv("input/datasets/outcamp_household.csv",
-                     stringsAsFactors = F, check.names = T)
-loop <- read.csv("input/datasets/outcamp_loop.csv", stringsAsFactors = F)
+arabic_outcamp_household <- readLines("input/datasets/outcamp_household.csv", warn = FALSE, encoding = "UTF-8")
+response <- read.csv(text = arabic_outcamp_household, stringsAsFactors = F, check.names = T)
+#response <- read.csv("input/datasets/outcamp_household.csv",
+#                     stringsAsFactors = F, check.names = T)
 
-idp_in_camp <- read.csv("input/datasets/incamp_household.csv",
-                        stringsAsFactors = F, check.names = T)
+arabic_outcamp_loop <- readLines("input/datasets/outcamp_loop.csv", warn = FALSE, encoding = "UTF-8")
+loop <- read.csv(text = arabic_outcamp_loop, stringsAsFactors = F, check.names = T)
+#loop <- read.csv("input/datasets/outcamp_loop.csv", stringsAsFactors = F)
+
+arabic_incamp_household <- readLines("input/datasets/incamp_household.csv", warn = FALSE, encoding = "UTF-8")
+idp_in_camp <- read.csv(text = arabic_incamp_household, stringsAsFactors = F, check.names = T)
+#idp_in_camp <- read.csv("input/datasets/incamp_household.csv",
+#                        stringsAsFactors = F, check.names = T)
 idp_in_camp$district <- to_alphanumeric_lowercase(samplingframe_in_camp$district[match(idp_in_camp$camp_name, samplingframe_in_camp$camp)])
-loop_in_camp <- read.csv("input/datasets/incamp_loop.csv", stringsAsFactors = F)
+
+arabic_incamp_loop <- readLines("input/datasets/incamp_loop.csv", warn = FALSE, encoding = "UTF-8")
+loop_in_camp <- read.csv(text = arabic_incamp_loop, stringsAsFactors = F, check.names = T)
+#loop_in_camp <- read.csv("input/datasets/incamp_loop.csv", stringsAsFactors = F)
+
 idp_in_camp <- subset(idp_in_camp, idp_in_camp$call_status == "answered")
 
 

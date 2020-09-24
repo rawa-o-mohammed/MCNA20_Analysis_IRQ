@@ -14,8 +14,12 @@ loop <- plyr::rbind.fill(loop, loop_in_camp)
 response <- response %>% relocate(c("X_uuid", "population_group", 
                                     "governorate_mcna", "district_mcna", "camp_name"), .before = "dc_method")
 
-write.csv(response, "Output/dataset/household_merged.csv")
-write.csv(loop, "Output/dataset/loop_merged.csv")
+readr::write_excel_csv(response, "output/dataset/household_merged.csv")
+readr::write_excel_csv(loop, "output/dataset/loop_merged.csv")
+
+#write.csv(response, "Output/dataset/household_merged.csv", fileEncoding = "UTF-8")
+#write.csv(loop, "Output/dataset/loop_merged_2.csv", fileEncoding = "UTF-8")
+#Sys.setlocale("LC_CTYPE", "arabic" )
 
 
 #PREPARE SAMPLINGFRAMES
