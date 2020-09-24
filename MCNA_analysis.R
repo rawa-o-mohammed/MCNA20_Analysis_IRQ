@@ -18,6 +18,7 @@ rm(list=ls(all=T))
   source("R/functions/to_alphanumeric_lowercase.R")
   source("R/functions/analysisplan_factory.R")
   source("R/functions/HNO_Recoding.R")
+  source("R/functions/Binary_Recoding.R")
 
 #LOAD INPUT FILES 
   source("R/1_load_inputs.R",local = T)
@@ -52,6 +53,9 @@ rm(list=ls(all=T))
   #'     3.4.combine the stratum sampling frames
   #'     3.5.add strata ids to the dataset
   #'     3.6. throw error if any don't match
+
+response <- response %>% relocate(c("X_uuid", "population_group", 
+                                    "governorate_mcna", "district_mcna", "camp_name"), .before = "dc_method")
 
 
 #CALCULATE DISTRICT LEVEL SEVERITY FOR AREA-LEVEL INDICATORS (s_27, s_28, s_29)
@@ -129,11 +133,11 @@ response <- response[!is.na(response$weights), ]
 #male_headed <- response[which(response$X_uuid %in% loop$X_submission__uuid[which(loop$sex == "male" & loop$relationship == "head")]),]
 
 #RECODING OF INDICATORS
-response_with_composites <- recoding_hno(response, loop)
+response_with_composites <- recoding_preliminary(response, loop)
 
 
 #LOAD ANALYSISPLAN
-dap_name <- "hno"
+dap_name <- "preliminary"
 analysisplan <- read.csv(sprintf("input/dap/dap_%s.csv",dap_name), stringsAsFactors = F)
 
 
@@ -144,7 +148,8 @@ analysisplan <- read.csv(sprintf("input/dap/dap_%s.csv",dap_name), stringsAsFact
 
 #####(TO BE DELETED ONCE FINAL DATASET READY)
 response_with_composites<-subset(response_with_composites, response_with_composites$district_mcna!="al.hatra" & 
-                                   response_with_composites$district_mcna != "haditha" |
+                                   response_with_composites$district_mcna != "haditha" &
+                                   response_with_composites$district_mcna != "al.daur" |
                 is.na(response_with_composites$district_mcna))
 #####
 

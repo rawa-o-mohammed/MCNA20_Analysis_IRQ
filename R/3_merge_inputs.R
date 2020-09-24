@@ -11,6 +11,11 @@ idp_in_camp_mcna <- idp_in_camp[, names.use]
 #MERGE THE INCAMP AND OUTCAMP DATASETS
 response <- plyr::rbind.fill(response, idp_in_camp_mcna)
 loop <- plyr::rbind.fill(loop, loop_in_camp)
+response <- response %>% relocate(c("X_uuid", "population_group", 
+                                    "governorate_mcna", "district_mcna", "camp_name"), .before = "dc_method")
+
+write.csv(response, "Output/dataset/household_merged.csv")
+write.csv(loop, "Output/dataset/loop_merged.csv")
 
 
 #PREPARE SAMPLINGFRAMES

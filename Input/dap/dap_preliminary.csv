@@ -1,7 +1,4 @@
 ﻿Indicator Group / Sector,research.question,sub.research.question,repeat.for.variable,independent.variable,independent.variable.type,dependent.variable,dependent.variable.type,hypothesis.type
-HH Profile,Duration of displacement - IDP & Returnee,Duration of displacement - IDP & Returnee,district,population_group,categorical,a19,numerical,direct_reporting
-HH Profile ,% HH from [governorate of origin],% HH from [governorate of origin],district,population_group,categorical,a20,categorical,direct_reporting
-HH Profile ,% HH from [district of origin],% HH from [district of origin],district,population_group,categorical,a21,categorical,direct_reporting
 Intentions,% HH that attempted return to their AoO in the past 12 months,% HH that attempted return to their AoO in the past 12 months,district,population_group,categorical,a22,categorical,direct_reporting
 Intentions,% of IDP HHs that intend to remain in their current location for the next three months,% of IDP HHs that intend to remain in their current location for the next three months,district,population_group,categorical,a24,categorical,direct_reporting
 Intentions,% of IDP HHs that intend to remain in their current location for the next twelve months,% of IDP HHs that intend to remain in their current location for the next twelve months,district,population_group,categorical,a25,categorical,direct_reporting
@@ -247,4 +244,3 @@ AAP,% HH not satsified with quanitity ,% HH not satsified with quanitity ,distri
 AAP,% HH not satisifed with aid worker behavior ,% HH not satisifed with aid worker behavior ,district,population_group,categorical,d10,categorical,direct_reporting
 AAP,% HH with acces/knowledge of complaint mechanisms ,% HH with acces/knowledge of complaint mechanisms ,district,population_group,categorical,d12,categorical,direct_reporting
 AAP,% HH reporting needing more information about COVID-19 ,% HH reporting needing more information about COVID-19 ,district,population_group,categorical,d15,categorical,direct_reporting
-,,,,,,,,

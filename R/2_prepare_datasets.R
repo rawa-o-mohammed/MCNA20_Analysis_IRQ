@@ -1,18 +1,31 @@
 #PREPARE INCAMP AND OUTOFCAMP DATASETS TO BE MERGED
 idp_in_camp$district <- to_alphanumeric_lowercase(samplingframe_in_camp$district[match(idp_in_camp$camp_name, samplingframe_in_camp$camp)])
-
+idp_in_camp$district_mcna <- idp_in_camp$district
 
 #MERGE COLUMNS MCNA REMOTE AND INPERSON
-response$age_respondent <- ifelse(is.na(response$age_respondent),
+response$age_respondent <- ifelse(response$dc_method == "remote",
                                   response$age_respondent_r, response$age_respondent)
 response$age_respondent_r <- NULL
 
-response$gender_respondent <- ifelse(is.na(response$gender_respondent), 
+response$gender_respondent <- ifelse(response$dc_method == "remote", 
                                   response$gender_respondent_r, response$gender_respondent)
 response$gender_respondent_r <- NULL
-response$governorate_mcna <- ifelse(is.na(response$governorate_mcna), 
+
+response$governorate_mcna <- ifelse(response$dc_method == "remote", 
                                      response$governorate_mcna_r, response$governorate_mcna)
 response$governorate_mcna_r <- NULL
+
+response$consent <- ifelse(response$dc_method == "remote",
+                                  response$consent_remote, response$consent)
+response$consent_remote <- NULL
+
+response$will_to_response <- ifelse(response$dc_method == "remote",
+                           response$will_to_response_r, response$will_to_response)
+response$will_to_response_r <- NULL
+
+response$hhh <- ifelse(response$dc_method == "remote",
+                           response$hhh_r, response$hhh)
+response$hhh_r <- NULL
 
 response$shelter_type <- ifelse(response$shelter_type_inperson == "", 
                                     response$shelter_type_remote, response$shelter_type_inperson)
@@ -56,8 +69,12 @@ names(response)[names(response) == "intentions"] <- "intentions_12"
 names(idp_in_camp)[names(idp_in_camp) == "governorate_cccm"] <- "governorate_mcna"
 names(idp_in_camp)[names(idp_in_camp) == "attempt_to_return"] <- "displaced_again"
 names(idp_in_camp)[names(idp_in_camp) == "hlp_docs"] <- "hlp_document"
+names(idp_in_camp)[names(idp_in_camp) == "hhh_r"] <- "hhh"
+names(idp_in_camp)[names(idp_in_camp) == "will_to_response_r"] <- "will_to_response"
+names(idp_in_camp)[names(idp_in_camp) == "age_respondent_r"] <- "age_respondent"
+names(idp_in_camp)[names(idp_in_camp) == "gender_respondent_r"] <- "gender_respondent"
 names(response)[names(response) == "movement_intentions12"] <- "movement_intentions_12"
-
+names(loop)[names(loop) == "ï..relationship"] <- "relationship"
 
 #CREATE COLUMNS IN RESPONSE DATASET FOR VARIABLES ONLY INCLUDED IN INCAMP DATASET
 #AND VICE VERSA

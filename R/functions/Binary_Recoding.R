@@ -12,7 +12,7 @@ r <- response
 loop <- loop
 
 
-#recoded_handler <- function(r, loop) {
+recoding_preliminary <- function(r, loop) {
 
   # get sex column form member sheet
   loop_hoh <- loop[which(loop$relationship == "head"), ]
@@ -535,7 +535,7 @@ loop <- loop
     )
   
   fsc <- r %>%
-    dplyr::select(`_uuid`,
+    dplyr::select(`X_uuid`,
                   no_food,
                   no_food_freq,
                   hungry,
@@ -946,14 +946,5 @@ loop <- loop
     ifelse(as.numeric(r$tot_expenses) * 0.4 <= r$food_exp, 1, 0)
   
   return(r)
-}
-round2 <- function(x, n=0) {
-  posneg <- sign(x)
-  z <- abs(x)*10^n
-  z <- z + 0.5
-  z <- trunc(z)
-  z <- z/10^n
-  z <- z*posneg
-  return(z)
 }
 
