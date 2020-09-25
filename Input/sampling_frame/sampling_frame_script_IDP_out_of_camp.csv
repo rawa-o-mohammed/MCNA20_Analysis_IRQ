@@ -1,0 +1,535 @@
+﻿psu,strata_id,Location.name.in.English,Location.name.in.Arabic,Latitude,Longitude,COD_Subdistrict,COD_District,COD_Governorate,SumDist,proba,num_households,survey_buffer
+33940,Al-Falluja,Amriyat Al-Fallujahsector 3,القطاع الثالث,33.141111,44.018056,Al-Amirya,Al-Falluja,Al-Anbar,2281,0.050416484,115,6
+107,Al-Falluja,Al Amiriyah,العامرية ,33.1787573,43.85698918,Al-Amirya,Al-Falluja,Al-Anbar,2281,0.288469969,658,18
+26088,Al-Falluja,Ahl Al-Ramadi 74,اهل الرمادي 74,33.14309313,44.02116816,Al-Amirya,Al-Falluja,Al-Anbar,2281,0.028057869,64,12
+26092,Al-Falluja,Al-Amirya-Al Mouilha,المويلحة,33.13698726,43.98735577,Al-Amirya,Al-Falluja,Al-Anbar,2281,0.105655414,241,6
+33941,Al-Falluja,Amriyat Al-Fallujahsector 50,قطاع الخمسين,33.1475,44.015278,Al-Amirya,Al-Falluja,Al-Anbar,2281,0.032880316,75,6
+26087,Al-Falluja,Al-Amirya-Albu Salman,البوسليمان,33.15645263,44.00187874,Al-Amirya,Al-Falluja,Al-Anbar,2281,0.075843928,173,18
+26036,Al-Falluja,Al-Amirya-Albu Jasim,البوجاسم,33.19858251,43.89964342,Al-Amirya,Al-Falluja,Al-Anbar,2281,0.00832968,19,6
+26085,Al-Falluja,Al-Amirya-Albu Jaber,البوجابر,33.12114643,44.04230199,Al-Amirya,Al-Falluja,Al-Anbar,2281,0.095572117,218,6
+33939,Al-Falluja,Amriyat Al-Fallujah sector 4,القطاع الرابع,33.145831,44.015278,Al-Amirya,Al-Falluja,Al-Anbar,2281,0.049101271,112,6
+26037,Al-Falluja,Al-Amirya-Albu Jwad,البوجواد,33.15117657,43.98967868,Al-Amirya,Al-Falluja,Al-Anbar,2281,0.070144673,160,6
+26091,Al-Falluja,Al-Amirya-Al Hmedin,الحميدين,33.15811464,43.93617748,Al-Amirya,Al-Falluja,Al-Anbar,2281,0.048224463,110,6
+23853,Al-Falluja,Hay Al-Madani,الحي المدني ,33.3781144,43.59524276,Markaz Al-Falluja,Al-Falluja,Al-Anbar,2281,0.005260851,12,6
+23858,Al-Ramadi,Abu Fless,ابو فليس,33.39270541,43.53247477,Al-Habbaniya,Al-Ramadi,Al-Anbar,1117,0.051029543,57,6
+33826,Al-Ramadi,AL-Karama complex,مجمع الكرامه,33.0388385,43.097082,Al-Rahhaliya,Al-Ramadi,Al-Anbar,1117,0.068934646,77,18
+23889,Al-Ramadi,7 Killo-al-mojamaa al-sakany,السبعة كيلو-المجمع السكني,33.41413197,43.19138708,Markaz Al-Ramadi,Al-Ramadi,Al-Anbar,1117,0.42435094,474,84
+308,Al-Ramadi,5 Kilo,الخمسة كيلو,33.42115,43.24550264,Markaz Al-Ramadi,Al-Ramadi,Al-Anbar,1117,0.115487914,129,30
+115,Al-Ramadi,Al Sofeya,الصوفية,33.44031066,43.32196121,Markaz Al-Ramadi,Al-Ramadi,Al-Anbar,1117,0.201432408,225,42
+182,Al-Ramadi,Qadisiya-1,القادسية الاولى,33.41244969,43.2749091,Markaz Al-Ramadi,Al-Ramadi,Al-Anbar,1117,0.047448523,53,6
+166,Al-Rutba,Hay Al Meethagh,حي الميثاق,33.03197354,40.29047217,Markaz Al-Rutba,Al-Rutba,Al-Anbar,516,0.19379845,100,18
+231,Al-Rutba,Al Wadi,حي الوادي,33.03966421,40.28365262,Markaz Al-Rutba,Al-Rutba,Al-Anbar,516,0.166666667,86,18
+165,Al-Rutba,Al Askaree,حي العسكري,33.03800189,40.30263444,Markaz Al-Rutba,Al-Rutba,Al-Anbar,516,0.15503876,80,12
+150,Al-Rutba,Al Haara,حي الحارة,33.03761591,40.28426443,Markaz Al-Rutba,Al-Rutba,Al-Anbar,516,0.104651163,54,6
+167,Al-Rutba,Antesar,حي الانتصار,33.03126564,40.29901479,Markaz Al-Rutba,Al-Rutba,Al-Anbar,516,0.122093023,63,24
+23935,Al-Rutba,Al-Daraemah Village,قرية الدراعمة,33.04302668,40.38038346,Markaz Al-Rutba,Al-Rutba,Al-Anbar,516,0.07751938,40,18
+233,Al-Rutba,Hay Al-Matar,حي المطار,33.03461084,40.28668013,Markaz Al-Rutba,Al-Rutba,Al-Anbar,516,0.083333333,43,6
+23888,Al-Rutba,Gharb Al-Wadi,حي غرب الوادي,33.04245523,40.27803907,Markaz Al-Rutba,Al-Rutba,Al-Anbar,516,0.03875969,20,12
+34002,Heet,Al-shuhdaa  1,الشهداء الاولى,33.88568,42.5227,Al-Baghdady,Heet,Al-Anbar,232,0.120689655,28,18
+152,Heet,Al Muhamdee,المحمدي ,33.55951649,42.90148478,Al-Forat,Heet,Al-Anbar,232,0.280172414,65,30
+312,Heet,Al-Ummal,العمال ,33.63415572,42.8268459,Markaz Heet,Heet,Al-Anbar,232,0.068965517,16,24
+219,Heet,Hay Al-Jabal,الجبل ,33.63892885,42.81853543,Markaz Heet,Heet,Al-Anbar,232,0.206896552,48,24
+33822,Heet,Hay- Amina,حي أمينة,33.65005,42.7969,Markaz Heet,Heet,Al-Anbar,232,0.034482759,8,6
+23885,Heet,Hay Al-jamyah 2,الجمعية الثانية,33.62821377,42.84729981,Markaz Heet,Heet,Al-Anbar,232,0.060344828,14,12
+857,Al-Basrah,As-safat-Al Qadima,البصرة القديمة-الصفاة,30.495005,47.81752492,Markaz Al-Basrah,Al-Basrah,Al-Basrah,287,0.020905923,6,6
+21097,Al-Basrah,Manawi Lajim Quarter,مناوي لجم ,30.49566639,47.83856165,Markaz Al-Basrah,Al-Basrah,Al-Basrah,287,0.059233449,17,12
+1308,Al-Basrah,Al-Baker & Al-Ahrar,البكر والاحرار,30.4999937,47.81254713,Markaz Al-Basrah,Al-Basrah,Al-Basrah,287,0.027874564,8,6
+847,Al-Basrah,Al-meshraq al-qadeem,البصرة-المشراق القديم,30.49082406,47.81616005,Markaz Al-Basrah,Al-Basrah,Al-Basrah,287,0.034843206,10,12
+891,Al-Basrah,Manawi pasha,مناوي باشا,30.50843105,47.84106138,Markaz Al-Basrah,Al-Basrah,Al-Basrah,287,0.041811847,12,6
+24126,Al-Basrah,Hay Al Jamiah,البصرة-القبلة-حي الجامعة,30.4735456,47.80490113,Markaz Al-Basrah,Al-Basrah,Al-Basrah,287,0.034843206,10,6
+907,Al-Basrah,Braiha,بريهة ,30.51312952,47.83821038,Markaz Al-Basrah,Al-Basrah,Al-Basrah,287,0.024390244,7,6
+893,Al-Basrah,Kut al-hejaj,البصرة-كوت الحجاج,30.50441634,47.8008913,Markaz Al-Basrah,Al-Basrah,Al-Basrah,287,0.034843206,10,6
+898,Al-Basrah,Al Khaleej1,البصرة-الجمعيات-حي الخليج 1,30.4881858,47.79440625,Markaz Al-Basrah,Al-Basrah,Al-Basrah,287,0.020905923,6,6
+1295,Al-Basrah,Door Al Dubbat,دور الضباط,30.53411916,47.78872555,Markaz Al-Basrah,Al-Basrah,Al-Basrah,287,0.031358885,9,6
+24182,Al-Basrah,Casino Lebnan,البصرة-كازينو لبنان,30.5077651,47.80811705,Markaz Al-Basrah,Al-Basrah,Al-Basrah,287,0.034843206,10,6
+20340,Al-Kufa,Al Hureya,الحرية,32.10190244,44.54306633,Al-Huriya,Al-Kufa,Al-Najaf,504,0.011904762,6,6
+25890,Al-Kufa,Sader 3,الصدر الثالث,32.01241003,44.40323051,Markaz Al-Kufa,Al-Kufa,Al-Najaf,504,0.029761905,15,18
+20298,Al-Kufa,Al Barakiya,البراكية,32.00931304,44.40037318,Markaz Al-Kufa,Al-Kufa,Al-Najaf,504,0.134920635,68,36
+20046,Al-Kufa,Al Kreishat 2,الكريشات 2,32.03102475,44.40649951,Markaz Al-Kufa,Al-Kufa,Al-Najaf,504,0.011904762,6,6
+24311,Al-Kufa,Alwat Al Fahal,علوة الفحل,32.07811637,44.37170203,Markaz Al-Kufa,Al-Kufa,Al-Najaf,504,0.248015873,125,30
+20304,Al-Kufa,AL-RADHAWIYA,الرضوية 1,31.96229384,44.4136399,Markaz Al-Kufa,Al-Kufa,Al-Najaf,504,0.501984127,253,114
+29598,Al-Najaf,Al Salam Complex,مجمع السلام,32.17414489,44.30752607,Al-Haydariya,Al-Najaf,Al-Najaf,1418,0.130465444,185,12
+34007,Al-Najaf,Hay AL Karrar,حي الكرار,32.28396373,44.27828808,Al-Haydariya,Al-Najaf,Al-Najaf,1418,0.176304654,250,24
+20341,Al-Najaf,Al-Qasim,القاسم,32.31013278,44.27654775,Al-Haydariya,Al-Najaf,Al-Najaf,1418,0.042313117,60,12
+25431,Al-Najaf,Hay Al Ameer,حي الامير,32.31602166,44.26900962,Al-Haydariya,Al-Najaf,Al-Najaf,1418,0.047249647,67,6
+29658,Al-Najaf,Al-Shaheed Al-Sadar-Shareet,حي الشهيد الصدر-الشريط,32.07339081,44.32647878,Markaz Al-Najaf,Al-Najaf,Al-Najaf,1418,0.029619182,42,6
+26015,Al-Najaf,Al-Ameriya,العامرية,31.9869246,44.31483768,Markaz Al-Najaf,Al-Najaf,Al-Najaf,1418,0.007052186,10,6
+29621,Al-Najaf,Mazara Al-Hawli,مزارع الحولي,32.0964973,44.3313444,Markaz Al-Najaf,Al-Najaf,Al-Najaf,1418,0.084626234,120,24
+20338,Al-Najaf,AL JEDAIDA,الجديدة 4,31.9902017,44.31782205,Markaz Al-Najaf,Al-Najaf,Al-Najaf,1418,0.039492243,56,12
+20287,Al-Najaf,Al-Ghadeer Village complex,مجمع قرية الغدير,32.09036773,44.33345076,Markaz Al-Najaf,Al-Najaf,Al-Najaf,1418,0.070521862,100,6
+20122,Al-Najaf,Hay missan 230,حي ميسان 230,32.06442413,44.36229196,Markaz Al-Najaf,Al-Najaf,Al-Najaf,1418,0.04583921,65,6
+25568,Al-Diwaniya,Hay Al-Amin 2,حي الامين 2,32.00629877,44.84477322,Al-Saniya,Al-Diwaniya,Al-Qadissiya,354,0.031073446,11,6
+25070,Al-Diwaniya,Hay Al-Hussain,حي الحسين,32.0701463,44.76765688,Al-Saniya,Al-Diwaniya,Al-Qadissiya,354,0.019774011,7,6
+24436,Al-Diwaniya,Albo Hasan village,قرية البو حسن,32.02082742,44.81889837,Al-Saniya,Al-Diwaniya,Al-Qadissiya,354,0.028248588,10,12
+24903,Al-Diwaniya,Hay Al Sadir 2,حي الصدر الثاني,32.00637806,44.93735746,Markaz Al-Diwaniya,Al-Diwaniya,Al-Qadissiya,354,0.02259887,8,6
+2943,Al-Diwaniya,Al hamad village,قرية الحمد,32.00409165,44.99900237,Markaz Al-Diwaniya,Al-Diwaniya,Al-Qadissiya,354,0.056497175,20,18
+22815,Al-Diwaniya,Hay Al Jumhori Al Sharqi,حي الجمهوري الشرقي,31.99175319,44.92138221,Markaz Al-Diwaniya,Al-Diwaniya,Al-Qadissiya,354,0.019774011,7,6
+22326,Al-Diwaniya,Al Mojamaa Al Sakani,المجمع السكني,31.98188312,44.97298646,Markaz Al-Diwaniya,Al-Diwaniya,Al-Qadissiya,354,0.093220339,33,12
+23681,Al-Diwaniya,Hay Al Furat-2,حي الفرات الثانية,32.02006081,44.90036536,Markaz Al-Diwaniya,Al-Diwaniya,Al-Qadissiya,354,0.016949153,6,6
+23715,Al-Diwaniya,Hay Al-Hadarah,حي الحضارة,32.01567693,44.9173569,Markaz Al-Diwaniya,Al-Diwaniya,Al-Qadissiya,354,0.033898305,12,6
+22452,Al-Diwaniya,Qaryat Al Ensaf,قرية الانصاف,31.99916497,45.01540678,Markaz Al-Diwaniya,Al-Diwaniya,Al-Qadissiya,354,0.050847458,18,6
+25509,Al-Diwaniya,Al-Taamem-2,التأميم الثانية,31.97978115,44.94216732,Markaz Al-Diwaniya,Al-Diwaniya,Al-Qadissiya,354,0.016949153,6,6
+5808,Al-Sulaymaniyah,Bazyan-shwankara,بازيان-شوانكارة,35.5657573,45.1954297,Bazian,Al-Sulaymaniyah,Al-Sulaymaniyah,12488,0.002802691,35,6
+5930,Al-Sulaymaniyah,Wluba 326,ولوبه 326,35.5342375,45.4295163,Qaradagh,Al-Sulaymaniyah,Al-Sulaymaniyah,12488,0.01305253,163,6
+23926,Al-Sulaymaniyah,Dargazen,دركزين,35.5523088,45.4402254,Qaradagh,Al-Sulaymaniyah,Al-Sulaymaniyah,12488,0.003122998,39,6
+21021,Al-Sulaymaniyah,Sabun karan Qt,صابن كران,35.5540113,45.4456441,Qaradagh,Al-Sulaymaniyah,Al-Sulaymaniyah,12488,0.00512492,64,6
+5122,Al-Sulaymaniyah,Arbat-Kharajian,عربت-خرجيان,35.4650972,45.567977,Qaradagh,Al-Sulaymaniyah,Al-Sulaymaniyah,12488,0.000560538,7,6
+5744,Al-Sulaymaniyah,Bardakar,برده كر,35.4513021,45.4479993,Qaradagh,Al-Sulaymaniyah,Al-Sulaymaniyah,12488,0.004724536,59,6
+21033,Al-Sulaymaniyah,Tavga,تافكا,35.5983231,45.3944926,Sarchnar,Al-Sulaymaniyah,Al-Sulaymaniyah,12488,0.007206919,90,6
+21036,Al-Sulaymaniyah,Farmanbaran,فرمانبران,35.5897164,45.4053795,Sarchnar,Al-Sulaymaniyah,Al-Sulaymaniyah,12488,0.01305253,163,6
+5737,Al-Sulaymaniyah,Awbara,اوبارة,35.5515613,45.3801727,Sarchnar,Al-Sulaymaniyah,Al-Sulaymaniyah,12488,0.015534914,194,6
+33357,Al-Sulaymaniyah,Mushirawa 406 & 206,موشيراوا 406&206,35.5571112,45.416484,Sarchnar,Al-Sulaymaniyah,Al-Sulaymaniyah,12488,0.004083921,51,6
+4441,Al-Sulaymaniyah,Sarchnar,سرجنار,35.5802839,45.3835801,Sarchnar,Al-Sulaymaniyah,Al-Sulaymaniyah,12488,0.034593209,432,6
+33348,Al-Sulaymaniyah,Chwar chra New,جوار جرا نوي,35.5465155,45.3972155,Sarchnar,Al-Sulaymaniyah,Al-Sulaymaniyah,12488,0.001040999,13,6
+24816,Al-Sulaymaniyah,Saib City,صائب ستي,35.5342187,45.4131846,Sarchnar,Al-Sulaymaniyah,Al-Sulaymaniyah,12488,0.018818065,235,6
+24255,Al-Sulaymaniyah,Sarwary 142,سرورى 142,35.5834097,45.416355,Sarchnar,Al-Sulaymaniyah,Al-Sulaymaniyah,12488,0.008327995,104,6
+31982,Al-Sulaymaniyah,Handren 109,هندرين 109,35.5662087,45.4024649,Sarchnar,Al-Sulaymaniyah,Al-Sulaymaniyah,12488,0.003283152,41,6
+31988,Al-Sulaymaniyah,Khwar kurdsat 134,خوار كوردسات 134,35.5827336,45.4378381,Sarchnar,Al-Sulaymaniyah,Al-Sulaymaniyah,12488,0.005044843,63,6
+21719,Chamchamal,Shahidan,شهيدان,35.7458189,44.8987014,Agjalare,Chamchamal,Al-Sulaymaniyah,1692,0.003546099,6,6
+3461,Chamchamal,hashazini,هةشة زيني,35.4038402,45.1180675,Cenkaw,Chamchamal,Al-Sulaymaniyah,1692,0.003546099,6,6
+33380,Chamchamal,Awa Spi,اوا سبي,35.0232578,45.1011726,Kadr Karam,Chamchamal,Al-Sulaymaniyah,1692,0.021867612,37,6
+24894,Chamchamal,Chamchamal-Raparin,جمجمال-رابرين,35.52360502,44.822298,Markaz Chamchamal,Chamchamal,Al-Sulaymaniyah,1692,0.108747045,184,24
+6159,Chamchamal,Chamchamal-Rizgari,جمجمال-رزكاري,35.53982645,44.8236395,Markaz Chamchamal,Chamchamal,Al-Sulaymaniyah,1692,0.019503546,33,12
+21976,Chamchamal,Ashti,آشتي,35.53578579,44.8256465,Markaz Chamchamal,Chamchamal,Al-Sulaymaniyah,1692,0.054964539,93,6
+24688,Chamchamal,Asuda,اسودة,35.5269308,44.8137438,Markaz Chamchamal,Chamchamal,Al-Sulaymaniyah,1692,0.108747045,184,6
+21717,Chamchamal,Qadir Kir Mikan,قادركرميكان,35.5037607,44.8523393,Markaz Chamchamal,Chamchamal,Al-Sulaymaniyah,1692,0.046099291,78,6
+24250,Chamchamal,Qarahanjiriakan,قرهنجيريكان,35.5032536,44.8426528,Markaz Chamchamal,Chamchamal,Al-Sulaymaniyah,1692,0.022458629,38,6
+4933,Chamchamal,Piryadi,بيريادى,35.5130974,44.8489363,Markaz Chamchamal,Chamchamal,Al-Sulaymaniyah,1692,0.066193853,112,12
+20813,Chamchamal,SANGAWIAKAN,سنكاويكان,35.51058,44.8367107,Markaz Chamchamal,Chamchamal,Al-Sulaymaniyah,1692,0.034869976,59,6
+24813,Chamchamal,Takya-Azadi,تكية-ازادى,35.6238672,44.9548877,Markaz Chamchamal,Chamchamal,Al-Sulaymaniyah,1692,0.020685579,35,6
+6301,Derbendikhan,Hawara barza,هواربرزة,35.1241329,45.6826464,Markaz Derbendikhan,Derbendikhan,Al-Sulaymaniyah,1053,0.085470085,90,24
+24251,Derbendikhan,Kanito,كانى توو,35.1124805,45.6896322,Markaz Derbendikhan,Derbendikhan,Al-Sulaymaniyah,1053,0.108262108,114,12
+29515,Derbendikhan,Shoresh,شورش,35.1140736,45.6796988,Markaz Derbendikhan,Derbendikhan,Al-Sulaymaniyah,1053,0.021842355,23,12
+24670,Derbendikhan,Sara,سرا,35.1079729,45.6886106,Markaz Derbendikhan,Derbendikhan,Al-Sulaymaniyah,1053,0.075973409,80,6
+24253,Derbendikhan,Campe khwarw,كمبى خوارو,35.0974312,45.6949014,Markaz Derbendikhan,Derbendikhan,Al-Sulaymaniyah,1053,0.032288699,34,12
+29517,Derbendikhan,Khelan,خيلان,35.1101359,45.6839061,Markaz Derbendikhan,Derbendikhan,Al-Sulaymaniyah,1053,0.106362773,112,12
+22996,Derbendikhan,Mamostayan,ماموستايان,35.3198684,45.6948361,Markaz Derbendikhan,Derbendikhan,Al-Sulaymaniyah,1053,0.038936372,41,6
+23078,Derbendikhan,Rezgari,رزكاري,35.3217373,45.6791641,Markaz Derbendikhan,Derbendikhan,Al-Sulaymaniyah,1053,0.054131054,57,42
+5000,Dokan,Shekh Mansourian,شيخ منصوريان,36.07103,44.7817368,Gnareen,Dokan,Al-Sulaymaniyah,774,0.009043928,7,6
+23721,Dokan,Chawa spy,جوسبى,35.9313984,44.9690877,Gnareen,Dokan,Al-Sulaymaniyah,774,0.067183463,52,6
+23923,Dokan,Sarcham,سرجم,35.9279122,44.9622742,Gnareen,Dokan,Al-Sulaymaniyah,774,0.034883721,27,6
+23924,Dokan,Banwan,بانوان,35.9328361,44.9642292,Gnareen,Dokan,Al-Sulaymaniyah,774,0.036175711,28,12
+5068,Dokan,Topzawa,توبزاوا,35.9572654,44.9861496,Sourdash,Dokan,Al-Sulaymaniyah,774,0.012919897,10,6
+24554,Dokan,Tokma,توكمة,35.7246294,45.1440548,Sourdash,Dokan,Al-Sulaymaniyah,774,0.025839793,20,6
+24213,Dokan,Sara,سرا,35.7270477,45.1524679,Sourdash,Dokan,Al-Sulaymaniyah,774,0.127906977,99,24
+23333,Dokan,Pishowa,بيشوا,35.7378464,45.1423851,Sourdash,Dokan,Al-Sulaymaniyah,774,0.118863049,92,6
+6305,Dokan,Shaheedan,شهيدان,35.7314435,45.1374075,Sourdash,Dokan,Al-Sulaymaniyah,774,0.055555556,43,6
+3593,Dokan,Timar,تيمار,35.8574417,45.0769418,Sourdash,Dokan,Al-Sulaymaniyah,774,0.010335917,8,6
+5238,Dokan,Mergapan,ميركبان,35.7956429,45.2535359,Sourdash,Dokan,Al-Sulaymaniyah,774,0.04005168,31,12
+22460,Halabcha,Ardalan,اردلان,35.2991993,46.0343419,Khourmal,Halabcha,Al-Sulaymaniyah,613,0.014681892,9,6
+21862,Halabcha,Gulan,كولان ,35.1744373,45.9810664,Markaz Halabja,Halabcha,Al-Sulaymaniyah,613,0.060358891,37,6
+21961,Halabcha,Kani ishqan,كاني عيشقان,35.1696168,45.983114,Markaz Halabja,Halabcha,Al-Sulaymaniyah,613,0.128874388,79,6
+21863,Halabcha,Mamostaian,ماموستايان,35.1822314,45.993632,Markaz Halabja,Halabcha,Al-Sulaymaniyah,613,0.014681892,9,6
+21857,Halabcha,Sharwani,شارواني,35.1891217,45.9950623,Markaz Halabja,Halabcha,Al-Sulaymaniyah,613,0.045676998,28,6
+21962,Halabcha,Marzboto,مرزى بوتو,35.1819165,45.9844709,Markaz Halabja,Halabcha,Al-Sulaymaniyah,613,0.021207178,13,12
+21960,Halabcha,Farmanbaran,فرمانبران,35.185482,45.9802875,Markaz Halabja,Halabcha,Al-Sulaymaniyah,613,0.026101142,16,6
+25757,Halabcha,Darwazay Shar,دروازي شار,35.1993777,45.9665141,Markaz Halabja,Halabcha,Al-Sulaymaniyah,613,0.037520392,23,6
+31863,Halabcha,Shahidan,شهيدان,35.2543788,45.9398683,Markaz Halabja,Halabcha,Al-Sulaymaniyah,613,0.019575856,12,6
+31862,Halabcha,Raparine,رابرين,35.2555589,45.9361248,Markaz Halabja,Halabcha,Al-Sulaymaniyah,613,0.070146819,43,6
+25647,Halabcha,Grda naze village,قرية كرد نازى,35.3424268,45.9255147,Shahrazur,Halabcha,Al-Sulaymaniyah,613,0.024469821,15,6
+22920,Halabcha,Hassar,حسار,35.3515587,45.8727816,Shahrazur,Halabcha,Al-Sulaymaniyah,613,0.060358891,37,12
+24096,Halabcha,Barkew,بركيو,35.3553403,45.8688337,Shahrazur,Halabcha,Al-Sulaymaniyah,613,0.091353997,56,6
+23767,Kalar,Goran,كوران,34.63677433,45.3383341,Markaz Kalar,Kalar,Al-Sulaymaniyah,2317,0.014242555,33,6
+32001,Kalar,Mamostayan,ماموستايان,34.634237,45.3205974,Markaz Kalar,Kalar,Al-Sulaymaniyah,2317,0.04013811,93,6
+6286,Kalar,Kalar Kon,كلار كون,34.63803133,45.3031242,Markaz Kalar,Kalar,Al-Sulaymaniyah,2317,0.081570997,189,12
+23769,Kalar,Sherwana,شيروانة,34.61085768,45.3166238,Markaz Kalar,Kalar,Al-Sulaymaniyah,2317,0.016400518,38,6
+5995,Kalar,Grda Gozina,كرده كوزينه,34.58637894,45.2896874,Markaz Kalar,Kalar,Al-Sulaymaniyah,2317,0.043159258,100,18
+24890,Kalar,Sirwan,سيروان,34.6223123,45.3304388,Markaz Kalar,Kalar,Al-Sulaymaniyah,2317,0.020716444,48,6
+3939,Kalar,Barda Sur,بردسور,34.64159387,45.3475832,Markaz Kalar,Kalar,Al-Sulaymaniyah,2317,0.034527406,80,6
+24962,Kalar,Sharawani,شارواني,34.63964372,45.3129032,Markaz Kalar,Kalar,Al-Sulaymaniyah,2317,0.063875701,148,12
+31929,Kalar,Zhalla,زالا,34.65595341,45.2575523,Markaz Kalar,Kalar,Al-Sulaymaniyah,2317,0.039706517,92,6
+31932,Kalar,Azadi,آزادي,34.65783716,45.2387876,Markaz Kalar,Kalar,Al-Sulaymaniyah,2317,0.022442814,52,6
+21861,Kalar,Garmyan,كرميان,34.66004781,45.2319431,Markaz Kalar,Kalar,Al-Sulaymaniyah,2317,0.067760035,157,12
+21852,Kalar,Awbarik,اوباريك,34.6656446,45.241458,Markaz Kalar,Kalar,Al-Sulaymaniyah,2317,0.095381959,221,6
+25298,Rania,Koling city,كولين ستي,36.2287787,44.8485077,Markaz Rania,Rania,Al-Sulaymaniyah,406,0.184729064,75,12
+25293,Rania,Raparine,رابرين,36.20458,44.8215052,Markaz Rania,Rania,Al-Sulaymaniyah,406,0.022167488,9,6
+25297,Rania,Rozhhalat,روزهلات,36.2114866,44.836857,Markaz Rania,Rania,Al-Sulaymaniyah,406,0.041871921,17,18
+5568,Rania,kurdistan,كوردستان,36.2205991,44.8359597,Markaz Rania,Rania,Al-Sulaymaniyah,406,0.041871921,17,6
+25296,Rania,Qandil,قنديل,36.2097303,44.8337084,Markaz Rania,Rania,Al-Sulaymaniyah,406,0.044334975,18,6
+29686,Rania,Saraa,سراا,36.2112346,44.8277604,Markaz Rania,Rania,Al-Sulaymaniyah,406,0.07635468,31,12
+31869,Rania,Azadi 2,ازادي 2,36.2527794,44.8751276,Markaz Rania,Rania,Al-Sulaymaniyah,406,0.032019704,13,12
+25522,Rania,Kewa Rash,كيوره ش,36.2633631,44.8813414,Markaz Rania,Rania,Al-Sulaymaniyah,406,0.032019704,13,6
+24814,Rania,Mamostayan,ماموستايان,36.2589441,44.8900763,Markaz Rania,Rania,Al-Sulaymaniyah,406,0.022167488,9,6
+24101,Rania,Nawroz,نوروز,36.2494431,44.8741161,Markaz Rania,Rania,Al-Sulaymaniyah,406,0.110837438,45,12
+24984,Al-Mussyab,Hay Al-Rafedain,ناحيه الاسكندريه-حي الرافدين,32.88290099,44.34190731,Al-Iskandaria,Al-Mussyab,Babil,2341,0.055104656,129,18
+24985,Al-Mussyab,Hay Alaskarey,ناحيه الاسكندريه-حي العسكري,32.88258483,44.34809365,Al-Iskandaria,Al-Mussyab,Babil,2341,0.037590773,88,6
+25613,Al-Mussyab,Al-Iskandaria-Hay Al-Muthana,حي المثنى,32.88429675,44.38653827,Al-Iskandaria,Al-Mussyab,Babil,2341,0.009397693,22,6
+24296,Al-Mussyab,Al Iskandariyah Area-Mowelha,ناحية الاسكندرية-مويلحة,32.87783,44.41548,Al-Iskandaria,Al-Mussyab,Babil,2341,0.014523708,34,6
+24707,Al-Mussyab,Hay Al Ataba,حي الاطباء,32.79055304,44.27722478,Jurf Al-Sakhar,Al-Mussyab,Babil,2341,0.101238787,237,18
+7126,Al-Mussyab,Al Hamiyah-Al Mutaqedin 1,الحامية-المتقاعدين 1,32.81393002,44.26428293,Jurf Al-Sakhar,Al-Mussyab,Babil,2341,0.046988466,110,12
+24165,Al-Mussyab,Al Hamiyah-Oayef village,الحامية-قرية عويف,32.80751183,44.26748722,Jurf Al-Sakhar,Al-Mussyab,Babil,2341,0.04015378,94,6
+26119,Al-Mussyab,Hay Al Ghadeer 3,الغدير 3,32.78266858,44.26577385,Jurf Al-Sakhar,Al-Mussyab,Babil,2341,0.02007689,47,6
+24171,Al-Mussyab,Hay Al Moatnen 3,حي المواطنين 3,32.78355036,44.26641899,Jurf Al-Sakhar,Al-Mussyab,Babil,2341,0.061939342,145,6
+29582,Al-Mussyab,Hay Al Moatnen 1,حي المواطنين 1,32.78803072,44.26797728,Jurf Al-Sakhar,Al-Mussyab,Babil,2341,0.039299445,92,6
+7220,Al-Mussyab,Albo Hamdan,البو حمدان,32.78539749,44.28417791,Jurf Al-Sakhar,Al-Mussyab,Babil,2341,0.01409654,33,6
+26125,Al-Mussyab,Hay Al Ghadeer 1,الغدير 1,32.78810361,44.26738627,Jurf Al-Sakhar,Al-Mussyab,Babil,2341,0.027765912,65,6
+27255,Al-Adhamiya,Hay Al Rabee-334,حي الربيع-334,33.40111532,44.35124615,Al-Fahama,Al-Adhamiya,Baghdad,491,0.016293279,8,6
+25394,Al-Adhamiya,Bob Al Sham-361,بوب الشام-361,33.46695109,44.38525036,Al-Fahama,Al-Adhamiya,Baghdad,491,0.022403259,11,6
+24176,Al-Adhamiya,Hay Al Rabee-332,حي الربيع-332,33.39802228,44.3537499,Al-Fahama,Al-Adhamiya,Baghdad,491,0.061099796,30,6
+25397,Al-Adhamiya,Bob Al Sham-365,بوب الشام-365,33.44643956,44.38621141,Al-Fahama,Al-Adhamiya,Baghdad,491,0.018329939,9,6
+22777,Al-Adhamiya,Hay Al Rabee-340,حي الربيع-340,33.40538339,44.3593348,Al-Fahama,Al-Adhamiya,Baghdad,491,0.040733198,20,6
+22538,Al-Adhamiya,Tunis-330,تونس-330,33.40567668,44.36590738,Al-Fahama,Al-Adhamiya,Baghdad,491,0.036659878,18,6
+23728,Al-Adhamiya,Adhamiya-310,الاعظمية-310,33.36576245,44.35338848,Markaz Al-Adhamiya,Al-Adhamiya,Baghdad,491,0.022403259,11,6
+7730,Al-Adhamiya,Adhamia-312,الاعظمية-312,33.3702673,44.35609192,Markaz Al-Adhamiya,Al-Adhamiya,Baghdad,491,0.107942974,53,6
+23999,Al-Adhamiya,Al Qahira-307,القاهرة-307,33.37876786,44.39037264,Markaz Al-Adhamiya,Al-Adhamiya,Baghdad,491,0.052953157,26,6
+24003,Al-Adhamiya,Al Shamasiyah-320,الشماسية-320,33.38242472,44.37745988,Markaz Al-Adhamiya,Al-Adhamiya,Baghdad,491,0.061099796,30,6
+7717,Al-Adhamiya,Adhamia-308,الاعظمية-308,33.36889192,44.36206417,Markaz Al-Adhamiya,Al-Adhamiya,Baghdad,491,0.026476578,13,6
+23646,Al-Adhamiya,Adhamia-314,الأعظمية-314,33.37231728,44.36462593,Markaz Al-Adhamiya,Al-Adhamiya,Baghdad,491,0.091649695,45,6
+24002,Al-Adhamiya,Al Shamasiyah-316,الشماسية-316,33.37283799,44.37454008,Markaz Al-Adhamiya,Al-Adhamiya,Baghdad,491,0.048879837,24,6
+24004,Al-Adhamiya,Al Maghreb-302,المغرب-302,33.35775724,44.38098462,Markaz Al-Adhamiya,Al-Adhamiya,Baghdad,491,0.022403259,11,6
+23867,Al-Kadhmiyah,Al-Nasir Walsalam-1000,النصر والسلام-1000,33.30058432,44.04183549,Abu Ghraib,Al-Kadhmiyah,Baghdad,1870,0.009090909,17,6
+31711,Al-Kadhmiyah,Al Zaidan-Al sultan village,الزيدان-قرية السلطان,33.2687573,44.04619052,Abu Ghraib,Al-Kadhmiyah,Baghdad,1870,0.004812834,9,6
+25126,Al-Kadhmiyah,Khan Dhari Center,خان ضاري مركز,33.2994514,44.05792398,Abu Ghraib,Al-Kadhmiyah,Baghdad,1870,0.013368984,25,6
+21173,Al-Kadhmiyah,1 Athar,1 اذار,33.30332135,44.18543633,Abu Ghraib,Al-Kadhmiyah,Baghdad,1870,0.03315508,62,12
+31714,Al-Kadhmiyah,Shuhada Markza-Shuhdda the second,الشهداء المركز-شهداء الثانية,33.30905301,44.15002481,Abu Ghraib,Al-Kadhmiyah,Baghdad,1870,0.03315508,62,6
+7658,Al-Kadhmiyah,Al-Resalah,الرسالة,33.29721044,44.11908434,Abu Ghraib,Al-Kadhmiyah,Baghdad,1870,0.023529412,44,6
+27247,Al-Kadhmiyah,Al Shams complex,مجمع الشمس,33.31451807,44.02124715,Abu Ghraib,Al-Kadhmiyah,Baghdad,1870,0.073796791,138,6
+25185,Al-Kadhmiyah,Awad Al Hussain village,قرية عواد الحسين,33.55010522,44.19331218,Al-Taji,Al-Kadhmiyah,Baghdad,1870,0.003743316,7,6
+27413,Al-Kadhmiyah,Al Ahnaf-Al Rakia Fadel village,الأحنف-اركية وفاضل,33.43497456,44.24392406,Al-Taji,Al-Kadhmiyah,Baghdad,1870,0.020320856,38,6
+25164,Al-Kadhmiyah,Sabea Al Buor-8000,سبع البور-8000,33.45256226,44.15676736,Al-Taji,Al-Kadhmiyah,Baghdad,1870,0.004812834,9,6
+24063,Al-Kadhmiyah,Al-Abayechi-1,العبايجي-1,33.73487167,44.39270793,Al-Tarmiya,Al-Kadhmiyah,Baghdad,1870,0.010160428,19,6
+21685,Al-Kadhmiyah,Al Khadraa village,قرية الخضراء,33.67630777,44.37298674,Al-Tarmiya,Al-Kadhmiyah,Baghdad,1870,0.011229947,21,6
+25424,Al-Kadhmiyah,Hai Al Qadessia-2,حي القادسية-2,33.67153192,44.37190248,Al-Tarmiya,Al-Kadhmiyah,Baghdad,1870,0.022459893,42,6
+25022,Al-Kadhmiyah,Al Gserin Village,قرية كصيرين,33.69205073,44.43516278,Al-Tarmiya,Al-Kadhmiyah,Baghdad,1870,0.012834225,24,6
+27312,Al-Kadhmiyah,Shoala-448,الشعلة-448,33.36076863,44.29700415,Markaz Al-Kadhimiya,Al-Kadhmiyah,Baghdad,1870,0.003208556,6,6
+24073,Al-Karkh,Shurtah Al Hader-846,شرطة الحضر-846,33.24231078,44.40771872,Al-Mamoon,Al-Karkh,Baghdad,1489,0.02014775,30,6
+7640,Al-Karkh,Hay al jamiyah (Al Masfi)-842,حي الجمعية-842(المصافي),33.25248127,44.42333828,Al-Mamoon,Al-Karkh,Baghdad,1489,0.016789792,25,6
+23984,Al-Karkh,Al Toma(Al Masfi)-826,الطعمة-826(المصافي),33.24922773,44.39374898,Al-Mamoon,Al-Karkh,Baghdad,1489,0.065815984,98,6
+21460,Al-Karkh,Al Khadraa-639,الخضراء-639,33.3202051,44.2975542,Al-Mansour,Al-Karkh,Baghdad,1489,0.0161182,24,6
+24065,Al-Karkh,Al Ghazaliyah-685,الغزالية-685,33.33179204,44.27015784,Al-Mansour,Al-Karkh,Baghdad,1489,0.0080591,12,6
+23727,Al-Karkh,Al Jameah-627,الجامعة-627,33.31017679,44.32510784,Al-Mansour,Al-Karkh,Baghdad,1489,0.0080591,12,6
+21450,Al-Karkh,Al Amerya-634,العامرية-634,33.29144128,44.29513377,Al-Mansour,Al-Karkh,Baghdad,1489,0.012760242,19,6
+21448,Al-Karkh,Al Amreya-630,العامرية-630,33.30167331,44.29399727,Al-Mansour,Al-Karkh,Baghdad,1489,0.009402283,14,6
+25206,Al-Karkh,Al Khadraa-640,الخضراء-640,33.32343766,44.29545214,Al-Mansour,Al-Karkh,Baghdad,1489,0.02014775,30,6
+26041,Al-Karkh,Al Jameah-635,الجامعة 635,33.32690839,44.31788627,Al-Mansour,Al-Karkh,Baghdad,1489,0.013431833,20,6
+27409,Al-Karkh,Al Saydia-835,السيدية-835,33.23276431,44.35908273,Al-Mansour,Al-Karkh,Baghdad,1489,0.008730692,13,6
+27191,Al-Karkh,Al Resala-855,الرسالة-855,33.24271644,44.32232939,Al-Mansour,Al-Karkh,Baghdad,1489,0.009402283,14,6
+25221,Al-Karkh,Al Forat-893,الفرات-893,33.27592422,44.27631613,Al-Mansour,Al-Karkh,Baghdad,1489,0.021490934,32,6
+26100,Al-Karkh,Hay Al Jehad-881,حي الجهاد-881,33.2811269,44.29810131,Al-Mansour,Al-Karkh,Baghdad,1489,0.0080591,12,6
+27289,Al-Karkh,Al Salahiya-222,الصالحية-222,33.32542042,44.39021553,Markaz Al-Karkh,Al-Karkh,Baghdad,1489,0.006044325,9,6
+25150,Al-Mahmoudiya,Al Latefia-Al Qadessia,اللطيفية-حي القادسية,32.9704057,44.35331546,Al-Latifya,Al-Mahmoudiya,Baghdad,955,0.164397906,157,18
+23618,Al-Mahmoudiya,14 Tamooz,حي 14 تموز,32.96256919,44.3553264,Al-Latifya,Al-Mahmoudiya,Baghdad,955,0.086910995,83,12
+25149,Al-Mahmoudiya,Al Latefia-Al Salam,اللطيفية-السلام,32.99962534,44.36111224,Al-Latifya,Al-Mahmoudiya,Baghdad,955,0.093193717,89,30
+7733,Al-Mahmoudiya,Hay Al Zuhoor,حي الزهور,32.9673387,44.36388038,Al-Latifya,Al-Mahmoudiya,Baghdad,955,0.062827225,60,12
+25152,Al-Mahmoudiya,Kilo 18,كيلو 18,32.96327341,44.36306106,Al-Latifya,Al-Mahmoudiya,Baghdad,955,0.187434555,179,12
+7583,Al-Mahmoudiya,Hoor Rajab,هور رجب,33.19381632,44.41457366,Al-Rasheed,Al-Mahmoudiya,Baghdad,955,0.021989529,21,6
+7587,Al-Mahmoudiya,Al Radwania,منطقة الرضوانية,33.14601121,44.29942013,Al-Rasheed,Al-Mahmoudiya,Baghdad,955,0.062827225,60,18
+29523,Al-Mahmoudiya,Hay Al Shuhada(Al kragolyia),حي الشهداء(الكرغولية),33.06663345,44.23348447,Al-Yousifya,Al-Mahmoudiya,Baghdad,955,0.015706806,15,6
+27252,Al-Mahmoudiya,Hay Al Rasul,حي الرسول,33.04667553,44.35823423,Markaz Al-Mahmoudiya,Al-Mahmoudiya,Baghdad,955,0.009424084,9,6
+24194,Al-Khalis,Dalli Abass-Al-Dhobat Qtr,دلي عباس-حي الضباط,34.07345133,44.85486611,Al-Mansouriyah,Al-Khalis,Diyala,732,0.034153005,25,6
+25036,Al-Khalis,Hibhib-Al Shohadaa Qtr,هبهب-حي الشهداء,33.78024649,44.51435203,Hibhib,Al-Khalis,Diyala,732,0.051912568,38,6
+10445,Al-Khalis,Markaz Hibhib,مركز هبهب,33.78385382,44.5147,Hibhib,Al-Khalis,Diyala,732,0.148907104,109,24
+25032,Al-Khalis,Hibhib-Al Askary Qtr,الحي العسكري,33.78239452,44.51642267,Hibhib,Al-Khalis,Diyala,732,0.017759563,13,6
+25027,Al-Khalis,Hibhib-Al Asry Qtr,الحي العصري,33.78093491,44.51431992,Hibhib,Al-Khalis,Diyala,732,0.016393443,12,6
+25815,Al-Khalis,Al Hadid-Al Benook Qtr,الحديد-حي البنوك,33.76017127,44.55013006,Hibhib,Al-Khalis,Diyala,732,0.027322404,20,6
+22041,Al-Khalis,Al Qadissiya Qtr,حي القادسية,33.78479677,44.50173849,Hibhib,Al-Khalis,Diyala,732,0.054644809,40,6
+11195,Al-Khalis,Al Ghalbiya,الغالبية,33.73158221,44.4798689,Hibhib,Al-Khalis,Diyala,732,0.080601093,59,6
+25814,Al-Khalis,Al Hadid Old,الحديد القديمة,33.76917611,44.55980974,Hibhib,Al-Khalis,Diyala,732,0.027322404,20,12
+11206,Al-Khalis,Hawaish Village,قرية الحويش,33.68388191,44.42372425,Hibhib,Al-Khalis,Diyala,732,0.009562842,7,6
+11425,Al-Khalis,Jadidat Al Shat village,قرية جديدة الشط,33.6419951,44.42236362,Hibhib,Al-Khalis,Diyala,732,0.081967213,60,12
+11463,Baquba,Had Mekser,حد مكسر,33.84365721,44.64439696,Beni Saad,Baquba,Diyala,3702,0.01269584,47,12
+11411,Baquba,Al Sabtiyah village,قرية السبتية,33.78342225,44.62301762,Beni Saad,Baquba,Diyala,3702,0.010264722,38,6
+23740,Baquba,Al Hawidar,الهويدر,33.77258785,44.62592738,Beni Saad,Baquba,Diyala,3702,0.008373852,31,6
+24915,Baquba,Al Gatoon-Al rahma,الكاطون-الرحمة,33.75714188,44.60148087,Beni Saad,Baquba,Diyala,3702,0.113452188,420,6
+24805,Baquba,Al Gatoon-Al Yarmook Qtr,الكاطون-حي اليرموك,33.72419303,44.6079515,Beni Saad,Baquba,Diyala,3702,0.18719611,693,12
+11189,Baquba,Al Mafraq,المفرق,33.74319557,44.6104473,Beni Saad,Baquba,Diyala,3702,0.06915181,256,12
+24914,Baquba,Um Al Edam Village,قرية ام العظام,33.71895833,44.62231116,Beni Saad,Baquba,Diyala,3702,0.008373852,31,6
+11177,Baquba,Al Gatoon-Al Mujama Qtr,الكاطون-حي المجمع,33.75767092,44.58205894,Beni Saad,Baquba,Diyala,3702,0.022960562,85,6
+24917,Baquba,Al Sadah Village,قرية السادة ,33.48143074,44.52537636,Beni Saad,Baquba,Diyala,3702,0.003511615,13,6
+23694,Baquba,Al Intesar-1 Qtr,حي الانتصار 1,33.58422006,44.55428868,Beni Saad,Baquba,Diyala,3702,0.018098325,67,6
+11178,Baquba,Al Tahreer,التحرير,33.73856555,44.64968108,Buhriz,Baquba,Diyala,3702,0.098595354,365,6
+11250,Baquba,Al Dawasir Qtr,حي الدواسر,33.7012487,44.65803445,Buhriz,Baquba,Diyala,3702,0.008103728,30,6
+25042,Baquba,Sesbana Village,قرية سيسبانه,33.68877239,44.82864561,Kanan,Baquba,Diyala,3702,0.004051864,15,6
+25257,Khanaqin,Bakhtiari Qtr,حي بختياري,34.31442726,45.35651784,Markaz Khanaqin,Khanaqin,Diyala,1806,0.212624585,384,30
+24312,Khanaqin,Imam Abass Qtr,حي إمام عباس,34.34230051,45.36063392,Markaz Khanaqin,Khanaqin,Diyala,1806,0.088039867,159,6
+24403,Khanaqin,darwish village,قرية درويش,34.39173275,45.30702866,Markaz Khanaqin,Khanaqin,Diyala,1806,0.003875969,7,6
+24351,Khanaqin,Mazrah Qtr,حي مزرعة,34.34415943,45.3888891,Markaz Khanaqin,Khanaqin,Diyala,1806,0.022702104,41,6
+25247,Khanaqin,Rapren-1 Qtr,حي رابرين-1,34.32011997,45.38204111,Markaz Khanaqin,Khanaqin,Diyala,1806,0.019379845,35,6
+10666,Khanaqin,Jibraoh village,قرية جبراوة,34.30690846,45.3884229,Markaz Khanaqin,Khanaqin,Diyala,1806,0.016611296,30,6
+24393,Khanaqin,Zurab village,قرية زوراب,34.35205123,45.34729711,Markaz Khanaqin,Khanaqin,Diyala,1806,0.023255814,42,12
+11047,Khanaqin,Tula Frosh Qtr,حي تولا فروش,34.35788763,45.37631834,Markaz Khanaqin,Khanaqin,Diyala,1806,0.11627907,210,6
+24354,Khanaqin,Al Askari Qtr,حي عسكري,34.34024972,45.40024431,Markaz Khanaqin,Khanaqin,Diyala,1806,0.027685493,50,6
+24405,Khanaqin,aldarawsha village,قرية الدراوشة,34.36014375,45.22063411,Markaz Khanaqin,Khanaqin,Diyala,1806,0.004429679,8,6
+10403,Khanaqin,Salih Agha village,قرية صالح اغا,34.5746093,45.3412701,Qaratu,Khanaqin,Diyala,1806,0.071982281,130,12
+3903,Kifri,Kulajo,كلجو,34.4647981,45.1647359,Jabarra,Kifri,Diyala,2188,0.128427788,281,6
+6000,Kifri,Shaykh Lankar,شيخ لنكر,34.5555857,45.2481505,Jabarra,Kifri,Diyala,2188,0.08820841,193,12
+25429,Kifri,Markaz Jabara,جبارة,34.59153193,44.93544045,Jabarra,Kifri,Diyala,2188,0.061700183,135,12
+33394,Kifri,shahidan,شهيدان,34.6841669,44.9520007,Jabarra,Kifri,Diyala,2188,0.021480804,47,6
+28430,Kifri,raparin,رابرين,34.6795417,44.9548963,Jabarra,Kifri,Diyala,2188,0.030621572,67,6
+28427,Kifri,Hawari new,هواري نوي,34.6906938,44.9505876,Jabarra,Kifri,Diyala,2188,0.035648995,78,6
+28429,Kifri,shoresh,شورش,34.6865702,44.9527278,Jabarra,Kifri,Diyala,2188,0.024680073,54,6
+31930,Kifri,Sangaw,سنكاو,34.66792962,45.2251869,Markaz Kifri,Kifri,Diyala,2188,0.084095064,184,6
+6161,Kifri,Shakal,شاكال,34.66556899,45.2202165,Markaz Kifri,Kifri,Diyala,2188,0.091407678,200,6
+28424,Kifri,mamostayan,ماموستايان,34.6897689,44.9563149,Markaz Kifri,Kifri,Diyala,2188,0.015996344,35,6
+11023,Kifri,sar qala,سةرقةلا,34.7427975,45.0653236,Markaz Kifri,Kifri,Diyala,2188,0.058500914,128,6
+28422,Kifri,awbrey,اوبري,34.7036343,44.968331,Markaz Kifri,Kifri,Diyala,2188,0.035191956,77,6
+28428,Kifri,rezgari,رزكاري,34.6936463,44.9614081,Markaz Kifri,Kifri,Diyala,2188,0.02559415,56,6
+10592,Kifri,Qaratappa,قره تبه,34.43031631,44.9289786,Qara Tabe,Kifri,Diyala,2188,0.052559415,115,6
+23903,Al-Amadiya,Kaniya Mala,كانيا مالا,37.10090442,43.4951567,Markaz Al-Amadiya,Al-Amadiya,Duhok,507,0.049309665,25,12
+8171,Al-Amadiya,Aradin,ارادن,37.10861067,43.31982766,Sarsank,Al-Amadiya,Duhok,507,0.013806706,7,6
+8335,Al-Amadiya,Spindare,سبيندارى,36.97084612,43.3169068,Sarsank,Al-Amadiya,Duhok,507,0.037475345,19,6
+7770,Al-Amadiya,Chamanke,جمانكي,36.9379561,43.4127922,Sarsank,Al-Amadiya,Duhok,507,0.191321499,97,24
+7768,Al-Amadiya,Mizi Village,قرية ميزي,36.94530948,43.39186787,Sarsank,Al-Amadiya,Duhok,507,0.102564103,52,12
+27120,Al-Amadiya,Nahla Area,منطقة نهلة,36.86370972,43.69317721,Sarsank,Al-Amadiya,Duhok,507,0.088757396,45,6
+7867,Al-Amadiya,Sikreen,سكرين,37.03908289,43.27967089,Sarsank,Al-Amadiya,Duhok,507,0.013806706,7,6
+7862,Al-Amadiya,Qadish Collective,قدش,37.10053202,43.38539942,Sarsank,Al-Amadiya,Duhok,507,0.027613412,14,6
+7896,Al-Amadiya,Benata,بيناتا,37.08602186,43.37602869,Sarsank,Al-Amadiya,Duhok,507,0.01183432,6,6
+7835,Al-Amadiya,Sarsink,سرسنك,37.03931455,43.34292255,Sarsank,Al-Amadiya,Duhok,507,0.136094675,69,12
+26047,Duhok,Botan,بوتان,36.87030083,42.9719216,Markaz Duhok,Duhok,Duhok,5152,0.016886646,87,12
+24092,Duhok,Masik-1,ماسيك 1,36.8811634,42.94833432,Markaz Duhok,Duhok,Duhok,5152,0.031638199,163,6
+23711,Duhok,Gali Dohuk,كلي دهوك,36.86387487,43.00612433,Markaz Duhok,Duhok,Duhok,5152,0.004076087,21,6
+21509,Duhok,Kari Basi,كري باصي,36.86809225,42.99187388,Markaz Duhok,Duhok,Duhok,5152,0.034743789,179,12
+8867,Duhok,Zeri Land,زري لاند,36.87028339,42.95867599,Markaz Duhok,Duhok,Duhok,5152,0.097826087,504,6
+21971,Duhok,Shorash (Al Jamyah),شورش (الجمعية),36.87048266,42.99201547,Markaz Duhok,Duhok,Duhok,5152,0.024456522,126,6
+26052,Duhok,Bintika,بنتيكا,36.84552054,43.00882806,Markaz Duhok,Duhok,Duhok,5152,0.005046584,26,6
+24186,Duhok,Zirka,زركا,36.87113012,42.9301075,Markaz Duhok,Duhok,Duhok,5152,0.023680124,122,6
+7945,Duhok,Baroshke,بروشكي,36.85521913,43.02227054,Markaz Duhok,Duhok,Duhok,5152,0.052600932,271,18
+24628,Duhok,Etit,ايتيت,36.84470408,43.08233021,Zawita,Duhok,Duhok,5152,0.041149068,212,6
+8687,Duhok,Bablu,بابلو,36.8763063,43.12508353,Zawita,Duhok,Duhok,5152,0.009704969,50,6
+7949,Duhok,Eminke,امينكي,36.85985898,43.09515691,Zawita,Duhok,Duhok,5152,0.024456522,126,6
+25898,Duhok,Avrike,افريكي,36.83176403,43.11903998,Zawita,Duhok,Duhok,5152,0.04076087,210,6
+8044,Sumail,Bajit Kandala,باجت كندال,37.04725789,42.45105377,Bateel,Sumail,Duhok,13647,0.006375027,87,6
+24596,Sumail,Tanahi,تناهي,36.86240581,42.90319996,Markaz Sumail,Sumail,Duhok,13647,0.016340588,223,6
+27125,Sumail,Old Qasr Yazddin,قسريزدين قديمة,36.82102052,42.80731936,Markaz Sumail,Sumail,Duhok,13647,0.011431084,156,6
+24800,Sumail,Avro City,افرو سيتي,36.85742887,42.90769701,Markaz Sumail,Sumail,Duhok,13647,0.076353777,1042,6
+8873,Sumail,Misereek,مسيريك,36.86255038,42.80520153,Markaz Sumail,Sumail,Duhok,13647,0.068586503,936,6
+29614,Sumail,Kar City,كار ستي,36.89144536,42.79901263,Markaz Sumail,Sumail,Duhok,13647,0.010844874,148,6
+7989,Sumail,Seje,سيجي,36.91326388,42.88533819,Markaz Sumail,Sumail,Duhok,13647,0.036491537,498,12
+25622,Sumail,Moaskar Domiz,معسكر دوميز,36.78763716,42.90502026,Sindi,Sumail,Duhok,13647,0.026672529,364,12
+8369,Sumail,Shariya,شاريا,36.78613016,42.97378716,Sindi,Sumail,Duhok,13647,0.287975379,3930,36
+8800,Sumail,Kherava,خيرافا,36.77553199,42.78317992,Sindi,Sumail,Duhok,13647,0.02051733,280,6
+27124,Sumail,New Zinya,زينيا جديدة,36.78585152,42.78014831,Sindi,Sumail,Duhok,13647,0.03048289,416,6
+32029,Zakho,Rkawa Sector,قطاع ركاوا,37.14479623,42.68527911,Dercar,Zakho,Duhok,8473,0.020653842,175,6
+32033,Zakho,Kochka Honari,قطاع كوجكا هوناري,37.16704305,42.68757245,Dercar,Zakho,Duhok,8473,0.101498879,860,6
+32030,Zakho,Shabaniya Sector,قطاع شعبانية,37.14830789,42.68457356,Dercar,Zakho,Duhok,8473,0.090286793,765,6
+32024,Zakho,Ashe Chami Sector,قطاع آشي جمي,37.14905058,42.67507105,Dercar,Zakho,Duhok,8473,0.043786144,371,6
+32028,Zakho,Khrababka Sector,قطاع خرابابكا,37.14817588,42.74712896,Markaz Zakho,Zakho,Duhok,8473,0.095715803,811,24
+32032,Zakho,Firqa Sector,قطاع فرقة,37.15799712,42.70888115,Markaz Zakho,Zakho,Duhok,8473,0.101380857,859,12
+32027,Zakho,Bedar Sector,قطاع بيدار,37.14667665,42.6455226,Markaz Zakho,Zakho,Duhok,8473,0.137613596,1166,18
+32031,Zakho,Abasiya Sector,قطاع عباسية,37.14531861,42.7077838,Markaz Zakho,Zakho,Duhok,8473,0.11365514,963,24
+25992,Zakho,Diraboon,ديربون,37.08555153,42.42724897,Markaz Zakho,Zakho,Duhok,8473,0.06951493,589,6
+8620,Zakho,Qarawla,قرولا,37.12356417,42.43683536,Markaz Zakho,Zakho,Duhok,8473,0.001888351,16,6
+20980,Erbil,Ainkawa(108),108 عنكاوة,36.24349834,43.983621,Markaz Erbil,Erbil,Erbil,31104,0.023115998,719,6
+13685,Erbil,Andazyaran,ئه ندازياران,36.2005896,44.1217624,Markaz Erbil,Erbil,Erbil,31104,0.013117284,408,6
+25973,Erbil,Harem,هريم,36.11937226,44.0630427,Markaz Erbil,Erbil,Erbil,31104,0.002925669,91,12
+24308,Erbil,Zaiton Collective,مجمع زيتون,36.13702177,44.0659664,Markaz Erbil,Erbil,Erbil,31104,0.050797325,1580,6
+12826,Erbil,Mamzawa,مامزاوه,36.11909237,43.963592,Markaz Erbil,Erbil,Erbil,31104,0.047614455,1481,18
+25727,Erbil,Kani Qarzhala,كاني قرشالة,36.2067298,43.8592122,Markaz Erbil,Erbil,Erbil,31104,0.006526492,203,6
+33883,Erbil,Nazimawa,نازماوه,36.11368557,43.95286573,Markaz Erbil,Erbil,Erbil,31104,0.01244213,387,6
+21899,Erbil,Rizgari,رزكاري,36.2797368,43.7341817,Markaz Erbil,Erbil,Erbil,31104,0.021476337,668,12
+27214,Erbil,Shorsh(Malayan),شورش(ملايان),36.213827,44.02088648,Markaz Erbil,Erbil,Erbil,31104,0.006526492,203,6
+20997,Erbil,Runaki,روناكي,36.16957159,44.01818971,Markaz Erbil,Erbil,Erbil,31104,0.003247171,101,6
+20790,Erbil,Havalan,هفالان,36.1898498,44.04897347,Markaz Erbil,Erbil,Erbil,31104,0.009484311,295,6
+33878,Erbil,Mizori,مزوري,35.9961654,44.0386959,Qushtappa,Erbil,Erbil,31104,0.007716049,240,6
+25630,Erbil,Kawa Collective,مجمع كاوه,35.9790143,44.0373527,Qushtappa,Erbil,Erbil,31104,0.027970679,870,6
+24598,Koysinjaq,Azady,ازادي,36.0848782,44.6389829,Markaz Koysinjaq,Koysinjaq,Erbil,587,0.102214651,60,24
+27222,Koysinjaq,Nawdaran,ناوداران,36.0572663,44.6371874,Markaz Koysinjaq,Koysinjaq,Erbil,587,0.025553663,15,12
+24597,Koysinjaq,Bazar koya(Bafri qndeel),بازار كويه(بفري قنديل),36.083679,44.6287855,Markaz Koysinjaq,Koysinjaq,Erbil,587,0.102214651,60,18
+12371,Koysinjaq,Bayizagha,بايزاغا,36.0874678,44.629339,Markaz Koysinjaq,Koysinjaq,Erbil,587,0.093696763,55,18
+24484,Koysinjaq,Armota,أرموته,36.0681566,44.6072378,Markaz Koysinjaq,Koysinjaq,Erbil,587,0.042589438,25,6
+23280,Koysinjaq,Qalat,قلات,36.0863765,44.6269879,Markaz Koysinjaq,Koysinjaq,Erbil,587,0.161839864,95,18
+33885,Koysinjaq,Sarbasti,سربستي,35.8920885,44.5878719,Taq Taq,Koysinjaq,Erbil,587,0.090289608,53,6
+11887,Koysinjaq,Taqtaq,طقطق,35.8872085,44.5837756,Taq Taq,Koysinjaq,Erbil,587,0.166950596,98,12
+13141,Rawanduz,Soran District,مركز قضاء سوران,36.6552912,44.5406644,Diana,Rawanduz,Erbil,407,0.577395577,235,60
+31780,Rawanduz,Delzyan,دلزيان,36.6681032,44.5273977,Diana,Rawanduz,Erbil,407,0.029484029,12,12
+27199,Rawanduz,kawrarash,كوررش,36.6093691,44.4027153,Khailfan,Rawanduz,Erbil,407,0.024570025,10,6
+27198,Rawanduz,Hay mameel al qeer,حي معمل القير,36.5919395,44.3860076,Khailfan,Rawanduz,Erbil,407,0.024570025,10,6
+12277,Rawanduz,Khalifan(center),مركز(خليفان),36.6098454,44.4056227,Khailfan,Rawanduz,Erbil,407,0.051597052,21,6
+12597,Rawanduz,Rawanduz District,مركز راوندوز,36.61405134,44.5269909,Markaz Rawanduz,Rawanduz,Erbil,407,0.098280098,40,6
+27200,Rawanduz,Hamya,حاميه,36.6221652,44.5447272,Markaz Rawanduz,Rawanduz,Erbil,407,0.029484029,12,6
+27225,Rawanduz,Markaz Mergasur,مركز ميركسور,36.8353167,44.3131953,Mergasur,Rawanduz,Erbil,407,0.085995086,35,12
+13372,Shaqlawa,Harir-Batas,حرير-باتاس,36.5603397,44.33427473,Harir,Shaqlawa,Erbil,852,0.041079812,35,6
+12172,Shaqlawa,Harir,حرير,36.5502052,44.3453688,Harir,Shaqlawa,Erbil,852,0.146713615,125,12
+12079,Shaqlawa,Hiran,هيران ,36.2772151,44.49314569,Khoshnaw,Shaqlawa,Erbil,852,0.071596244,61,6
+12948,Shaqlawa,Sarmidan-1(Ashti),سرميدان 1(اشتي),36.4129364,44.3029433,Khoshnaw,Shaqlawa,Erbil,852,0.096244131,82,18
+23698,Shaqlawa,Sabirawa,سابيراوه,36.4015164,44.3458974,Khoshnaw,Shaqlawa,Erbil,852,0.085680751,73,6
+23713,Shaqlawa,Betrma,بيترما,36.3946488,44.3424598,Khoshnaw,Shaqlawa,Erbil,852,0.105633803,90,18
+12957,Shaqlawa,Spigra,سبيكارا,36.3829007,44.3770004,Khoshnaw,Shaqlawa,Erbil,852,0.029342723,25,12
+23741,Shaqlawa,Safeen,سفين,36.4035677,44.3126218,Khoshnaw,Shaqlawa,Erbil,852,0.083333333,71,18
+23742,Shaqlawa,Shahedan,شهيدان,36.4075659,44.3186095,Khoshnaw,Shaqlawa,Erbil,852,0.15258216,130,12
+26060,Kerbela,Al Ameshea 2,العميشية 2,32.65803488,44.05852714,Al-Hassainya,Kerbela,Kerbala,2208,0.015851449,35,6
+14167,Kerbela,Al-Abrahmeiah (Al hafed),الابراهيمية (الحافظ),32.66017843,44.14028872,Al-Hassainya,Kerbela,Kerbala,2208,0.028532609,63,6
+24285,Kerbela,Al-Safiya 2,الصافية 2,32.65702365,44.0509545,Al-Hassainya,Kerbela,Kerbala,2208,0.211956522,468,30
+14037,Kerbela,Al-zabaylah,الزبيليه ,32.60069416,44.1040392,Al-Hassainya,Kerbela,Kerbala,2208,0.027173913,60,6
+32057,Kerbela,Abu Tharr complex,مجمع ابا ذر,32.54620523,44.08923593,Markaz Kerbela,Kerbela,Kerbala,2208,0.022644928,50,6
+25061,Kerbela,Al Hurr Al Sager,الحر الصغير,32.6524887,43.9948325,Markaz Kerbela,Kerbela,Kerbala,2208,0.020833333,46,6
+14324,Kerbela,Al Muamnen(Elegal),تجاوز المؤمنين,32.64302658,43.9779922,Markaz Kerbela,Kerbela,Kerbala,2208,0.004528986,10,6
+25262,Kerbela,Al Zohor,الزهور,32.59325,44.05294,Markaz Kerbela,Kerbela,Kerbala,2208,0.007246377,16,12
+27265,Kerbela,Shuihadaa Al Amam Ali,شهداء الامام علي 2,32.5719858,44.0210812,Markaz Kerbela,Kerbela,Kerbala,2208,0.004528986,10,6
+25780,Kerbela,Hay Al-Naser14,حي النصر14,32.5771676,44.00587049,Markaz Kerbela,Kerbela,Kerbala,2208,0.002717391,6,6
+25358,Kerbela,Al Salam-1,السلام1,32.5876564,44.00071746,Markaz Kerbela,Kerbela,Kerbala,2208,0.004076087,9,6
+24137,Kerbela,Maitham Al Tammar,ميثم التمار ,32.6180031,44.04344232,Markaz Kerbela,Kerbela,Kerbala,2208,0.012681159,28,6
+25869,Daquq,Hay Shoraw-1,مقاطعة 1 شوراو,35.07323983,44.50280738,Markaz Daquq,Daquq,Kirkuk,861,0.037166086,32,6
+25739,Daquq,Laylan-Bash Bulaq village,قرية باش بولاق,35.25255176,44.39470309,Markaz Daquq,Daquq,Kirkuk,861,0.139372822,120,12
+14786,Daquq,Fareeq Awa,حي فريق اوه,35.13463604,44.43721897,Markaz Daquq,Daquq,Kirkuk,861,0.075493612,65,6
+33476,Daquq,Hay Al-Salam ( Daquq ),حي السلام ( داقوق ),35.15292917,44.44352438,Markaz Daquq,Daquq,Kirkuk,861,0.174216028,150,30
+15110,Daquq,Hay Klisa 1,حي كليسة 1,35.1603029,44.4443694,Markaz Daquq,Daquq,Kirkuk,861,0.116144019,100,6
+21483,Daquq,Hay Nawroz ( Daquq),حي نوروز ( داقوق ),35.13885842,44.4397158,Markaz Daquq,Daquq,Kirkuk,861,0.099883856,86,6
+21453,Daquq,Hay Ashti,حي آشتي,35.14922041,44.44050858,Markaz Daquq,Daquq,Kirkuk,861,0.132404181,114,18
+33477,Daquq,Hay Runaki / Daquq,حي روناكي \ داقوق,35.14833029,44.45463889,Markaz Daquq,Daquq,Kirkuk,861,0.104529617,90,12
+14960,Daquq,Taza-Omer Bin Khattab,قرية عمر بن الخطاب,35.23892701,44.38953719,Markaz Daquq,Daquq,Kirkuk,861,0.098722416,85,12
+14375,Dibis,Altun Kupri Center,مركز ناحية التون كوبري,35.75626625,44.13871317,Altun Qupri,Dibis,Kirkuk,348,0.08045977,28,5
+15449,Dibis,Bajwan,قرية باجوان,35.54110409,44.28188016,Altun Qupri,Dibis,Kirkuk,348,0.316091954,110,22
+15674,Dibis,Hay Al-Shuhadaa,حي الشهداء,35.6705349,44.06921792,Markaz Dibis,Dibis,Kirkuk,348,0.215517241,75,19
+24632,Dibis,Hay Al Muaasker,حي المعسكر,35.66729671,44.0748884,Markaz Dibis,Dibis,Kirkuk,348,0.158045977,55,13
+24631,Dibis,Hay Al Tanak,حي التنك,35.6605481,44.08992829,Markaz Dibis,Dibis,Kirkuk,348,0.229885057,80,6
+21016,Kirkuk,Hay Al Nassir,حي النصر,35.42784533,44.4071896,Markaz Kirkuk,Kirkuk,Kirkuk,13629,0.030816641,420,6
+31729,Kirkuk,Hay Al-Askary 2,حي العسكري 2,35.4061092,44.41361086,Markaz Kirkuk,Kirkuk,Kirkuk,13629,0.031550371,430,6
+15550,Kirkuk,Hay Al-Urooba,حي العروبة,35.4296511,44.39183605,Markaz Kirkuk,Kirkuk,Kirkuk,13629,0.042482941,579,6
+31726,Kirkuk,Al-Qadisssiya(Rabareen) first,حي الانتفاضة-رابرين-(القادسية سابقا) اول,35.41471699,44.41914669,Markaz Kirkuk,Kirkuk,Kirkuk,13629,0.029716047,405,18
+31728,Kirkuk,Hay Al-Askary 1,حي العسكري 1,35.40713495,44.40463988,Markaz Kirkuk,Kirkuk,Kirkuk,13629,0.035952748,490,6
+24084,Kirkuk,Al Tadamon(Hawkari),حي التضامن-هاوكاري-,35.41012372,44.38730494,Markaz Kirkuk,Kirkuk,Kirkuk,13629,0.066035659,900,18
+22296,Kirkuk,Hay Al Jamia-Mahalla 622,حي الجامعة-622,35.40793818,44.32673626,Taza Khormato,Kirkuk,Kirkuk,13629,0.165822878,2260,36
+24453,Kirkuk,Al Takhi Village,قرية تأخي,35.37670134,44.34932099,Taza Khormato,Kirkuk,Kirkuk,13629,0.024213075,330,6
+15648,Kirkuk,Al-Sayada Complex,مجمع الصيادة,35.3806587,44.33244497,Taza Khormato,Kirkuk,Kirkuk,13629,0.020177563,275,6
+23900,Kirkuk,Yaychi-Qaryat Turklan,قرية تركلان,35.38814883,44.27595199,Yaijy,Kirkuk,Kirkuk,13629,0.010639078,145,6
+20844,Al-Kahla,Hay Al Karar,حي الكرار,31.84989086,47.1203488,Al-Msharah,Al-Kahla,Maysan,204,0.044117647,9,12
+16835,Al-Kahla,Hay 15 Sahaban,حي 15 شعبان,31.84490493,47.13287912,Al-Msharah,Al-Kahla,Maysan,204,0.049019608,10,6
+15991,Al-Kahla,Hay Al Rasool,حي الرسول,31.81918766,47.11993291,Al-Msharah,Al-Kahla,Maysan,204,0.039215686,8,6
+24808,Al-Kahla,Eye of Missan,عيون ميسان,31.88447879,47.16787029,Al-Msharah,Al-Kahla,Maysan,204,0.073529412,15,6
+22208,Al-Kahla,Al Salam,ناحية السلام-مركز الناحية,31.87811839,47.14734611,Al-Msharah,Al-Kahla,Maysan,204,0.06372549,13,6
+24532,Al-Kahla,Al Hay Al JameI,الحي الجامعي,31.80705921,47.17830026,Al-Msharah,Al-Kahla,Maysan,204,0.524509804,107,42
+23622,Al-Kahla,Hay Al-Ameer,حي الامير,31.53134617,47.28924227,Markaz Al-Kahla,Al-Kahla,Maysan,204,0.044117647,9,12
+34009,Al-Baaj,Al Intisar,حي الانتصار,36.049594,41.71278,Markaz Al-Baaj,Al-Baaj,Ninewa,1188,0.179292929,213,42
+34010,Al-Baaj,Al-Dubaat,حي الضباط,36.042967,41.711898,Markaz Al-Baaj,Al-Baaj,Ninewa,1188,0.082491582,98,24
+34014,Al-Baaj,Hateen,حي حطين,36.04616,41.722867,Markaz Al-Baaj,Al-Baaj,Ninewa,1188,0.101851852,121,6
+34013,Al-Baaj,Al Askari,حي العسكري,36.038799,41.718269,Markaz Al-Baaj,Al-Baaj,Ninewa,1188,0.063131313,75,6
+34012,Al-Baaj,Alqadisya,حي القادسيه,36.038939,41.714346,Markaz Al-Baaj,Al-Baaj,Ninewa,1188,0.067340067,80,12
+34008,Al-Baaj,Al-Risalah,حي الرساله,36.044509,41.714508,Markaz Al-Baaj,Al-Baaj,Ninewa,1188,0.185185185,220,18
+18349,Al-Baaj,Al-Yarmuk,حي اليرموك,36.044635,41.720289,Markaz Al-Baaj,Al-Baaj,Ninewa,1188,0.106060606,126,6
+34011,Al-Baaj,Al-Thawra,حي الثوره,36.038552,41.711969,Markaz Al-Baaj,Al-Baaj,Ninewa,1188,0.157407407,187,36
+25816,Al-Hamdaniya,Bishryan,بشريان,36.3098007,43.67426823,Markaz Al-Hamdaniya,Al-Hamdaniya,Ninewa,4340,0.006221198,27,6
+24581,Al-Hamdaniya,Kalak,كلكك,36.27122321,43.63670332,Markaz Al-Hamdaniya,Al-Hamdaniya,Ninewa,4340,0.132258065,574,36
+33475,Al-Hamdaniya,Zangal,زنكل,36.23354303,43.60799284,Markaz Al-Hamdaniya,Al-Hamdaniya,Ninewa,4340,0.011059908,48,18
+12821,Al-Hamdaniya,Khabat,خبات,36.2768827,43.6727879,Markaz Al-Hamdaniya,Al-Hamdaniya,Ninewa,4340,0.8359447,3628,312
+17903,Al-Hamdaniya,Al-Salamiyah Village,قرية السلامية,36.14467202,43.31096659,Namroud,Al-Hamdaniya,Ninewa,4340,0.005760369,25,6
+27271,Al-Hatra,Tal abta,تل عبطة,35.94612983,42.5718261,Markaz Hatra,Al-Hatra,Ninewa,211,0.744075829,157,33
+33114,Al-Hatra,Al-Amilah Village,قرية الاميلح,35.78730103,42.99964293,Markaz Hatra,Al-Hatra,Ninewa,211,0.061611374,13,6
+33115,Al-Hatra,Zaaziaa Village,قرية زعيزيعة,35.81036035,43.02302444,Markaz Hatra,Al-Hatra,Ninewa,211,0.028436019,6,2
+33164,Al-Hatra,Rmothaniat Al-rdin Village,قرية رمضانيات الردن,35.61702195,42.9889707,Markaz Hatra,Al-Hatra,Ninewa,211,0.028436019,6,4
+17126,Al-Hatra,Markaz AL-Hatra,مركز الحضر,35.57722514,42.73185209,Markaz Hatra,Al-Hatra,Ninewa,211,0.137440758,29,14
+24549,Al-Mosul,Al Harmaat,الهرمات,36.3624,43.0716,Al-Muhamadath,Al-Mosul,Ninewa,16145,0.045401053,733,6
+18314,Al-Mosul,Hay Al Intisar,الانتصار,36.32160352,43.2184224,Al-Muhamadath,Al-Mosul,Ninewa,16145,0.042366058,684,12
+23933,Al-Mosul,Hay Al Samah,حي السماح,36.36599222,43.2208356,Al-Muhamadath,Al-Mosul,Ninewa,16145,0.031279034,505,12
+23875,Al-Mosul,Al-Quds,القدس,36.34899562,43.22555348,Al-Muhamadath,Al-Mosul,Ninewa,16145,0.036419944,588,6
+21332,Al-Mosul,HAY-FALISTINE,حي فلسطين,36.30750923,43.1910329,Al-Muhamadath,Al-Mosul,Ninewa,16145,0.00799009,129,6
+25066,Al-Mosul,Al Tanak,التنك,36.341839,43.052996,Al-Muhamadath,Al-Mosul,Ninewa,16145,0.017652524,285,6
+18339,Al-Mosul,Al-Karamah,الكرامة,36.34434032,43.21393334,Al-Muhamadath,Al-Mosul,Ninewa,16145,0.079715082,1287,12
+18357,Al-Mosul,Al-sukar,حي السكر,36.38996165,43.16955564,Al-Muhamadath,Al-Mosul,Ninewa,16145,0.006069991,98,6
+18346,Al-Mosul,Al-Maamon,المامون,36.30882013,43.10854328,Al-Muhamadath,Al-Mosul,Ninewa,16145,0.026633633,430,6
+21336,Al-Mosul,HAY-SUMMER,حي سومر,36.29892135,43.19245944,Al-Muhamadath,Al-Mosul,Ninewa,16145,0.019882317,321,6
+18368,Al-Mosul,Wadi Hajar,وادي حجر,36.32112548,43.12549664,Al-Muhamadath,Al-Mosul,Ninewa,16145,0.012945184,209,6
+18313,Al-Mosul,Hay Al Islah Al Zirai,حي الاصلاح الزراعي,36.35024315,43.08515874,Al-Muhamadath,Al-Mosul,Ninewa,16145,0.016042118,259,6
+18370,Al-Mosul,Hay Al Tammem,التاميم,36.3555135,43.19195727,Al-Muhamadath,Al-Mosul,Ninewa,16145,0.021554661,348,6
+17128,Al-Mosul,Hamam Alaleel Center,مركز حمام العليل,36.16758811,43.25494788,Hammam Al-Alil,Al-Mosul,Ninewa,16145,0.010529576,170,6
+17338,Al-Shikhan,Atrush,أتروش,36.8377966,43.33373387,Atreesh,Al-Shikhan,Ninewa,3633,0.019267823,70,6
+25945,Al-Shikhan,Esiyan Village,قرية ايسيان,36.7148436,43.29448621,Markaz Al-Shikhan,Al-Shikhan,Ninewa,3633,0.030828516,112,6
+17752,Al-Shikhan,Baadre,باعدري,36.72342984,43.25205126,Markaz Al-Shikhan,Al-Shikhan,Ninewa,3633,0.184971098,672,24
+17333,Al-Shikhan,Shekhan,شيخان,36.68585032,43.34714326,Markaz Al-Shikhan,Al-Shikhan,Ninewa,3633,0.419488026,1524,60
+17535,Al-Shikhan,Mahad,مهد,36.64666962,43.41472644,Markaz Al-Shikhan,Al-Shikhan,Ninewa,3633,0.066061107,240,12
+25278,Al-Shikhan,Kabara,قرية كابارة,36.69783949,43.22252412,Markaz Al-Shikhan,Al-Shikhan,Ninewa,3633,0.002202037,8,6
+18199,Al-Shikhan,Qasrok,قسروك,36.69973886,43.59700937,Qasruk,Al-Shikhan,Ninewa,3633,0.099642169,362,36
+21008,Al-Shikhan,Chira,جرة,36.64066507,43.52486353,Qasruk,Al-Shikhan,Ninewa,3633,0.050371594,183,6
+8783,Aqra,Bardarash,بردرش,36.50505246,43.59559858,Bardarash,Aqra,Ninewa,4136,0.235009671,972,54
+8776,Aqra,Daratu,دارتو,36.47780181,43.72601916,Bardarash,Aqra,Ninewa,4136,0.025386847,105,18
+24580,Aqra,Roviya,روفيا,36.61804222,43.70120265,Bardarash,Aqra,Ninewa,4136,0.175290135,725,36
+16953,Aqra,Dinarta,دينارته,36.79299167,43.97959825,Dinarta,Aqra,Ninewa,4136,0.014748549,61,6
+17802,Aqra,Grdasin,كردسين,36.65457561,43.80706832,Kurdsein,Aqra,Ninewa,4136,0.070841393,293,24
+17734,Aqra,Akre,عقرة,36.73616411,43.87036764,Kurdsein,Aqra,Ninewa,4136,0.414168279,1713,84
+27361,Sinjar,Wary Bahdo,واري بهدو,36.38116896,41.79193799,Al-Shamal,Sinjar,Ninewa,4273,0.026445121,113,6
+27366,Sinjar,Balif,بليف,36.4286986,41.69891914,Al-Shamal,Sinjar,Ninewa,4273,0.02948748,126,6
+17928,Sinjar,Sinuni center,مركز سنوني,36.46593984,41.71338533,Al-Shamal,Sinjar,Ninewa,4273,0.212497075,908,18
+27283,Sinjar,Dokri,دوكري,36.47017334,41.73811846,Al-Shamal,Sinjar,Ninewa,4273,0.007020828,30,6
+27285,Sinjar,Borek,بورك,36.49436739,41.86820613,Al-Shamal,Sinjar,Ninewa,4273,0.037444418,160,6
+17845,Sinjar,Khana sor,خانصور,36.46474075,41.62757861,Al-Shamal,Sinjar,Ninewa,4273,0.117013808,500,12
+27362,Sinjar,Sardashty,سردشتي,36.37382358,41.74922358,Al-Shamal,Sinjar,Ninewa,4273,0.062485373,267,18
+23274,Sinjar,Hay Alqadseya,حي القادسية,36.32342149,41.87365479,Markaz Sinjar,Sinjar,Ninewa,4273,0.033934004,145,12
+22490,Sinjar,Hay Al Naser,حي النصر,36.32051324,41.84688259,Markaz Sinjar,Sinjar,Ninewa,4273,0.052656213,225,6
+32090,Sinjar,Hay Alzeraee,حي الزراعي,36.32152311,41.86595494,Markaz Sinjar,Sinjar,Ninewa,4273,0.025977065,111,6
+23273,Sinjar,Hay Alshuhada,حي الشهداء,36.31811,41.85867361,Markaz Sinjar,Sinjar,Ninewa,4273,0.06669787,285,12
+22923,Telafar,Kakhirta,كاخرتة,36.55740589,42.34905226,Al-Ayadiya,Telafar,Ninewa,1478,0.0067659,10,6
+17814,Telafar,Tal alhuaa,قرية تل الهوى,36.74910112,42.30417192,Rabia,Telafar,Ninewa,1478,0.01826793,27,6
+28453,Telafar,Albawtha vilage,قرية البوثة,36.7311007,42.2585845,Rabia,Telafar,Ninewa,1478,0.0135318,20,6
+18262,Telafar,abu khushub,قرية ابوخشب,36.74144385,42.12177344,Rabia,Telafar,Ninewa,1478,0.01150203,17,6
+18308,Telafar,Hay Al Askari,حي العسكري,36.80246191,42.09715448,Rabia,Telafar,Ninewa,1478,0.375507442,555,30
+24701,Telafar,Hay Al laban,حي اللبن,36.80849199,42.09016157,Rabia,Telafar,Ninewa,1478,0.103518268,153,12
+28450,Telafar,Ewaynat vilage,قرية عوينات,36.68093122,42.40219667,Rabia,Telafar,Ninewa,1478,0.040595399,60,12
+25687,Telafar,Hay Al Sikak,حي السكك,36.79930633,42.09378266,Rabia,Telafar,Ninewa,1478,0.025033829,37,12
+25808,Telafar,Hay Alasreya,حي العصرية,36.80483492,42.0867173,Rabia,Telafar,Ninewa,1478,0.055480379,82,6
+25944,Telafar,Qasabat Zummar,قصبة زمار,36.65599757,42.59801338,Zummar,Telafar,Ninewa,1478,0.087956698,130,6
+25695,Telafar,kirver village,قرية كرفر,36.68823497,42.59559437,Zummar,Telafar,Ninewa,1478,0.00473613,7,6
+17134,Tilkaef,Alqosh,القوش,36.731975,43.095524,Al-Qosh,Tilkaef,Ninewa,3230,0.036842105,119,12
+22365,Tilkaef,Shaykhaka,قرية شيخكة,36.6900264,43.16280158,Al-Qosh,Tilkaef,Ninewa,3230,0.044582043,144,18
+17830,Tilkaef,Jarahiya,الجراحية,36.7017796,43.21302722,Al-Qosh,Tilkaef,Ninewa,3230,0.004643963,15,6
+24703,Tilkaef,Jambour Village,قرية جمبور,36.71678789,42.95407047,Al-Qosh,Tilkaef,Ninewa,3230,0.020123839,65,6
+24637,Tilkaef,Kalata Farhan village,قرية كلاتة فرحان(طماشة),36.59573094,43.21033799,Al-Qosh,Tilkaef,Ninewa,3230,0.006811146,22,6
+18377,Tilkaef,Al rasheediya,الرشيدية,36.40323668,43.0935171,Markaz Tilkaef,Tilkaef,Ninewa,3230,0.482043344,1557,60
+17959,Tilkaef,Tallsquf,تللسقف,36.59768094,43.10565343,Markaz Tilkaef,Tilkaef,Ninewa,3230,0.06625387,214,12
+24600,Tilkaef,Al Qawsiyat,القوسيات,36.44442116,43.09490804,Markaz Tilkaef,Tilkaef,Ninewa,3230,0.142724458,461,24
+23913,Balad,Hay al Zahraa 204,حي الزهراء م(9-تل مسكين)محلة 204,33.83851491,44.24768232,Al-Dujeel,Balad,Salah Al-Din,1307,0.06503443,85,6
+25916,Balad,Al Sejla village,قرية السجلة,33.90931473,44.1980154,Al-Dujeel,Balad,Salah Al-Din,1307,0.068859985,90,6
+25746,Balad,Markaz Al-Dujeel-Hay Al Wihda Mahala 101,محلة 101,33.84887071,44.23246813,Al-Dujeel,Balad,Salah Al-Din,1307,0.03289977,43,6
+23920,Balad,Hay Al Hussien,حي الحسين,33.84296372,44.24168261,Al-Dujeel,Balad,Salah Al-Din,1307,0.075745983,99,30
+25747,Balad,Markaz Al-Dujeel-Al Shabab village,قرية الشباب,33.77310581,44.30544923,Al-Dujeel,Balad,Salah Al-Din,1307,0.057383321,75,6
+25742,Balad,Al-Duloeyah-Hay Al Jubor,محلة الجبور الاولى,34.03255609,44.23111624,Al-Duloeyah,Balad,Salah Al-Din,1307,0.058148432,76,6
+20770,Balad,Al-Duloeyah-Hay khazraj,محلة خزرج,34.04808189,44.21884053,Al-Duloeyah,Balad,Salah Al-Din,1307,0.051262433,67,6
+20771,Balad,Albu Farraj Village,قرية البو فراج,34.08612811,44.19097743,Al-Duloeyah,Balad,Salah Al-Din,1307,0.076511094,100,6
+20774,Balad,AL-Eshaqi center,مركز ناحية الاسحاقي,34.047534,43.98844416,Al-Esshaqi,Balad,Salah Al-Din,1307,0.03213466,42,18
+29601,Balad,Eshaqi Complex,مجمع الاسحاقي,34.04860604,43.98265867,Al-Esshaqi,Balad,Salah Al-Din,1307,0.022953328,30,6
+24912,Balad,Al Sindiyah village,قرية السندية,33.87815361,44.4443865,Yathreb,Balad,Salah Al-Din,1307,0.038255547,50,12
+23140,Samarra,Al Hardaniyah,قرية الحردانية ,34.07240208,44.15670572,Al-Muotasim,Samarra,Salah Al-Din,3039,0.032905561,100,6
+21724,Samarra,Hay Al Mutasim-mahala 105,محلة 105,34.19421015,43.87824353,Markaz Samarra,Samarra,Salah Al-Din,3039,0.022704837,69,6
+21725,Samarra,Hay Al Wathiq-Mahala 314,حي الواثق(22-جبيرية)محلة 314,34.18605355,43.89418088,Markaz Samarra,Samarra,Salah Al-Din,3039,0.076999013,234,12
+20569,Samarra,Hay Al-Khathraa Mahala 322,حي الخضراء م(25-عرموشية)محلة 322,34.19773851,43.90743795,Markaz Samarra,Samarra,Salah Al-Din,3039,0.073050346,222,6
+22474,Samarra,Hay Al Dhubbat-Mahalla 334,حي الضباط م(25-عرموشية)محلة 334,34.19306987,43.8913851,Markaz Samarra,Samarra,Salah Al-Din,3039,0.020401448,62,6
+21588,Samarra,Al Jubairiyah Al Thalitha,حي الواثق(22-جبيرية)الجبيرية الثالثة,34.18151073,43.90937853,Markaz Samarra,Samarra,Salah Al-Din,3039,0.072063179,219,12
+21590,Samarra,Hay Salah Al-Din(Mahala 302),حي صلاح الدين محلة 302,34.20472059,43.91261897,Markaz Samarra,Samarra,Salah Al-Din,3039,0.075353735,229,6
+23877,Samarra,Hay Al-Ziraa(Sharqiyah)113,حي الزراعة(شرقية)محلة 113,34.18825585,43.87307567,Markaz Samarra,Samarra,Salah Al-Din,3039,0.016781836,51,6
+25518,Samarra,Al Mahalla Al Gharbiah,المحلة الغربية,34.19354152,43.87038482,Markaz Samarra,Samarra,Salah Al-Din,3039,0.016123725,49,6
+23876,Samarra,Al Jibariya Mahala 316,حي الواثق(22-جبيرية)محلة 316,34.18445265,43.90318531,Markaz Samarra,Samarra,Salah Al-Din,3039,0.040802896,124,6
+20675,Samarra,Al-Efraz area,حي الافراز,34.20589121,43.90987038,Markaz Samarra,Samarra,Salah Al-Din,3039,0.047384008,144,6
+22473,Samarra,Hay Al Muthanna-Mahalla 312,حي المثنى-محلة 312,34.19323408,43.91680473,Markaz Samarra,Samarra,Salah Al-Din,3039,0.137545245,418,24
+24247,Tikrit,Hay Al baladiyah,حي البلدية-م(27-الخرجة والعالي),34.68755009,43.71769524,Al-Alam,Tikrit,Salah Al-Din,3113,0.051397366,160,12
+28449,Tikrit,Mahalla Al Aed,حي العائد(27-الخرجة والعالي)محلة العائد,34.70181064,43.71575489,Al-Alam,Tikrit,Salah Al-Din,3113,0.067459043,210,18
+21592,Tikrit,Hay Al sinay-Al samad,حي الصناعي-م(51-المجرة وتل رجيم)قرية الصمد,34.71326825,43.70669107,Al-Alam,Tikrit,Salah Al-Din,3113,0.053003534,165,6
+23145,Tikrit,Al Ahad Al Jadid village,قرية العهد الجديد,34.72016511,43.69896303,Al-Alam,Tikrit,Salah Al-Din,3113,0.013813042,43,6
+24212,Tikrit,Al khuzamiya Village,قرية الخزامية,34.768545,43.65085705,Al-Alam,Tikrit,Salah Al-Din,3113,0.013813042,43,6
+25923,Tikrit,Qadisya 2 Mahala 216,حي المطاردة(قادسية2)مقاطعة 7-محله 216,34.64904267,43.66291122,Um Al-Qura,Tikrit,Salah Al-Din,3113,0.044972695,140,6
+22468,Tikrit,Hay Al Zuhour-422,حي الزهور محلة-422,34.59060412,43.67237859,Um Al-Qura,Tikrit,Salah Al-Din,3113,0.069386444,216,6
+24211,Tikrit,Al Namah Al ShamaliyahVillage,قرية الناعمة الشمالية,34.66263782,43.92081141,Um Al-Qura,Tikrit,Salah Al-Din,3113,0.030517186,95,12
+20618,Tikrit,Hammad Shihab,قرية حماد شهاب,34.69869525,43.61826052,Um Al-Qura,Tikrit,Salah Al-Din,3113,0.02088018,65,6
+22058,Tikrit,Hay Aldiuom,حي الديوم-مقاطعة 211-ديوم تكريت,34.59618062,43.65522036,Um Al-Qura,Tikrit,Salah Al-Din,3113,0.033087054,103,6
+27367,Tikrit,Hay Alziraa,حي الزراعة,34.58463421,43.68255174,Um Al-Qura,Tikrit,Salah Al-Din,3113,0.006424671,20,6
+25962,Tikrit,Hay Salma Altaghlubia,حي سلمى التغلبيه-محله 401,34.60974451,43.68082171,Um Al-Qura,Tikrit,Salah Al-Din,3113,0.007067138,22,12
+25866,Tooz Khurmato,Hay Komari-120,حي كوماري م(5-الطوز)محلة 120,34.89631116,44.62618562,Markaz Tooz Khurmato,Tooz Khurmato,Salah Al-Din,3975,0.184150943,732,24
+25748,Tooz Khurmato,Markaz Tooz-Jesir Dara,جسر دارا,34.95107121,44.59455173,Markaz Tooz Khurmato,Tooz Khurmato,Salah Al-Din,3975,0.014339623,57,6
+25754,Tooz Khurmato,Markaz Tooz-Hay Al Askari,حي العسكري,34.87893383,44.61564474,Markaz Tooz Khurmato,Tooz Khurmato,Salah Al-Din,3975,0.140628931,559,24
+25872,Tooz Khurmato,Unformal Shelter,سكن غير رسمي,34.9051509,44.63581838,Markaz Tooz Khurmato,Tooz Khurmato,Salah Al-Din,3975,0.068679245,273,12
+25752,Tooz Khurmato,Markaz Tooz-Hay Al Taiyar 122,محلة 122,34.90215812,44.62048832,Markaz Tooz Khurmato,Tooz Khurmato,Salah Al-Din,3975,0.157987421,628,30
+20405,Tooz Khurmato,Sankur,سنكور,35.0088073,44.53832744,Markaz Tooz Khurmato,Tooz Khurmato,Salah Al-Din,3975,0.011823899,47,6
+25868,Tooz Khurmato,Hay Rizgari-114,حي رزكاري م(5-الطوز)محلة 114,34.88670149,44.64114867,Markaz Tooz Khurmato,Tooz Khurmato,Salah Al-Din,3975,0.074716981,297,6
+33153,Tooz Khurmato,Zinana,زنانة,34.8799657,44.8496409,Markaz Tooz Khurmato,Tooz Khurmato,Salah Al-Din,3975,0.025157233,100,6
+25870,Tooz Khurmato,Tal Al Naqqar,تل النقار,34.732738,44.800704,Sulaiman Baig,Tooz Khurmato,Salah Al-Din,3975,0.095597484,380,12
+10301,Al-Nasiriya,Hay Al Fidaa,حي الفداء,31.06973001,46.27874198,Markaz Al-Nasiriya,Al-Nasiriya,Thi Qar,227,0.039647577,9,6
+9396,Al-Nasiriya,Al-zielat,الزعيلات,31.0154237,46.26344175,Markaz Al-Nasiriya,Al-Nasiriya,Thi Qar,227,0.066079295,15,6
+24494,Al-Nasiriya,Al Aker,العكر,31.02771088,46.21821474,Markaz Al-Nasiriya,Al-Nasiriya,Thi Qar,227,0.030837004,7,12
+10259,Al-Nasiriya,Hay Al Tadhihiya,حي التضحية,31.05015718,46.27335321,Markaz Al-Nasiriya,Al-Nasiriya,Thi Qar,227,0.074889868,17,6
+21208,Al-Nasiriya,Hay Al Mualimeen,حي المعلمين,31.06777925,46.24967456,Markaz Al-Nasiriya,Al-Nasiriya,Thi Qar,227,0.030837004,7,6
+9427,Al-Nasiriya,Hay AL-Mansouria,المنصورية ,31.03044192,46.21559912,Markaz Al-Nasiriya,Al-Nasiriya,Thi Qar,227,0.066079295,15,12
+10335,Al-Nasiriya,Al-Salhiya,حي الصالحية,31.05063835,46.2693433,Markaz Al-Nasiriya,Al-Nasiriya,Thi Qar,227,0.044052863,10,12
+23683,Al-Nasiriya,Hay Mehidiya,حي المهيديه,31.03290329,46.25155243,Markaz Al-Nasiriya,Al-Nasiriya,Thi Qar,227,0.066079295,15,6
+10263,Al-Nasiriya,Sadir City,حي مدينة الصدر,31.0802066,46.2356939,Markaz Al-Nasiriya,Al-Nasiriya,Thi Qar,227,0.061674009,14,6
+10260,Al-Nasiriya,Al Iskan Al Sinaie,الاسكان الصناعي,31.01345748,46.28240815,Markaz Al-Nasiriya,Al-Nasiriya,Thi Qar,227,0.123348018,28,6
+19555,Al-Kut,Damook 150,داموك 150,32.53161253,45.82103463,Markaz Al-Kut,Al-Kut,Wassit,664,0.030120482,20,6
+25322,Al-Kut,Anwar Al Sadur-Al-Ghader,انوار الصدر-الغدير,32.5131733,45.84019899,Markaz Al-Kut,Al-Kut,Wassit,664,0.015060241,10,6
+27277,Al-Kut,Al Hakeem Al-Ula,الحكيم الأولى,32.52988171,45.83964831,Markaz Al-Kut,Al-Kut,Wassit,664,0.018072289,12,6
+27275,Al-Kut,Al-Hassan Al-Askari Al-Thania,الحسن العسكري الثانيه,32.53247892,45.7912212,Markaz Al-Kut,Al-Kut,Wassit,664,0.030120482,20,6
+19070,Al-Kut,Hay al-zahraa,حي الزهراء,32.52291874,45.81870231,Markaz Al-Kut,Al-Kut,Wassit,664,0.015060241,10,6
+23256,Al-Kut,Al Hasan Al Askari,الحسن العسكري,32.53075098,45.7473125,Markaz Al-Kut,Al-Kut,Wassit,664,0.081325301,54,6
+27278,Al-Kut,Al Hakeem Al-Thania,الحكيم الثانيه,32.53589111,45.85707997,Markaz Al-Kut,Al-Kut,Wassit,664,0.018072289,12,6
+24786,Al-Kut,Al Hakeem Al-Khdhra,الحكيم الخضراء,32.54525026,45.85184353,Markaz Al-Kut,Al-Kut,Wassit,664,0.015060241,10,12
+27383,Al-Kut,Hay Al Jawadeen Al-Thalitha,حي الجوادين الثالثه,32.51103961,45.85696859,Markaz Al-Kut,Al-Kut,Wassit,664,0.021084337,14,6
+19548,Al-Kut,Al Batar village,قرية البتار,32.56659569,45.64940515,Markaz Al-Kut,Al-Kut,Wassit,664,0.042168675,28,6
+25103,Al-Kut,Al-Jihad Al-Zahraa,الجهاد الزهراء,32.47834063,45.8128393,Wasit,Al-Kut,Wassit,664,0.037650602,25,6
+25106,Al-Kut,Al-Jihad-Al-Sajad,الجهاد-السجاد,32.4737597,45.82086882,Wasit,Al-Kut,Wassit,664,0.037650602,25,6
+24261,Al-Kut,Hay Al-Hawaraa 3,حي الحوراء الثالثة,32.48702633,45.84528154,Wasit,Al-Kut,Wassit,664,0.087349398,58,12

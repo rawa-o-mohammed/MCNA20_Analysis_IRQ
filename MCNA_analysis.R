@@ -18,35 +18,27 @@ rm(list=ls(all=T))
   source("R/functions/to_alphanumeric_lowercase.R")
   source("R/functions/analysisplan_factory.R")
   source("R/functions/HNO_Recoding.R")
-  source("R/functions/Binary_Recoding.R")
+  #source("R/functions/Binary_Recoding.R")
 
 #LOAD INPUT FILES 
   source("R/1_load_inputs.R",local = T)
+  names(response)[names(response) == 'ï..X_uuid'] <- "X_uuid"
   #' creates objects:
   #' 
-  #'    response
+  #'    response representative clean
+  #'    response indicative clean
   #'    analysisplan
   #'    choices
   #'    questions
   #'    cluster_lookup_table
-  #'    idp_in_camp
   #'    loop
-  #'    loop_in_camp
   #'    samplingframe
   #'    samplingframe_in_camp
-  
-#PREPARE BOTH DATASETS
-  source("R/2_prepare_datasets.R", local = T)
-  #'  1. merge values from remote and in-person data collection
-  #'  2. add columns to in-camp dataset which are only included in outcamp data collection
 
   
-#MERGE INCAMP AND OUT-OF CAMP DATASETS 
-#PREPARE SAMPLING FRAMES AND CLUSTER_IDs
-  source("R/3_merge_inputs.R", local = T)
-  #' matching all inputs:
-  #' 1. combine in and out of camp data for each, HH and loops 
-  #' 2. prepare sampling frames:
+#PREPARE SAMPLING FRAMES AND STRATAS
+  source("R/2_prepare_samplingframe.R", local = T)
+  #' Prepare sampling frames and Strata names:
   #'     3.1 prepare columns in out of camp cluster level sampling frame
   #'     3.2 aggregate out-of-camp to stratum level
   #'     3.3.make strata id for in-camp sampling frame
@@ -54,12 +46,10 @@ rm(list=ls(all=T))
   #'     3.5.add strata ids to the dataset
   #'     3.6. throw error if any don't match
 
-response <- response %>% relocate(c("X_uuid", "population_group", 
-                                    "governorate_mcna", "district_mcna", "camp_name"), .before = "dc_method")
-
 
 #CALCULATE DISTRICT LEVEL SEVERITY FOR AREA-LEVEL INDICATORS (s_27, s_28, s_29)
-  source("R/4_area_indicators.R", local = T)
+  source("R/3_area_indicators.R", local = T)
+  
   #' Indicators
   #' s_27 - % of people living under critical shelter condition
   #' s_28 - % of locations reporting incidents with explosive devices
@@ -99,11 +89,6 @@ response <- response %>% relocate(c("X_uuid", "population_group",
   #                                         data = response[response$population_group!="idp_in_camp",])
 #######################################
   
-  
-####(TO BE DELETED ONCE FINAL DATASET READY)
-response <- response[!is.na(response$num_hh_member), ]
-response <- response[!is.na(response$strata), ]
-########
 
 #STRATA WEIGHTING
 strata_weight_fun <- map_to_weighting(sampling.frame = samplingframe_strata,
@@ -120,7 +105,6 @@ response$weights<- weight_fun(response)
 #CHANGE WEIGHTS OF REMOTELY COLLECTED STRATAS TO 1
 response$weights <- ifelse(response$dc_method == "remote", 1,
                            response$weights)
-response <- response[!is.na(response$weights), ]
 
 #CREATE NEW FUNCTION FOR WEIGHTING
  weight_fun<-function(df){
@@ -133,11 +117,11 @@ response <- response[!is.na(response$weights), ]
 #male_headed <- response[which(response$X_uuid %in% loop$X_submission__uuid[which(loop$sex == "male" & loop$relationship == "head")]),]
 
 #RECODING OF INDICATORS
-response_with_composites <- recoding_preliminary(response, loop)
+response_with_composites <- recoding_hno(response, loop)
 
 
 #LOAD ANALYSISPLAN
-dap_name <- "preliminary"
+dap_name <- "hno"
 analysisplan <- read.csv(sprintf("input/dap/dap_%s.csv",dap_name), stringsAsFactors = F)
 
 
@@ -146,19 +130,12 @@ analysisplan <- read.csv(sprintf("input/dap/dap_%s.csv",dap_name), stringsAsFact
 #analysisplan <- analysisplan_pop_group_aggregated(analysisplan)
 #analysisplan$hypothesis.type <- "group_difference"
 
-#####(TO BE DELETED ONCE FINAL DATASET READY)
-response_with_composites<-subset(response_with_composites, response_with_composites$district_mcna!="al.hatra" & 
-                                   response_with_composites$district_mcna != "haditha" &
-                                   response_with_composites$district_mcna != "al.daur" |
-                is.na(response_with_composites$district_mcna))
-#####
 
 result <- from_analysisplan_map_to_output(response_with_composites, analysisplan = analysisplan,
                                           weighting = weight_fun,
-                                          cluster_variable_name = "cluster_id",
                                           questionnaire = questionnaire, confidence_level = 0.9)
 
-name <- "preliminary_national_aggregates_popgroupagg_2"
+name <- "hno severity_popgroup_district"
 saveRDS(result,paste(sprintf("output/RDS/result_%s.RDS", name)))
 #summary[which(summary$dependent.var == "g51a"),]
 

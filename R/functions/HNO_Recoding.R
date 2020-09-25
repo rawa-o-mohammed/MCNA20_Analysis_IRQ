@@ -63,8 +63,8 @@ r <- r %>% mutate(s_3 = case_when(
 #EDUCATION
 ############
 r$perc_edu <- apply(r, 1, FUN=function(x){
-  (loop %>% filter(X_submission__uuid == x["X_uuid"] & (attend_formal_ed == "yes" | attend_informal_ed == "yes")) %>% nrow) / 
-    (loop %>% filter(X_submission__uuid == x["X_uuid"] & attend_formal_ed != "") %>% nrow)
+  (loop %>% filter(X_uuid == x["X_uuid"] & (attend_formal_ed == "yes" | attend_informal_ed == "yes")) %>% nrow) / 
+    (loop %>% filter(X_uuid == x["X_uuid"] & attend_formal_ed != "") %>% nrow)
 })
 r <- r %>% mutate(s_4 = case_when(
   r$perc_edu >= 0.9 ~ 1,
@@ -78,8 +78,8 @@ r <- r %>% mutate(s_4 = case_when(
 #LIVELIHOODS
 ############
 r$perc_unemp <- apply(r, 1, FUN=function(x){
-  (loop %>% filter(X_submission__uuid == x["X_uuid"] & age > 17 & work == "no" & actively_seek_work %in% c("yes")) %>% nrow) / 
-    (loop %>% filter(X_submission__uuid == x["X_uuid"] & age > 17) %>% nrow)
+  (loop %>% filter(X_uuid == x["X_uuid"] & age > 17 & work == "no" & actively_seek_work %in% c("yes")) %>% nrow) / 
+    (loop %>% filter(X_uuid == x["X_uuid"] & age > 17) %>% nrow)
 })
 r <- r %>% mutate(s_6 = case_when(
   r$perc_unemp == 0 ~ 1,
@@ -212,10 +212,10 @@ r <- r %>% mutate(s_13 = case_when(
 
 
 #r$above_50 <- apply(r, 1, FUN=function(x){
-#  ifelse(any(loop$age[which(loop$X_submission__uuid == x["X_uuid"])] > 50), 1, 0)
+#  ifelse(any(loop$age[which(loop$X_uuid == x["X_uuid"])] > 50), 1, 0)
 #})
 
-names(loop)[names(loop) == "X_submission__uuid"] <- "X_uuid"
+names(loop)[names(loop) == "X_uuid"] <- "X_uuid"
 loop$above_50 <- ifelse(loop$age > 50,1,0)
 loop$chronic_and_age <- ifelse(loop$age > 50 & loop$health_issue.chronic == 1, 1,0)
 r <- individual_to_HH_numeric(loop, r, "above_50", "above_50")
@@ -280,15 +280,15 @@ r <- r %>% mutate(s_18 = case_when(
 ################
 loop_children <- loop[which(loop$age < 18),]
 r$child_marriage <- apply(r, 1, FUN=function(x){
-  ifelse(any(loop_children$marital_status[which(loop_children$X_submission__uuid == x["X_uuid"])] == "married"), 1, 0)
+  ifelse(any(loop_children$marital_status[which(loop_children$X_uuid == x["X_uuid"])] == "married"), 1, 0)
 })
 r$child_labor <- apply(r, 1, FUN=function(x){
-  ifelse(any(loop$age[which(loop$X_submission__uuid == x["X_uuid"])] < 18 & 
-               loop$work[which(loop$X_submission__uuid == x["X_uuid"])] == "yes"), 1, 0)
+  ifelse(any(loop$age[which(loop$X_uuid == x["X_uuid"])] < 18 & 
+               loop$work[which(loop$X_uuid == x["X_uuid"])] == "yes"), 1, 0)
 })
 r$child_education <- apply(r, 1, FUN=function(x){
-  ifelse(any(loop$attend_formal_ed[which(loop$X_submission__uuid == x["X_uuid"])] == "no" & 
-               loop$attend_informal_ed[which(loop$X_submission__uuid == x["X_uuid"])] == "no"), 1, 0)
+  ifelse(any(loop$attend_formal_ed[which(loop$X_uuid == x["X_uuid"])] == "no" & 
+               loop$attend_informal_ed[which(loop$X_uuid == x["X_uuid"])] == "no"), 1, 0)
 })
 r$child_documents <- ifelse(r$id_card_u18 == "no" | r$birth_cert_u18 == "no" | 
                               r$nationality_cert_u18 == "no", 1, 0)
