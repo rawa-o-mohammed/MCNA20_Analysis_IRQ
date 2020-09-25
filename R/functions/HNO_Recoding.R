@@ -309,7 +309,8 @@ r <- r %>% mutate(s_20 = case_when(
   r$child_composite == 2 ~ 4,
   r$child_composite >= 3 ~ 5,
 ))
-
+r$s_20 <- ifelse(r$tot_child == 0, NA, 
+                 r$s_20)
 
 #SHELTER & NFI
 ###############
