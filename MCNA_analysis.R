@@ -96,16 +96,12 @@ strata_weight_fun <- map_to_weighting(sampling.frame = samplingframe_strata,
                                         sampling.frame.stratum.column = "stratum",
                                         data.stratum.column = "strata",
                                         data = response)
-  
+
 # weight_fun <- combine_weighting_functions(strata_weight_fun, clusters_weight_fun)
 weight_fun <-strata_weight_fun
   
 response$weights<- weight_fun(response)
   
-#CHANGE WEIGHTS OF REMOTELY COLLECTED STRATAS TO 1
-response$weights <- ifelse(response$dc_method == "remote", 1,
-                           response$weights)
-
 #CREATE NEW FUNCTION FOR WEIGHTING
  weight_fun<-function(df){
    df$weights
