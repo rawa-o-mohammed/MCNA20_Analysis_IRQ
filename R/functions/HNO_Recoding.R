@@ -21,7 +21,7 @@ individual_to_HH_numeric <- function(loop, response, varname, indicator) {
 }
 
 
-recoding_hno <- function(r, loop){
+#recoding_hno <- function(r, loop){
  
 #AAP
 ##############
@@ -111,16 +111,25 @@ r$emergency <- ifelse(r$child_dropout_school %in% c("no_already_did", "yes") |
                         r$adult_risky  %in% c("no_already_did", "yes") |
                         r$family_migrating %in% c("no_already_did", "yes") |
                         r$child_forced_marriage %in% c("no_already_did", "yes"), 1, 0)
+r$emergency_1 <- ifelse(r$child_dropout_school %in% c("no_already_did", "yes"), 1, 0)
+r$emergency_2 <- ifelse(r$adult_risky %in% c("no_already_did", "yes"), 1, 0)
+r$emergency_3 <- ifelse(r$family_migrating %in% c("no_already_did", "yes"), 1, 0)
+r$emergency_4 <- ifelse(r$child_forced_marriage %in% c("no_already_did", "yes"), 1, 0)
+r$emergency_count <- rowSums(r[, c("emergency_1", "emergency_2", "emergency_3", "emergency_4")], na.rm = T)
+
 #r$s9_5 <- ifelse(r$stress == 1 & r$crisis == 0 & r$emergency == 0, 1,0)
 r <- r %>% mutate(s_9 = case_when(
   r$stress == 0 & r$crisis == 0 & r$emergency == 0 ~ 1,
   r$stress == 1 & r$crisis == 0 & r$emergency == 0 ~ 2,
   r$crisis == 1 & r$emergency == 0 ~ 3,
-  r$emergency == 1 ~ 4
+  r$emergency_count == 1 ~ 4, 
+  r$emergency_count > 1 ~ 5
 ))
 
 
 r$food_share <- r$food_exp / r$tot_expenses
+r$food_share <- ifelse(r$food_share > 1, NA, 
+                       r$food_share)
 r <- r %>% mutate(s_10 = case_when(
   r$food_share < 0.5 ~ 1,
   r$food_share >= 0.5 & r$food_share < 0.65 ~ 2,
