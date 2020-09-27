@@ -8,8 +8,8 @@ round2 <- function(x, n=0) {
   return(z)
 }
 
-r <- response
-loop <- loop
+#r <- response
+#loop <- loop
 
 
 recoding_preliminary <- function(r, loop) {
@@ -21,11 +21,11 @@ recoding_preliminary <- function(r, loop) {
     loop %>% mutate(plw = ifelse(pregnant_lactating == "yes", 1, 0))
   
   r <- r %>%
-    mutate(sex = loop_hoh$sex[match(r$X_uuid, loop_hoh$`X_submission__uuid`)])
+    mutate(sex = loop_hoh$sex[match(r$X_uuid, loop_hoh$`X_uuid`)])
   
   loop_children <- loop[which(loop$age < 18), ]
-  female_headed <- response[which(response$X_uuid %in% loop$X_submission__uuid[which(loop$sex == "female" & loop$relationship == "head")]),]
-  r$gender_hhh <- loop_hoh$sex[match(r$X_uuid, loop_hoh$X_submission__uuid)]
+  female_headed <- response[which(response$X_uuid %in% loop$X_uuid[which(loop$sex == "female" & loop$relationship == "head")]),]
+  r$gender_hhh <- loop_hoh$sex[match(r$X_uuid, loop_hoh$X_uuid)]
 
   ############################################### a #############################
   r$a7        <- as.numeric(r$num_hh_member)
@@ -44,21 +44,21 @@ recoding_preliminary <- function(r, loop) {
   
   r$a11 <-
     ifelse(
-      loop_hoh$marital_status[match(r$X_uuid, loop_hoh$`X_submission__uuid`)] %in%
+      loop_hoh$marital_status[match(r$X_uuid, loop_hoh$`X_uuid`)] %in%
         c("single", "separated", "widowed", "divorced"),
       1,
-      ifelse(loop_hoh$marital_status[match(r$X_uuid, loop_hoh$`X_submission__uuid`)] %in%
+      ifelse(loop_hoh$marital_status[match(r$X_uuid, loop_hoh$`X_uuid`)] %in%
                c(NA, ""), NA, 0)
     )
   
   r$a12 <-
-    ifelse(loop_children$marital_status[match(r$X_uuid, loop_children$`X_submission__uuid`)] %in% c("married", "widowed", "divorced") ,
+    ifelse(loop_children$marital_status[match(r$X_uuid, loop_children$`X_uuid`)] %in% c("married", "widowed", "divorced") ,
            1,
            0)
   
   r$a13 <-
-    ifelse(loop$age[match(r$X_uuid, loop_hoh$`X_submission__uuid`)] < 18 &
-             loop$work[match(r$X_uuid, loop_hoh$`X_submission__uuid`)] == "yes", 1, 0)
+    ifelse(loop$age[match(r$X_uuid, loop_hoh$`X_uuid`)] < 18 &
+             loop$work[match(r$X_uuid, loop_hoh$`X_uuid`)] == "yes", 1, 0)
   
   r$a14 <- ifelse(r$gender_hhh == "female", 1, 0)
   
@@ -268,8 +268,8 @@ recoding_preliminary <- function(r, loop) {
   r$c9     <- ifelse(r$difficulty_accessing_services == "yes", 1, 0)
   
   PLW       <-
-    as.data.frame(loop_females %>% dplyr::group_by(`X_submission__uuid`) %>% dplyr::summarize(sum(plw)))
-  r$c11    <- PLW[match(r$X_uuid, PLW$`X_submission__uuid`), 2]
+    as.data.frame(loop_females %>% dplyr::group_by(`X_uuid`) %>% dplyr::summarize(sum(plw)))
+  r$c11    <- PLW[match(r$X_uuid, PLW$`X_uuid`), 2]
   rm(PLW)
   
   # ################################################### d ########################################
@@ -380,9 +380,9 @@ recoding_preliminary <- function(r, loop) {
   
   r$g4 <-
     ifelse(
-      loop_children$attend_informal_ed[match(r$X_uuid, loop$`X_submission__uuid`)] %in%
+      loop_children$attend_informal_ed[match(r$X_uuid, loop$`X_uuid`)] %in%
         c("do_not_know", "decline_to_answer", "yes", NA) &
-        loop_children$attend_formal_ed[match(r$X_uuid, loop$`X_submission__uuid`)] %in%
+        loop_children$attend_formal_ed[match(r$X_uuid, loop$`X_uuid`)] %in%
         c("do_not_know", "decline_to_answer", "yes", NA),
       0,
       1
@@ -401,9 +401,9 @@ recoding_preliminary <- function(r, loop) {
         )
     )
   children_attend_ed <- children_attend_ed %>%
-    dplyr::select(`X_submission__uuid`, attend_informal_ed, attend_formal_ed)
+    dplyr::select(`X_uuid`, attend_informal_ed, attend_formal_ed)
   children_attend_ed <- children_attend_ed %>%
-    group_by(`X_submission__uuid`) %>%
+    group_by(`X_uuid`) %>%
     summarize(
       num_attend_formal = sum(attend_formal_ed),
       num_attend_informal = sum(attend_informal_ed)
@@ -411,21 +411,21 @@ recoding_preliminary <- function(r, loop) {
   
   r$g5 <-
     ifelse(
-      is.na(children_attend_ed$num_attend_formal[match(r$X_uuid, children_attend_ed$`X_submission__uuid`)]),
+      is.na(children_attend_ed$num_attend_formal[match(r$X_uuid, children_attend_ed$`X_uuid`)]),
       NA,
       children_attend_ed$num_attend_formal
     )
   
   r$g6 <-
     ifelse(
-      is.na(children_attend_ed$num_attend_informal[match(r$X_uuid, children_attend_ed$`X_submission__uuid`)]),
+      is.na(children_attend_ed$num_attend_informal[match(r$X_uuid, children_attend_ed$`X_uuid`)]),
       NA,
       children_attend_ed$num_attend_informal
     )
   rm(children_attend_ed)
-  rm(loop_children)
-  rm(loop_females)
-  rm(loop_hoh)
+ # rm(loop_children)
+ # rm(loop_females)
+  #rm(loop_hoh)
   r$g7_i    <-
     ifelse(r$`reasons_not_attend.school_closed` %in% c(NA, 0), 0, 1)
   r$g7_ii   <-
@@ -584,10 +584,10 @@ recoding_preliminary <- function(r, loop) {
   rm(fsc)
   r$g19 <-
     ifelse((
-      loop_children$attend_formal_ed[match(r$X_uuid, loop_children$`X_submission__uuid`)] == "yes" |
-        loop_children$attend_informal_ed[match(r$X_uuid, loop_children$`X_submission__uuid`)] == "yes"
+      loop_children$attend_formal_ed[match(r$X_uuid, loop_children$`X_uuid`)] == "yes" |
+        loop_children$attend_informal_ed[match(r$X_uuid, loop_children$`X_uuid`)] == "yes"
     ) &
-      loop_children$work[match(r$X_uuid, loop_children$`X_submission__uuid`)] == "yes",
+      loop_children$work[match(r$X_uuid, loop_children$`X_uuid`)] == "yes",
     1,
     0
     )
@@ -647,7 +647,7 @@ recoding_preliminary <- function(r, loop) {
     ifelse(r$`health_barriers.no_fem_staff` %in% c(NA, 0), 0, 1)
   
   r$g35 <-
-    ifelse(loop$`health_issue.chronic`[match(r$X_uuid, loop$`X_submission__uuid`)] %in% c(NA, 0), 0, 1)
+    ifelse(loop$`health_issue.chronic`[match(r$X_uuid, loop$`X_uuid`)] %in% c(NA, 0), 0, 1)
   
   r$g37 <- ifelse(r$how_much_debt > 505000, 1, 0)
   r$g38 <-
@@ -664,8 +664,8 @@ recoding_preliminary <- function(r, loop) {
   r$g41 <- ifelse(r$market_place %in% c("less_15", "less_30"), 1, 0)
   
   r$g44 <-
-    ifelse(loop$age[match(r$X_uuid, loop$`X_submission__uuid`)] >= 18 &
-             loop$actively_seek_work[match(r$X_uuid, loop$`X_submission__uuid`)] == "yes", 1, 0)
+    ifelse(loop$age[match(r$X_uuid, loop$`X_uuid`)] >= 18 &
+             loop$actively_seek_work[match(r$X_uuid, loop$`X_uuid`)] == "yes", 1, 0)
   
   r$g45_i    <-
     ifelse(r$`employment_primary_barriers.increased_competition` == 1,
@@ -694,16 +694,16 @@ recoding_preliminary <- function(r, loop) {
   r$g46 <- ifelse(r$employment_seasonal == "yes", 1, 0)
   
   r$g47_i <-
-    ifelse(between(loop$age[match(r$X_uuid, loop$`X_submission__uuid`)], 18, 59) &
-             loop$sex[match(r$X_uuid, loop$`X_submission__uuid`)] == "female" &
-             loop$work[match(r$X_uuid, loop$`X_submission__uuid`)] == "yes",
+    ifelse(between(loop$age[match(r$X_uuid, loop$`X_uuid`)], 18, 59) &
+             loop$sex[match(r$X_uuid, loop$`X_uuid`)] == "female" &
+             loop$work[match(r$X_uuid, loop$`X_uuid`)] == "yes",
            1,
            0)
   
   r$g47_ii <-
-    ifelse(between(loop$age[match(r$X_uuid, loop$`X_submission__uuid`)], 18, 59) &
-             loop$sex[match(r$X_uuid, loop$`X_submission__uuid`)] == "male" &
-             loop$work[match(r$X_uuid, loop$`X_submission__uuid`)] == "yes",
+    ifelse(between(loop$age[match(r$X_uuid, loop$`X_uuid`)], 18, 59) &
+             loop$sex[match(r$X_uuid, loop$`X_uuid`)] == "male" &
+             loop$work[match(r$X_uuid, loop$`X_uuid`)] == "yes",
            1,
            0)
   
@@ -738,28 +738,28 @@ recoding_preliminary <- function(r, loop) {
            1)
   r$g53b_i <-
     ifelse(r$not_residing %in% c("yes") &
-             r$married > 0, 1, 0)
+             r$not_residing_reason.married > 0, 1, 0)
   r$g53b_ii <-
     ifelse(r$not_residing %in% c("yes") &
-             r$seek_employment > 0, 1, 0)
+             r$not_residing_reason.seek_employment > 0, 1, 0)
   r$g53b_iii <-
     ifelse(r$not_residing %in% c("yes") &
-             r$study > 0, 1, 0)
+             r$not_residing_reason.study > 0, 1, 0)
   r$g53b_iv <-
     ifelse(r$not_residing %in% c("yes") &
-             r$family > 0, 1, 0)
+             r$not_residing_reason.family > 0, 1, 0)
   r$g53b_v <-
     ifelse(r$not_residing %in% c("yes") &
-             r$armed_actors > 0, 1, 0)
+             r$not_residing_reason.armed_actors > 0, 1, 0)
   r$g53b_vi <-
     ifelse(r$not_residing %in% c("yes") &
-             r$kidnapped > 0, 1, 0)
+             r$not_residing_reason.kidnapped > 0, 1, 0)
   r$g53b_vii <-
     ifelse(r$not_residing %in% c("yes") &
-             r$missing > 0, 1, 0)
+             r$not_residing_reason.missing > 0, 1, 0)
   r$g53b_ix <-
     ifelse(r$not_residing %in% c("yes") &
-             r$detained > 0, 1, 0)
+             r$not_residing_reason.detained > 0, 1, 0)
   
   r$g54_i   <-
     ifelse(
@@ -937,10 +937,16 @@ recoding_preliminary <- function(r, loop) {
   
   r$g100_i <-
     as.numeric(r$food_exp) / as.numeric(r$tot_expenses) * 100
+  r$g100_i <- ifelse(r$g100_i > 100, NA, 
+                         r$g100_i)
   r$g100_ii <-
     as.numeric(r$rent_exp) / as.numeric(r$tot_expenses) * 100
+  r$g100_i <- ifelse(r$g100_ii > 100, NA, 
+                     r$g100_ii)
   r$g100_iii <-
     as.numeric(r$medical_exp) / as.numeric(r$tot_expenses) * 100
+  r$g100_i <- ifelse(r$g100_iii > 100, NA, 
+                     r$g100_iii)
   
   r$g102 <-
     ifelse(as.numeric(r$tot_expenses) * 0.4 <= r$food_exp, 1, 0)

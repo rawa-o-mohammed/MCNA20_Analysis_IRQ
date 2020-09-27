@@ -18,7 +18,7 @@ rm(list=ls(all=T))
   source("R/functions/to_alphanumeric_lowercase.R")
   source("R/functions/analysisplan_factory.R")
   source("R/functions/HNO_Recoding.R")
-  #source("R/functions/Binary_Recoding.R")
+  source("R/functions/Binary_Recoding.R")
 
 #LOAD INPUT FILES 
   source("R/1_load_inputs.R",local = T)
@@ -113,11 +113,11 @@ response$weights<- weight_fun(response)
 #male_headed <- response[which(response$X_uuid %in% loop$X_submission__uuid[which(loop$sex == "male" & loop$relationship == "head")]),]
 
 #RECODING OF INDICATORS
-response_with_composites <- recoding_hno(response, loop)
+response_with_composites <- recoding_preliminary(response, loop)
 
 
 #LOAD ANALYSISPLAN
-dap_name <- "hno"
+dap_name <- "preliminary"
 analysisplan <- read.csv(sprintf("input/dap/dap_%s.csv",dap_name), stringsAsFactors = F)
 
 
@@ -131,7 +131,7 @@ result <- from_analysisplan_map_to_output(response_with_composites, analysisplan
                                           weighting = weight_fun,
                                           questionnaire = questionnaire, confidence_level = 0.9)
 
-name <- "hno severity_popgroup_district"
+name <- "preliminary_popgroup_district"
 saveRDS(result,paste(sprintf("output/RDS/result_%s.RDS", name)))
 #summary[which(summary$dependent.var == "g51a"),]
 

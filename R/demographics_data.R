@@ -30,7 +30,7 @@ dem_returnee <- dcast(data=loop_returnee,
                      value.var = "age")
 
 #EXPORT FILES
-write.xlsx(dem_in_camp, file="output/demographics.xlsx", sheetName="in_camp", row.names=FALSE)
-write.xlsx(dem_out_camp, file="output/demographics.xlsx", sheetName="out_camp", append=TRUE, row.names=FALSE)
-write.xlsx(dem_returnee, file="output/demographics.xlsx", sheetName="returnee", append=TRUE, row.names=FALSE)
+write.xlsx(dem_in_camp, file="output/sadd/demographics.xlsx", sheetName="in_camp", row.names=FALSE)
+write.xlsx(dem_out_camp, file="output/sadd/demographics.xlsx", sheetName="out_camp", append=TRUE, row.names=FALSE)
+write.xlsx(dem_returnee, file="output/sadd/demographics.xlsx", sheetName="returnee", append=TRUE, row.names=FALSE)
 

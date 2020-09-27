@@ -17,6 +17,7 @@ governorate_mcna,wassit,Wassit,
 governorate_mcna,kirkuk,Kirkuk,
 governorate_mcna,salah.al.din,Salah Al-Din,
 district_mcna,al.falluja,Al-Falluja,al.anbar
+district_mcna,al.falluja,Al-Falluja,al.anbar
 district_mcna,al.kaim,Al-Kaim,al.anbar
 district_mcna,al.ramadi,Al-Ramadi,al.anbar
 district_mcna,al.rutba,Al-Rutba,al.anbar
@@ -39,6 +40,7 @@ district_mcna,al.adhamiya,Al-Adhamiya,baghdad
 district_mcna,al.kadhmiyah,Al-Kadhmiyah,baghdad
 district_mcna,al.karkh,Al-Karkh,baghdad
 district_mcna,al.mahmoudiya,Al-Mahmoudiya,baghdad
+district_mcna,al.risafa,Al-Risafa,baghdad
 district_mcna,al.khalis,Al-Khalis,diyala
 district_mcna,al.muqdadiya,Al-Muqdadiya,diyala
 district_mcna,baquba,Baquba,diyala

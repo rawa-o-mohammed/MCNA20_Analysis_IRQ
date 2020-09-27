@@ -21,7 +21,7 @@ individual_to_HH_numeric <- function(loop, response, varname, indicator) {
 }
 
 
-#recoding_hno <- function(r, loop){
+recoding_hno <- function(r, loop){
  
 #AAP
 ##############

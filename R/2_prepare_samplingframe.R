@@ -41,3 +41,9 @@ if(any(is.na(response$strata))){
 
 # MERGE QUESTIONNAIRES
 questionnaire <- load_questionnaire(response,questions,choices, choices.label.column.to.use = "name")
+
+#ADJUST WRONG NAMES INCAMP
+response$district_mcna <- ifelse(response$district_mcna == "al.hinidya", "al.hindiya", 
+                                 response$district_mcna)
+response$district_mcna <- ifelse(response$district_mcna == "falluja", "al.falluja", 
+                                 response$district_mcna)
