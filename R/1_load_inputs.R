@@ -26,11 +26,14 @@ samplingframe_in_camp<-load_samplingframe("./input/sampling_frame/sampling_frame
 
 # LOAD DATA AND MERGE REPRESENTATIVE AND INDICATIVE DATA
 indicative_hh <- read.csv("Input/datasets/cleaned/indicative_hh.csv", 
-                          stringsAsFactors=F, check.names=T)
+                          stringsAsFactors=F, check.names=T, 
+                          na.strings = c("", " ", "NA", "#N/A", "N/A"))
 representative_hh <- read.csv("Input/datasets/cleaned/representative_hh.csv", 
-                              stringsAsFactors=F, check.names=T)
+                              stringsAsFactors=F, check.names=T,
+                              na.strings = c("", " ", "NA", "#N/A", "N/A"))
 loop <- read.csv("Input/datasets/cleaned/loop.csv", 
-                 stringsAsFactors=F, check.names=T)
+                 stringsAsFactors=F, check.names=T,
+                 na.strings = c("", " ", "NA", "#N/A", "N/A"))
 
 response <- plyr::rbind.fill(representative_hh, indicative_hh)
 names(response)[names(response) == 'ï..X_uuid'] <- "X_uuid"

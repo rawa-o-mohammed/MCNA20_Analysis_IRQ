@@ -4,6 +4,7 @@ rm(list=ls(all=T))
   library(xlsx)
   library(plyr) # rbind.fill
   library(dplyr)
+  library(expss)
   library(reshape)
   library(data.table)
   library(questionr)
@@ -113,13 +114,13 @@ response$weights<- weight_fun(response)
 #male_headed <- response[which(response$X_uuid %in% loop$X_submission__uuid[which(loop$sex == "male" & loop$relationship == "head")]),]
 
 #RECODING OF INDICATORS
-response_with_composites <- recoding_preliminary(response, loop)
+response_with_composites <- recoding_hno(response, loop)
 
 
 #LOAD ANALYSISPLAN
-dap_name <- "preliminary"
+dap_name <- "hno_aggpopgroup"
 analysisplan <- read.csv(sprintf("input/dap/dap_%s.csv",dap_name), stringsAsFactors = F)
-
+response_with_composites$one <- "one"
 
 #AGGREGATE ACROSS DISTRICTS OR/AND POPULATION GROUPS
 #analysisplan <- analysisplan_nationwide(analysisplan)
@@ -131,7 +132,7 @@ result <- from_analysisplan_map_to_output(response_with_composites, analysisplan
                                           weighting = weight_fun,
                                           questionnaire = questionnaire, confidence_level = 0.9)
 
-name <- "preliminary_popgroup_district"
+name <- "hno severity model 7_(debt_s_7 thresholds adjusted)_popgroup aggregated_districts"
 saveRDS(result,paste(sprintf("output/RDS/result_%s.RDS", name)))
 #summary[which(summary$dependent.var == "g51a"),]
 
@@ -149,6 +150,7 @@ write.csv(summary, sprintf("output/raw_results/raw_results_%s_filtered.csv", nam
 if(all(is.na(summary$independent.var.value))){summary$independent.var.value <- "all"}
 groups <- unique(summary$independent.var.value)
 groups <- groups[!is.na(groups)]
+library(plyr)
 for (i in 1:length(groups)) {
   df <- pretty.output(summary, groups[i], analysisplan, cluster_lookup_table, lookup_table, severity = name == "severity", camp = F)
   write.csv(df, sprintf("output/summary_sorted/summary_sorted_%s_%s.csv", name, groups[i]), row.names = F)
@@ -158,4 +160,6 @@ for (i in 1:length(groups)) {
     write.xlsx(df, file=sprintf("output/summary_sorted/summary_sorted_%s.xlsx", name), sheetName=groups[i], append=TRUE, row.names=FALSE)
   }
 }
+
+
 

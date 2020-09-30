@@ -94,9 +94,8 @@ r <- r %>% mutate(s_7 = case_when(
   is.na(r$reasons_for_debt) ~ 1,
   r$reasons_for_debt %in% c("", "clothing", "other", "purchase_pro_assets") ~ 1,
   r$reasons_for_debt %in% c("education", "basic_hh_expenditure") ~ 3,
-  r$reasons_for_debt == "health" ~ 4,
-  r$reasons_for_debt == "food" ~ 5
-))
+  r$reasons_for_debt %in% c("health", "food") ~ 4
+  ))
 
 #FOOD SECURITY
 ##############
@@ -395,7 +394,7 @@ hno$mean <-  apply(hno, 1, function(y) {
 
 #CRITICAL INDICATORS
 hno$critical <-  apply(hno, 1, function(y) {
-  max(y[c("s_3", "s_11", "s_24")], na.rm = T)
+  max(y[c("s_3", "s_11", "s_24", "s_7")], na.rm = T)
 })
 hno$final_severity <- ifelse(hno$critical > hno$mean, hno$critical, hno$mean)
 #hno$final_severity <- as.character(as.numeric(hno$final_severity))

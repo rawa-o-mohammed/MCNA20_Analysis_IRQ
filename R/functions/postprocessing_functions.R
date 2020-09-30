@@ -20,7 +20,7 @@ pretty.output <- function(summary, independent.var.value, analysisplan, cluster_
   }
   extra_heading <- data.frame(t(vars), stringsAsFactors = F)
   colnames(extra_heading) <- vars
-  extra_heading[1,] <- t(analplan_subset$Indicator.Group...Sector[match(vars, analplan_subset$dependent.variable)])
+  extra_heading[1,] <- t(analplan_subset[,1][match(vars, analplan_subset$dependent.variable)])
   extra_heading[2,] <- t(analplan_subset$research.question[match(vars, analplan_subset$dependent.variable)])
   extra_heading[3,] <- t(analplan_subset$sub.research.question[match(vars, analplan_subset$dependent.variable)])
   extra_heading[4,] <- t(analplan_subset$dependent.variable.type[match(vars, analplan_subset$dependent.variable)])
