@@ -35,6 +35,7 @@ r <- r %>% mutate(s_2 = case_when(
 #DISABILITY
 #############
 count_difficulty_level <- function(df) {
+  df$difficulty_accessing_services <- NULL
   diff <-  df[c(which(startsWith(names(df), "difficulty_")))]                   
   diff$no_diff <- rowSums(diff == "no_difficulty")
   diff$some_diff <- rowSums(diff == "some_difficulty")
@@ -92,9 +93,10 @@ r <- r %>% mutate(s_6 = case_when(
 
 r <- r %>% mutate(s_7 = case_when(
   is.na(r$reasons_for_debt) ~ 1,
-  r$reasons_for_debt %in% c("", "clothing", "other", "purchase_pro_assets") ~ 1,
-  r$reasons_for_debt %in% c("education", "basic_hh_expenditure") ~ 3,
-  r$reasons_for_debt %in% c("health", "food") ~ 4
+  r$reasons_for_debt %in% c("", "house", "other", "purchase_pro_assets") ~ 1,
+  r$reasons_for_debt %in% c("education", "basic_hh_expenditure", "clothing") ~ 2,
+  r$reasons_for_debt %in% c("health") ~ 3,
+  r$reasons_for_debt %in% c("food") ~ 4
   ))
 
 #FOOD SECURITY
@@ -127,7 +129,7 @@ r <- r %>% mutate(s_9 = case_when(
 
 
 r$food_share <- r$food_exp / r$tot_expenses
-r$food_share <- ifelse(r$food_share > 1, NA, 
+r$food_share <- ifelse(r$food_share > 1.0001, NA, 
                        r$food_share)
 r <- r %>% mutate(s_10 = case_when(
   r$food_share < 0.5 ~ 1,
@@ -327,7 +329,8 @@ r <- r %>% mutate(s_23 = case_when(
   (r$drinking_water_source == "network_comm" | r$drinking_water_source == "borehole" |
     r$drinking_water_source == "prot_well" | r$drinking_water_source == "prot_spring") ~ 2,
   (r$drinking_water_source == "bottled_water" | r$drinking_water_source == "water_trucking") ~ 3,
-  (r$drinking_water_source == "unprot_spring" | r$drinking_water_source == "unprot_well") ~ 4,
+  (r$drinking_water_source == "unprot_spring" | r$drinking_water_source == "unprot_well" | 
+     r$drinking_water_source == "illegal_connection") ~ 4,
   (r$drinking_water_source == "surface_water") ~ 5
 ))
 
@@ -368,7 +371,7 @@ r <- r %>% mutate(s_25 = case_when(
   r$impr_san == 1 & r$shared_sanitation == "yes" ~ 2,
   r$impr_san == 0 & r$shared_sanitation == "no" ~ 3,
   r$impr_san == 0 & r$shared_sanitation == "yes" ~ 4,
-  r$latrines == "open" ~ 5,
+  r$latrines == "open" | r$latrines == "none" ~ 5
 ))
 
 
