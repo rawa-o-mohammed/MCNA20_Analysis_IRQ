@@ -19,7 +19,7 @@ recoding_preliminary <- function(r, loop) {
   
   
   loop$plw <- case_when(loop$pregnant_lactating == "yes" ~ 1, 
-                        loop$pregnant_lactating == "no" | loop$pregnant_lactating == "do_not_know" | loop$pregnant_lactating == "decline_to_answer"  ~ 0, 
+                        loop$pregnant_lactating == "no"  ~ 0, 
                         TRUE ~ NA_real_)
   
   r <- r %>%
@@ -176,7 +176,7 @@ recoding_preliminary <- function(r, loop) {
       ))
   
   r$a29 <- case_when(r$local_integration == "yes" ~ 1,
-                     r$local_integration %in% c("do_not_know", "decline_to_answer", "no") ~ 0,
+                     r$local_integration %in% c("no") ~ 0,
                      TRUE ~ NA_real_)
   
   
@@ -329,7 +329,7 @@ recoding_preliminary <- function(r, loop) {
                          TRUE ~  NA_real_)
   
   r$d12      <- case_when(r$complaint_mechanisms == "yes" ~ 1, 
-                          r$complaint_mechanisms =="no" | r$complaint_mechanisms == "do_not_know" | r$complaint_mechanisms == "decline_to_answer" ~ 0,
+                          r$complaint_mechanisms =="no"  ~ 0,
                           TRUE ~  NA_real_)
   
   r$d15   <-
@@ -369,13 +369,13 @@ recoding_preliminary <- function(r, loop) {
       attend_formal_ed =
         case_when(
           attend_formal_ed == "yes" ~ 1,
-          attend_formal_ed %in% c("do_not_know", "decline_to_answer", "no") ~ 0,
+          attend_formal_ed %in% c("no") ~ 0,
           TRUE ~ NA_real_
         ),
       attend_informal_ed =
         case_when(
           attend_informal_ed == "yes" ~ 1,
-          attend_informal_ed %in% c("do_not_know", "decline_to_answer", "no") ~ 0,
+          attend_informal_ed %in% c("no") ~ 0,
           TRUE ~ NA_real_
         )
     )
@@ -674,7 +674,7 @@ recoding_preliminary <- function(r, loop) {
   r$g53a <-
     case_when(
       r$not_residing == "yes" ~ 1,
-      r$not_residing %in% c("no", "do_not_know") ~ 0,
+      r$not_residing %in% c("no") ~ 0,
       TRUE ~ NA_real_
     )
   r$g53b_i <-
@@ -737,8 +737,8 @@ recoding_preliminary <- function(r, loop) {
       r$restriction_clearance == "yes" &
       (r$restriction_clearance_covid == "no" | r$restriction_clearance_covid == "similar") ~ 1,
       r$restriction_clearance == "yes" &
-      r$restriction_clearance_covid %in% c("dnt_know", "no_answer", "yes") ~ 0,
-      r$restriction_clearance == "no" | r$restriction_clearance == "do_not_know" ~ 0,
+      r$restriction_clearance_covid %in% c("yes") ~ 0,
+      r$restriction_clearance == "no" ~ 0,
       TRUE ~ NA_real_
     )
   
@@ -747,8 +747,8 @@ recoding_preliminary <- function(r, loop) {
       r$restriction_documents == "yes" &
         (r$restriction_documents_covid == "no" | r$restriction_documents_covid == "similar") ~ 1,
       r$restriction_documents == "yes" &
-        r$restriction_documents_covid %in% c("dnt_know", "no_answer", "yes") ~ 0,
-      r$restriction_documents == "no" | r$restriction_documents == "do_not_know" ~ 0,
+        r$restriction_documents_covid %in% c("yes") ~ 0,
+      r$restriction_documents == "no" ~ 0,
       TRUE ~ NA_real_
     )
   
@@ -757,8 +757,8 @@ recoding_preliminary <- function(r, loop) {
       r$restriction_time == "yes" &
         (r$restriction_time_covid == "no" | r$restriction_time_covid == "similar") ~ 1,
       r$restriction_time == "yes" &
-        r$restriction_time_covid %in% c("dnt_know", "no_answer", "yes") ~ 0,
-      r$restriction_time == "no" | r$restriction_time == "do_not_know" ~ 0,
+        r$restriction_time_covid %in% c("yes") ~ 0,
+      r$restriction_time == "no" ~ 0,
       TRUE ~ NA_real_
     )
   
@@ -767,8 +767,8 @@ recoding_preliminary <- function(r, loop) {
       r$restriction_reason == "yes" &
         (r$restriction_reason_covid == "no" | r$restriction_reason_covid == "similar") ~ 1,
       r$restriction_reason == "yes" &
-        r$restriction_reason_covid %in% c("dnt_know", "no_answer", "yes") ~ 0,
-      r$restriction_reason == "no" | r$restriction_reason == "do_not_know" ~ 0,
+        r$restriction_reason_covid %in% c("yes") ~ 0,
+      r$restriction_reason == "no" ~ 0,
       TRUE ~ NA_real_
     )
 
@@ -777,20 +777,20 @@ recoding_preliminary <- function(r, loop) {
       r$restriction_physical == "yes" &
         (r$restriction_physical_covid == "no" | r$restriction_physical_covid == "similar") ~ 1,
       r$restriction_physical == "yes" &
-        r$restriction_physical_covid %in% c("dnt_know", "no_answer", "yes") ~ 0,
-      r$restriction_physical == "no" | r$restriction_physical == "do_not_know" ~ 0,
+        r$restriction_physical_covid %in% c("yes") ~ 0,
+      r$restriction_physical == "no" ~ 0,
       TRUE ~ NA_real_
     )
   
   r$g54_vi   <-
     case_when(
       r$restriction_other == "yes" ~ 1,
-      r$restriction_other == "no" | r$restriction_other == "do_not_know" ~ 0,
+      r$restriction_other == "no" ~ 0,
       TRUE ~ NA_real_
     )
   
   r$g54_vi <-
-    ifelse(r$restriction_other %in% c(NA, "decline_to_answer", 'no', "do_not_know"),
+    ifelse(r$restriction_other %in% c(NA,'no'),
            0,
            1)
   r$g54 <-
@@ -816,7 +816,7 @@ recoding_preliminary <- function(r, loop) {
   r$g61 <-
     case_when(
       r$security_incident == "yes" ~ 1,
-      r$security_incident %in% c("decline_to_answer", 'no', "do_not_know") ~ 0,
+      r$security_incident %in% c('no') ~ 0,
       TRUE ~ NA_real_
     )
   
@@ -836,13 +836,13 @@ recoding_preliminary <- function(r, loop) {
   r$g63 <-
     case_when(
       r$feel_unsafe == "yes" ~ 1,
-      r$feel_unsafe %in% c("decline_to_answer", 'no', "do_not_know") ~ 0,
+      r$feel_unsafe %in% c('no') ~ 0,
       TRUE ~ NA_real_
     )
   
   r$g64 <- case_when(
     r$hh_risk_eviction == "yes" ~ 1,
-    r$hh_risk_eviction %in% c("decline_to_answer", 'no', "do_not_know") ~ 0,
+    r$hh_risk_eviction %in% c('no') ~ 0,
     TRUE ~ NA_real_
   )
   
@@ -870,13 +870,13 @@ recoding_preliminary <- function(r, loop) {
   r$g68 <-
     case_when(
       r$hh_dispute == "yes" ~ 1,
-      r$hh_dispute %in% c("decline_to_answer", 'no', "do_not_know") ~ 0,
+      r$hh_dispute %in% c('no') ~ 0,
       TRUE ~ NA_real_
     )
   
   r$g73 <- r$why_not_return.presence_of_mines
   
-  r$g74 <- ifelse(r$risk_education %in% c('no', "do_not_know"), 0, 1)
+  r$g74 <- ifelse(r$risk_education %in% c('no'), 0, 1)
   
   
   r$g85 <- ifelse(
