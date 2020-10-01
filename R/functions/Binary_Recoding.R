@@ -130,7 +130,7 @@ recoding_preliminary <- function(r, loop) {
       r$movement_intentions_12 %in% c("current") &
         r$population_group == "idp_out_camp",
       1, ifelse(
-        r$movement_intentions_12 %in% c("return", "move_iraq", "move_other", "dnk") &
+        r$movement_intentions_12 %in% c("return", "move_iraq", "move_other") &
           r$population_group == "idp_out_camp",
         0,
         NA_real_
@@ -790,7 +790,7 @@ recoding_preliminary <- function(r, loop) {
     )
   
   r$g54_vi <-
-    ifelse(r$restriction_other %in% c(NA,'no'),
+    ifelse(r$restriction_other %in% c('no'),
            0,
            1)
   r$g54 <-
