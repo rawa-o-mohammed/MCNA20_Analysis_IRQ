@@ -335,7 +335,7 @@ recoding_preliminary <- function(r, loop) {
   r$d15   <-
     ifelse(
       r$covid_info_need == 'yes' &
-        r$covid_info_type == "prevention",
+        r$covid_info_type.prevention == 1,
       1,
       0
     )
@@ -960,4 +960,6 @@ recoding_preliminary <- function(r, loop) {
   
   return(r)
 }
+
+
 

@@ -20,6 +20,8 @@ rm(list=ls(all=T))
   source("R/functions/analysisplan_factory.R")
   source("R/functions/HNO_Recoding.R")
   source("R/functions/Binary_Recoding.R")
+  source("R/functions/presentation_recoding.R")
+  source("R/functions/gimac_recoding.R")
 
 #LOAD INPUT FILES 
   source("R/1_load_inputs.R",local = T)
@@ -109,16 +111,22 @@ response$weights<- weight_fun(response)
  }
   
 
-#DISAGGREGATE MALE AND FEMALE HEADED HHs
-#female_headed <- response[which(response$X_uuid %in% loop$X_submission__uuid[which(loop$sex == "female" & loop$relationship == "head")]),]
-#male_headed <- response[which(response$X_uuid %in% loop$X_submission__uuid[which(loop$sex == "male" & loop$relationship == "head")]),]
-
 #RECODING OF INDICATORS
-response_with_composites <- recoding_preliminary(response, loop)
+response_with_composites <- recoding_covid20(response)
+
+#DISAGGREGATE MALE AND FEMALE HEADED HHs
+#female_headed <- response_with_composites[which(response_with_composites$X_uuid %in% loop$X_uuid[which(loop$sex == "female" & loop$relationship == "head")]),]
+#male_headed <- response_with_composites[which(response_with_composites$X_uuid %in% loop$X_uuid[which(loop$sex == "male" & loop$relationship == "head")]),]
+#DISAGGREGATED HH WITH DISABILITY AND THOSE THAT DON'T
+#response_with_composites <- count_difficulty_level(response_with_composites)
+#response_with_composites_disab <- subset(response_with_composites, response_with_composites$lot_diff > 0 | 
+#                                          response_with_composites$cannot_diff > 0)
+#response_with_composites_nodisab <- subset(response_with_composites, response_with_composites$lot_diff == 0 & 
+#                                          response_with_composites$cannot_diff == 0)
 
 
 #LOAD ANALYSISPLAN
-dap_name <- "preliminary"
+dap_name <- "gimac"
 analysisplan <- read.csv(sprintf("input/dap/dap_%s.csv",dap_name), stringsAsFactors = F)
 #response_with_composites$one <- "one"
 
@@ -132,7 +140,7 @@ result <- from_analysisplan_map_to_output(response_with_composites, analysisplan
                                           weighting = weight_fun,
                                           questionnaire = questionnaire, confidence_level = 0.9)
 
-name <- "preliminary_version_nationwide"
+name <- "2020 gimac covid sdr_governorate_popgroup disagg"
 saveRDS(result,paste(sprintf("output/RDS/result_%s.RDS", name)))
 #summary[which(summary$dependent.var == "g51a"),]
 

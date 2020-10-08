@@ -93,10 +93,10 @@ r <- r %>% mutate(s_6 = case_when(
 
 r <- r %>% mutate(s_7 = case_when(
   is.na(r$reasons_for_debt) ~ 1,
-  r$reasons_for_debt %in% c("", "house", "other", "purchase_pro_assets") ~ 1,
-  r$reasons_for_debt %in% c("education", "basic_hh_expenditure", "clothing") ~ 2,
-  r$reasons_for_debt %in% c("health") ~ 3,
-  r$reasons_for_debt %in% c("food") ~ 4
+  r$reasons_for_debt %in% c("", "other", "purchase_pro_assets", "clothing") ~ 1,
+  r$reasons_for_debt %in% c("house") ~ 2,
+  r$reasons_for_debt %in% c("education", "basic_hh_expenditure") ~ 3,
+  r$reasons_for_debt %in% c("food", "health") ~ 4
   ))
 
 #FOOD SECURITY
