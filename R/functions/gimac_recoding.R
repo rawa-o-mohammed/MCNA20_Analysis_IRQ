@@ -35,6 +35,7 @@ r$fcs <-
   as.numeric(r$cereals) * 2 + as.numeric(r$nuts_seed) * 3 + as.numeric(r$milk_dairy) * 4 + as.numeric(r$meat) * 4 +
   as.numeric(r$vegetables) + as.numeric(r$fruits) + as.numeric(r$oil_fats) * 0.5 + as.numeric(r$sweets) * 0.5
 
+
 r$livelihood_strategies <-
   case_when(r$emergency == 1 ~ 4,
             r$crisis == 1 ~ 3,
@@ -50,9 +51,9 @@ r$food_share_strategies <-
 r$fcs_strategies <-
   case_when(r$fcs <= 28 ~ 4, (r$fcs > 28 &
                                    r$fcs <= 42) ~ 3, TRUE ~ 1)
-r$fcs_acceptable <- ifelse(r$fcs_strategies == 1, 1,0)
-r$fcs_borderline <- ifelse(r$fcs_strategies == 3, 1,0)
-r$fcs_poor <- ifelse(r$fcs_strategies == 4, 1,0)
+r$fcs_poor <- ifelse(r$fcs >= 0 & r$fcs <= 21, 1,0)
+r$fcs_borderline <- ifelse(r$fcs > 25 & r$fcs <= 35 , 1,0)
+r$fcs_acceptable <- ifelse(r$fcs > 35, 1,0)
 
 
 
@@ -132,7 +133,7 @@ recoding_covid20 <- function(r){
   r$fcs <-
     (as.numeric(r$cereals) * 2) + (as.numeric(r$nuts_seed) * 3) + (as.numeric(r$milk_dairy) * 4) + (as.numeric(r$meat) * 4) +
     as.numeric(r$vegetables) + as.numeric(r$fruits) + (as.numeric(r$oil_fats) * 0.5) + (as.numeric(r$sweets) * 0.5)
-
+  
   r$livelihood_strategies <-
     case_when(r$emergency == 1 ~ 4,
               r$crisis == 1 ~ 3,
@@ -147,9 +148,9 @@ recoding_covid20 <- function(r){
     )
   r$fcs_strategies <-
     case_when(r$fcs < 21 ~ 4, between(r$fcs, 21, 35) ~ 3, TRUE ~ 1)
-  r$fcs_acceptable <- ifelse(r$fcs_strategies == 1, 1,0)
-  r$fcs_borderline <- ifelse(r$fcs_strategies == 3, 1,0)
-  r$fcs_poor <- ifelse(r$fcs_strategies == 4, 1,0)
+  r$fcs_poor <- ifelse(r$fcs >= 0 & r$fcs <= 21, 1,0)
+  r$fcs_borderline <- ifelse(r$fcs > 25 & r$fcs <= 35 , 1,0)
+  r$fcs_acceptable <- ifelse(r$fcs > 35, 1,0)
   
   r$mean_coping_capacity <-
     mean_row(r$livelihood_strategies,
