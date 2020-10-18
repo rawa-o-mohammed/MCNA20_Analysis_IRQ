@@ -5,10 +5,22 @@ GIMAC Analysis,% HH relying on stress / crisis / emergency strategies to cope wi
 GIMAC Analysis,% HH relying on stress / crisis / emergency strategies to cope with a lack of resources to meet basic needs. ,Emergency,district_mcna,population_group,categorical,emergency,categorical,direct_reporting
 GIMAC Analysis,"% of households whose average monthly income [from employment and pension] was less than 480,000 IQD/month","% of households whose average monthly income [from employment and pension] was less than 480,000 IQD/month",district_mcna,population_group,categorical,c24,categorical,direct_reporting
 GIMAC Analysis,"% HH with debt value > 505,000 IQD ","% HH with debt value > 505,000 IQD ",district_mcna,population_group,categorical,c29,categorical,direct_reporting
-GIMAC Analysis,"% HH unable to afford basic needs (% HH taking on debt due to healthcare, food, education, or basic household expenditures)","% HH unable to afford basic needs (% HH taking on debt due to healthcare, food, education, or basic household expenditures)",district_mcna,population_group,categorical,c30_1,categorical,direct_reporting
+OCHA Request,"% HH unable to afford basic needs (% HH taking on debt due to healthcare, food, education, or basic household expenditures)","% HH unable to afford basic needs (% HH taking on debt due to healthcare, food, education, or basic household expenditures)",district_mcna,population_group,categorical,c30_1,categorical,direct_reporting
 GIMAC Analysis,% HH reporting [reason] as a main reason for fearing eviction,Lack of funds to pack rental costs,district_mcna,population_group,categorical,c33_i,categorical,direct_reporting
 GIMAC Analysis,% HH reporting [reason] as a main reason for fearing eviction,Host family no longer able to host our family,district_mcna,population_group,categorical,c33_ii,categorical,direct_reporting
 GIMAC Analysis,% HH reporting [reason] as a main reason for fearing eviction,No valid tenancy agreement,district_mcna,population_group,categorical,c33_iii,categorical,direct_reporting
 GIMAC Analysis,% HH by Food Consumption Score,Acceptable,district_mcna,population_group,categorical,fcs_acceptable,categorical,direct_reporting
 GIMAC Analysis,% HH by Food Consumption Score,Borderline,district_mcna,population_group,categorical,fcs_borderline,categorical,direct_reporting
 GIMAC Analysis,% HH by Food Consumption Score,Poor,district_mcna,population_group,categorical,fcs_poor,categorical,direct_reporting
+OCHA Request,% of HH reporting [reason] as a primary reason for why their children are not attending formal education regularly,We cannot afford to pay for the school related expenses,district_mcna,population_group,categorical,g7_iii,categorical,direct_reporting
+OCHA Request,% of HH reporting [reason] as a primary reason for why their children are not attending formal education regularly,Our children are busy working or supporting the housheold,district_mcna,population_group,categorical,g7_x,categorical,direct_reporting
+OCHA Request,% of HH with a food expenditure share of more than 40%,,district_mcna,population_group,categorical,g102,categorical,direct_reporting
+OCHA Request,% of HH access to improved sanitation facilities,,district_mcna,population_group,categorical,g97,categorical,direct_reporting
+OCHA Request,% of HH with at least one member with a chronic health condition,,district_mcna,population_group,categorical,g35,categorical,direct_reporting
+OCHA Request,% of HH reporting [reason] as a primary reason for taking on debt,Basic HH expenditure,district_mcna,population_group,categorical,d1,categorical,direct_reporting
+OCHA Request,% of HH reporting [reason] as a primary reason for taking on debt,Clothing,district_mcna,population_group,categorical,d2,categorical,direct_reporting
+OCHA Request,% of HH reporting [reason] as a primary reason for taking on debt,Education,district_mcna,population_group,categorical,d3,categorical,direct_reporting
+OCHA Request,% of HH reporting [reason] as a primary reason for taking on debt,Food,district_mcna,population_group,categorical,d4,categorical,direct_reporting
+OCHA Request,% of HH reporting [reason] as a primary reason for taking on debt,Healthcare,district_mcna,population_group,categorical,d5,categorical,direct_reporting
+OCHA Request,% of HH reporting [reason] as a primary reason for taking on debt,House,district_mcna,population_group,categorical,d6,categorical,direct_reporting
+OCHA Request,% of HH reporting [reason] as a primary reason for taking on debt,Purchasing productive assets,district_mcna,population_group,categorical,d7,categorical,direct_reporting
