@@ -1,4 +1,4 @@
-recoding_covid19 <- function(r){
+recoding_covid19 <- function(r, loop){
   
   r$stress <-
     ifelse(
@@ -92,12 +92,25 @@ r$c33_ii  <-
   ifelse(r$hh_main_risks.no_longer_hosted == 1, 1, 0)
 r$c33_iii <- ifelse(r$hh_main_risks.no_agreement == 1, 1, 0)
 
+r$g7_iii  <- r$reasons_not_attend.cannot_afford
+r$g7_x    <- r$reasons_not_attend.children_working
+
+r$g102 <-
+  ifelse(as.numeric(r$tot_expenses) * 0.4 <= r$food_exp, 1, 0)
+
+r$g97 <- ifelse(r$latrines %in% c("vip_pit", "flush"), 1, 0)
+
+r$g35 <- apply(r, 1, FUN=function(x){
+  ifelse(sum(loop$health_issue.chronic[which(loop$X_uuid == x["X_uuid"])], na.rm = T) > 0, 1, 0)
+})
+
+
 return(r)
 }
 
 
 
-recoding_covid20 <- function(r){
+recoding_covid20 <- function(r, loop){
   
   r$stress <-
     ifelse(
@@ -189,5 +202,27 @@ recoding_covid20 <- function(r){
   r$c33_ii  <- r$hh_main_risks.no_longer_hosted
   r$c33_iii <- r$hh_main_risks.no_agreement
   
+  r$g7_iii  <- r$reasons_not_attend.cannot_afford
+  r$g7_x    <- r$reasons_not_attend.children_working
+  
+  r$g102 <-
+    ifelse(as.numeric(r$tot_expenses) * 0.4 <= r$food_exp, 1, 0)
+  
+  r$g97 <- ifelse(r$latrines %in% c("vip_pit", "flush", "private_camp", "communal"), 1, 0)
+  
+  r$g35 <- apply(r, 1, FUN=function(x){
+    ifelse(sum(loop$health_issue.chronic[which(loop$X_uuid == x["X_uuid"])], na.rm = T) > 0, 1, 0)
+  })
+  
+  r$d1 <- ifelse(response$reasons_for_debt == "basic_hh_expenditure", 1, 0)
+  r$d2 <- ifelse(response$reasons_for_debt == "clothing", 1, 0)
+  r$d3 <- ifelse(response$reasons_for_debt == "education", 1, 0)
+  r$d4 <- ifelse(response$reasons_for_debt == "food", 1, 0)
+  r$d5 <- ifelse(response$reasons_for_debt == "health", 1, 0)
+  r$d6 <- ifelse(response$reasons_for_debt == "house", 1, 0)
+  r$d7 <- ifelse(response$reasons_for_debt == "purchase_pro_assets", 1, 0)
+  
+  
   return(r)
 }
+
