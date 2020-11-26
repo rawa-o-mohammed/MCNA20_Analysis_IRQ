@@ -1,0 +1,33 @@
+Indicator.Group...Sector,research.question,sub.research.question,repeat.for.variable,independent.variable,independent.variable.type,dependent.variable,dependent.variable.type,hypothesis.type
+MSNI,HC - Capacity Gap (coping mechanism) ,1,one,population_group,categorical,coping_mechanism,categorical,direct_reporting
+MSNI,HC - Vulnerability,1,one,population_group,categorical,vulnerability_1,categorical,direct_reporting
+MSNI,HC - Vulnerability,2,one,population_group,categorical,vulnerability_2,categorical,direct_reporting
+MSNI,HC - Vulnerability,3,one,population_group,categorical,vulnerability_3,categorical,direct_reporting
+MSNI,HC - Vulnerability,4,one,population_group,categorical,vulnerability_4,categorical,direct_reporting
+MSNI,HC - LSG / Education,1,one,population_group,categorical,education_1,categorical,direct_reporting
+MSNI,HC - LSG / Education,2,one,population_group,categorical,education_2,categorical,direct_reporting
+MSNI,HC - LSG / Education,3,one,population_group,categorical,education_3,categorical,direct_reporting
+MSNI,HC - LSG / Education,4,one,population_group,categorical,education_4,categorical,direct_reporting
+MSNI,HC - LSG / Livelihoods,1,one,population_group,categorical,livelihoods_1,categorical,direct_reporting
+MSNI,HC - LSG / Livelihoods,2,one,population_group,categorical,livelihoods_2,categorical,direct_reporting
+MSNI,HC - LSG / Livelihoods,3,one,population_group,categorical,livelihoods_3,categorical,direct_reporting
+MSNI,HC - LSG / Livelihoods,4,one,population_group,categorical,livelihoods_4,categorical,direct_reporting
+MSNI,HC - LSG / Food Security,1,one,population_group,categorical,food_security_1,categorical,direct_reporting
+MSNI,HC - LSG / Food Security,2,one,population_group,categorical,food_security_2,categorical,direct_reporting
+MSNI,HC - LSG / Food Security,3,one,population_group,categorical,food_security_3,categorical,direct_reporting
+MSNI,HC - LSG / Food Security,4,one,population_group,categorical,food_security_4,categorical,direct_reporting
+MSNI,HC - LSG / Protection,1,one,population_group,categorical,protection_1,categorical,direct_reporting
+MSNI,HC - LSG / Protection,2,one,population_group,categorical,protection_2,categorical,direct_reporting
+MSNI,HC - LSG / Protection,3,one,population_group,categorical,protection_3,categorical,direct_reporting
+MSNI,HC - LSG / Protection,4,one,population_group,categorical,protection_4,categorical,direct_reporting
+MSNI,HC - LSG / Health,1,one,population_group,categorical,health_1,categorical,direct_reporting
+MSNI,HC - LSG / Health,2,one,population_group,categorical,health_2,categorical,direct_reporting
+MSNI,HC - LSG / Health,3,one,population_group,categorical,health_3,categorical,direct_reporting
+MSNI,HC - LSG / SNFI,1,one,population_group,categorical,snfi_1,categorical,direct_reporting
+MSNI,HC - LSG / SNFI,2,one,population_group,categorical,snfi_2,categorical,direct_reporting
+MSNI,HC - LSG / SNFI,3,one,population_group,categorical,snfi_3,categorical,direct_reporting
+MSNI,HC - LSG / SNFI,4,one,population_group,categorical,snfi_4,categorical,direct_reporting
+MSNI,HC - LSG / WASH,1,one,population_group,categorical,wash_1,categorical,direct_reporting
+MSNI,HC - LSG / WASH,2,one,population_group,categorical,wash_2,categorical,direct_reporting
+MSNI,HC - LSG / WASH,3,one,population_group,categorical,wash_3,categorical,direct_reporting
+MSNI,HC - LSG / WASH,4,one,population_group,categorical,wash_4,categorical,direct_reporting
