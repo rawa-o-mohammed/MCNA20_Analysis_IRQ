@@ -26,7 +26,7 @@ source("R/functions/msni_recoding.R")
 
 #LOAD INPUT FILES
 source("R/1_load_inputs.R", local = T)
-names(response)[names(response) == 'ï..X_uuid'] <- "X_uuid"
+names(response)[names(response) == '?..X_uuid'] <- "X_uuid"
 #' creates objects:
 #'
 #'    response representative clean
@@ -117,6 +117,8 @@ weight_fun <- function(df) {
 
 
 #RECODING OF INDICATORS
+response_with_composites2 <- msni_recoding(response, loop)
+
 response_with_composites <- msni_recoding(response, loop)
 # response_with_composites <- recoding_covid20(response)
 
