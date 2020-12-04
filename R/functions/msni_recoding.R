@@ -45,6 +45,8 @@ msni_recoding <- function(df, loop) {
       loop$marital_status == "married" ~ 0,
       TRUE ~ NA_real_
     )
+  ###YS this does not look at if there is a single female headed household, this looks if the single person is a female.
+  #loop %>% group_by(X_uuid) %>% summarise(sum(single_female_hhh, na.rm = T))
   loop$single_female_hhh <-
     case_when(
       loop$single_hhh == 1 & loop$sex == "female" ~ 1,
@@ -82,9 +84,15 @@ msni_recoding <- function(df, loop) {
       0
     )
   
+  ###YS this is based on the previous indicators that does not compute single female hhh. 
+  # this takes the sum of single women.
+  #it is also not a binary/logical as values goes from 1 to 9. 
   df <- individual_to_HH_numeric(loop, df, "single_female_hhh", "b2")
-  df <-
-    individual_to_HH_numeric(loop, df, "health_issue.chronic", "b3")
+
+  ###YS this calculate the number of person that reply yes to health_issue.chronic. 
+  #it is also not a binary/logical as values goes from 1 to 9. 
+  df <- individual_to_HH_numeric(loop, df, "health_issue.chronic", "b3")
+  
   
   df$b4 <- ifelse(
     df$pds_card == "no" |
@@ -108,15 +116,21 @@ msni_recoding <- function(df, loop) {
   )
   
   df$b6 <- ifelse(df$access_soap == "no", 1, 0)
+  ###YS female_60_calc and male_60_calc is the number of ppl age 60+, not a binary that says yes and no if there 
+  #are 60+ people in the hh.
   df$b7 <- ifelse(df$female_60_calc == 1 | df$male_60_calc == 1, 1, 0)
   
   #using sum_row function to sum the rows, sum_row belongs to expss library.
+  
+  ###YS the sum_row are adding none binaries so you need first to change all the variables to binaries
   df$vulnerability_score <- case_when(
     df$b1 == 1 ~ 4,
     df$b2 == 1 |
       sum_row(df$b3, df$b4, df$b5, df$b6, df$b7) > 3 ~ 3,
+    #You are omitting if the HH scores 3
     sum_row(df$b3, df$b4, df$b5, df$b6, df$b7) >= 2 ~ 2,
     sum_row(df$b3, df$b4, df$b5, df$b6, df$b7) == 1 ~ 1,
+    ###YS cannot have 0 for LSG score.
     TRUE ~ 0
   )
   df$vulnerability_1 <- ifelse(df$vulnerability_score == 1, 1, 0)
@@ -142,6 +156,7 @@ msni_recoding <- function(df, loop) {
       TRUE ~ 0
     )
   
+  ###YS this also a sum of children, not a binary see below
   df <-
     individual_to_HH_numeric(loop, df, "children_not_attend_school", "c2")
   
@@ -156,6 +171,9 @@ msni_recoding <- function(df, loop) {
   temp <- temp %>%
     mutate(all_child_not_attend = ifelse(n_no_school == n_child, 1, 0))
   
+  
+  ###YS using match will probably match with the 1st case, not all of them. you are excluding some cases.
+  #see next section
   df$c3 <-
     case_when(
       temp$all_child_not_attend[match(df$X_uuid, temp$X_uuid)] == 1 ~ 1,
@@ -173,10 +191,13 @@ msni_recoding <- function(df, loop) {
     )
   df$education_score <- case_when(
     df$c3 == 1 ~ 4,
+    ###YS c2 is a sum, not a binary. you will not take if there are 2+ children not going to school
     df$c2 == 1 |
       sum_row(df$c1, df$c4) == 2 ~ 3,
     sum_row(df$c1, df$c4) == 1 ~ 2,
+    ###YS, should be sum = 0 to be severity 1
     sum_row(df$c1, df$c4) == 1 ~ 1,
+    ###YS cannot have 0 for LSG score.
     TRUE ~ 0
   )
   df$education_1 <- ifelse(df$education_score == 1, 1, 0)
@@ -189,14 +210,30 @@ msni_recoding <- function(df, loop) {
   df$d1 <- case_when(df$employment_seasonal == "yes" ~ 1,
                      df$employment_seasonal == "no" ~ 0,
                      TRUE ~ NA_real_)
+  
+  ###YS using match will probably match with the 1st case, not all of them. you are excluding some cases.
+  # aa <- loop %>% 
+  #   mutate(hello = age >= 18 & actively_seek_work == "yes" & work == "no") %>%
+  #   group_by(X_uuid) %>%
+  #   summarise(aaa = sum(hello) > 0)
+  # 
+  # response %>% left_join(aa) %>% select(d2, aaa, X_uuid) %>% 
+  #   filter(aaa == T,
+  #          d2 == 0) -> to_check
+  # 
+  # loop %>% filter(X_uuid %in% to_check$X_uuid) %>% View()
+  #look per uuid grouping, not per line.
+  
   df$d2 <- ifelse(loop$age[match(df$X_uuid, loop$X_uuid)] >= 18 &
                     loop$actively_seek_work[match(df$X_uuid, loop$X_uuid)] == "yes" &
                     loop$work[match(df$X_uuid, loop$X_uuid)] == "no",
                   1,
                   0)
   
+  ###YS the question is for the household, the indicators is per individual.
   df$d3 <- ifelse(df$inc_employment_pension < 90000, 1, 0)
   df$d4 <- ifelse(df$how_much_debt > 505000, 1, 0)
+  ###YS these is a intergers question, not a select one. 
   df$d5 <-
     ifelse(df$covid_loss_job_permanent == "yes" |
              df$covid_loss_job_temp == "yes",
@@ -218,6 +255,7 @@ msni_recoding <- function(df, loop) {
       sum_row(df$d1, df$d3, df$d4, df$d5) > 2 ~ 3,
     sum_row(df$d1, df$d3, df$d4, df$d5) == 2 ~ 2,
     sum_row(df$d1, df$d3, df$d4, df$d5) == 1 ~ 1,
+    ###YS cannot have 0 for LSG score.
     TRUE ~ 0
   )
   df$livelihoods_1 <- ifelse(df$livelihoods_score == 1, 1, 0)
@@ -275,7 +313,7 @@ msni_recoding <- function(df, loop) {
     as.numeric(df$cereals) * 2 + as.numeric(df$nuts_seed) * 3 + as.numeric(df$milk_dairy) * 4 + as.numeric(df$meat) * 4 +
     as.numeric(df$vegetables) + as.numeric(df$fruits) + as.numeric(df$oil_fats) * 0.5 + as.numeric(df$sweets) * 0.5
   
-  
+  ###YS can you confirm the thresold is not 42?
   df$e1 <- ifelse(df$fcs <= 35, 1, 0)
   df$e2 <- ifelse(df$food_share > 0.65, 1, 0)
   df$e3 <- ifelse(fsc$hhs[match(df$X_uuid, fsc$X_uuid)] >= 2, 1, 0)
@@ -306,6 +344,7 @@ msni_recoding <- function(df, loop) {
       1 ,
       0
     )
+  ###YS sums of individuals, not binary
   df <- individual_to_HH_numeric(loop, df, "child_married", "f2")
   df$f3 <-
     ifelse(df$adult_distress_number >= 1 |
@@ -335,6 +374,7 @@ msni_recoding <- function(df, loop) {
       1,
       0
     )
+  ###YS indicators says under dispute or no document. not AND
   df$f6 <-
     ifelse(df$hlp_document == "no" & df$hh_dispute == "yes", 1, 0)
   df$f7 <- ifelse(df$hh_risk_eviction == "yes", 1, 0)
@@ -344,11 +384,13 @@ msni_recoding <- function(df, loop) {
   df$f9 <- ifelse(df$security_incident == "yes", 1, 0)
   
   df$protection_score <- case_when(
+    ###YS df is a sum of individuals, not binary wont take 2+
     df$f1 == 1 | df$f2 == 1 ~ 4,
     df$f5 == 1 |
       sum_row(df$f3, df$f4, df$f6, df$f7,df$f8, df$f9) >= 4 ~ 3,
     sum_row(df$f3, df$f4, df$f6, df$f7,df$f8, df$f9) == 3 ~ 2,
     sum_row(df$f3, df$f4, df$f6, df$f7,df$f8, df$f9) >= 1 ~ 1,
+    ###YS cannot have lsg score of 0
     TRUE ~ 0
   )
   df$protection_1 <- ifelse(df$protection_score == 1, 1, 0)
@@ -363,12 +405,17 @@ msni_recoding <- function(df, loop) {
     0,
     1
   )
-  
+  ###YS the question asks if women have acces to services, so a "yes" means they have access to, which is not
+  #what you are trying to code
   df$g2 <- ifelse(df$women_specialised_services == "yes", 1, 0)
   
   df$health_share <- df$medical_exp / df$tot_expenses
   
   df$g3 <- ifelse(df$health_share > 0.2, 1, 0)
+  
+  ###YS the difficulty_accessing_services has a skip logic and is only asked to households with disability
+  #41. Does any member of your household face difficulties 
+  #in accessing any basic services (e.g education, health clinics, markets, etc.) due to his/her difficulty
   df$g4 <- ifelse(df$difficulty_accessing_services == "yes", 1, 0)
   
   df$health_score <-
@@ -384,6 +431,7 @@ msni_recoding <- function(df, loop) {
   
   df$h1 <-
     ifelse(
+      ###YS DAP says 2 improvements.
       sum_row(
         df$shelter_better.improve_privacy,
         df$shelter_better.improve_safety,
@@ -442,6 +490,7 @@ msni_recoding <- function(df, loop) {
   ###################################i #########################################
   
   df$i1 <- ifelse(
+    ###YS you are coding the % of people having access to those. 
     df$drinking_water_source %in%
       c(
         "borehole",
@@ -455,6 +504,7 @@ msni_recoding <- function(df, loop) {
     0
   )
   
+  ###YS the indicator mention all 4, while the condition mentions only drinking, cooking and hygiene.
   df$i2 <- ifelse(
     df$sufficient_water_drinking == "yes" &
       df$sufficient_water_cooking == "yes" &
@@ -466,6 +516,8 @@ msni_recoding <- function(df, loop) {
   
   df$i3 <- ifelse(df$latrines %in% c("vip_pit", "flush"), 0, 1)
   
+  ###YS you are coding the ones that are treating.
+  # side note: you don't need to treat water if it comes from an improved source of water.
   df$i4 <-
     ifelse(df$treat_drink_water %in% c("always", "sometimes"), 1, 0)
   
