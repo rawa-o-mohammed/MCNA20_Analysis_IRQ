@@ -1,0 +1,10 @@
+﻿Indicator Group / Sector,research.question,sub.research.question,repeat.for.variable,independent.variable,independent.variable.type,dependent.variable,dependent.variable.type,hypothesis.type
+SNFI,% HHs needing basic NFI items,% HHs needing basic NFI items,district_mcna,population_group,categorical,g85,categorical,direct_reporting
+SNFI,% HHs needing basic NFI items,% HHs needing basic NFI items,district_mcna,population_group,categorical,g85_i,categorical,direct_reporting
+SNFI,% HHs needing basic NFI items,% HHs needing basic NFI items,district_mcna,population_group,categorical,g85_ii,categorical,direct_reporting
+SNFI,% HHs needing basic NFI items,% HHs needing basic NFI items,district_mcna,population_group,categorical,g85_iii,categorical,direct_reporting
+SNFI,% HHs needing basic NFI items,% HHs needing basic NFI items,district_mcna,population_group,categorical,g85_iv,categorical,direct_reporting
+SNFI,% HHs needing basic NFI items,% HHs needing basic NFI items,district_mcna,population_group,categorical,g85_v,categorical,direct_reporting
+SNFI,% HHs needing basic NFI items,% HHs needing basic NFI items,district_mcna,population_group,categorical,g85_vi,categorical,direct_reporting
+SNFI,% HHs needing basic NFI items,% HHs needing basic NFI items,district_mcna,population_group,categorical,g85_vii,categorical,direct_reporting
+SNFI,% HHs needing basic NFI items,% HHs needing basic NFI items,district_mcna,population_group,categorical,g85_i,categorical,direct_reporting

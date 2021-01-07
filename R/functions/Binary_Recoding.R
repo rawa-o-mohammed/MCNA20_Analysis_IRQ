@@ -1,10 +1,10 @@
-round2 <- function(x, n=0) {
+round2 <- function(x, n = 0) {
   posneg <- sign(x)
-  z <- abs(x)*10^n
+  z <- abs(x) * 10 ^ n
   z <- z + 0.5
   z <- trunc(z)
-  z <- z/10^n
-  z <- z*posneg
+  z <- z / 10 ^ n
+  z <- z * posneg
   return(z)
 }
 
@@ -13,22 +13,25 @@ round2 <- function(x, n=0) {
 
 
 recoding_preliminary <- function(r, loop) {
-
   # get sex column form member sheet
-  loop_hoh <- loop[which(loop$relationship == "head"), ]
+  loop_hoh <- loop[which(loop$relationship == "head"),]
   
   
-  loop$plw <- case_when(loop$pregnant_lactating == "yes" ~ 1, 
-                        loop$pregnant_lactating == "no"  ~ 0, 
-                        TRUE ~ NA_real_)
+  loop$plw <- case_when(
+    loop$pregnant_lactating == "yes" ~ 1,
+    loop$pregnant_lactating == "no"  ~ 0,
+    TRUE ~ NA_real_
+  )
   
   r <- r %>%
     mutate(sex = loop_hoh$sex[match(r$X_uuid, loop_hoh$`X_uuid`)])
   
-  loop_children <- loop[which(loop$age < 18 & loop$age > 5), ]
-  female_headed <- response[which(response$X_uuid %in% loop$X_uuid[which(loop$sex == "female" & loop$relationship == "head")]),]
+  loop_children <- loop[which(loop$age < 18 & loop$age > 5),]
+  female_headed <-
+    response[which(response$X_uuid %in% loop$X_uuid[which(loop$sex == "female" &
+                                                            loop$relationship == "head")]), ]
   r$gender_hhh <- loop_hoh$sex[match(r$X_uuid, loop_hoh$X_uuid)]
-
+  
   ############################################### a #############################
   r$a7        <- as.numeric(r$num_hh_member)
   r$a8        <- as.numeric(r$num_family_member)
@@ -54,9 +57,11 @@ recoding_preliminary <- function(r, loop) {
     )
   
   r$a12 <-
-    ifelse(loop_children$marital_status[match(r$X_uuid, loop_children$`X_uuid`)] %in% c("married", "widowed", "divorced","separated") ,
-           1,
-           0)
+    ifelse(
+      loop_children$marital_status[match(r$X_uuid, loop_children$`X_uuid`)] %in% c("married", "widowed", "divorced", "separated") ,
+      1,
+      0
+    )
   
   r$a13 <-
     ifelse(loop$age[match(r$X_uuid, loop_hoh$`X_uuid`)] < 18 &
@@ -119,27 +124,36 @@ recoding_preliminary <- function(r, loop) {
         r$population_group == "idp_out_camp",
       1,
       ifelse(
-        r$movement_intentions_12 %in% c("return", "move_inside_iraq", "move_outside_iraq", "wait_to_decide") &
+        r$movement_intentions_12 %in% c(
+          "return",
+          "move_inside_iraq",
+          "move_outside_iraq",
+          "wait_to_decide"
+        ) &
           r$population_group == "idp_out_camp",
         0,
         NA_real_
-      ))
+      )
+    )
   
   r$a25 <-
     ifelse(
       r$movement_intentions_12 %in% c("current") &
         r$population_group == "idp_out_camp",
-      1, ifelse(
+      1,
+      ifelse(
         r$movement_intentions_12 %in% c("return", "move_iraq", "move_other") &
           r$population_group == "idp_out_camp",
         0,
         NA_real_
-      ))
+      )
+    )
   
   r$a26_i    <- r$reason_to_return_to_aoo.security_stable
   r$a26_ii   <- r$reason_to_return_to_aoo.uxo
   r$a26_iii  <- r$reason_to_return_to_aoo.other_members_returned
-  r$a26_iv   <- r$reason_to_return_to_aoo.livelihood_availability_there
+  r$a26_iv   <-
+    r$reason_to_return_to_aoo.livelihood_availability_there
   r$a26_v    <- r$reason_to_return_to_aoo.basic_services
   r$a26_vi   <- r$reason_to_return_to_aoo.emotional_desire
   r$a26_vii  <- r$reason_to_return_to_aoo.secure_house_land
@@ -162,18 +176,21 @@ recoding_preliminary <- function(r, loop) {
           r$population_group == "returnee",
         0,
         NA_real_
-      ))
+      )
+    )
   
   r$a28 <-
     ifelse(
       r$movement_intentions_b12 %in% c("remain") &
         r$population_group == "returnee",
-      1, ifelse(
+      1,
+      ifelse(
         r$movement_intentions_b12 %in% c("move_inside_iraq", "move_outside_iraq", "wait_to_decide") &
           r$population_group == "returnee",
         0,
         NA_real_
-      ))
+      )
+    )
   
   r$a29 <- case_when(r$local_integration == "yes" ~ 1,
                      r$local_integration %in% c("no") ~ 0,
@@ -184,7 +201,8 @@ recoding_preliminary <- function(r, loop) {
   
   r$b1     <- ifelse(r$inc_employment_pension < 480000, 1, 0)
   
-  r$b2     <- ifelse(r$primary_livelihood.ngo_charity_assistance == 1, 1, 0)
+  r$b2     <-
+    ifelse(r$primary_livelihood.ngo_charity_assistance == 1, 1, 0)
   
   r$b3     <-
     case_when(
@@ -226,7 +244,8 @@ recoding_preliminary <- function(r, loop) {
   # ################################################### c #######################################
   
   
-  r$c2     <- ifelse(r$injured_explosive %in% c("killed", "injured"), 1, 0)
+  r$c2     <-
+    ifelse(r$injured_explosive %in% c("killed", "injured"), 1, 0)
   
   r$c3   <-
     ifelse(
@@ -242,10 +261,11 @@ recoding_preliminary <- function(r, loop) {
   
   r$c9     <- ifelse(r$difficulty_accessing_services == "yes", 1, 0)
   
-  PLW <- as.data.frame(loop %>% dplyr::group_by(X_uuid) %>% dplyr::summarize(sum(plw, na.rm = T)))
+  PLW <-
+    as.data.frame(loop %>% dplyr::group_by(X_uuid) %>% dplyr::summarize(sum(plw, na.rm = T)))
   
   
-
+  
   r$c11    <- PLW[match(r$X_uuid, PLW$X_uuid), 2]
   # rm(PLW)
   
@@ -320,28 +340,36 @@ recoding_preliminary <- function(r, loop) {
               is.na(r$aid_satisfaction) ~ NA_real_ ,
               TRUE ~ 0)
   
-  r$d7      <- case_when(r$aid_not_satisfied.quantity == 1 ~ 1, 
-                      (r$aid_received =="yes" & r$aid_satisfaction == "yes") | r$aid_not_satisfied.quantity == 0 ~ 0,
-                           TRUE ~  NA_real_)
+  r$d7      <- case_when(
+    r$aid_not_satisfied.quantity == 1 ~ 1,
+    (r$aid_received == "yes" &
+       r$aid_satisfaction == "yes") |
+      r$aid_not_satisfied.quantity == 0 ~ 0,
+    TRUE ~  NA_real_
+  )
   
-  r$d10      <- case_when(r$aid_workers_satisfied == "no" ~ 1, 
-                         r$aid_received =="yes" &  r$aid_workers_satisfied == "yes" ~ 0,
-                         TRUE ~  NA_real_)
+  r$d10      <- case_when(
+    r$aid_workers_satisfied == "no" ~ 1,
+    r$aid_received == "yes" &
+      r$aid_workers_satisfied == "yes" ~ 0,
+    TRUE ~  NA_real_
+  )
   
-  r$d12      <- case_when(r$complaint_mechanisms == "yes" ~ 1, 
-                          r$complaint_mechanisms =="no"  ~ 0,
+  r$d12      <- case_when(r$complaint_mechanisms == "yes" ~ 1,
+                          r$complaint_mechanisms == "no"  ~ 0,
                           TRUE ~  NA_real_)
   
   r$d15   <-
-    ifelse(
-      r$covid_info_need == 'yes' &
-        r$covid_info_type.prevention == 1,
-      1,
-      0
-    )
+    ifelse(r$covid_info_need == 'yes' &
+             r$covid_info_type.prevention == 1,
+           1,
+           0)
   
   ##################################################### F ########################################
-  r$f4 <- ifelse(r$distance_clinic %in% c("less_15", "less_30", "less_hour"), 1, 0)
+  r$f4 <-
+    ifelse(r$distance_clinic %in% c("less_15", "less_30", "less_hour"),
+           1,
+           0)
   
   
   r$f7 <- ifelse(
@@ -351,7 +379,7 @@ recoding_preliminary <- function(r, loop) {
     ifelse(r$received_compensation == "yes", 1, 0),
     NA_real_
   )
-
+  
   r$f7b <- case_when(
     r$complaint_mechanisms == "yes" ~ 1,
     is.na(r$complaint_mechanisms) ~ NA_real_,
@@ -362,10 +390,15 @@ recoding_preliminary <- function(r, loop) {
   
   children_attend_ed <- loop_children %>%
     mutate(
-      not_attending_either = 
-        case_when(attend_formal_ed == "no" & attend_informal_ed == "no" ~ 1, TRUE ~ 0),
-      attending_either = 
-        case_when(attend_formal_ed == "yes" | attend_informal_ed == "yes" ~ 1, TRUE ~ 0),
+      not_attending_either =
+        case_when(attend_formal_ed == "no" &
+                    attend_informal_ed == "no" ~ 1, TRUE ~ 0),
+      attending_either =
+        case_when(
+          attend_formal_ed == "yes" |
+            attend_informal_ed == "yes" ~ 1,
+          TRUE ~ 0
+        ),
       attend_formal_ed =
         case_when(
           attend_formal_ed == "yes" ~ 1,
@@ -387,23 +420,24 @@ recoding_preliminary <- function(r, loop) {
       num_attend_informal = sum(attend_informal_ed, na.rm = TRUE),
       num_not_attend_either = sum(not_attending_either, na.rm = TRUE),
       num_attending_either = sum(attending_either, na.rm = TRUE),
-      num_schoolage_child = n())
+      num_schoolage_child = n()
+    )
   
   r <- left_join(r, children_attend_ed, by = "X_uuid")
   
   r$g4 <-
-    ifelse(
-      r$num_not_attend_either > 0, 1, 0
-    )
+    ifelse(r$num_not_attend_either > 0, 1, 0)
   
-  r <- r %>% 
-    mutate(perc_attend_formal = num_attend_formal / num_schoolage_child,
-           perc_attend_either = num_attending_either/ num_schoolage_child)
+  r <- r %>%
+    mutate(
+      perc_attend_formal = num_attend_formal / num_schoolage_child,
+      perc_attend_either = num_attending_either / num_schoolage_child
+    )
   
   r$g5 <- ifelse(r$perc_attend_formal >= 1, 1, 0)
   r$g6 <- ifelse(r$perc_attend_either >= 1, 1, 0)
-
-
+  
+  
   r$g7_i    <- r$reasons_not_attend.school_closed
   r$g7_ii   <- r$reasons_not_attend.not_safe
   r$g7_iii  <- r$reasons_not_attend.cannot_afford
@@ -601,9 +635,13 @@ recoding_preliminary <- function(r, loop) {
   r$g34_x    <- r$health_barriers.not_inclusive
   r$g34_xi   <- r$health_barriers.no_fem_staff
   
-  r$g35 <- apply(r, 1, FUN=function(x){
-    ifelse(sum(loop$health_issue.chronic[which(loop$X_uuid == x["X_uuid"])], na.rm = T) > 0, 1, 0)
-  })
+  r$g35 <- apply(
+    r,
+    1,
+    FUN = function(x) {
+      ifelse(sum(loop$health_issue.chronic[which(loop$X_uuid == x["X_uuid"])], na.rm = T) > 0, 1, 0)
+    }
+  )
   
   r$g37 <- ifelse(r$how_much_debt > 505000, 1, 0)
   
@@ -615,8 +653,8 @@ recoding_preliminary <- function(r, loop) {
     )
   
   r$g39 <- ifelse(r$covid_loss_job == "yes"  ,
-                   1,
-                   0)
+                  1,
+                  0)
   
   r$g41 <- ifelse(r$market_place %in% c("less_15", "less_30"), 1, 0)
   
@@ -634,7 +672,7 @@ recoding_preliminary <- function(r, loop) {
   r$g45_vi   <- r$employment_primary_barriers.lack_jobs_women
   r$g45_vii  <- r$employment_primary_barriers.none
   r$g45_viii <- r$employment_primary_barriers.other
-
+  
   
   r$g46 <- ifelse(r$employment_seasonal == "yes", 1, 0)
   
@@ -672,11 +710,9 @@ recoding_preliminary <- function(r, loop) {
   
   
   r$g53a <-
-    case_when(
-      r$not_residing == "yes" ~ 1,
-      r$not_residing %in% c("no") ~ 0,
-      TRUE ~ NA_real_
-    )
+    case_when(r$not_residing == "yes" ~ 1,
+              r$not_residing %in% c("no") ~ 0,
+              TRUE ~ NA_real_)
   r$g53b_i <-
     case_when(
       r$g53a == 1 &
@@ -735,9 +771,12 @@ recoding_preliminary <- function(r, loop) {
   r$g54_i   <-
     case_when(
       r$restriction_clearance == "yes" &
-      (r$restriction_clearance_covid == "no" | r$restriction_clearance_covid == "similar") ~ 1,
+        (
+          r$restriction_clearance_covid == "no" |
+            r$restriction_clearance_covid == "similar"
+        ) ~ 1,
       r$restriction_clearance == "yes" &
-      r$restriction_clearance_covid %in% c("yes") ~ 0,
+        r$restriction_clearance_covid %in% c("yes") ~ 0,
       r$restriction_clearance == "no" ~ 0,
       TRUE ~ NA_real_
     )
@@ -745,7 +784,10 @@ recoding_preliminary <- function(r, loop) {
   r$g54_ii   <-
     case_when(
       r$restriction_documents == "yes" &
-        (r$restriction_documents_covid == "no" | r$restriction_documents_covid == "similar") ~ 1,
+        (
+          r$restriction_documents_covid == "no" |
+            r$restriction_documents_covid == "similar"
+        ) ~ 1,
       r$restriction_documents == "yes" &
         r$restriction_documents_covid %in% c("yes") ~ 0,
       r$restriction_documents == "no" ~ 0,
@@ -755,7 +797,10 @@ recoding_preliminary <- function(r, loop) {
   r$g54_iii   <-
     case_when(
       r$restriction_time == "yes" &
-        (r$restriction_time_covid == "no" | r$restriction_time_covid == "similar") ~ 1,
+        (
+          r$restriction_time_covid == "no" |
+            r$restriction_time_covid == "similar"
+        ) ~ 1,
       r$restriction_time == "yes" &
         r$restriction_time_covid %in% c("yes") ~ 0,
       r$restriction_time == "no" ~ 0,
@@ -765,17 +810,23 @@ recoding_preliminary <- function(r, loop) {
   r$g54_iv   <-
     case_when(
       r$restriction_reason == "yes" &
-        (r$restriction_reason_covid == "no" | r$restriction_reason_covid == "similar") ~ 1,
+        (
+          r$restriction_reason_covid == "no" |
+            r$restriction_reason_covid == "similar"
+        ) ~ 1,
       r$restriction_reason == "yes" &
         r$restriction_reason_covid %in% c("yes") ~ 0,
       r$restriction_reason == "no" ~ 0,
       TRUE ~ NA_real_
     )
-
+  
   r$g54_v   <-
     case_when(
       r$restriction_physical == "yes" &
-        (r$restriction_physical_covid == "no" | r$restriction_physical_covid == "similar") ~ 1,
+        (
+          r$restriction_physical_covid == "no" |
+            r$restriction_physical_covid == "similar"
+        ) ~ 1,
       r$restriction_physical == "yes" &
         r$restriction_physical_covid %in% c("yes") ~ 0,
       r$restriction_physical == "no" ~ 0,
@@ -783,68 +834,66 @@ recoding_preliminary <- function(r, loop) {
     )
   
   r$g54_vi   <-
-    case_when(
-      r$restriction_other == "yes" ~ 1,
-      r$restriction_other == "no" ~ 0,
-      TRUE ~ NA_real_
-    )
+    case_when(r$restriction_other == "yes" ~ 1,
+              r$restriction_other == "no" ~ 0,
+              TRUE ~ NA_real_)
   
   r$g54_vi <-
     ifelse(r$restriction_other %in% c('no'),
            0,
            1)
   r$g54 <-
-    ifelse(
-      r$g54_i == 1 |
-        r$g54_ii == 1 |
-        r$g54_iii == 1 |
-        r$g54_iv == 1 |
-        r$g54_v == 1 |
-        r$g54_vi == 1,
-      1,
-      0
-    )
+    ifelse(r$g54_i == 1 |
+             r$g54_ii == 1 |
+             r$g54_iii == 1 |
+             r$g54_iv == 1 |
+             r$g54_v == 1 |
+             r$g54_vi == 1,
+           1,
+           0)
   
-  r$g56 <- case_when(r$child_distress_number > 0 ~ 1, 
-                     r$child_distress_number == 0 | r$hh_member_distress == "no" ~ 0,
-                     TRUE ~ NA_real_)
+  r$g56 <- case_when(
+    r$child_distress_number > 0 ~ 1,
+    r$child_distress_number == 0 |
+      r$hh_member_distress == "no" ~ 0,
+    TRUE ~ NA_real_
+  )
   
-  r$g57 <- case_when(r$adult_distress_number > 0 ~ 1, 
-                     r$adult_distress_number == 0 | r$hh_member_distress == "no" ~ 0,
-                     TRUE ~ NA_real_)
+  r$g57 <- case_when(
+    r$adult_distress_number > 0 ~ 1,
+    r$adult_distress_number == 0 |
+      r$hh_member_distress == "no" ~ 0,
+    TRUE ~ NA_real_
+  )
   
   r$g61 <-
-    case_when(
-      r$security_incident == "yes" ~ 1,
-      r$security_incident %in% c('no') ~ 0,
-      TRUE ~ NA_real_
-    )
+    case_when(r$security_incident == "yes" ~ 1,
+              r$security_incident %in% c('no') ~ 0,
+              TRUE ~ NA_real_)
   
   r$g62_i <-
     case_when(
       r$security_incident_gender %in% c("male", "both") ~ 1,
-      r$security_incident_gender == "female" | r$security_incident == "no" ~ 0,
+      r$security_incident_gender == "female" |
+        r$security_incident == "no" ~ 0,
       TRUE ~ NA_real_
     )
   r$g62_ii <-
     case_when(
       r$security_incident_gender %in% c('female', "both") ~ 1,
-      r$security_incident_gender == "male" | r$security_incident == "no" ~ 0,
+      r$security_incident_gender == "male" |
+        r$security_incident == "no" ~ 0,
       TRUE ~ NA_real_
     )
   
   r$g63 <-
-    case_when(
-      r$feel_unsafe == "yes" ~ 1,
-      r$feel_unsafe %in% c('no') ~ 0,
-      TRUE ~ NA_real_
-    )
+    case_when(r$feel_unsafe == "yes" ~ 1,
+              r$feel_unsafe %in% c('no') ~ 0,
+              TRUE ~ NA_real_)
   
-  r$g64 <- case_when(
-    r$hh_risk_eviction == "yes" ~ 1,
-    r$hh_risk_eviction %in% c('no') ~ 0,
-    TRUE ~ NA_real_
-  )
+  r$g64 <- case_when(r$hh_risk_eviction == "yes" ~ 1,
+                     r$hh_risk_eviction %in% c('no') ~ 0,
+                     TRUE ~ NA_real_)
   
   r$g65_i    <- r$hh_main_risks.lack_funds
   r$g65_ii   <- r$hh_main_risks.no_longer_hosted
@@ -868,11 +917,9 @@ recoding_preliminary <- function(r, loop) {
   )
   
   r$g68 <-
-    case_when(
-      r$hh_dispute == "yes" ~ 1,
-      r$hh_dispute %in% c('no') ~ 0,
-      TRUE ~ NA_real_
-    )
+    case_when(r$hh_dispute == "yes" ~ 1,
+              r$hh_dispute %in% c('no') ~ 0,
+              TRUE ~ NA_real_)
   
   r$g73 <- r$why_not_return.presence_of_mines
   
@@ -892,6 +939,22 @@ recoding_preliminary <- function(r, loop) {
     1,
     0
   )
+  r$g85_i <- r$nfi_priority_needs.bedding_items
+  r$g85_ii <- r$nfi_priority_needs.mattresses_sleeping_mats
+  r$g85_iii <- r$nfi_priority_needs.blankets
+  r$g85_iv <- r$nfi_priority_needs.cooking_utensils
+  r$g85_v <- r$nfi_priority_needs.cooking_stove
+  r$g85_vi <- r$nfi_priority_needs.winter_heaters
+  r$g85_vii <- r$nfi_priority_needs.clothing
+  r$g85_viii <- r$nfi_priority_needs.heating_cooking_fuel
+  r$g85_ix <- r$nfi_priority_needs.other
+  r$g85_x <- ifelse(
+      r$`nfi_priority_needs.mattresses_sleeping_mats` == 1 |
+      r$`nfi_priority_needs.winter_heaters` == 1 |
+      r$`nfi_priority_needs.clothing` == 1,
+    1,
+    0
+  )
   
   r$g89 <-
     ifelse(rowSums(
@@ -900,11 +963,21 @@ recoding_preliminary <- function(r, loop) {
         as.numeric(r$`shelter_better.improve_safety`),
         as.numeric(r$`shelter_better.improve_privacy`),
         as.numeric(r$`shelter_better.protect_climate`),
-        as.numeric(r$`shelter_better.other`),
-        as.numeric(r$`shelter_better.none`)
+        as.numeric(r$`shelter_better.other`)
       ),
       na.rm = T
     ) >= 2, 1, 0)
+  r$g90 <-
+    ifelse(rowSums(
+      cbind(
+        as.numeric(r$`shelter_better.protec_hazards`),
+        as.numeric(r$`shelter_better.improve_safety`),
+        as.numeric(r$`shelter_better.improve_privacy`),
+        as.numeric(r$`shelter_better.protect_climate`),
+        as.numeric(r$`shelter_better.other`)
+      ),
+      na.rm = T
+    ) >= 1, 1, 0)
   
   r$g94 <- ifelse(
     r$sufficient_water_drinking == "yes" &
@@ -944,15 +1017,15 @@ recoding_preliminary <- function(r, loop) {
   
   r$g100_i <-
     as.numeric(r$food_exp) / as.numeric(r$tot_expenses) * 100
-  r$g100_i <- ifelse(r$g100_i > 100, NA, 
-                         r$g100_i)
+  r$g100_i <- ifelse(r$g100_i > 100, NA,
+                     r$g100_i)
   r$g100_ii <-
     as.numeric(r$rent_exp) / as.numeric(r$tot_expenses) * 100
-  r$g100_i <- ifelse(r$g100_ii > 100, NA, 
+  r$g100_i <- ifelse(r$g100_ii > 100, NA,
                      r$g100_ii)
   r$g100_iii <-
     as.numeric(r$medical_exp) / as.numeric(r$tot_expenses) * 100
-  r$g100_i <- ifelse(r$g100_iii > 100, NA, 
+  r$g100_i <- ifelse(r$g100_iii > 100, NA,
                      r$g100_iii)
   
   r$g102 <-
@@ -960,6 +1033,3 @@ recoding_preliminary <- function(r, loop) {
   
   return(r)
 }
-
-
-

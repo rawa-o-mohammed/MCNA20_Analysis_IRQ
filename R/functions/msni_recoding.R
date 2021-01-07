@@ -1,17 +1,4 @@
-function(loop, response, varname, indicator) {
-  r <- loop[, c("X_uuid", varname)]
-  r <- r[complete.cases(r),]
-  r = aggregate(r[, c(2)],
-                by = list(r$X_uuid),
-                FUN = sum,
-                na.rm = T)
-  names(r) <- c("X_uuid", indicator)
-  response <- merge(response, r, by = "X_uuid", all = T)
-  return(response)
-}
-
 msni_recoding <- function(df, loop) {
-  df <- response
   df$stress <-
     ifelse(
       df$selling_assets %in% c("no_already_did", "yes") |
@@ -39,19 +26,15 @@ msni_recoding <- function(df, loop) {
       0
     )
   
-  loop$single_hhh <-
-    case_when(
-      loop$marital_status %in% c("single", "separated", "widowed", "divorced") ~ 1,
-      loop$marital_status == "married" ~ 0,
-      TRUE ~ NA_real_
-    )
   loop$single_female_hhh <-
     case_when(
-      loop$single_hhh == 1 & loop$sex == "female" ~ 1,
-      is.na(loop$single_hhh) &
-        is.na(loop$sex) ~ NA_real_,
-      TRUE ~ 0
+      loop$relationship == "head" &
+        loop$marital_status %in% c("single", "separated", "widowed", "divorced") &
+        loop$sex == "female" ~ 1,
+      loop$relationship == "head" ~ 0,
+      TRUE ~ NA_real_
     )
+  
   
   ###################################a #########################################
   df$a1 <-
@@ -82,9 +65,23 @@ msni_recoding <- function(df, loop) {
       0
     )
   
-  df <- individual_to_HH_numeric(loop, df, "single_female_hhh", "b2")
-  df <-
-    individual_to_HH_numeric(loop, df, "health_issue.chronic", "b3")
+  temp <- loop %>%
+    group_by(X_uuid) %>%
+    summarize(sum_fhhh = sum(single_female_hhh, na.rm = TRUE))
+  
+  df$b2 <-
+    case_when(temp$sum_fhhh[match(df$X_uuid, temp$X_uuid)] >= 1 ~ 1,
+              temp$sum_fhhh[match(df$X_uuid, temp$X_uuid)] == 0 ~ 0,
+              TRUE ~ NA_real_)
+  
+  temp <- loop %>%
+    group_by(X_uuid) %>%
+    summarize(sum_health_issue = sum(health_issue.chronic, na.rm = TRUE))
+  
+  df$b3 <-
+    case_when(temp$sum_health_issue[match(df$X_uuid, temp$X_uuid)] >= 1 ~ 1,
+              temp$sum_health_issue[match(df$X_uuid, temp$X_uuid)] == 0 ~ 0,
+              TRUE ~ NA_real_)
   
   df$b4 <- ifelse(
     df$pds_card == "no" |
@@ -108,21 +105,40 @@ msni_recoding <- function(df, loop) {
   )
   
   df$b6 <- ifelse(df$access_soap == "no", 1, 0)
-  df$b7 <- ifelse(df$female_60_calc == 1 | df$male_60_calc == 1, 1, 0)
+  df$b7 <- ifelse(df$female_60_calc >= 1 | df$male_60_calc >= 1, 1, 0)
   
   #using sum_row function to sum the rows, sum_row belongs to expss library.
   df$vulnerability_score <- case_when(
     df$b1 == 1 ~ 4,
     df$b2 == 1 |
-      sum_row(df$b3, df$b4, df$b5, df$b6, df$b7) > 3 ~ 3,
+      sum_row(df$b3, df$b4, df$b5, df$b6, df$b7) >= 3 ~ 3,
+    is.na(df$b2) ~ NA_real_,
     sum_row(df$b3, df$b4, df$b5, df$b6, df$b7) >= 2 ~ 2,
     sum_row(df$b3, df$b4, df$b5, df$b6, df$b7) == 1 ~ 1,
     TRUE ~ 0
   )
-  df$vulnerability_1 <- ifelse(df$vulnerability_score == 1, 1, 0)
-  df$vulnerability_2 <- ifelse(df$vulnerability_score == 2, 1, 0)
-  df$vulnerability_3 <- ifelse(df$vulnerability_score == 3, 1, 0)
-  df$vulnerability_4 <- ifelse(df$vulnerability_score == 4, 1, 0)
+  
+  df$vulnerability_1 <-
+    case_when(df$vulnerability_score == 1 ~ 1,
+              is.na(df$vulnerability_score) ~ NA_real_,
+              TRUE ~ 0)
+  df$vulnerability_2 <-
+    case_when(df$vulnerability_score == 2 ~ 1,
+              is.na(df$vulnerability_score) ~ NA_real_,
+              TRUE ~ 0)
+  df$vulnerability_3 <-
+    case_when(df$vulnerability_score == 3 ~ 1,
+              is.na(df$vulnerability_score) ~ NA_real_,
+              TRUE ~ 0)
+  df$vulnerability_4 <-
+    case_when(df$vulnerability_score == 4 ~ 1,
+              is.na(df$vulnerability_score) ~ NA_real_,
+              TRUE ~ 0)
+  
+  df$severe_vulnerability <-
+    case_when(df$vulnerability_score >= 3 ~ 1,
+              is.na(df$vulnerability_score) ~ NA_real_,
+              TRUE ~ 0)
   ###################################c #########################################
   
   df$c1 <- case_when(
@@ -133,35 +149,34 @@ msni_recoding <- function(df, loop) {
     TRUE ~ 0
   )
   
-  loop$children_not_attend_school <-
+  loop_child <- loop %>%
+    filter(age < 18)
+  
+  loop_child$no_school <-
     case_when(
-      loop$age < 18 &
-        loop$attend_formal_ed == "no" &
-        loop$attend_informal_ed == "no" ~ 1,
-      loop$age >= 18 ~ NA_real_,
+      loop_child$attend_formal_ed == "no" &
+        loop_child$attend_informal_ed == "no" ~ 1,
       TRUE ~ 0
     )
   
-  df <-
-    individual_to_HH_numeric(loop, df, "children_not_attend_school", "c2")
-  
-  temp <- loop %>%
-    filter(age < 18)
-  temp <- temp %>%
+  temp <- loop_child %>%
     group_by(X_uuid) %>%
-    summarize(
-      n_no_school = sum(children_not_attend_school, na.rm = TRUE),
-      n_child = n()
-    )
-  temp <- temp %>%
-    mutate(all_child_not_attend = ifelse(n_no_school == n_child, 1, 0))
+    summarize(sum_no_school = sum(no_school),
+              sum_child = n())
+  
+  temp$all_no_school <-
+    ifelse(temp$sum_child - temp$sum_no_school == 0, 1, 0)
+  
+  df$c2 <-
+    case_when(temp$sum_no_school[match(df$X_uuid, temp$X_uuid)] >= 1 ~ 1,
+              temp$sum_no_school[match(df$X_uuid, temp$X_uuid)] == 0 ~ 0,
+              TRUE ~ NA_real_)
+  
   
   df$c3 <-
-    case_when(
-      temp$all_child_not_attend[match(df$X_uuid, temp$X_uuid)] == 1 ~ 1,
-      temp$all_child_not_attend[match(df$X_uuid, temp$X_uuid)] == 0 ~ 0,
-      TRUE ~ NA_real_
-    )
+    case_when(temp$all_no_school[match(df$X_uuid, temp$X_uuid)] == 1 ~ 1,
+              temp$all_no_school[match(df$X_uuid, temp$X_uuid)] == 0 ~ 0,
+              TRUE ~ NA_real_)
   
   
   df$c4 <-
@@ -171,35 +186,70 @@ msni_recoding <- function(df, loop) {
       0,
       1
     )
+  
   df$education_score <- case_when(
     df$c3 == 1 ~ 4,
+    is.na(df$c3) ~ NA_real_,
     df$c2 == 1 |
       sum_row(df$c1, df$c4) == 2 ~ 3,
+    is.na(df$c2) ~ NA_real_,
     sum_row(df$c1, df$c4) == 1 ~ 2,
     sum_row(df$c1, df$c4) == 1 ~ 1,
     TRUE ~ 0
   )
-  df$education_1 <- ifelse(df$education_score == 1, 1, 0)
-  df$education_2 <- ifelse(df$education_score == 2, 1, 0)
-  df$education_3 <- ifelse(df$education_score == 3, 1, 0)
-  df$education_4 <- ifelse(df$education_score == 4, 1, 0)
+  df$education_1 <-
+    case_when(df$education_score == 1 ~ 1,
+              is.na(df$education_score) ~ NA_real_,
+              TRUE ~ 0)
+  df$education_2 <-
+    case_when(df$education_score == 2 ~ 1,
+              is.na(df$education_score) ~ NA_real_,
+              TRUE ~ 0)
+  df$education_3 <-
+    case_when(df$education_score == 3 ~ 1,
+              is.na(df$education_score) ~ NA_real_,
+              TRUE ~ 0)
+  df$education_4 <-
+    case_when(df$education_score == 4 ~ 1,
+              is.na(df$education_score) ~ NA_real_,
+              TRUE ~ 0)
   
+  df$severe_education <-
+    case_when(df$education_score >= 3 ~ 1,
+              is.na(df$education_score) ~ NA_real_,
+              TRUE ~ 0)
   ###################################d #########################################
   
   df$d1 <- case_when(df$employment_seasonal == "yes" ~ 1,
                      df$employment_seasonal == "no" ~ 0,
                      TRUE ~ NA_real_)
-  df$d2 <- ifelse(loop$age[match(df$X_uuid, loop$X_uuid)] >= 18 &
-                    loop$actively_seek_work[match(df$X_uuid, loop$X_uuid)] == "yes" &
-                    loop$work[match(df$X_uuid, loop$X_uuid)] == "no",
-                  1,
-                  0)
   
-  df$d3 <- ifelse(df$inc_employment_pension < 90000, 1, 0)
+  loop_adult <- loop %>%
+    filter(age >= 18)
+  
+  loop_adult$unemployed_seek_work <-
+    case_when(
+      loop_adult$actively_seek_work == "yes" &
+        loop_adult$work == "no" ~ 1,
+      loop_adult$actively_seek_work == "no" ~ 0,
+      TRUE ~ NA_real_
+    )
+  
+  temp <- loop_adult %>%
+    group_by(X_uuid) %>%
+    summarize(sum_unemployed = sum(unemployed_seek_work, na.rm = TRUE))
+  
+  df$d2 <-
+    case_when(temp$sum_unemployed[match(df$X_uuid, temp$X_uuid)] == 1 ~ 1,
+              temp$sum_unemployed[match(df$X_uuid, temp$X_uuid)] == 0 ~ 0,
+              TRUE ~ NA_real_)
+  
+  df$d3 <-
+    ifelse(df$inc_employment_pension / df$num_hh_member < 90000, 1, 0)
   df$d4 <- ifelse(df$how_much_debt > 505000, 1, 0)
   df$d5 <-
-    ifelse(df$covid_loss_job_permanent == "yes" |
-             df$covid_loss_job_temp == "yes",
+    ifelse(df$covid_loss_job_permanent >= 1 |
+             df$covid_loss_job_temp >= 1,
            1,
            0)
   df$d6 <-
@@ -214,16 +264,31 @@ msni_recoding <- function(df, loop) {
   
   df$livelihoods_score <- case_when(
     df$d6 == 1 ~ 4,
+    is.na(df$d6) ~ NA_real_,
     df$d2 == 1 |
       sum_row(df$d1, df$d3, df$d4, df$d5) > 2 ~ 3,
+    is.na(df$d2) ~ NA_real_,
     sum_row(df$d1, df$d3, df$d4, df$d5) == 2 ~ 2,
     sum_row(df$d1, df$d3, df$d4, df$d5) == 1 ~ 1,
     TRUE ~ 0
   )
-  df$livelihoods_1 <- ifelse(df$livelihoods_score == 1, 1, 0)
-  df$livelihoods_2 <- ifelse(df$livelihoods_score == 2, 1, 0)
-  df$livelihoods_3 <- ifelse(df$livelihoods_score == 3, 1, 0)
-  df$livelihoods_4 <- ifelse(df$livelihoods_score == 4, 1, 0)
+  df$livelihoods_1 <- case_when(df$livelihoods_score == 1 ~ 1,
+                                is.na(df$livelihoods_score) ~ NA_real_,
+                                TRUE ~ 0)
+  df$livelihoods_2 <- case_when(df$livelihoods_score == 2 ~ 1,
+                                is.na(df$livelihoods_score) ~ NA_real_,
+                                TRUE ~ 0)
+  df$livelihoods_3 <- case_when(df$livelihoods_score == 3 ~ 1,
+                                is.na(df$livelihoods_score) ~ NA_real_,
+                                TRUE ~ 0)
+  df$livelihoods_4 <- case_when(df$livelihoods_score == 4 ~ 1,
+                                is.na(df$livelihoods_score) ~ NA_real_,
+                                TRUE ~ 0)
+  
+  df$severe_livelihoods <-
+    case_when(df$livelihoods_score >= 3 ~ 1,
+              is.na(df$livelihoods_score) ~ NA_real_,
+              TRUE ~ 0)
   ###################################e #########################################
   
   fsc <- df %>%
@@ -276,18 +341,32 @@ msni_recoding <- function(df, loop) {
     as.numeric(df$vegetables) + as.numeric(df$fruits) + as.numeric(df$oil_fats) * 0.5 + as.numeric(df$sweets) * 0.5
   
   
-  df$e1 <- ifelse(df$fcs <= 35, 1, 0)
+  df$e1 <- ifelse(df$fcs <= 42, 1, 0)
   df$e2 <- ifelse(df$food_share > 0.65, 1, 0)
   df$e3 <- ifelse(fsc$hhs[match(df$X_uuid, fsc$X_uuid)] >= 2, 1, 0)
   
-  df$food_security_score <- case_when(df$e3 == 1 ~ 4,
-                                      sum_row(df$e1, df$e2) == 2 ~ 3,
-                                      sum_row(df$e1, df$e2) == 1 ~ 2,
-                                      TRUE ~ 1)
-  df$food_security_1 <- ifelse(df$food_security_score == 1, 1, 0)
-  df$food_security_2 <- ifelse(df$food_security_score == 2, 1, 0)
-  df$food_security_3 <- ifelse(df$food_security_score == 3, 1, 0)
-  df$food_security_4 <- ifelse(df$food_security_score == 4, 1, 0)
+  df$food_security_score <- case_when(
+    df$e3 == 1 ~ 4,
+    is.na(df$e3) ~ NA_real_,
+    sum_row(df$e1, df$e2) == 2 ~ 3,
+    sum_row(df$e1, df$e2) == 1 ~ 2,
+    TRUE ~ 1
+  )
+  df$food_security_1 <- case_when(df$food_security_score == 1 ~ 1,
+                                  is.na(df$food_security_score) ~ NA_real_,
+                                  TRUE ~ 0)
+  df$food_security_2 <- case_when(df$food_security_score == 2 ~ 1,
+                                  is.na(df$food_security_score) ~ NA_real_,
+                                  TRUE ~ 0)
+  df$food_security_3 <- case_when(df$food_security_score == 3 ~ 1,
+                                  is.na(df$food_security_score) ~ NA_real_,
+                                  TRUE ~ 0)
+  df$food_security_4 <- case_when(df$food_security_score == 4 ~ 1,
+                                  is.na(df$food_security_score) ~ NA_real_,
+                                  TRUE ~ 0)
+  
+  df$severe_food <-
+    case_when(df$food_security_score >= 3 ~ 1, is.na(df$food_security_score) ~ NA_real_, TRUE ~ 0)
   ###################################f #########################################
   
   df$f1 <- apply(
@@ -299,19 +378,26 @@ msni_recoding <- function(df, loop) {
     }
   )
   
-  loop$child_married <-
+  loop_child$married <-
     ifelse(
-      loop$marital_status %in% c("married", "widowed", "divorced", "separated") &
-        loop$age < 18,
+      loop_child$marital_status %in% c("married", "widowed", "divorced", "separated"),
       1 ,
       0
     )
-  df <- individual_to_HH_numeric(loop, df, "child_married", "f2")
+  temp <- loop_child %>%
+    group_by(X_uuid) %>%
+    summarize(sum_married_child = sum(married))
+  
+  df$f2 <-
+    case_when(temp$sum_married_child[match(df$X_uuid, temp$X_uuid)] == 1 ~ 1,
+              temp$sum_married_child[match(df$X_uuid, temp$X_uuid)] == 0 ~ 0,
+              TRUE ~ NA_real_)
   df$f3 <-
     ifelse(df$adult_distress_number >= 1 |
              df$child_distress_number >= 1,
            1,
            0)
+  
   df$f4 <- ifelse(
     df$unsafe_areas.distribution_areas == 1 |
       df$unsafe_areas.facilities == 1 |
@@ -336,7 +422,7 @@ msni_recoding <- function(df, loop) {
       0
     )
   df$f6 <-
-    ifelse(df$hlp_document == "no" & df$hh_dispute == "yes", 1, 0)
+    ifelse(df$hlp_document == "no" | df$hh_dispute == "yes", 1, 0)
   df$f7 <- ifelse(df$hh_risk_eviction == "yes", 1, 0)
   df$f8 <-     case_when(df$not_residing == "yes" ~ 1,
                          df$not_residing %in% c("no") ~ 0,
@@ -345,16 +431,30 @@ msni_recoding <- function(df, loop) {
   
   df$protection_score <- case_when(
     df$f1 == 1 | df$f2 == 1 ~ 4,
+    is.na(df$f1) & is.na(df$f2) ~ NA_real_,
     df$f5 == 1 |
-      sum_row(df$f3, df$f4, df$f6, df$f7,df$f8, df$f9) >= 4 ~ 3,
-    sum_row(df$f3, df$f4, df$f6, df$f7,df$f8, df$f9) == 3 ~ 2,
-    sum_row(df$f3, df$f4, df$f6, df$f7,df$f8, df$f9) >= 1 ~ 1,
-    TRUE ~ 0
+      sum_row(df$f3, df$f4, df$f6, df$f7, df$f8, df$f9) >= 4 ~ 3,
+    is.na(df$f5) ~ NA_real_,
+    sum_row(df$f3, df$f4, df$f6, df$f7, df$f8, df$f9) == 3 ~ 2,
+    TRUE ~ 1
   )
-  df$protection_1 <- ifelse(df$protection_score == 1, 1, 0)
-  df$protection_2 <- ifelse(df$protection_score == 2, 1, 0)
-  df$protection_3 <- ifelse(df$protection_score == 3, 1, 0)
-  df$protection_4 <- ifelse(df$protection_score == 4, 1, 0)
+  df$protection_1 <- case_when(df$protection_score == 1 ~ 1,
+                               is.na(df$protection_score) ~ NA_real_,
+                               TRUE ~ 0)
+  df$protection_2 <- case_when(df$protection_score == 2 ~ 1,
+                               is.na(df$protection_score) ~ NA_real_,
+                               TRUE ~ 0)
+  df$protection_3 <- case_when(df$protection_score == 3 ~ 1,
+                               is.na(df$protection_score) ~ NA_real_,
+                               TRUE ~ 0)
+  df$protection_4 <- case_when(df$protection_score == 4 ~ 1,
+                               is.na(df$protection_score) ~ NA_real_,
+                               TRUE ~ 0)
+  
+  df$severe_protection <-
+    case_when(df$protection_score >= 3 ~ 1,
+              is.na(df$protection_score) ~ NA_real_,
+              TRUE ~ 0)
   ###################################g #########################################
   
   df$g1 <- ifelse(
@@ -364,22 +464,40 @@ msni_recoding <- function(df, loop) {
     1
   )
   
-  df$g2 <- ifelse(df$women_specialised_services == "yes", 1, 0)
+  df$g2 <- ifelse(df$women_specialised_services == "no", 1, 0)
   
   df$health_share <- df$medical_exp / df$tot_expenses
   
   df$g3 <- ifelse(df$health_share > 0.2, 1, 0)
-  df$g4 <- ifelse(df$difficulty_accessing_services == "yes", 1, 0)
+  df$g4 <-
+    case_when(
+      df$difficulty_accessing_services == "yes" ~ 1,
+      df$difficulty_accessing_services == "no" ~ 0,
+      TRUE ~ NA_real_
+    )
   
   df$health_score <-
-    case_when(df$g1 == 1 |
-                df$g4 == 1 | sum_row(df$g2, df$g3) == 2 ~ 3,
-              sum_row(df$g2, df$g3) == 1 ~ 2,
-              TRUE ~ 1)
-  df$health_1 <- ifelse(df$health_score == 1, 1, 0)
-  df$health_2 <- ifelse(df$health_score == 2, 1, 0)
-  df$health_3 <- ifelse(df$health_score == 3, 1, 0)
+    case_when(
+      df$g1 == 1 |
+        df$g4 == 1 | sum_row(df$g2, df$g3) == 2 ~ 3,
+      is.na(df$g1) & is.na(df$g4) ~ NA_real_,
+      sum_row(df$g2, df$g3) == 1 ~ 2,
+      TRUE ~ 1
+    )
+  df$health_1 <- case_when(df$health_score == 1 ~ 1,
+                           is.na(df$health_score) ~ NA_real_,
+                           TRUE ~ 0)
+  df$health_2 <- case_when(df$health_score == 2 ~ 1,
+                           is.na(df$health_score) ~ NA_real_,
+                           TRUE ~ 0)
+  df$health_3 <- case_when(df$health_score == 3 ~ 1,
+                           is.na(df$health_score) ~ NA_real_,
+                           TRUE ~ 0)
   
+  df$severe_health <-
+    case_when(df$health_score >= 3 ~ 1,
+              is.na(df$health_score) ~ NA_real_,
+              TRUE ~ 0)
   ###################################h #########################################
   
   df$h1 <-
@@ -430,19 +548,32 @@ msni_recoding <- function(df, loop) {
     )
   
   df$snfi_score <-
-    case_when(df$h3 == 1 ~ 4,
-              sum_row(df$h1, df$h2) == 2 ~ 3,
-              sum_row(df$h1, df$h2) == 1 ~ 2,
-              TRUE ~ 1)
-  df$snfi_1 <- ifelse(df$snfi_score == 1, 1, 0)
-  df$snfi_2 <- ifelse(df$snfi_score == 2, 1, 0)
-  df$snfi_3 <- ifelse(df$snfi_score == 3, 1, 0)
-  df$snfi_4 <- ifelse(df$snfi_score == 4, 1, 0)
+    case_when(
+      df$h3 == 1 ~ 4,
+      is.na(df$h3) ~ NA_real_,
+      sum_row(df$h1, df$h2) == 2 ~ 3,
+      sum_row(df$h1, df$h2) == 1 ~ 2,
+      TRUE ~ 1
+    )
+  df$snfi_1 <- case_when(df$snfi_score == 1 ~ 1,
+                         is.na(df$snfi_score) ~ NA_real_,
+                         TRUE ~ 0)
+  df$snfi_2 <- case_when(df$snfi_score == 2 ~ 1,
+                         is.na(df$snfi_score) ~ NA_real_,
+                         TRUE ~ 0)
+  df$snfi_3 <- case_when(df$snfi_score == 3 ~ 1,
+                         is.na(df$snfi_score) ~ NA_real_,
+                         TRUE ~ 0)
+  df$snfi_4 <-  case_when(df$snfi_score == 4 ~ 1,
+                          is.na(df$snfi_score) ~ NA_real_,
+                          TRUE ~ 0)
   
+  df$severe_snfi <-
+    case_when(df$snfi_score >= 3 ~ 1, is.na(df$snfi_score) ~ NA_real_, TRUE ~ 0)
   ###################################i #########################################
   
   df$i1 <- ifelse(
-    df$drinking_water_source %in%
+    !df$drinking_water_source %in%
       c(
         "borehole",
         "prot_well",
@@ -458,8 +589,7 @@ msni_recoding <- function(df, loop) {
   df$i2 <- ifelse(
     df$sufficient_water_drinking == "yes" &
       df$sufficient_water_cooking == "yes" &
-      df$sufficient_water_hygiene == "yes" &
-      df$sufficient_water_other == "yes",
+      df$sufficient_water_hygiene == "yes",
     0,
     1
   )
@@ -467,20 +597,46 @@ msni_recoding <- function(df, loop) {
   df$i3 <- ifelse(df$latrines %in% c("vip_pit", "flush"), 0, 1)
   
   df$i4 <-
-    ifelse(df$treat_drink_water %in% c("always", "sometimes"), 1, 0)
+    ifelse(
+      df$treat_drink_water %in% c("always", "sometimes") &
+        !df$drinking_water_source %in%
+        c(
+          "borehole",
+          "prot_well",
+          "prot_spring",
+          "bottled_water",
+          "network_private",
+          "network_comm"
+        ),
+      1,
+      0
+    )
   
   df$wash_score <-
     case_when(
       df$i2 == 1 ~ 4,
+      is.na(df$i2) ~ NA_real_,
       df$i1 == 1 |
         sum_row(df$i3, df$i4) == 2 ~ 3,
+      is.na(df$i1) ~ NA_real_,
       sum_row(df$i3, df$i4) == 1 ~ 2,
       TRUE ~ 1
     )
-  df$wash_1 <- ifelse(df$wash_score == 1, 1, 0)
-  df$wash_2 <- ifelse(df$wash_score == 2, 1, 0)
-  df$wash_3 <- ifelse(df$wash_score == 3, 1, 0)
-  df$wash_4 <- ifelse(df$wash_score == 4, 1, 0)
+  df$wash_1 <- case_when(df$wash_score == 1 ~ 1,
+                         is.na(df$wash_score) ~ NA_real_,
+                         TRUE ~ 0)
+  df$wash_2 <- case_when(df$wash_score == 2 ~ 1,
+                         is.na(df$wash_score) ~ NA_real_,
+                         TRUE ~ 0)
+  df$wash_3 <- case_when(df$wash_score == 3 ~ 1,
+                         is.na(df$wash_score) ~ NA_real_,
+                         TRUE ~ 0)
+  df$wash_4 <- case_when(df$wash_score == 4 ~ 1,
+                         is.na(df$wash_score) ~ NA_real_,
+                         TRUE ~ 0)
+  
+  df$severe_wash <-
+    case_when(df$wash_score >= 3 ~ 1, is.na(df$wash_score) ~ NA_real_, TRUE ~ 0)
   
   return(df)
 }

@@ -136,7 +136,8 @@ dap_name <- "msni"
 analysisplan <-
   read.csv(sprintf("input/dap/dap_%s.csv", dap_name), stringsAsFactors = F)
 response_with_composites$one <- "one"
-
+analysisplan$repeat.for.variable <- "one"
+analysisplan$independent.variable <- "one"
 #AGGREGATE ACROSS DISTRICTS OR/AND POPULATION GROUPS
 #analysisplan <- analysisplan_nationwide(analysisplan)
 #analysisplan <- analysisplan_pop_group_aggregated(analysisplan)
@@ -225,3 +226,4 @@ for (i in 1:length(groups)) {
     )
   }
 }
+
