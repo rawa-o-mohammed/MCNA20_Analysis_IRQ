@@ -682,7 +682,7 @@ msni_recoding <- function(df, loop) {
         df$protection_2 == 1 |
         df$health_2 == 1 |
         df$snfi_2 == 1 |
-        df$wash_2 == 1) & df$lsg_all_3 == 0,
+        df$wash_2 == 1) & df$lsg_all_3 == 0 & df$lsg_all_4 == 0,
       1,
       0
     )
@@ -694,7 +694,7 @@ msni_recoding <- function(df, loop) {
         df$protection_1 == 1 |
         df$health_1 == 1 |
         df$snfi_1 == 1 |
-        df$wash_1 == 1) & df$lsg_all_2 == 0,
+        df$wash_1 == 1) & df$lsg_all_2 == 0 & df$lsg_all_3 == 0 & df$lsg_all_4 == 0,
       1,
       0
     )

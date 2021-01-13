@@ -177,8 +177,7 @@ write.csv(
 )
 aggregation <- c("district_mcna", "all")
 disaggregation <- c("population_group", "all")
-agg <- "district_mcna"
-disagg <- "all"
+
 for (agg in aggregation) {
   for(disagg in disaggregation){
     name <- sprintf("msni_%s_%s", agg, disagg)
@@ -187,7 +186,7 @@ for (agg in aggregation) {
     }
     subset <- summary %>%
       filter(repeat.var == agg, independent.var == disagg)
-    if(is_empty(subset)){
+    if(nrow(subset) == 0){
       next
     }
     groups <- unique(subset$independent.var.value)
