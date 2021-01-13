@@ -135,14 +135,7 @@ response_with_composites <- msni_recoding(response, loop)
 dap_name <- "msni"
 analysisplan <-
   read.csv(sprintf("input/dap/dap_%s.csv", dap_name), stringsAsFactors = F)
-response_with_composites$one <- "one"
-analysisplan$repeat.for.variable <- "one"
-analysisplan$independent.variable <- "one"
-#AGGREGATE ACROSS DISTRICTS OR/AND POPULATION GROUPS
-#analysisplan <- analysisplan_nationwide(analysisplan)
-#analysisplan <- analysisplan_pop_group_aggregated(analysisplan)
-#analysisplan$hypothesis.type <- "group_difference"
-
+response_with_composites$all <- "all"
 
 result <-
   from_analysisplan_map_to_output(
@@ -153,8 +146,7 @@ result <-
     confidence_level = 0.9
   )
 
-name <- "msni_district_popgroup"
-saveRDS(result, paste(sprintf("output/RDS/result_%s.RDS", name)))
+saveRDS(result, paste("output/RDS/result_msni.RDS"))
 #summary[which(summary$dependent.var == "g51a"),]
 
 lookup_in_camp <-
@@ -171,59 +163,74 @@ summary <-
     x$summary.statistic
   }))
 write.csv(summary,
-          sprintf("output/raw_results/raw_results_%s.csv", name),
+          "output/raw_results/raw_results_msni.csv",
           row.names = F)
 summary <-
-  read.csv(sprintf("output/raw_results/raw_results_%s.csv", name),
+  read.csv("output/raw_results/raw_results_msni.csv",
            stringsAsFactors = F)
 summary <- correct.zeroes(summary)
 summary <- summary %>% filter(dependent.var.value %in% c(NA, 1))
 write.csv(
   summary,
-  sprintf("output/raw_results/raw_results_%s_filtered.csv", name),
+  "output/raw_results/raw_results_filtered_msni.csv",
   row.names = F
 )
-if (all(is.na(summary$independent.var.value))) {
-  summary$independent.var.value <- "all"
-}
-groups <- unique(summary$independent.var.value)
-groups <- groups[!is.na(groups)]
-library(plyr)
-for (i in 1:length(groups)) {
-  df <-
-    pretty.output(
-      summary,
-      groups[i],
-      analysisplan,
-      cluster_lookup_table,
-      lookup_table,
-      severity = name == "severity",
-      camp = F
-    )
-  write.csv(
-    df,
-    sprintf(
-      "output/summary_sorted/summary_sorted_%s_%s.csv",
-      name,
-      groups[i]
-    ),
-    row.names = F
-  )
-  if (i == 1) {
-    write.xlsx(
-      df,
-      file = sprintf("output/summary_sorted/summary_sorted_%s.xlsx", name),
-      sheetName = groups[i],
-      row.names = FALSE
-    )
-  } else {
-    write.xlsx(
-      df,
-      file = sprintf("output/summary_sorted/summary_sorted_%s.xlsx", name),
-      sheetName = groups[i],
-      append = TRUE,
-      row.names = FALSE
-    )
+aggregation <- c("district_mcna", "all")
+disaggregation <- c("population_group", "all")
+agg <- "district_mcna"
+disagg <- "all"
+for (agg in aggregation) {
+  for(disagg in disaggregation){
+    name <- sprintf("msni_%s_%s", agg, disagg)
+    if (all(is.na(summary$independent.var.value))) {
+      summary$independent.var.value <- disagg
+    }
+    subset <- summary %>%
+      filter(repeat.var == agg, independent.var == disagg)
+    if(is_empty(subset)){
+      next
+    }
+    groups <- unique(subset$independent.var.value)
+    groups <- groups[!is.na(groups)]
+    library(plyr)
+    for (i in 1:length(groups)) {
+      df <-
+        pretty.output(
+          subset,
+          groups[i],
+          analysisplan,
+          cluster_lookup_table,
+          lookup_table,
+          severity = name == "severity",
+          camp = F
+        )
+      df[c(which(endsWith(names(df), "_min")))] <- NULL
+      df[c(which(endsWith(names(df), "_max")))] <- NULL
+      write.csv(
+        df,
+        sprintf(
+          "output/summary_sorted/summary_sorted_%s_%s.csv",
+          name,
+          groups[i]
+        ),
+        row.names = F
+      )
+      if (i == 1) {
+        write.xlsx(
+          df,
+          file = sprintf("output/summary_sorted/summary_sorted_%s.xlsx", name),
+          sheetName = groups[i],
+          row.names = FALSE
+        )
+      } else {
+        write.xlsx(
+          df,
+          file = sprintf("output/summary_sorted/summary_sorted_%s.xlsx", name),
+          sheetName = groups[i],
+          append = TRUE,
+          row.names = FALSE
+        )
+      }
+    }
   }
 }
-

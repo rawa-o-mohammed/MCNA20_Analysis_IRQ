@@ -1,41 +1,471 @@
 Indicator.Group...Sector,research.question,sub.research.question,repeat.for.variable,independent.variable,independent.variable.type,dependent.variable,dependent.variable.type,hypothesis.type
-MSNI,HC - Capacity Gap (coping mechanism) ,1,one,population_group,categorical,coping_mechanism,categorical,direct_reporting
-MSNI,HC - Vulnerability,No or Minimal,one,population_group,categorical,vulnerability_1,categorical,direct_reporting
-MSNI,HC - Vulnerability,Stress,one,population_group,categorical,vulnerability_2,categorical,direct_reporting
-MSNI,HC - Vulnerability,Severe,one,population_group,categorical,vulnerability_3,categorical,direct_reporting
-MSNI,HC - Vulnerability,Extreme,one,population_group,categorical,vulnerability_4,categorical,direct_reporting
-MSNI,HC - Vulnerability,LSG,one,population_group,categorical,severe_vulnerability,categorical,direct_reporting
-MSNI,HC - LSG / Education,No or Minimal,one,population_group,categorical,education_1,categorical,direct_reporting
-MSNI,HC - LSG / Education,Stress,one,population_group,categorical,education_2,categorical,direct_reporting
-MSNI,HC - LSG / Education,Severe,one,population_group,categorical,education_3,categorical,direct_reporting
-MSNI,HC - LSG / Education,Extreme,one,population_group,categorical,education_4,categorical,direct_reporting
-MSNI,HC - LSG / Education,LSG,one,population_group,categorical,severe_education,categorical,direct_reporting
-MSNI,HC - LSG / Livelihoods,No or Minimal,one,population_group,categorical,livelihoods_1,categorical,direct_reporting
-MSNI,HC - LSG / Livelihoods,Stress,one,population_group,categorical,livelihoods_2,categorical,direct_reporting
-MSNI,HC - LSG / Livelihoods,Severe,one,population_group,categorical,livelihoods_3,categorical,direct_reporting
-MSNI,HC - LSG / Livelihoods,Extreme,one,population_group,categorical,livelihoods_4,categorical,direct_reporting
-MSNI,HC - LSG / Livelihoods,LSG,one,population_group,categorical,severe_livelihoods,categorical,direct_reporting
-MSNI,HC - LSG / Food Security,No or Minimal,one,population_group,categorical,food_security_1,categorical,direct_reporting
-MSNI,HC - LSG / Food Security,Stress,one,population_group,categorical,food_security_2,categorical,direct_reporting
-MSNI,HC - LSG / Food Security,Severe,one,population_group,categorical,food_security_3,categorical,direct_reporting
-MSNI,HC - LSG / Food Security,Extreme,one,population_group,categorical,food_security_4,categorical,direct_reporting
-MSNI,HC - LSG / Food Security,LSG,one,population_group,categorical,severe_food_secturiy,categorical,direct_reporting
-MSNI,HC - LSG / Protection,No or Minimal,one,population_group,categorical,protection_1,categorical,direct_reporting
-MSNI,HC - LSG / Protection,Stress,one,population_group,categorical,protection_2,categorical,direct_reporting
-MSNI,HC - LSG / Protection,Severe,one,population_group,categorical,protection_3,categorical,direct_reporting
-MSNI,HC - LSG / Protection,Extreme,one,population_group,categorical,protection_4,categorical,direct_reporting
-MSNI,HC - LSG / Protection,LSG,one,population_group,categorical,severe_protection,categorical,direct_reporting
-MSNI,HC - LSG / Health,No or Minimal,one,population_group,categorical,health_1,categorical,direct_reporting
-MSNI,HC - LSG / Health,Stress,one,population_group,categorical,health_2,categorical,direct_reporting
-MSNI,HC - LSG / Health,Severe,one,population_group,categorical,health_3,categorical,direct_reporting
-MSNI,HC - LSG / Health,LSG,one,population_group,categorical,severe_health,categorical,direct_reporting
-MSNI,HC - LSG / SNFI,No or Minimal,one,population_group,categorical,snfi_1,categorical,direct_reporting
-MSNI,HC - LSG / SNFI,Stress,one,population_group,categorical,snfi_2,categorical,direct_reporting
-MSNI,HC - LSG / SNFI,Severe,one,population_group,categorical,snfi_3,categorical,direct_reporting
-MSNI,HC - LSG / SNFI,Extreme,one,population_group,categorical,snfi_4,categorical,direct_reporting
-MSNI,HC - LSG / SNFI,LSG,one,population_group,categorical,severe_snfi,categorical,direct_reporting
-MSNI,HC - LSG / WASH,No or Minimal,one,population_group,categorical,wash_1,categorical,direct_reporting
-MSNI,HC - LSG / WASH,Stress,one,population_group,categorical,wash_2,categorical,direct_reporting
-MSNI,HC - LSG / WASH,Severe,one,population_group,categorical,wash_3,categorical,direct_reporting
-MSNI,HC - LSG / WASH,Extreme,one,population_group,categorical,wash_4,categorical,direct_reporting
-MSNI,HC - LSG / WASH,LSG,one,population_group,categorical,severe_wash,categorical,direct_reporting
+LSG,% of households with multi-sectoral needs,% of households with multi-sectoral needs,all,all,categorical,lsg_all,categorical,direct_reporting
+LSG,% of households per Multi-Sectoral Needs Index (MSNI) severity score,Extreme,all,all,categorical,lsg_all_4,categorical,direct_reporting
+LSG,% of households per Multi-Sectoral Needs Index (MSNI) severity score,Severe,all,all,categorical,lsg_all_3,categorical,direct_reporting
+LSG,% of households per Multi-Sectoral Needs Index (MSNI) severity score,Stress,all,all,categorical,lsg_all_2,categorical,direct_reporting
+LSG,% of households per Multi-Sectoral Needs Index (MSNI) severity score,No or Minimal,all,all,categorical,lsg_all_1,categorical,direct_reporting
+LSG,"% of households with
+multi-sectoral needs","% of households with
+multi-sectoral needs",all,population_group,categorical,lsg_all,categorical,direct_reporting
+LSG,% of households per Multi-Sectoral Needs Index (MSNI) severity score,Extreme,all,population_group,categorical,lsg_all_4,categorical,direct_reporting
+LSG,% of households per Multi-Sectoral Needs Index (MSNI) severity score,Severe,all,population_group,categorical,lsg_all_3,categorical,direct_reporting
+LSG,% of households per Multi-Sectoral Needs Index (MSNI) severity score,Stress,all,population_group,categorical,lsg_all_2,categorical,direct_reporting
+LSG,% of households per Multi-Sectoral Needs Index (MSNI) severity score,No or Minimal,all,population_group,categorical,lsg_all_1,categorical,direct_reporting
+LSG,"% of households with
+multi-sectoral needs",Severe or Extreme,district_mcna,all,categorical,lsg_all,categorical,direct_reporting
+LSG,% of households per Multi-Sectoral Needs Index (MSNI) severity score,Extreme,district_mcna,all,categorical,lsg_all_4,categorical,direct_reporting
+LSG,"% of households per number of sectoral LSG(s), per
+population group",7,all,population_group,categorical,seven_lsg,categorical,direct_reporting
+LSG,"% of households per number of sectoral LSG(s), per
+population group",6,all,population_group,categorical,six_lsg,categorical,direct_reporting
+LSG,"% of households per number of sectoral LSG(s), per
+population group",5,all,population_group,categorical,five_lsg,categorical,direct_reporting
+LSG,"% of households per number of sectoral LSG(s), per
+population group",4,all,population_group,categorical,four_lsg,categorical,direct_reporting
+LSG,"% of households per number of sectoral LSG(s), per
+population group",3,all,population_group,categorical,three_lsg,categorical,direct_reporting
+LSG,"% of households per number of sectoral LSG(s), per
+population group",2,all,population_group,categorical,two_lsg,categorical,direct_reporting
+LSG,"% of households per number of sectoral LSG(s), per
+population group",1,all,population_group,categorical,one_lsg,categorical,direct_reporting
+LSG,"% of households per number of sectoral LSG(s), per
+population group",0,all,population_group,categorical,zero_lsg,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Education Livelihoods,all,all,categorical,lsg_education_livelihoods,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Education Food,all,all,categorical,lsg_education_food,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Education Protection,all,all,categorical,lsg_education_protection,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Education Health,all,all,categorical,lsg_education_health,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Education Snfi,all,all,categorical,lsg_education_snfi,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Education Wash,all,all,categorical,lsg_education_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Livelihoods Food,all,all,categorical,lsg_livelihoods_food,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Livelihoods Protection,all,all,categorical,lsg_livelihoods_protection,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Livelihoods Health,all,all,categorical,lsg_livelihoods_health,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Livelihoods Snfi,all,all,categorical,lsg_livelihoods_snfi,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Livelihoods Wash,all,all,categorical,lsg_livelihoods_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Food Protection,all,all,categorical,lsg_food_protection,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Food Health,all,all,categorical,lsg_food_health,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Food Snfi,all,all,categorical,lsg_food_snfi,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Food Wash,all,all,categorical,lsg_food_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Protection Health,all,all,categorical,lsg_protection_health,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Protection Snfi,all,all,categorical,lsg_protection_snfi,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Protection Wash,all,all,categorical,lsg_protection_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Health Snfi,all,all,categorical,lsg_health_snfi,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Health Wash,all,all,categorical,lsg_health_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Snfi Wash,all,all,categorical,lsg_snfi_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Education Livelihoods,all,all,categorical,lsg_education_livelihoods,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Education Food,all,all,categorical,lsg_education_food,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Education Protection,all,all,categorical,lsg_education_protection,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Education Health,all,all,categorical,lsg_education_health,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Education Snfi,all,all,categorical,lsg_education_snfi,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Education Wash,all,all,categorical,lsg_education_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Livelihoods Food,all,all,categorical,lsg_livelihoods_food,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Livelihoods Protection,all,all,categorical,lsg_livelihoods_protection,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Livelihoods Health,all,all,categorical,lsg_livelihoods_health,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Livelihoods Snfi,all,all,categorical,lsg_livelihoods_snfi,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Livelihoods Wash,all,all,categorical,lsg_livelihoods_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Food Protection,all,all,categorical,lsg_food_protection,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Food Health,all,all,categorical,lsg_food_health,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Food Snfi,all,all,categorical,lsg_food_snfi,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Food Wash,all,all,categorical,lsg_food_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Protection Health,all,all,categorical,lsg_protection_health,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Protection Snfi,all,all,categorical,lsg_protection_snfi,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Protection Wash,all,all,categorical,lsg_protection_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Health Snfi,all,all,categorical,lsg_health_snfi,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Health Wash,all,all,categorical,lsg_health_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Snfi Wash,all,all,categorical,lsg_snfi_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Live Food,all,all,categorical,lsg_edu_live_food,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Live Protection,all,all,categorical,lsg_edu_live_protection,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Live Health,all,all,categorical,lsg_edu_live_health,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Live Snfi,all,all,categorical,lsg_edu_live_snfi,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Live Wash,all,all,categorical,lsg_edu_live_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Food Protection,all,all,categorical,lsg_edu_food_protection,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Food Health,all,all,categorical,lsg_edu_food_health,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Food Snfi,all,all,categorical,lsg_edu_food_snfi,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Food Wash,all,all,categorical,lsg_edu_food_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Protection Health,all,all,categorical,lsg_edu_protection_health,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Protection Snfi,all,all,categorical,lsg_edu_protection_snfi,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Protection Wash,all,all,categorical,lsg_edu_protection_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Health Snfi,all,all,categorical,lsg_edu_health_snfi,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Health Wash,all,all,categorical,lsg_edu_health_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Snfi Wash,all,all,categorical,lsg_edu_snfi_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Live Food Protection,all,all,categorical,lsg_live_food_protection,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Live Food Health,all,all,categorical,lsg_live_food_health,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Live Food Snfi,all,all,categorical,lsg_live_food_snfi,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Live Food Wash,all,all,categorical,lsg_live_food_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Live Protection Health,all,all,categorical,lsg_live_protection_health,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Live Protection Snfi,all,all,categorical,lsg_live_protection_snfi,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Live Protection Wash,all,all,categorical,lsg_live_protection_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Live Health Snfi,all,all,categorical,lsg_live_health_snfi,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Live Health Wash,all,all,categorical,lsg_live_health_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Live Snfi Wash,all,all,categorical,lsg_live_snfi_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Food Protection Health,all,all,categorical,lsg_food_protection_health,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Food Protection Snfi,all,all,categorical,lsg_food_protection_snfi,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Food Protection Wash,all,all,categorical,lsg_food_protection_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Food Health Snfi,all,all,categorical,lsg_food_health_snfi,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Food Health Wash,all,all,categorical,lsg_food_health_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Food Snfi Wash,all,all,categorical,lsg_food_snfi_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Protection Health Snfi,all,all,categorical,lsg_protection_health_snfi,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Protection Health Wash,all,all,categorical,lsg_protection_health_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Protection Snfi Wash,all,all,categorical,lsg_protection_snfi_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Health Snfi Wash,all,all,categorical,lsg_health_snfi_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Live Food Protection,all,all,categorical,lsg_edu_live_food_protection,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Live Food Health,all,all,categorical,lsg_edu_live_food_health,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Live Food Snfi,all,all,categorical,lsg_edu_live_food_snfi,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Live Food Wash,all,all,categorical,lsg_edu_live_food_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Live Protection Health,all,all,categorical,lsg_edu_live_protection_health,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Live Protection Snfi,all,all,categorical,lsg_edu_live_protection_snfi,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Live Protection Wash,all,all,categorical,lsg_edu_live_protection_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Live Health Snfi,all,all,categorical,lsg_edu_live_health_snfi,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Live Health Wash,all,all,categorical,lsg_edu_live_health_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Live Snfi Wash,all,all,categorical,lsg_edu_live_snfi_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Food Protection Health,all,all,categorical,lsg_edu_food_protection_health,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Food Protection Snfi,all,all,categorical,lsg_edu_food_protection_snfi,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Food Protection Wash,all,all,categorical,lsg_edu_food_protection_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Food Health Snfi,all,all,categorical,lsg_edu_food_health_snfi,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Food Health Wash,all,all,categorical,lsg_edu_food_health_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Food Snfi Wash,all,all,categorical,lsg_edu_food_snfi_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Protection Health Snfi,all,all,categorical,lsg_edu_protection_health_snfi,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Protection Health Wash,all,all,categorical,lsg_edu_protection_health_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Protection Snfi Wash,all,all,categorical,lsg_edu_protection_snfi_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Health Snfi Wash,all,all,categorical,lsg_edu_health_snfi_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Live Food Protection Health,all,all,categorical,lsg_live_food_protection_health,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Live Food Protection Snfi,all,all,categorical,lsg_live_food_protection_snfi,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Live Food Protection Wash,all,all,categorical,lsg_live_food_protection_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Live Food Health Snfi,all,all,categorical,lsg_live_food_health_snfi,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Live Food Health Wash,all,all,categorical,lsg_live_food_health_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Live Food Snfi Wash,all,all,categorical,lsg_live_food_snfi_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Live Protection Health Snfi,all,all,categorical,lsg_live_protection_health_snfi,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Live Protection Health Wash,all,all,categorical,lsg_live_protection_health_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Live Protection Snfi Wash,all,all,categorical,lsg_live_protection_snfi_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Live Health Snfi Wash,all,all,categorical,lsg_live_health_snfi_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Food Protection Health Snfi,all,all,categorical,lsg_food_protection_health_snfi,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Food Protection Health Wash,all,all,categorical,lsg_food_protection_health_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Food Protection Snfi Wash,all,all,categorical,lsg_food_protection_snfi_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Food Health Snfi Wash,all,all,categorical,lsg_food_health_snfi_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Protection Health Snfi Wash,all,all,categorical,lsg_protection_health_snfi_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Live Food Protection Health,all,all,categorical,lsg_edu_live_food_protection_health,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Live Food Protection Snfi,all,all,categorical,lsg_edu_live_food_protection_snfi,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Live Food Protection Wash,all,all,categorical,lsg_edu_live_food_protection_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Live Food Health Snfi,all,all,categorical,lsg_edu_live_food_health_snfi,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Live Food Health Wash,all,all,categorical,lsg_edu_live_food_health_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Live Food Snfi Wash,all,all,categorical,lsg_edu_live_food_snfi_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Live Protection Health Snfi,all,all,categorical,lsg_edu_live_protection_health_snfi,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Live Protection Health Wash,all,all,categorical,lsg_edu_live_protection_health_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Live Protection Snfi Wash,all,all,categorical,lsg_edu_live_protection_snfi_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Live Health Snfi Wash,all,all,categorical,lsg_edu_live_health_snfi_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Food Protection Health Snfi,all,all,categorical,lsg_edu_food_protection_health_snfi,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Food Protection Health Wash,all,all,categorical,lsg_edu_food_protection_health_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Food Protection Snfi Wash,all,all,categorical,lsg_edu_food_protection_snfi_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Food Health Snfi Wash,all,all,categorical,lsg_edu_food_health_snfi_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Protection Health Snfi Wash,all,all,categorical,lsg_edu_protection_health_snfi_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Live Food Protection Health Snfi,all,all,categorical,lsg_live_food_protection_health_snfi,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Live Food Protection Health Wash,all,all,categorical,lsg_live_food_protection_health_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Live Food Protection Snfi Wash,all,all,categorical,lsg_live_food_protection_snfi_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Live Food Health Snfi Wash,all,all,categorical,lsg_live_food_health_snfi_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Live Protection Health Snfi Wash,all,all,categorical,lsg_live_protection_health_snfi_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Food Protection Health Snfi Wash,all,all,categorical,lsg_food_protection_health_snfi_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Live Food Protection Health Snfi,all,all,categorical,lsg_edu_live_food_protection_health_snfi,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Live Food Protection Health Wash,all,all,categorical,lsg_edu_live_food_protection_health_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Live Food Protection Snfi Wash,all,all,categorical,lsg_edu_live_food_protection_snfi_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Food Protection Health Snfi Wash,all,all,categorical,lsg_edu_food_protection_health_snfi_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Live Food Protection Health Snfi Wash,all,all,categorical,lsg_live_food_protection_health_snfi_wash,categorical,direct_reporting
+LSG,"Among households with multi-sectoral needs, % of
+households with sectoral LSG(s)",Education,all,all,categorical,lsg_education,categorical,direct_reporting
+LSG,"Among households with multi-sectoral needs, % of
+households with sectoral LSG(s)",Livelihoods,all,all,categorical,lsg_livelihoods,categorical,direct_reporting
+LSG,"Among households with multi-sectoral needs, % of
+households with sectoral LSG(s)",Food Security,all,all,categorical,lsg_food,categorical,direct_reporting
+LSG,"Among households with multi-sectoral needs, % of
+households with sectoral LSG(s)",Protection,all,all,categorical,lsg_protection,categorical,direct_reporting
+LSG,"Among households with multi-sectoral needs, % of
+households with sectoral LSG(s)",Health,all,all,categorical,lsg_health,categorical,direct_reporting
+LSG,"Among households with multi-sectoral needs, % of
+households with sectoral LSG(s)",SNFI,all,all,categorical,lsg_snfi,categorical,direct_reporting
+LSG,"Among households with multi-sectoral needs, % of
+households with sectoral LSG(s)",WASH,all,all,categorical,lsg_wash,categorical,direct_reporting
+LSG,"Among households with multi-sectoral needs, % of
+households with sectoral LSG(s)",Education,all,population_group,categorical,lsg_education,categorical,direct_reporting
+LSG,"Among households with multi-sectoral needs, % of
+households with sectoral LSG(s)",Livelihoods,all,population_group,categorical,lsg_livelihoods,categorical,direct_reporting
+LSG,"Among households with multi-sectoral needs, % of
+households with sectoral LSG(s)",Food Security,all,population_group,categorical,lsg_food,categorical,direct_reporting
+LSG,"Among households with multi-sectoral needs, % of
+households with sectoral LSG(s)",Protection,all,population_group,categorical,lsg_protection,categorical,direct_reporting
+LSG,"Among households with multi-sectoral needs, % of
+households with sectoral LSG(s)",Health,all,population_group,categorical,lsg_health,categorical,direct_reporting
+LSG,"Among households with multi-sectoral needs, % of
+households with sectoral LSG(s)",SNFI,all,population_group,categorical,lsg_snfi,categorical,direct_reporting
+LSG,"Among households with multi-sectoral needs, % of
+households with sectoral LSG(s)",WASH,all,population_group,categorical,lsg_wash,categorical,direct_reporting
+Food Security,"% of households with a 
+Food Security LSG.","% of households with a 
+Food Security LSG.",all,all,categorical,lsg_food,categorical,direct_reporting
+Food Security,"% of households with a 
+Food Security LSG.","% of households with a 
+Food Security LSG.",all,population_group,categorical,lsg_food,categorical,direct_reporting
+Food Security,"% of households with a 
+Food Security LSG.","% of households with a 
+Food Security LSG.",district_mcna,all,categorical,lsg_food,categorical,direct_reporting
+Food Security,"of households per Food Security LSG severity score, per
+population group",No or Minimal,all,all,categorical,food_security_1,categorical,direct_reporting
+Food Security,"of households per Food Security LSG severity score, per
+population group",Stress,all,all,categorical,food_security_2,categorical,direct_reporting
+Food Security,"of households per Food Security LSG severity score, per
+population group",Severe,all,all,categorical,food_security_3,categorical,direct_reporting
+Food Security,"of households per Food Security LSG severity score, per
+population group",Extreme,all,all,categorical,food_security_4,categorical,direct_reporting
+Food Security,"of households per Food Security LSG severity score, per
+population group",No or Minimal,all,population_group,categorical,food_security_1,categorical,direct_reporting
+Food Security,"of households per Food Security LSG severity score, per
+population group",Stress,all,population_group,categorical,food_security_2,categorical,direct_reporting
+Food Security,"of households per Food Security LSG severity score, per
+population group",Severe,all,population_group,categorical,food_security_3,categorical,direct_reporting
+Food Security,"of households per Food Security LSG severity score, per
+population group",Extreme,all,population_group,categorical,food_security_4,categorical,direct_reporting
+Food Security,Food Consumption Score (FCS),HH has borderline OR poor FCS,all,all,categorical,e1,categorical,direct_reporting
+Food Security,Food Expenditure share (FES),Food expenditure share of total expenditure is > 65%,all,all,categorical,e2,categorical,direct_reporting
+Food Security,Household Hunger Scale ,HH has moderate to severe (2 - 6) Household Hunger Score,all,all,categorical,e3,categorical,direct_reporting
+Food Security,"of households were found to have a Food Security LSG and to 
+be vulnerable","of households were found to have a Food Security LSG and to 
+be vulnerable",all,all,categorical,lsg_food_vulnerable,categorical,direct_reporting
+WASH,% of households with a WASH LSG.,% of households with a WASH LSG.,all,all,categorical,lsg_wash,categorical,direct_reporting
+WASH,% of households with a WASH LSG.,% of households with a WASH LSG.,all,population_group,categorical,lsg_wash,categorical,direct_reporting
+WASH,% of households with a WASH LSG.,% of households with a WASH LSG.,district_mcna,all,categorical,lsg_wash,categorical,direct_reporting
+WASH,"of households per WASH LSG severity score, per
+population group",No or Minimal,all,all,categorical,wash_1,categorical,direct_reporting
+WASH,"of households per WASH LSG severity score, per
+population group",Stress,all,all,categorical,wash_2,categorical,direct_reporting
+WASH,"of households per WASH LSG severity score, per
+population group",Severe,all,all,categorical,wash_3,categorical,direct_reporting
+WASH,"of households per WASH LSG severity score, per
+population group",Extreme,all,all,categorical,wash_4,categorical,direct_reporting
+WASH,"of households per WASH LSG severity score, per
+population group",No or Minimal,all,population_group,categorical,wash_1,categorical,direct_reporting
+WASH,"of households per WASH LSG severity score, per
+population group",Stress,all,population_group,categorical,wash_2,categorical,direct_reporting
+WASH,"of households per WASH LSG severity score, per
+population group",Severe,all,population_group,categorical,wash_3,categorical,direct_reporting
+WASH,"of households per WASH LSG severity score, per
+population group",Extreme,all,population_group,categorical,wash_4,categorical,direct_reporting
+WASH,% HH without access to an improved water source,HH does not have access to improved water source,all,all,categorical,i1,categorical,direct_reporting
+WASH,% HH without access to a sufficient quantity of water for drinking and domestic purposes,HH doesn't have enough water for drinking OR cooking OR personal hygiene,all,all,categorical,i2,categorical,direct_reporting
+WASH,% HH without access to improved functional sanitation facilities ,HH does not have access to an improved santiation facility,all,all,categorical,i3,categorical,direct_reporting
+WASH,% HH treating their water prior to drinking,HH is treating their water prior to drinking,all,all,categorical,i4,categorical,direct_reporting
+WASH,"of households were found to have a WASH LSG and to 
+be vulnerable","of households were found to have a WASH LSG and to 
+be vulnerable",all,all,categorical,lsg_wash_vulnerable,categorical,direct_reporting
+Health,% of households with a Health LSG.,% of households with a Health LSG.,all,all,categorical,lsg_health,categorical,direct_reporting
+Health,% of households with a Health LSG.,% of households with a Health LSG.,all,population_group,categorical,lsg_health,categorical,direct_reporting
+Health,% of households with a Health LSG.,% of households with a Health LSG.,district_mcna,all,categorical,lsg_health,categorical,direct_reporting
+Health,"of households per Health LSG severity score, per
+population group",No or Minimal,all,all,categorical,health_1,categorical,direct_reporting
+Health,"of households per Health LSG severity score, per
+population group",Stress,all,all,categorical,health_2,categorical,direct_reporting
+Health,"of households per Health LSG severity score, per
+population group",Severe,all,all,categorical,health_3,categorical,direct_reporting
+Health,"of households per Health LSG severity score, per
+population group",No or Minimal,all,population_group,categorical,health_1,categorical,direct_reporting
+Health,"of households per Health LSG severity score, per
+population group",Stress,all,population_group,categorical,health_2,categorical,direct_reporting
+Health,"of households per Health LSG severity score, per
+population group",Severe,all,population_group,categorical,health_3,categorical,direct_reporting
+Health,Percentage of population that cannot access primary healthcare within one hour’s walk from dwellings,HH reporting that there is no health clinic or hospital within a one hour's walk from dwellings,all,all,categorical,g1,categorical,direct_reporting
+Health,% Women of reproductive age (12-49) with access to specialized reproductive health services,HH doesn't have access to specialized reproductive health services,all,all,categorical,g2,categorical,direct_reporting
+Health,% HH spending more than x% of their total expenditure on healthcare,HH spending more than 20% of total expenditure on healthcare,all,all,categorical,g3,categorical,direct_reporting
+Health,% of HH experiencing difficulties when accessing health services in the past 3months,HH is reporting difficulties when trying to access health services in the past 3 months,all,all,categorical,g4,categorical,direct_reporting
+Health,"of households were found to have a Health LSG and to 
+be vulnerable","of households were found to have a Health LSG and to 
+be vulnerable",all,all,categorical,lsg_health_vulnerable,categorical,direct_reporting
+Shelter,% of households with a Shelter LSG.,% of households with a Shelter LSG.,all,all,categorical,lsg_snfi,categorical,direct_reporting
+Shelter,% of households with a Shelter LSG.,% of households with a Shelter LSG.,all,population_group,categorical,lsg_snfi,categorical,direct_reporting
+Shelter,% of households with a Shelter LSG.,% of households with a Shelter LSG.,district_mcna,all,categorical,lsg_snfi,categorical,direct_reporting
+Shelter,"of households per Shelter LSG severity score, per
+population group",No or Minimal,all,all,categorical,snfi_1,categorical,direct_reporting
+Shelter,"of households per Shelter LSG severity score, per
+population group",Stress,all,all,categorical,snfi_2,categorical,direct_reporting
+Shelter,"of households per Shelter LSG severity score, per
+population group",Severe,all,all,categorical,snfi_3,categorical,direct_reporting
+Shelter,"of households per Shelter LSG severity score, per
+population group",Extreme,all,all,categorical,snfi_4,categorical,direct_reporting
+Shelter,"of households per Shelter LSG severity score, per
+population group",No or Minimal,all,population_group,categorical,snfi_1,categorical,direct_reporting
+Shelter,"of households per Shelter LSG severity score, per
+population group",Stress,all,population_group,categorical,snfi_2,categorical,direct_reporting
+Shelter,"of households per Shelter LSG severity score, per
+population group",Severe,all,population_group,categorical,snfi_3,categorical,direct_reporting
+Shelter,"of households per Shelter LSG severity score, per
+population group",Extreme,all,population_group,categorical,snfi_4,categorical,direct_reporting
+Shelter,% HHs reporting at least 2 shelter improvements,HH is reporting more than one shelter improvement,all,all,categorical,h1,categorical,direct_reporting
+Shelter,% HHs needing basic NFI items,HH is reporting needing at least one NFI,all,all,categorical,h2,categorical,direct_reporting
+Shelter,% of people living under critical shelter conditions (aggregated indicator),HH is living in critical shelter,all,all,categorical,h3,categorical,direct_reporting
+Shelter,"of households were found to have a Shelter LSG and to 
+be vulnerable","of households were found to have a Shelter LSG and to 
+be vulnerable",all,all,categorical,lsg_snfi_vulnerable,categorical,direct_reporting
+Education,% of households with an Education LSG.,% of households with an Education LSG.,all,all,categorical,lsg_education,categorical,direct_reporting
+Education,% of households with an Education LSG.,% of households with an Education LSG.,all,population_group,categorical,lsg_education,categorical,direct_reporting
+Education,% of households with an Education LSG.,% of households with an Education LSG.,district_mcna,all,categorical,lsg_education,categorical,direct_reporting
+Education,"of households per Education LSG severity score, per
+population group",No or Minimal,all,all,categorical,education_1,categorical,direct_reporting
+Education,"of households per Education LSG severity score, per
+population group",Stress,all,all,categorical,education_2,categorical,direct_reporting
+Education,"of households per Education LSG severity score, per
+population group",Severe,all,all,categorical,education_3,categorical,direct_reporting
+Education,"of households per Education LSG severity score, per
+population group",Extreme,all,all,categorical,education_4,categorical,direct_reporting
+Education,"of households per Education LSG severity score, per
+population group",No or Minimal,all,population_group,categorical,education_1,categorical,direct_reporting
+Education,"of households per Education LSG severity score, per
+population group",Stress,all,population_group,categorical,education_2,categorical,direct_reporting
+Education,"of households per Education LSG severity score, per
+population group",Severe,all,population_group,categorical,education_3,categorical,direct_reporting
+Education,"of households per Education LSG severity score, per
+population group",Extreme,all,population_group,categorical,education_4,categorical,direct_reporting
+Education,% of households reporting barriers to education related to lack of household resources,"HH reporting barriers to education that are related to a lack of household resources (cannot afford to pay for school-related expenses, children busy working or supporting the household)",all,all,categorical,c1,categorical,direct_reporting
+Education,% children not attending formal or informal education regularly (at least 4 days a week) prior to the COVID-19 outbreak,At least one child in HH was not attending formal or informal education regularly (at least 4 days per week) prior to the covid-19 outbreak,all,all,categorical,c2,categorical,direct_reporting
+Education,% children not attending formal or informal education regularly (at least 4 days a week) prior to the COVID-19 outbreak,All children in HH weren NOT attending formal or informal education regularly (at least 4 days per week) prior to the covid-19 outbreak,all,all,categorical,c3,categorical,direct_reporting
+Education,% of HH without a functioning primary or secondary school within 2km of dwellings,HH reporting that there's no primary or secondary school present within 2km of dwellings,all,all,categorical,c4,categorical,direct_reporting
+Education,"of households were found to have a Education LSG and to 
+be vulnerable","of households were found to have a Education LSG and to 
+be vulnerable",all,all,categorical,lsg_education_vulnerable,categorical,direct_reporting
+Protection,% of households with an Protection LSG.,% of households with an Protection LSG.,all,all,categorical,lsg_protection,categorical,direct_reporting
+Protection,% of households with an Protection LSG.,% of households with an Protection LSG.,all,population_group,categorical,lsg_protection,categorical,direct_reporting
+Protection,% of households with an Protection LSG.,% of households with an Protection LSG.,district_mcna,all,categorical,lsg_protection,categorical,direct_reporting
+Protection,"of households per Protection LSG severity score, per
+population group",No or Minimal,all,all,categorical,protection_1,categorical,direct_reporting
+Protection,"of households per Protection LSG severity score, per
+population group",Stress,all,all,categorical,protection_2,categorical,direct_reporting
+Protection,"of households per Protection LSG severity score, per
+population group",Severe,all,all,categorical,protection_3,categorical,direct_reporting
+Protection,"of households per Protection LSG severity score, per
+population group",Extreme,all,all,categorical,protection_4,categorical,direct_reporting
+Protection,"of households per Protection LSG severity score, per
+population group",No or Minimal,all,population_group,categorical,protection_1,categorical,direct_reporting
+Protection,"of households per Protection LSG severity score, per
+population group",Stress,all,population_group,categorical,protection_2,categorical,direct_reporting
+Protection,"of households per Protection LSG severity score, per
+population group",Severe,all,population_group,categorical,protection_3,categorical,direct_reporting
+Protection,"of households per Protection LSG severity score, per
+population group",Extreme,all,population_group,categorical,protection_4,categorical,direct_reporting
+Protection,% HH with at least one person under (<18) working,At least one child in HH working or contributing to HH income,all,all,categorical,f1,categorical,direct_reporting
+Protection,% of households with presence of child marriage,At least one child in HH is married,all,all,categorical,f2,categorical,direct_reporting
+Protection, % of HH reporting at least one member with psychosocial distress (proxy data with behaviour change),At least one member in HH is reporting psychosocial distress,all,all,categorical,f3,categorical,direct_reporting
+Protection,% women and girls who avoid areas because they feel unsafe there,Women and girls avoid at least 1 area because they feel unsafe there,all,all,categorical,f4,categorical,direct_reporting
+Protection,% HH missing at least one key household or individual document ,"HH missing at least one key individual or HH document (nationality certificate, birth certificate, ID card, PDS card)",all,all,categorical,f5,categorical,direct_reporting
+Protection,% HH lacking secure tenure,HH is reporting that their house/apartment is under dispute and/or no valid HLP documentation,all,all,categorical,f6,categorical,direct_reporting
+Protection,% HHs reporting risk of eviction,HH is reporting being at risk of eviction,all,all,categorical,f7,categorical,direct_reporting
+Protection,% of children under 18 currently not residing in the HH,At least one child not residing in HH,all,all,categorical,f8,categorical,direct_reporting
+Protection,% of HHs that have suffered incidents affecting HH members in the last 30 days,At least one member in HH has experienced a safety or security incident in the past 30 days,all,all,categorical,f9,categorical,direct_reporting
+Protection,"of households were found to have a Protection LSG and to 
+be vulnerable","of households were found to have a Protection LSG and to 
+be vulnerable",all,all,categorical,lsg_protection_vulnerable,categorical,direct_reporting
+Capacity Gap,% of households with a Capacity Gap AND no LSG,% of households with a Capacity Gap AND no LSG,all,all,categorical,cg_lsg_1,categorical,direct_reporting
+Capacity Gap,% of households with a Capacity Gap AND no LSG,% of households with a Capacity Gap AND no LSG,all,population_group,categorical,cg_lsg_1,categorical,direct_reporting
+Capacity Gap,% of households with a Capacity Gap AND no LSG,% of households with a Capacity Gap AND no LSG,district_mcna,all,categorical,cg_lsg_1,categorical,direct_reporting
+Capacity Gap,% of households with a Capacity Gap AND no LSG AND with pre-existing vulnerabilities,% of households with a Capacity Gap AND no LSG AND with pre-existing vulnerabilities,all,population_group,categorical,cg_lsg_2,categorical,direct_reporting
+Capacity Gap,% of households with a Capacity Gap AND at least one LSG,% of households with a Capacity Gap AND at least one LSG,all,all,categorical,cg_lsg_3,categorical,direct_reporting
+Capacity Gap,% of households with no Capacity Gap AND at least one LSG,% of households with no Capacity Gap AND at least one LSG,all,all,categorical,cg_lsg_4,categorical,direct_reporting
+Vulnerability,% of households with at least one LSG and vulnerable,% of households with at least one LSG and vulnerable,all,all,categorical,lsg_vulnerable,categorical,direct_reporting
+Vulnerability,% of households with at least one LSG and vulnerable,% of households with at least one LSG and vulnerable,all,population_group,categorical,lsg_vulnerable,categorical,direct_reporting
+Vulnerability,"% of households with at least one LSG, per vulnerability severity score",No or Minimal,all,all,categorical,vulnerability_1,categorical,direct_reporting
+Vulnerability,"% of households with at least one LSG, per vulnerability severity score",Stress,all,all,categorical,vulnerability_2,categorical,direct_reporting
+Vulnerability,"% of households with at least one LSG, per vulnerability severity score",Severe,all,all,categorical,vulnerability_3,categorical,direct_reporting
+Vulnerability,"% of households with at least one LSG, per vulnerability severity score",Extreme,all,all,categorical,vulnerability_4,categorical,direct_reporting
+Vulnerability,"% of households with at least one LSG, per vulnerability severity score",No or Minimal,all,population_group,categorical,vulnerability_1,categorical,direct_reporting
+Vulnerability,"% of households with at least one LSG, per vulnerability severity score",Stress,all,population_group,categorical,vulnerability_2,categorical,direct_reporting
+Vulnerability,"% of households with at least one LSG, per vulnerability severity score",Severe,all,population_group,categorical,vulnerability_3,categorical,direct_reporting
+Vulnerability,"% of households with at least one LSG, per vulnerability severity score",Extreme,all,population_group,categorical,vulnerability_4,categorical,direct_reporting
+Vulnerability,"% of household members with disability  (""lots of difficulty"" or ""cannot do at all"" one of the following activities: seeing, hearing, walking/climbing steps, remembering/concerntrating, self-care, communicating)",At least one member reporting lots of difficulties or cannot do at all in at least one domain,all,all,categorical,b1,categorical,direct_reporting
+Vulnerability,"% of single female-headed households (separated, divorced, widowed) ","HH is headed by a single female
+",all,all,categorical,b2,categorical,direct_reporting
+Vulnerability,% HH with at least one individual with a chronic health condition,"At least one member of the HH is reporting a chronic health condition (heart disease, hypertension, blood disease, cancer, lung disease, diabetes, renal diseases)",all,all,categorical,b3,categorical,direct_reporting
+Vulnerability,% HH missing at least one key household or individual document ,"At least one member of the HH is reporting missing a key individual or HH document (national ID, nationality certificate , unified ID, birth certificate, PDS card)",all,all,categorical,b4,categorical,direct_reporting
+Vulnerability,% of households not intending to return to their AoO because of security/safety-related concerns,"HH is reporting security/safety concerns as a main barrier for return (fear/trauma associated with AoO, lack of security forces, presence of explosive hazards, fear of discrimination, lack of safety and security for women)",all,all,categorical,b5,categorical,direct_reporting
+Vulnerability,% of households without access to soap,No soap available in HH,all,all,categorical,b6,categorical,direct_reporting
+Vulnerability,% of HH with at least one member above the age of 60,At least one HH member above the age of 60,all,all,categorical,b7,categorical,direct_reporting
+Vulnerability,"% of households with a LSG, per sector and vulnerability profile",Male Head of Houshold,all,all,categorical,male_hhh_education,categorical,direct_reporting
+Vulnerability,"% of households with a LSG, per sector and vulnerability profile",Male Head of Houshold,all,all,categorical,male_hhh_food,categorical,direct_reporting
+Vulnerability,"% of households with a LSG, per sector and vulnerability profile",Male Head of Houshold,all,all,categorical,male_hhh_health,categorical,direct_reporting
+Vulnerability,"% of households with a LSG, per sector and vulnerability profile",Male Head of Houshold,all,all,categorical,male_hhh_protection,categorical,direct_reporting
+Vulnerability,"% of households with a LSG, per sector and vulnerability profile",Male Head of Houshold,all,all,categorical,male_hhh_shelter,categorical,direct_reporting
+Vulnerability,"% of households with a LSG, per sector and vulnerability profile",Male Head of Houshold,all,all,categorical,male_hhh_wash,categorical,direct_reporting
+Vulnerability,"% of households with a LSG, per sector and vulnerability profile",Male Head of Houshold,all,all,categorical,male_hhh_lsgs,categorical,direct_reporting
+Vulnerability,"% of households with a LSG, per sector and vulnerability profile",Male Head of Houshold,all,all,categorical,male_hhh_cg,categorical,direct_reporting
+Vulnerability,"% of households with a LSG, per sector and vulnerability profile",Female Head of Houshold,all,all,categorical,female_hhh_education,categorical,direct_reporting
+Vulnerability,"% of households with a LSG, per sector and vulnerability profile",Female Head of Houshold,all,all,categorical,female_hhh_food,categorical,direct_reporting
+Vulnerability,"% of households with a LSG, per sector and vulnerability profile",Female Head of Houshold,all,all,categorical,female_hhh_health,categorical,direct_reporting
+Vulnerability,"% of households with a LSG, per sector and vulnerability profile",Female Head of Houshold,all,all,categorical,female_hhh_protection,categorical,direct_reporting
+Vulnerability,"% of households with a LSG, per sector and vulnerability profile",Female Head of Houshold,all,all,categorical,female_hhh_shelter,categorical,direct_reporting
+Vulnerability,"% of households with a LSG, per sector and vulnerability profile",Female Head of Houshold,all,all,categorical,female_hhh_wash,categorical,direct_reporting
+Vulnerability,"% of households with a LSG, per sector and vulnerability profile",Female Head of Houshold,all,all,categorical,female_hhh_lsgs,categorical,direct_reporting
+Vulnerability,"% of households with a LSG, per sector and vulnerability profile",Female Head of Houshold,all,all,categorical,female_hhh_cg,categorical,direct_reporting
+Vulnerability,"% of households with a LSG, per sector and vulnerability profile",Child Head of Houshold,all,all,categorical,child_hhh_education,categorical,direct_reporting
+Vulnerability,"% of households with a LSG, per sector and vulnerability profile",Child Head of Houshold,all,all,categorical,child_hhh_food,categorical,direct_reporting
+Vulnerability,"% of households with a LSG, per sector and vulnerability profile",Child Head of Houshold,all,all,categorical,child_hhh_health,categorical,direct_reporting
+Vulnerability,"% of households with a LSG, per sector and vulnerability profile",Child Head of Houshold,all,all,categorical,child_hhh_protection,categorical,direct_reporting
+Vulnerability,"% of households with a LSG, per sector and vulnerability profile",Child Head of Houshold,all,all,categorical,child_hhh_shelter,categorical,direct_reporting
+Vulnerability,"% of households with a LSG, per sector and vulnerability profile",Child Head of Houshold,all,all,categorical,child_hhh_wash,categorical,direct_reporting
+Vulnerability,"% of households with a LSG, per sector and vulnerability profile",Child Head of Houshold,all,all,categorical,child_hhh_lsgs,categorical,direct_reporting
+Vulnerability,"% of households with a LSG, per sector and vulnerability profile",Child Head of Houshold,all,all,categorical,child_hhh_cg,categorical,direct_reporting
+Vulnerability,"% of households with a LSG, per sector and vulnerability profile",adult Head of Houshold,all,all,categorical,adult_hhh_education,categorical,direct_reporting
+Vulnerability,"% of households with a LSG, per sector and vulnerability profile",adult Head of Houshold,all,all,categorical,adult_hhh_food,categorical,direct_reporting
+Vulnerability,"% of households with a LSG, per sector and vulnerability profile",adult Head of Houshold,all,all,categorical,adult_hhh_health,categorical,direct_reporting
+Vulnerability,"% of households with a LSG, per sector and vulnerability profile",adult Head of Houshold,all,all,categorical,adult_hhh_protection,categorical,direct_reporting
+Vulnerability,"% of households with a LSG, per sector and vulnerability profile",adult Head of Houshold,all,all,categorical,adult_hhh_shelter,categorical,direct_reporting
+Vulnerability,"% of households with a LSG, per sector and vulnerability profile",adult Head of Houshold,all,all,categorical,adult_hhh_wash,categorical,direct_reporting
+Vulnerability,"% of households with a LSG, per sector and vulnerability profile",adult Head of Houshold,all,all,categorical,adult_hhh_lsgs,categorical,direct_reporting
+Vulnerability,"% of households with a LSG, per sector and vulnerability profile",adult Head of Houshold,all,all,categorical,adult_hhh_cg,categorical,direct_reporting
+Vulnerability,"% of household members with disability  (""lots of difficulty"" or ""cannot do at all"" one of the following activities: seeing, hearing, walking/climbing steps, remembering/concerntrating, self-care, communicating)",with LSG in Education,all,all,categorical,b1_education,categorical,direct_reporting
+Vulnerability,"% of household members with disability  (""lots of difficulty"" or ""cannot do at all"" one of the following activities: seeing, hearing, walking/climbing steps, remembering/concerntrating, self-care, communicating)",with LSG in Food Security,all,all,categorical,b1_food,categorical,direct_reporting
+Vulnerability,"% of household members with disability  (""lots of difficulty"" or ""cannot do at all"" one of the following activities: seeing, hearing, walking/climbing steps, remembering/concerntrating, self-care, communicating)",with LSG in Health,all,all,categorical,b1_health,categorical,direct_reporting
+Vulnerability,"% of household members with disability  (""lots of difficulty"" or ""cannot do at all"" one of the following activities: seeing, hearing, walking/climbing steps, remembering/concerntrating, self-care, communicating)",with LSG in Protection,all,all,categorical,b1_protection,categorical,direct_reporting
+Vulnerability,"% of household members with disability  (""lots of difficulty"" or ""cannot do at all"" one of the following activities: seeing, hearing, walking/climbing steps, remembering/concerntrating, self-care, communicating)",with LSG in Shelter,all,all,categorical,b1_shelter,categorical,direct_reporting
+Vulnerability,"% of household members with disability  (""lots of difficulty"" or ""cannot do at all"" one of the following activities: seeing, hearing, walking/climbing steps, remembering/concerntrating, self-care, communicating)",with LSG in WASH,all,all,categorical,b1_wash,categorical,direct_reporting
+Vulnerability,"% of household members with disability  (""lots of difficulty"" or ""cannot do at all"" one of the following activities: seeing, hearing, walking/climbing steps, remembering/concerntrating, self-care, communicating)",with at least one LSG,all,all,categorical,b1_lsgs,categorical,direct_reporting
+Vulnerability,"% of household members with disability  (""lots of difficulty"" or ""cannot do at all"" one of the following activities: seeing, hearing, walking/climbing steps, remembering/concerntrating, self-care, communicating)",with Capacity Gap,all,all,categorical,b1_cg,categorical,direct_reporting
+Vulnerability,"% of single female-headed households (separated, divorced, widowed) ",with LSG in Education,all,all,categorical,b2_education,categorical,direct_reporting
+Vulnerability,"% of single female-headed households (separated, divorced, widowed) ",with LSG in Food Security,all,all,categorical,b2_food,categorical,direct_reporting
+Vulnerability,"% of single female-headed households (separated, divorced, widowed) ",with LSG in Health,all,all,categorical,b2_health,categorical,direct_reporting
+Vulnerability,"% of single female-headed households (separated, divorced, widowed) ",with LSG in Protection,all,all,categorical,b2_protection,categorical,direct_reporting
+Vulnerability,"% of single female-headed households (separated, divorced, widowed) ",with LSG in Shelter,all,all,categorical,b2_shelter,categorical,direct_reporting
+Vulnerability,"% of single female-headed households (separated, divorced, widowed) ",with LSG in WASH,all,all,categorical,b2_wash,categorical,direct_reporting
+Vulnerability,"% of single female-headed households (separated, divorced, widowed) ",with at least one LSG,all,all,categorical,b2_lsgs,categorical,direct_reporting
+Vulnerability,"% of single female-headed households (separated, divorced, widowed) ",with Capacity Gap,all,all,categorical,b2_cg,categorical,direct_reporting
+Vulnerability,% HH with at least one individual with a chronic health condition,with LSG in Education,all,all,categorical,b3_education,categorical,direct_reporting
+Vulnerability,% HH with at least one individual with a chronic health condition,with LSG in Food Security,all,all,categorical,b3_food,categorical,direct_reporting
+Vulnerability,% HH with at least one individual with a chronic health condition,with LSG in Health,all,all,categorical,b3_health,categorical,direct_reporting
+Vulnerability,% HH with at least one individual with a chronic health condition,with LSG in Protection,all,all,categorical,b3_protection,categorical,direct_reporting
+Vulnerability,% HH with at least one individual with a chronic health condition,with LSG in Shelter,all,all,categorical,b3_shelter,categorical,direct_reporting
+Vulnerability,% HH with at least one individual with a chronic health condition,with LSG in WASH,all,all,categorical,b3_wash,categorical,direct_reporting
+Vulnerability,% HH with at least one individual with a chronic health condition,with at least one LSG,all,all,categorical,b3_lsgs,categorical,direct_reporting
+Vulnerability,% HH with at least one individual with a chronic health condition,with Capacity Gap,all,all,categorical,b3_cg,categorical,direct_reporting
+Vulnerability,% HH missing at least one key household or individual document ,with LSG in Education,all,all,categorical,b4_education,categorical,direct_reporting
+Vulnerability,% HH missing at least one key household or individual document ,with LSG in Food Security,all,all,categorical,b4_food,categorical,direct_reporting
+Vulnerability,% HH missing at least one key household or individual document ,with LSG in Health,all,all,categorical,b4_health,categorical,direct_reporting
+Vulnerability,% HH missing at least one key household or individual document ,with LSG in Protection,all,all,categorical,b4_protection,categorical,direct_reporting
+Vulnerability,% HH missing at least one key household or individual document ,with LSG in Shelter,all,all,categorical,b4_shelter,categorical,direct_reporting
+Vulnerability,% HH missing at least one key household or individual document ,with LSG in WASH,all,all,categorical,b4_wash,categorical,direct_reporting
+Vulnerability,% HH missing at least one key household or individual document ,with at least one LSG,all,all,categorical,b4_lsgs,categorical,direct_reporting
+Vulnerability,% HH missing at least one key household or individual document ,with Capacity Gap,all,all,categorical,b4_cg,categorical,direct_reporting
+Vulnerability,% of households not intending to return to their AoO because of security/safety-related concerns,with LSG in Education,all,all,categorical,b5_education,categorical,direct_reporting
+Vulnerability,% of households not intending to return to their AoO because of security/safety-related concerns,with LSG in Food Security,all,all,categorical,b5_food,categorical,direct_reporting
+Vulnerability,% of households not intending to return to their AoO because of security/safety-related concerns,with LSG in Health,all,all,categorical,b5_health,categorical,direct_reporting
+Vulnerability,% of households not intending to return to their AoO because of security/safety-related concerns,with LSG in Protection,all,all,categorical,b5_protection,categorical,direct_reporting
+Vulnerability,% of households not intending to return to their AoO because of security/safety-related concerns,with LSG in Shelter,all,all,categorical,b5_shelter,categorical,direct_reporting
+Vulnerability,% of households not intending to return to their AoO because of security/safety-related concerns,with LSG in WASH,all,all,categorical,b5_wash,categorical,direct_reporting
+Vulnerability,% of households not intending to return to their AoO because of security/safety-related concerns,with at least one LSG,all,all,categorical,b5_lsgs,categorical,direct_reporting
+Vulnerability,% of households not intending to return to their AoO because of security/safety-related concerns,with Capacity Gap,all,all,categorical,b5_cg,categorical,direct_reporting
+Vulnerability,% of households without access to soap,with LSG in Education,all,all,categorical,b6_education,categorical,direct_reporting
+Vulnerability,% of households without access to soap,with LSG in Food Security,all,all,categorical,b6_food,categorical,direct_reporting
+Vulnerability,% of households without access to soap,with LSG in Health,all,all,categorical,b6_health,categorical,direct_reporting
+Vulnerability,% of households without access to soap,with LSG in Protection,all,all,categorical,b6_protection,categorical,direct_reporting
+Vulnerability,% of households without access to soap,with LSG in Shelter,all,all,categorical,b6_shelter,categorical,direct_reporting
+Vulnerability,% of households without access to soap,with LSG in WASH,all,all,categorical,b6_wash,categorical,direct_reporting
+Vulnerability,% of households without access to soap,with at least one LSG,all,all,categorical,b6_lsgs,categorical,direct_reporting
+Vulnerability,% of households without access to soap,with Capacity Gap,all,all,categorical,b6_cg,categorical,direct_reporting
+Vulnerability,% of households without access to soap,with LSG in Education,all,all,categorical,b7_education,categorical,direct_reporting
+Vulnerability,% of HH with at least one member above the age of 60,with LSG in Food Security,all,all,categorical,b7_food,categorical,direct_reporting
+Vulnerability,% of households without access to soap,with LSG in Health,all,all,categorical,b7_health,categorical,direct_reporting
+Vulnerability,% of HH with at least one member above the age of 60,with LSG in Protection,all,all,categorical,b7_protection,categorical,direct_reporting
+Vulnerability,% of households without access to soap,with LSG in Shelter,all,all,categorical,b7_shelter,categorical,direct_reporting
+Vulnerability,% of HH with at least one member above the age of 60,with LSG in WASH,all,all,categorical,b7_wash,categorical,direct_reporting
+Vulnerability,% of households without access to soap,with at least one LSG,all,all,categorical,b7_lsgs,categorical,direct_reporting
+Vulnerability,% of HH with at least one member above the age of 60,with Capacity Gap,all,all,categorical,b7_cg,categorical,direct_reporting
