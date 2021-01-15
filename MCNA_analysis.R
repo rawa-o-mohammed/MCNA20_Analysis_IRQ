@@ -26,7 +26,7 @@ source("R/functions/msni_recoding.R")
 
 #LOAD INPUT FILES
 source("R/1_load_inputs.R", local = T)
-names(response)[names(response) == 'ï..X_uuid'] <- "X_uuid"
+names(response)[grep("uuid", names(response))] <- "X_uuid"
 #' creates objects:
 #'
 #'    response representative clean
@@ -137,6 +137,9 @@ analysisplan <-
   read.csv(sprintf("input/dap/dap_%s.csv", dap_name), stringsAsFactors = F)
 response_with_composites$all <- "all"
 
+###YS 
+analysisplan <- read.csv("Input/dap/dap_msni_YS.csv", stringsAsFactors = F)
+
 result <-
   from_analysisplan_map_to_output(
     response_with_composites,
@@ -145,6 +148,11 @@ result <-
     questionnaire = questionnaire,
     confidence_level = 0.9
   )
+
+result$results[[1]]$summary.statistic
+
+###YS 
+result$results %>% lapply(function(x) x$summary.statistic) %>% do.call(rbind, .) %>%  View()
 
 saveRDS(result, paste("output/RDS/result_msni.RDS"))
 #summary[which(summary$dependent.var == "g51a"),]

@@ -116,6 +116,8 @@ msni_recoding <- function(df, loop) {
     is.na(df$b2) ~ NA_real_,
     sum_row(df$b3, df$b4, df$b5, df$b6, df$b7) >= 2 ~ 2,
     sum_row(df$b3, df$b4, df$b5, df$b6, df$b7) == 1 ~ 1,
+    ###YS the scoring system goes from 1 to 4+ or 1 to 5. I am not sure what does a score 0 refers to.
+    # table(response_with_composites$vulnerability_score,  useNA = "ifany")
     TRUE ~ 0
   )
   
@@ -198,6 +200,8 @@ msni_recoding <- function(df, loop) {
     is.na(df$c2) ~ NA_real_,
     sum_row(df$c1, df$c4) == 1 ~ 2,
     sum_row(df$c1, df$c4) == 1 ~ 1,
+    ###YS the scoring system goes from 1 to 4+ or 1 to 5. I am not sure what does a score 0 refers to.
+    # table(response_with_composites$education_score,  useNA = "ifany")
     TRUE ~ 0
   )
   df$education_1 <-
@@ -244,6 +248,7 @@ msni_recoding <- function(df, loop) {
     summarize(sum_unemployed = sum(unemployed_seek_work, na.rm = TRUE))
   
   df$d2 <-
+    ###YS what if there is 2 or more people looking unemployed and looking for job?
     case_when(temp$sum_unemployed[match(df$X_uuid, temp$X_uuid)] == 1 ~ 1,
               temp$sum_unemployed[match(df$X_uuid, temp$X_uuid)] == 0 ~ 0,
               TRUE ~ NA_real_)
@@ -274,6 +279,8 @@ msni_recoding <- function(df, loop) {
     is.na(df$d2) ~ NA_real_,
     sum_row(df$d1, df$d3, df$d4, df$d5) == 2 ~ 2,
     sum_row(df$d1, df$d3, df$d4, df$d5) == 1 ~ 1,
+    ###YS the scoring system goes from 1 to 4+ or 1 to 5. I am not sure what does a score 0 refers to.
+    #table(response_with_composites$livelihoods_score,  useNA = "ifany")
     TRUE ~ 0
   )
   df$livelihoods_1 <- case_when(df$livelihoods_score == 1 ~ 1,
@@ -399,6 +406,8 @@ msni_recoding <- function(df, loop) {
     summarize(sum_married_child = sum(married))
   
   df$f2 <-
+    ###YS what if there is 2 children married?
+    
     case_when(temp$sum_married_child[match(df$X_uuid, temp$X_uuid)] == 1 ~ 1,
               temp$sum_married_child[match(df$X_uuid, temp$X_uuid)] == 0 ~ 0,
               TRUE ~ NA_real_)
@@ -446,6 +455,7 @@ msni_recoding <- function(df, loop) {
       sum_row(df$f3, df$f4, df$f6, df$f7, df$f8, df$f9) >= 4 ~ 3,
     is.na(df$f5) ~ NA_real_,
     sum_row(df$f3, df$f4, df$f6, df$f7, df$f8, df$f9) == 3 ~ 2,
+    ###YS change the dap so that it reflects severity 1 if 0,1 or 2 indicators are met.
     TRUE ~ 1
   )
   df$protection_1 <- case_when(df$protection_score == 1 ~ 1,
@@ -698,7 +708,7 @@ msni_recoding <- function(df, loop) {
       1,
       0
     )
-  
+  ###YS using the loop, not the "temp" as you did before.
   df$male_hhh <- case_when(loop$relationship[match(df$X_uuid, loop$X_uuid)] == "head" & 
                              loop$sex[match(df$X_uuid, loop$X_uuid)] == "male" &
                              loop$age[match(df$X_uuid, loop$X_uuid)] >= 18 ~ 1, TRUE ~ 0)
@@ -741,6 +751,7 @@ msni_recoding <- function(df, loop) {
     )
   df$male_hhh_wash <-
     ifelse(
+      ###YS should be lsg_wash ?
       df$male_hhh == 1 & df$lsg_education == 1,
       1,
       0
@@ -790,6 +801,7 @@ msni_recoding <- function(df, loop) {
     )
   df$female_hhh_wash <-
     ifelse(
+      ###YS should be lsg_wash ?
       df$female_hhh == 1 & df$lsg_education == 1,
       1,
       0
@@ -839,6 +851,7 @@ msni_recoding <- function(df, loop) {
     )
   df$child_hhh_wash <-
     ifelse(
+      ###YS should be lsg_wash ?
       df$child_hhh == 1 & df$lsg_education == 1,
       1,
       0
@@ -858,6 +871,7 @@ msni_recoding <- function(df, loop) {
 
   df$adult_hhh_education <-
     ifelse(
+      ###YS should be adult_hhh ?
       df$child_hhh == 1 & df$lsg_education == 1,
       1,
       0
@@ -888,6 +902,7 @@ msni_recoding <- function(df, loop) {
     )
   df$adult_hhh_wash <-
     ifelse(
+      ###YS should be lsg_wash ?
       df$adult_hhh == 1 & df$lsg_education == 1,
       1,
       0
@@ -937,6 +952,7 @@ msni_recoding <- function(df, loop) {
     )
   df$b1_wash <-
     ifelse(
+      ###YS should be lsg_wash ?
       df$b1 == 1 & df$lsg_education == 1,
       1,
       0
@@ -986,6 +1002,7 @@ msni_recoding <- function(df, loop) {
     )
   df$b2_wash <-
     case_when(
+      ###YS should be lsg_wash ?
       df$b2 == 1 & df$lsg_education == 1 ~ 1,
       is.na(df$b2) ~ NA_real_,
       TRUE ~ 0
@@ -1040,6 +1057,7 @@ msni_recoding <- function(df, loop) {
     )
   df$b3_wash <-
     case_when(
+      ###YS should be lsg_wash ?
       df$b3 == 1 & df$lsg_education == 1 ~ 1,
       is.na(df$b3) ~ NA_real_,
       TRUE ~ 0
@@ -1094,6 +1112,7 @@ msni_recoding <- function(df, loop) {
     )
   df$b4_wash <-
     case_when(
+      ###YS should be lsg_wash ?
       df$b4 == 1 & df$lsg_education == 1 ~ 1,
       is.na(df$b4) ~ NA_real_,
       TRUE ~ 0
@@ -1148,6 +1167,7 @@ msni_recoding <- function(df, loop) {
     )
   df$b5_wash <-
     case_when(
+      ###YS should be lsg_wash ?
       df$b5 == 1 & df$lsg_education == 1 ~ 1,
       is.na(df$b5) ~ NA_real_,
       TRUE ~ 0
@@ -1202,6 +1222,7 @@ msni_recoding <- function(df, loop) {
     )
   df$b6_wash <-
     case_when(
+      ###YS should be lsg_wash ?
       df$b6 == 1 & df$lsg_education == 1 ~ 1,
       is.na(df$b6) ~ NA_real_,
       TRUE ~ 0
@@ -1256,6 +1277,7 @@ msni_recoding <- function(df, loop) {
     )
   df$b7_wash <-
     case_when(
+      ###YS should be lsg_wash ?
       df$b7 == 1 & df$lsg_education == 1 ~ 1,
       is.na(df$b7) ~ NA_real_,
       TRUE ~ 0
@@ -1277,7 +1299,9 @@ msni_recoding <- function(df, loop) {
                      is.na(df$b7) ~ NA_real_,
                      TRUE ~ 0
   )
-  
+  ###YS
+  #you are using the same name of variable for the new variable and to compose it.
+  #you are erasing the vulnerability_X
   df$vulnerability_1 <-
     ifelse(        
       sum_row(
@@ -1289,7 +1313,9 @@ msni_recoding <- function(df, loop) {
         df$lsg_snfi,
         df$lsg_wash
     ) >= 1 & df$vulnerability_1 == 1, 1, 0)
-  
+  ###YS
+  #you are using the same name of variable for the new variable and to compose it.
+  #you are erasing the vulnerability_X
   df$vulnerability_2 <-
     ifelse(        
       sum_row(
@@ -1301,6 +1327,9 @@ msni_recoding <- function(df, loop) {
         df$lsg_snfi,
         df$lsg_wash
       ) >= 1 & df$vulnerability_2 == 1, 1, 0)
+  ###YS
+  #you are using the same name of variable for the new variable and to compose it.
+  #you are erasing the vulnerability_X
   df$vulnerability_3 <-
     ifelse(        
       sum_row(
@@ -1312,6 +1341,9 @@ msni_recoding <- function(df, loop) {
         df$lsg_snfi,
         df$lsg_wash
       ) >= 1 & df$vulnerability_3 == 1, 1, 0)
+  ###YS
+  #you are using the same name of variable for the new variable and to compose it.
+  #you are erasing the vulnerability_X
   df$vulnerability_4 <-
     ifelse(        
       sum_row(
@@ -1326,6 +1358,9 @@ msni_recoding <- function(df, loop) {
 
   df$cg_lsg_1 <-
     ifelse(
+      ###YS if this is the one above the Venn diagram
+      ###XX% of hh were found to have at least one LSG and/or a CG
+      ## then it should be OR not a AND
       df$coping_mechanism == 1 &
         sum_row(
           df$lsg_education,
@@ -1386,6 +1421,9 @@ msni_recoding <- function(df, loop) {
       1,
       0
     )
+  
+  ###YS
+  #is everything below for the prison graph?
   
   df$lsg_education_livelihoods  <- ifelse(df$lsg_education == 1 & df$lsg_livelihoods == 1, 1, 0)
   df$lsg_education_food         <- ifelse(df$lsg_education == 1 & df$lsg_food == 1, 1, 0)
