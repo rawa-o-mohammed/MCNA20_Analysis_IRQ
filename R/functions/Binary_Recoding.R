@@ -63,9 +63,14 @@ recoding_preliminary <- function(r, loop) {
       0
     )
   
-  r$a13 <-
-    ifelse(loop$age[match(r$X_uuid, loop_hoh$`X_uuid`)] < 18 &
-             loop$work[match(r$X_uuid, loop_hoh$`X_uuid`)] == "yes", 1, 0)
+  r$a13 <- apply(
+    r,
+    1,
+    FUN = function(x) {
+      ifelse(any(loop$age[which(loop$X_uuid == x["X_uuid"])] < 18 &
+                   loop$work[which(loop$X_uuid == x["X_uuid"])] == "yes"), 1, 0)
+    }
+  )
   
   r$a14 <- ifelse(r$gender_hhh == "female", 1, 0)
   
@@ -148,7 +153,7 @@ recoding_preliminary <- function(r, loop) {
         NA_real_
       )
     )
-  
+
   r$a26_i    <- r$reason_to_return_to_aoo.security_stable
   r$a26_ii   <- r$reason_to_return_to_aoo.uxo
   r$a26_iii  <- r$reason_to_return_to_aoo.other_members_returned

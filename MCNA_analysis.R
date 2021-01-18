@@ -14,6 +14,8 @@ library(xlsformfill) # generate fake data for kobo
 library(surveyweights) # calculate weights from samplingframes
 library(hypegrammaR) # simple stats 4 complex samples
 library(composr) # horziontal operations
+library(msni19)
+library(Setviz)
 
 source("R/functions/postprocessing_functions.R")
 source("R/functions/to_alphanumeric_lowercase.R")
@@ -54,45 +56,7 @@ source("R/2_prepare_samplingframe.R", local = T)
 #CALCULATE DISTRICT LEVEL SEVERITY FOR AREA-LEVEL INDICATORS (s_27, s_28, s_29)
 source("R/3_area_indicators.R", local = T)
 
-#' Indicators
-#' s_27 - % of people living under critical shelter condition
-#' s_28 - % of locations reporting incidents with explosive devices
-#' s_29 - % of children regularly attending formal or informal eduation
 
-
-#IDENTIFY ANY FURTHER PROBLEMS WITH THE SAMPLING FRAMES MATCHING
-# strata_samplingframe_issues <-
-#   as.data.frame(response[which(!response$strata %in% samplingframe_strata$stratum), c("X_uuid", "strata")])
-# if (nrow(strata_samplingframe_issues) != 0) {
-#   print(strata_samplingframe_issues)
-#   warning("something's not right with the strata id matching!")
-# }
-
-
-####################################
-#CLUSTER WEIGHTING (NOT TO BE USED)
-
-#cluster_samplingframe_issues <- as.data.frame(response[which(!response$cluster_id[which(response$population_group != "idp_in_camp")] %in% samplingframe$cluster_strata_ID), c("X_uuid", "strata")])
-#if(nrow(cluster_samplingframe_issues)!=0){
-#  print(cluster_samplingframe_issues)
-#  warning("something's not right with the cluster id matching!")
-#}
-
-# remove records not in cluster samplingframe:
-# nrow_before<- nrow(response)
-# response<-response %>% filter((cluster_id %in% samplingframe$cluster_strata_ID) | population_group=="idp_in_camp")
-
-# if any disappeared, give a warning:
-# if(nrow(response)!=nrow_before){
-#   warning(paste("lost ",nrow_before-nrow(response), " records; their cluster id is not in the cluster sampling frame"))
-# }
-
-# clusters_weight_fun <- map_to_weighting(sampling.frame= samplingframe,
-#                                         sampling.frame.population.column = "pop",
-#                                         sampling.frame.stratum.column = "cluster_strata_ID",
-#                                         data.stratum.column = "cluster_id",
-#                                         data = response[response$population_group!="idp_in_camp",])
-#######################################
 
 
 #STRATA WEIGHTING
@@ -115,21 +79,8 @@ weight_fun <- function(df) {
   df$weights
 }
 
-
 #RECODING OF INDICATORS
 response_with_composites <- msni_recoding(response, loop)
-# response_with_composites <- recoding_covid20(response)
-
-#DISAGGREGATE MALE AND FEMALE HEADED HHs
-#female_headed <- response_with_composites[which(response_with_composites$X_uuid %in% loop$X_uuid[which(loop$sex == "female" & loop$relationship == "head")]),]
-#male_headed <- response_with_composites[which(response_with_composites$X_uuid %in% loop$X_uuid[which(loop$sex == "male" & loop$relationship == "head")]),]
-#DISAGGREGATED HH WITH DISABILITY AND THOSE THAT DON'T
-#response_with_composites <- count_difficulty_level(response_with_composites)
-#response_with_composites_disab <- subset(response_with_composites, response_with_composites$lot_diff > 0 |
-#                                          response_with_composites$cannot_diff > 0)
-#response_with_composites_nodisab <- subset(response_with_composites, response_with_composites$lot_diff == 0 &
-#                                          response_with_composites$cannot_diff == 0)
-
 
 #LOAD ANALYSISPLAN
 dap_name <- "msni"
@@ -145,6 +96,91 @@ result <-
     questionnaire = questionnaire,
     confidence_level = 0.9
   )
+
+#graph outputs
+msni19::index_intersections(
+  response_with_composites,
+  lsg =  c(
+    "lsg_education",
+    "lsg_livelihoods",
+    "lsg_food",
+    "lsg_protection",
+    "lsg_health",
+    "lsg_snfi",
+    "lsg_wash"
+  # )
+  # lsg =  c(
+  #   "education_score",
+  #   "livelihoods_score",
+  #   "food_security_score",
+  #   "protection_score",
+  #   "health_score",
+  #   "snfi_score",
+  #   "wash_score"
+  ),
+  lsg_labels = c(
+    "Education",
+    "Livelihoods",
+    "Food",
+    "Protection",
+    "Health",
+    "Shelter",
+    "WASH"
+  ),
+  weighting_function = strata_weight_fun,
+  weight_variable = weights,
+  y_label = "",
+  exclude_unique = F,
+  mutually_exclusive_sets = F,
+  round_to_1_percent = T,
+  print_plot = T,
+  path = "output/graphs"
+)
+
+venn <- msni19::venn_msni(
+  response_with_composites,
+  lsg = c(
+    "lsg_education",
+    "lsg_livelihoods",
+    "lsg_food",
+    "lsg_protection",
+    "lsg_health",
+    "lsg_snfi",
+    "lsg_wash"
+  ),
+  capacity_gaps = "coping_mechanism",
+  weighting_function = weight_fun,
+  print_plot = T,
+  path = "output/graphs"
+)
+
+msni19::radar_graph(response_with_composites, 
+                    lsg =  c(
+                      "education_score",
+                      "livelihoods_score",
+                      "food_security_score",
+                      "protection_score",
+                      "health_score",
+                      "snfi_score",
+                      "wash_score"
+                    ),
+                    lsg_labels = c(
+                      "Education",
+                      "Livelihoods",
+                      "Food Security",
+                      "Protection",
+                      "Health",
+                      "Shelter",
+                      "WASH"
+                    ),
+                    group = "population_group",
+                    group_order = c("idp_in_camp", "idp_out_camp", "returnee"),
+                    group_labels = c("In-camp IDPs", "Out of camp IDPs", "Returnees"),
+                    weighting_function = weight_fun,
+                    print_plot = T,
+                    plot_name = "radar",
+                    path = "output/graphs")
+
 
 saveRDS(result, paste("output/RDS/result_msni.RDS"))
 #summary[which(summary$dependent.var == "g51a"),]
@@ -170,23 +206,21 @@ summary <-
            stringsAsFactors = F)
 summary <- correct.zeroes(summary)
 summary <- summary %>% filter(dependent.var.value %in% c(NA, 1))
-write.csv(
-  summary,
-  "output/raw_results/raw_results_filtered_msni.csv",
-  row.names = F
-)
+write.csv(summary,
+          "output/raw_results/raw_results_filtered_msni.csv",
+          row.names = F)
 aggregation <- c("district_mcna", "all")
 disaggregation <- c("population_group", "all")
 
 for (agg in aggregation) {
-  for(disagg in disaggregation){
+  for (disagg in disaggregation) {
     name <- sprintf("msni_%s_%s", agg, disagg)
     if (all(is.na(summary$independent.var.value))) {
       summary$independent.var.value <- disagg
     }
     subset <- summary %>%
       filter(repeat.var == agg, independent.var == disagg)
-    if(nrow(subset) == 0){
+    if (nrow(subset) == 0) {
       next
     }
     groups <- unique(subset$independent.var.value)
@@ -217,14 +251,20 @@ for (agg in aggregation) {
       if (i == 1) {
         write.xlsx(
           df,
-          file = sprintf("output/summary_sorted/summary_sorted_%s.xlsx", name),
+          file = sprintf(
+            "output/summary_sorted/summary_sorted_%s.xlsx",
+            name
+          ),
           sheetName = groups[i],
           row.names = FALSE
         )
       } else {
         write.xlsx(
           df,
-          file = sprintf("output/summary_sorted/summary_sorted_%s.xlsx", name),
+          file = sprintf(
+            "output/summary_sorted/summary_sorted_%s.xlsx",
+            name
+          ),
           sheetName = groups[i],
           append = TRUE,
           row.names = FALSE

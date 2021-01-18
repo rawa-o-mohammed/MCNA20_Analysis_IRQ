@@ -27,6 +27,144 @@ LSG,"% of households per number of sectoral LSG(s), per
 population group",1,all,population_group,categorical,one_lsg,categorical,direct_reporting
 LSG,"% of households per number of sectoral LSG(s), per
 population group",0,all,population_group,categorical,zero_lsg,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Education Livelihoods,all,all,categorical,lsg_education_livelihoods,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Education Food,all,all,categorical,lsg_education_food,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Education Protection,all,all,categorical,lsg_education_protection,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Education Health,all,all,categorical,lsg_education_health,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Education Snfi,all,all,categorical,lsg_education_snfi,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Education Wash,all,all,categorical,lsg_education_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Livelihoods Food,all,all,categorical,lsg_livelihoods_food,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Livelihoods Protection,all,all,categorical,lsg_livelihoods_protection,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Livelihoods Health,all,all,categorical,lsg_livelihoods_health,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Livelihoods Snfi,all,all,categorical,lsg_livelihoods_snfi,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Livelihoods Wash,all,all,categorical,lsg_livelihoods_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Food Protection,all,all,categorical,lsg_food_protection,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Food Health,all,all,categorical,lsg_food_health,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Food Snfi,all,all,categorical,lsg_food_snfi,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Food Wash,all,all,categorical,lsg_food_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Protection Health,all,all,categorical,lsg_protection_health,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Protection Snfi,all,all,categorical,lsg_protection_snfi,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Protection Wash,all,all,categorical,lsg_protection_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Health Snfi,all,all,categorical,lsg_health_snfi,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Health Wash,all,all,categorical,lsg_health_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Snfi Wash,all,all,categorical,lsg_snfi_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Education Livelihoods,all,all,categorical,lsg_education_livelihoods,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Education Food,all,all,categorical,lsg_education_food,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Education Protection,all,all,categorical,lsg_education_protection,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Education Health,all,all,categorical,lsg_education_health,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Education Snfi,all,all,categorical,lsg_education_snfi,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Education Wash,all,all,categorical,lsg_education_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Livelihoods Food,all,all,categorical,lsg_livelihoods_food,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Livelihoods Protection,all,all,categorical,lsg_livelihoods_protection,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Livelihoods Health,all,all,categorical,lsg_livelihoods_health,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Livelihoods Snfi,all,all,categorical,lsg_livelihoods_snfi,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Livelihoods Wash,all,all,categorical,lsg_livelihoods_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Food Protection,all,all,categorical,lsg_food_protection,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Food Health,all,all,categorical,lsg_food_health,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Food Snfi,all,all,categorical,lsg_food_snfi,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Food Wash,all,all,categorical,lsg_food_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Protection Health,all,all,categorical,lsg_protection_health,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Protection Snfi,all,all,categorical,lsg_protection_snfi,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Protection Wash,all,all,categorical,lsg_protection_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Health Snfi,all,all,categorical,lsg_health_snfi,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Health Wash,all,all,categorical,lsg_health_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Snfi Wash,all,all,categorical,lsg_snfi_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Live Food,all,all,categorical,lsg_edu_live_food,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Live Protection,all,all,categorical,lsg_edu_live_protection,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Live Health,all,all,categorical,lsg_edu_live_health,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Live Snfi,all,all,categorical,lsg_edu_live_snfi,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Live Wash,all,all,categorical,lsg_edu_live_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Food Protection,all,all,categorical,lsg_edu_food_protection,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Food Health,all,all,categorical,lsg_edu_food_health,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Food Snfi,all,all,categorical,lsg_edu_food_snfi,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Food Wash,all,all,categorical,lsg_edu_food_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Protection Health,all,all,categorical,lsg_edu_protection_health,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Protection Snfi,all,all,categorical,lsg_edu_protection_snfi,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Protection Wash,all,all,categorical,lsg_edu_protection_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Health Snfi,all,all,categorical,lsg_edu_health_snfi,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Health Wash,all,all,categorical,lsg_edu_health_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Snfi Wash,all,all,categorical,lsg_edu_snfi_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Live Food Protection,all,all,categorical,lsg_live_food_protection,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Live Food Health,all,all,categorical,lsg_live_food_health,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Live Food Snfi,all,all,categorical,lsg_live_food_snfi,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Live Food Wash,all,all,categorical,lsg_live_food_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Live Protection Health,all,all,categorical,lsg_live_protection_health,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Live Protection Snfi,all,all,categorical,lsg_live_protection_snfi,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Live Protection Wash,all,all,categorical,lsg_live_protection_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Live Health Snfi,all,all,categorical,lsg_live_health_snfi,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Live Health Wash,all,all,categorical,lsg_live_health_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Live Snfi Wash,all,all,categorical,lsg_live_snfi_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Food Protection Health,all,all,categorical,lsg_food_protection_health,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Food Protection Snfi,all,all,categorical,lsg_food_protection_snfi,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Food Protection Wash,all,all,categorical,lsg_food_protection_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Food Health Snfi,all,all,categorical,lsg_food_health_snfi,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Food Health Wash,all,all,categorical,lsg_food_health_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Food Snfi Wash,all,all,categorical,lsg_food_snfi_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Protection Health Snfi,all,all,categorical,lsg_protection_health_snfi,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Protection Health Wash,all,all,categorical,lsg_protection_health_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Protection Snfi Wash,all,all,categorical,lsg_protection_snfi_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Health Snfi Wash,all,all,categorical,lsg_health_snfi_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Live Food Protection,all,all,categorical,lsg_edu_live_food_protection,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Live Food Health,all,all,categorical,lsg_edu_live_food_health,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Live Food Snfi,all,all,categorical,lsg_edu_live_food_snfi,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Live Food Wash,all,all,categorical,lsg_edu_live_food_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Live Protection Health,all,all,categorical,lsg_edu_live_protection_health,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Live Protection Snfi,all,all,categorical,lsg_edu_live_protection_snfi,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Live Protection Wash,all,all,categorical,lsg_edu_live_protection_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Live Health Snfi,all,all,categorical,lsg_edu_live_health_snfi,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Live Health Wash,all,all,categorical,lsg_edu_live_health_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Live Snfi Wash,all,all,categorical,lsg_edu_live_snfi_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Food Protection Health,all,all,categorical,lsg_edu_food_protection_health,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Food Protection Snfi,all,all,categorical,lsg_edu_food_protection_snfi,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Food Protection Wash,all,all,categorical,lsg_edu_food_protection_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Food Health Snfi,all,all,categorical,lsg_edu_food_health_snfi,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Food Health Wash,all,all,categorical,lsg_edu_food_health_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Food Snfi Wash,all,all,categorical,lsg_edu_food_snfi_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Protection Health Snfi,all,all,categorical,lsg_edu_protection_health_snfi,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Protection Health Wash,all,all,categorical,lsg_edu_protection_health_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Protection Snfi Wash,all,all,categorical,lsg_edu_protection_snfi_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Health Snfi Wash,all,all,categorical,lsg_edu_health_snfi_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Live Food Protection Health,all,all,categorical,lsg_live_food_protection_health,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Live Food Protection Snfi,all,all,categorical,lsg_live_food_protection_snfi,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Live Food Protection Wash,all,all,categorical,lsg_live_food_protection_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Live Food Health Snfi,all,all,categorical,lsg_live_food_health_snfi,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Live Food Health Wash,all,all,categorical,lsg_live_food_health_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Live Food Snfi Wash,all,all,categorical,lsg_live_food_snfi_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Live Protection Health Snfi,all,all,categorical,lsg_live_protection_health_snfi,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Live Protection Health Wash,all,all,categorical,lsg_live_protection_health_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Live Protection Snfi Wash,all,all,categorical,lsg_live_protection_snfi_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Live Health Snfi Wash,all,all,categorical,lsg_live_health_snfi_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Food Protection Health Snfi,all,all,categorical,lsg_food_protection_health_snfi,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Food Protection Health Wash,all,all,categorical,lsg_food_protection_health_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Food Protection Snfi Wash,all,all,categorical,lsg_food_protection_snfi_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Food Health Snfi Wash,all,all,categorical,lsg_food_health_snfi_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Protection Health Snfi Wash,all,all,categorical,lsg_protection_health_snfi_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Live Food Protection Health,all,all,categorical,lsg_edu_live_food_protection_health,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Live Food Protection Snfi,all,all,categorical,lsg_edu_live_food_protection_snfi,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Live Food Protection Wash,all,all,categorical,lsg_edu_live_food_protection_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Live Food Health Snfi,all,all,categorical,lsg_edu_live_food_health_snfi,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Live Food Health Wash,all,all,categorical,lsg_edu_live_food_health_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Live Food Snfi Wash,all,all,categorical,lsg_edu_live_food_snfi_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Live Protection Health Snfi,all,all,categorical,lsg_edu_live_protection_health_snfi,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Live Protection Health Wash,all,all,categorical,lsg_edu_live_protection_health_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Live Protection Snfi Wash,all,all,categorical,lsg_edu_live_protection_snfi_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Live Health Snfi Wash,all,all,categorical,lsg_edu_live_health_snfi_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Food Protection Health Snfi,all,all,categorical,lsg_edu_food_protection_health_snfi,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Food Protection Health Wash,all,all,categorical,lsg_edu_food_protection_health_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Food Protection Snfi Wash,all,all,categorical,lsg_edu_food_protection_snfi_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Food Health Snfi Wash,all,all,categorical,lsg_edu_food_health_snfi_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Protection Health Snfi Wash,all,all,categorical,lsg_edu_protection_health_snfi_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Live Food Protection Health Snfi,all,all,categorical,lsg_live_food_protection_health_snfi,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Live Food Protection Health Wash,all,all,categorical,lsg_live_food_protection_health_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Live Food Protection Snfi Wash,all,all,categorical,lsg_live_food_protection_snfi_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Live Food Health Snfi Wash,all,all,categorical,lsg_live_food_health_snfi_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Live Protection Health Snfi Wash,all,all,categorical,lsg_live_protection_health_snfi_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Food Protection Health Snfi Wash,all,all,categorical,lsg_food_protection_health_snfi_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Live Food Protection Health Snfi,all,all,categorical,lsg_edu_live_food_protection_health_snfi,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Live Food Protection Health Wash,all,all,categorical,lsg_edu_live_food_protection_health_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Live Food Protection Snfi Wash,all,all,categorical,lsg_edu_live_food_protection_snfi_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Edu Food Protection Health Snfi Wash,all,all,categorical,lsg_edu_food_protection_health_snfi_wash,categorical,direct_reporting
+LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Live Food Protection Health Snfi Wash,all,all,categorical,lsg_live_food_protection_health_snfi_wash,categorical,direct_reporting
 LSG,"Among households with multi-sectoral needs, % of
 households with sectoral LSG(s)",Education,all,all,categorical,lsg_education,categorical,direct_reporting
 LSG,"Among households with multi-sectoral needs, % of
