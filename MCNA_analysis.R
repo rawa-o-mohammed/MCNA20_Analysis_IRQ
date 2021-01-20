@@ -1,6 +1,5 @@
 #SETUP
 rm(list = ls(all = T))
-library(rlang)
 library(xlsx)
 library(plyr) # rbind.fill
 library(dplyr)
@@ -16,6 +15,19 @@ library(hypegrammaR) # simple stats 4 complex samples
 library(composr) # horziontal operations
 library(msni19)
 library(Setviz)
+library(purrr)
+library(eulerr)
+library(magrittr)
+library(assertthat)
+library(tibble)
+library(kableExtra)
+library(rlang)
+library(plotly)
+library(forcats)
+library(tidyr)
+library(ggplot2)
+library(ggradar)
+library(stringr)
 
 source("R/functions/postprocessing_functions.R")
 source("R/functions/to_alphanumeric_lowercase.R")
@@ -96,91 +108,6 @@ result <-
     questionnaire = questionnaire,
     confidence_level = 0.9
   )
-
-#graph outputs
-msni19::index_intersections(
-  response_with_composites,
-  lsg =  c(
-    "lsg_education",
-    "lsg_livelihoods",
-    "lsg_food",
-    "lsg_protection",
-    "lsg_health",
-    "lsg_snfi",
-    "lsg_wash"
-  # )
-  # lsg =  c(
-  #   "education_score",
-  #   "livelihoods_score",
-  #   "food_security_score",
-  #   "protection_score",
-  #   "health_score",
-  #   "snfi_score",
-  #   "wash_score"
-  ),
-  lsg_labels = c(
-    "Education",
-    "Livelihoods",
-    "Food",
-    "Protection",
-    "Health",
-    "Shelter",
-    "WASH"
-  ),
-  weighting_function = strata_weight_fun,
-  weight_variable = weights,
-  y_label = "",
-  exclude_unique = F,
-  mutually_exclusive_sets = F,
-  round_to_1_percent = T,
-  print_plot = T,
-  path = "output/graphs"
-)
-
-venn <- msni19::venn_msni(
-  response_with_composites,
-  lsg = c(
-    "lsg_education",
-    "lsg_livelihoods",
-    "lsg_food",
-    "lsg_protection",
-    "lsg_health",
-    "lsg_snfi",
-    "lsg_wash"
-  ),
-  capacity_gaps = "coping_mechanism",
-  weighting_function = weight_fun,
-  print_plot = T,
-  path = "output/graphs"
-)
-
-msni19::radar_graph(response_with_composites, 
-                    lsg =  c(
-                      "education_score",
-                      "livelihoods_score",
-                      "food_security_score",
-                      "protection_score",
-                      "health_score",
-                      "snfi_score",
-                      "wash_score"
-                    ),
-                    lsg_labels = c(
-                      "Education",
-                      "Livelihoods",
-                      "Food Security",
-                      "Protection",
-                      "Health",
-                      "Shelter",
-                      "WASH"
-                    ),
-                    group = "population_group",
-                    group_order = c("idp_in_camp", "idp_out_camp", "returnee"),
-                    group_labels = c("In-camp IDPs", "Out of camp IDPs", "Returnees"),
-                    weighting_function = weight_fun,
-                    print_plot = T,
-                    plot_name = "radar",
-                    path = "output/graphs")
-
 
 saveRDS(result, paste("output/RDS/result_msni.RDS"))
 #summary[which(summary$dependent.var == "g51a"),]
