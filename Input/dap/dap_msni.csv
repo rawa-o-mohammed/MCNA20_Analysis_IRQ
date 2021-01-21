@@ -240,14 +240,6 @@ Vulnerability,% HH missing at least one key household or individual document ,"A
 Vulnerability,% of households not intending to return to their AoO because of security/safety-related concerns,"HH is reporting security/safety concerns as a main barrier for return (fear/trauma associated with AoO, lack of security forces, presence of explosive hazards, fear of discrimination, lack of safety and security for women)",all,all,categorical,b5,categorical,direct_reporting
 Vulnerability,% of households without access to soap,No soap available in HH,all,all,categorical,b6,categorical,direct_reporting
 Vulnerability,% of HH with at least one member above the age of 60,At least one HH member above the age of 60,all,all,categorical,b7,categorical,direct_reporting
-Vulnerability,"% of households with a LSG, per sector and vulnerability profile",Male Head of Houshold,all,all,categorical,male_hhh_education,categorical,direct_reporting
-Vulnerability,"% of households with a LSG, per sector and vulnerability profile",Male Head of Houshold,all,all,categorical,male_hhh_food,categorical,direct_reporting
-Vulnerability,"% of households with a LSG, per sector and vulnerability profile",Male Head of Houshold,all,all,categorical,male_hhh_health,categorical,direct_reporting
-Vulnerability,"% of households with a LSG, per sector and vulnerability profile",Male Head of Houshold,all,all,categorical,male_hhh_protection,categorical,direct_reporting
-Vulnerability,"% of households with a LSG, per sector and vulnerability profile",Male Head of Houshold,all,all,categorical,male_hhh_shelter,categorical,direct_reporting
-Vulnerability,"% of households with a LSG, per sector and vulnerability profile",Male Head of Houshold,all,all,categorical,male_hhh_wash,categorical,direct_reporting
-Vulnerability,"% of households with a LSG, per sector and vulnerability profile",Male Head of Houshold,all,all,categorical,male_hhh_lsgs,categorical,direct_reporting
-Vulnerability,"% of households with a LSG, per sector and vulnerability profile",Male Head of Houshold,all,all,categorical,male_hhh_cg,categorical,direct_reporting
 Vulnerability,"% of households with a LSG, per sector and vulnerability profile",Female Head of Houshold,all,all,categorical,female_hhh_education,categorical,direct_reporting
 Vulnerability,"% of households with a LSG, per sector and vulnerability profile",Female Head of Houshold,all,all,categorical,female_hhh_food,categorical,direct_reporting
 Vulnerability,"% of households with a LSG, per sector and vulnerability profile",Female Head of Houshold,all,all,categorical,female_hhh_health,categorical,direct_reporting
@@ -256,78 +248,69 @@ Vulnerability,"% of households with a LSG, per sector and vulnerability profile"
 Vulnerability,"% of households with a LSG, per sector and vulnerability profile",Female Head of Houshold,all,all,categorical,female_hhh_wash,categorical,direct_reporting
 Vulnerability,"% of households with a LSG, per sector and vulnerability profile",Female Head of Houshold,all,all,categorical,female_hhh_lsgs,categorical,direct_reporting
 Vulnerability,"% of households with a LSG, per sector and vulnerability profile",Female Head of Houshold,all,all,categorical,female_hhh_cg,categorical,direct_reporting
-Vulnerability,"% of households with a LSG, per sector and vulnerability profile",Child Head of Houshold,all,all,categorical,child_hhh_education,categorical,direct_reporting
-Vulnerability,"% of households with a LSG, per sector and vulnerability profile",Child Head of Houshold,all,all,categorical,child_hhh_food,categorical,direct_reporting
-Vulnerability,"% of households with a LSG, per sector and vulnerability profile",Child Head of Houshold,all,all,categorical,child_hhh_health,categorical,direct_reporting
-Vulnerability,"% of households with a LSG, per sector and vulnerability profile",Child Head of Houshold,all,all,categorical,child_hhh_protection,categorical,direct_reporting
-Vulnerability,"% of households with a LSG, per sector and vulnerability profile",Child Head of Houshold,all,all,categorical,child_hhh_shelter,categorical,direct_reporting
-Vulnerability,"% of households with a LSG, per sector and vulnerability profile",Child Head of Houshold,all,all,categorical,child_hhh_wash,categorical,direct_reporting
-Vulnerability,"% of households with a LSG, per sector and vulnerability profile",Child Head of Houshold,all,all,categorical,child_hhh_lsgs,categorical,direct_reporting
-Vulnerability,"% of households with a LSG, per sector and vulnerability profile",Child Head of Houshold,all,all,categorical,child_hhh_cg,categorical,direct_reporting
-Vulnerability,"% of households with a LSG, per sector and vulnerability profile",adult Head of Houshold,all,all,categorical,adult_hhh_education,categorical,direct_reporting
-Vulnerability,"% of households with a LSG, per sector and vulnerability profile",adult Head of Houshold,all,all,categorical,adult_hhh_food,categorical,direct_reporting
-Vulnerability,"% of households with a LSG, per sector and vulnerability profile",adult Head of Houshold,all,all,categorical,adult_hhh_health,categorical,direct_reporting
-Vulnerability,"% of households with a LSG, per sector and vulnerability profile",adult Head of Houshold,all,all,categorical,adult_hhh_protection,categorical,direct_reporting
-Vulnerability,"% of households with a LSG, per sector and vulnerability profile",adult Head of Houshold,all,all,categorical,adult_hhh_shelter,categorical,direct_reporting
-Vulnerability,"% of households with a LSG, per sector and vulnerability profile",adult Head of Houshold,all,all,categorical,adult_hhh_wash,categorical,direct_reporting
-Vulnerability,"% of households with a LSG, per sector and vulnerability profile",adult Head of Houshold,all,all,categorical,adult_hhh_lsgs,categorical,direct_reporting
-Vulnerability,"% of households with a LSG, per sector and vulnerability profile",adult Head of Houshold,all,all,categorical,adult_hhh_cg,categorical,direct_reporting
-Vulnerability,"% of household members with disability  (""lots of difficulty"" or ""cannot do at all"" one of the following activities: seeing, hearing, walking/climbing steps, remembering/concerntrating, self-care, communicating)",with LSG in Education,all,all,categorical,b1_education,categorical,direct_reporting
-Vulnerability,"% of household members with disability  (""lots of difficulty"" or ""cannot do at all"" one of the following activities: seeing, hearing, walking/climbing steps, remembering/concerntrating, self-care, communicating)",with LSG in Food Security,all,all,categorical,b1_food,categorical,direct_reporting
-Vulnerability,"% of household members with disability  (""lots of difficulty"" or ""cannot do at all"" one of the following activities: seeing, hearing, walking/climbing steps, remembering/concerntrating, self-care, communicating)",with LSG in Health,all,all,categorical,b1_health,categorical,direct_reporting
-Vulnerability,"% of household members with disability  (""lots of difficulty"" or ""cannot do at all"" one of the following activities: seeing, hearing, walking/climbing steps, remembering/concerntrating, self-care, communicating)",with LSG in Protection,all,all,categorical,b1_protection,categorical,direct_reporting
-Vulnerability,"% of household members with disability  (""lots of difficulty"" or ""cannot do at all"" one of the following activities: seeing, hearing, walking/climbing steps, remembering/concerntrating, self-care, communicating)",with LSG in Shelter,all,all,categorical,b1_shelter,categorical,direct_reporting
-Vulnerability,"% of household members with disability  (""lots of difficulty"" or ""cannot do at all"" one of the following activities: seeing, hearing, walking/climbing steps, remembering/concerntrating, self-care, communicating)",with LSG in WASH,all,all,categorical,b1_wash,categorical,direct_reporting
-Vulnerability,"% of household members with disability  (""lots of difficulty"" or ""cannot do at all"" one of the following activities: seeing, hearing, walking/climbing steps, remembering/concerntrating, self-care, communicating)",with at least one LSG,all,all,categorical,b1_lsgs,categorical,direct_reporting
-Vulnerability,"% of household members with disability  (""lots of difficulty"" or ""cannot do at all"" one of the following activities: seeing, hearing, walking/climbing steps, remembering/concerntrating, self-care, communicating)",with Capacity Gap,all,all,categorical,b1_cg,categorical,direct_reporting
-Vulnerability,"% of single female-headed households (separated, divorced, widowed) ",with LSG in Education,all,all,categorical,b2_education,categorical,direct_reporting
-Vulnerability,"% of single female-headed households (separated, divorced, widowed) ",with LSG in Food Security,all,all,categorical,b2_food,categorical,direct_reporting
-Vulnerability,"% of single female-headed households (separated, divorced, widowed) ",with LSG in Health,all,all,categorical,b2_health,categorical,direct_reporting
-Vulnerability,"% of single female-headed households (separated, divorced, widowed) ",with LSG in Protection,all,all,categorical,b2_protection,categorical,direct_reporting
-Vulnerability,"% of single female-headed households (separated, divorced, widowed) ",with LSG in Shelter,all,all,categorical,b2_shelter,categorical,direct_reporting
-Vulnerability,"% of single female-headed households (separated, divorced, widowed) ",with LSG in WASH,all,all,categorical,b2_wash,categorical,direct_reporting
-Vulnerability,"% of single female-headed households (separated, divorced, widowed) ",with at least one LSG,all,all,categorical,b2_lsgs,categorical,direct_reporting
-Vulnerability,"% of single female-headed households (separated, divorced, widowed) ",with Capacity Gap,all,all,categorical,b2_cg,categorical,direct_reporting
-Vulnerability,% HH with at least one individual with a chronic health condition,with LSG in Education,all,all,categorical,b3_education,categorical,direct_reporting
-Vulnerability,% HH with at least one individual with a chronic health condition,with LSG in Food Security,all,all,categorical,b3_food,categorical,direct_reporting
-Vulnerability,% HH with at least one individual with a chronic health condition,with LSG in Health,all,all,categorical,b3_health,categorical,direct_reporting
-Vulnerability,% HH with at least one individual with a chronic health condition,with LSG in Protection,all,all,categorical,b3_protection,categorical,direct_reporting
-Vulnerability,% HH with at least one individual with a chronic health condition,with LSG in Shelter,all,all,categorical,b3_shelter,categorical,direct_reporting
-Vulnerability,% HH with at least one individual with a chronic health condition,with LSG in WASH,all,all,categorical,b3_wash,categorical,direct_reporting
-Vulnerability,% HH with at least one individual with a chronic health condition,with at least one LSG,all,all,categorical,b3_lsgs,categorical,direct_reporting
-Vulnerability,% HH with at least one individual with a chronic health condition,with Capacity Gap,all,all,categorical,b3_cg,categorical,direct_reporting
-Vulnerability,% HH missing at least one key household or individual document ,with LSG in Education,all,all,categorical,b4_education,categorical,direct_reporting
-Vulnerability,% HH missing at least one key household or individual document ,with LSG in Food Security,all,all,categorical,b4_food,categorical,direct_reporting
-Vulnerability,% HH missing at least one key household or individual document ,with LSG in Health,all,all,categorical,b4_health,categorical,direct_reporting
-Vulnerability,% HH missing at least one key household or individual document ,with LSG in Protection,all,all,categorical,b4_protection,categorical,direct_reporting
-Vulnerability,% HH missing at least one key household or individual document ,with LSG in Shelter,all,all,categorical,b4_shelter,categorical,direct_reporting
-Vulnerability,% HH missing at least one key household or individual document ,with LSG in WASH,all,all,categorical,b4_wash,categorical,direct_reporting
-Vulnerability,% HH missing at least one key household or individual document ,with at least one LSG,all,all,categorical,b4_lsgs,categorical,direct_reporting
-Vulnerability,% HH missing at least one key household or individual document ,with Capacity Gap,all,all,categorical,b4_cg,categorical,direct_reporting
-Vulnerability,% of households not intending to return to their AoO because of security/safety-related concerns,with LSG in Education,all,all,categorical,b5_education,categorical,direct_reporting
-Vulnerability,% of households not intending to return to their AoO because of security/safety-related concerns,with LSG in Food Security,all,all,categorical,b5_food,categorical,direct_reporting
-Vulnerability,% of households not intending to return to their AoO because of security/safety-related concerns,with LSG in Health,all,all,categorical,b5_health,categorical,direct_reporting
-Vulnerability,% of households not intending to return to their AoO because of security/safety-related concerns,with LSG in Protection,all,all,categorical,b5_protection,categorical,direct_reporting
-Vulnerability,% of households not intending to return to their AoO because of security/safety-related concerns,with LSG in Shelter,all,all,categorical,b5_shelter,categorical,direct_reporting
-Vulnerability,% of households not intending to return to their AoO because of security/safety-related concerns,with LSG in WASH,all,all,categorical,b5_wash,categorical,direct_reporting
-Vulnerability,% of households not intending to return to their AoO because of security/safety-related concerns,with at least one LSG,all,all,categorical,b5_lsgs,categorical,direct_reporting
-Vulnerability,% of households not intending to return to their AoO because of security/safety-related concerns,with Capacity Gap,all,all,categorical,b5_cg,categorical,direct_reporting
-Vulnerability,% of households without access to soap,with LSG in Education,all,all,categorical,b6_education,categorical,direct_reporting
-Vulnerability,% of households without access to soap,with LSG in Food Security,all,all,categorical,b6_food,categorical,direct_reporting
-Vulnerability,% of households without access to soap,with LSG in Health,all,all,categorical,b6_health,categorical,direct_reporting
-Vulnerability,% of households without access to soap,with LSG in Protection,all,all,categorical,b6_protection,categorical,direct_reporting
-Vulnerability,% of households without access to soap,with LSG in Shelter,all,all,categorical,b6_shelter,categorical,direct_reporting
-Vulnerability,% of households without access to soap,with LSG in WASH,all,all,categorical,b6_wash,categorical,direct_reporting
-Vulnerability,% of households without access to soap,with at least one LSG,all,all,categorical,b6_lsgs,categorical,direct_reporting
-Vulnerability,% of households without access to soap,with Capacity Gap,all,all,categorical,b6_cg,categorical,direct_reporting
-Vulnerability,% of households without access to soap,with LSG in Education,all,all,categorical,b7_education,categorical,direct_reporting
-Vulnerability,% of HH with at least one member above the age of 60,with LSG in Food Security,all,all,categorical,b7_food,categorical,direct_reporting
-Vulnerability,% of households without access to soap,with LSG in Health,all,all,categorical,b7_health,categorical,direct_reporting
-Vulnerability,% of HH with at least one member above the age of 60,with LSG in Protection,all,all,categorical,b7_protection,categorical,direct_reporting
-Vulnerability,% of households without access to soap,with LSG in Shelter,all,all,categorical,b7_shelter,categorical,direct_reporting
-Vulnerability,% of HH with at least one member above the age of 60,with LSG in WASH,all,all,categorical,b7_wash,categorical,direct_reporting
-Vulnerability,% of households without access to soap,with at least one LSG,all,all,categorical,b7_lsgs,categorical,direct_reporting
-Vulnerability,% of HH with at least one member above the age of 60,with Capacity Gap,all,all,categorical,b7_cg,categorical,direct_reporting
+Vulnerability,"% of household members with disability  (""lots of difficulty"" or ""cannot do at all"" one of the following activities: seeing, hearing, walking/climbing steps, remembering/concerntrating, self-care, communicating)",with LSG in Education,all,b1,categorical,lsg_education,categorical,direct_reporting
+Vulnerability,"% of household members with disability  (""lots of difficulty"" or ""cannot do at all"" one of the following activities: seeing, hearing, walking/climbing steps, remembering/concerntrating, self-care, communicating)",with LSG in Livelihoods,all,b1,categorical,lsg_livelihoods,categorical,direct_reporting
+Vulnerability,"% of household members with disability  (""lots of difficulty"" or ""cannot do at all"" one of the following activities: seeing, hearing, walking/climbing steps, remembering/concerntrating, self-care, communicating)",with LSG in Food Security,all,b1,categorical,lsg_food,categorical,direct_reporting
+Vulnerability,"% of household members with disability  (""lots of difficulty"" or ""cannot do at all"" one of the following activities: seeing, hearing, walking/climbing steps, remembering/concerntrating, self-care, communicating)",with LSG in Health,all,b1,categorical,lsg_health,categorical,direct_reporting
+Vulnerability,"% of household members with disability  (""lots of difficulty"" or ""cannot do at all"" one of the following activities: seeing, hearing, walking/climbing steps, remembering/concerntrating, self-care, communicating)",with LSG in Protection,all,b1,categorical,lsg_protection,categorical,direct_reporting
+Vulnerability,"% of household members with disability  (""lots of difficulty"" or ""cannot do at all"" one of the following activities: seeing, hearing, walking/climbing steps, remembering/concerntrating, self-care, communicating)",with LSG in Shelter,all,b1,categorical,lsg_snfi,categorical,direct_reporting
+Vulnerability,"% of household members with disability  (""lots of difficulty"" or ""cannot do at all"" one of the following activities: seeing, hearing, walking/climbing steps, remembering/concerntrating, self-care, communicating)",with LSG in WASH,all,b1,categorical,lsg_wash,categorical,direct_reporting
+Vulnerability,"% of household members with disability  (""lots of difficulty"" or ""cannot do at all"" one of the following activities: seeing, hearing, walking/climbing steps, remembering/concerntrating, self-care, communicating)",with at least one LSG,all,b1,categorical,lsg_all,categorical,direct_reporting
+Vulnerability,"% of household members with disability  (""lots of difficulty"" or ""cannot do at all"" one of the following activities: seeing, hearing, walking/climbing steps, remembering/concerntrating, self-care, communicating)",with Capacity Gap,all,b1,categorical,coping_mechanism,categorical,direct_reporting
+Vulnerability,"% of single female-headed households (separated, divorced, widowed) ",with LSG in Education,all,b2,categorical,lsg_education,categorical,direct_reporting
+Vulnerability,"% of single female-headed households (separated, divorced, widowed) ",with LSG in Livelihoods,all,b2,categorical,lsg_livelihoods,categorical,direct_reporting
+Vulnerability,"% of single female-headed households (separated, divorced, widowed) ",with LSG in Food Security,all,b2,categorical,lsg_food,categorical,direct_reporting
+Vulnerability,"% of single female-headed households (separated, divorced, widowed) ",with LSG in Health,all,b2,categorical,lsg_health,categorical,direct_reporting
+Vulnerability,"% of single female-headed households (separated, divorced, widowed) ",with LSG in Protection,all,b2,categorical,lsg_protection,categorical,direct_reporting
+Vulnerability,"% of single female-headed households (separated, divorced, widowed) ",with LSG in Shelter,all,b2,categorical,lsg_snfi,categorical,direct_reporting
+Vulnerability,"% of single female-headed households (separated, divorced, widowed) ",with LSG in WASH,all,b2,categorical,lsg_wash,categorical,direct_reporting
+Vulnerability,"% of single female-headed households (separated, divorced, widowed) ",with at least one LSG,all,b2,categorical,lsg_all,categorical,direct_reporting
+Vulnerability,"% of single female-headed households (separated, divorced, widowed) ",with Capacity Gap,all,b2,categorical,coping_mechanism,categorical,direct_reporting
+Vulnerability,% HH with at least one individual with a chronic health condition,with LSG in Education,all,b3,categorical,lsg_education,categorical,direct_reporting
+Vulnerability,% HH with at least one individual with a chronic health condition,with LSG in Livelihoods,all,b3,categorical,lsg_livelihoods,categorical,direct_reporting
+Vulnerability,% HH with at least one individual with a chronic health condition,with LSG in Food Security,all,b3,categorical,lsg_food,categorical,direct_reporting
+Vulnerability,% HH with at least one individual with a chronic health condition,with LSG in Health,all,b3,categorical,lsg_health,categorical,direct_reporting
+Vulnerability,% HH with at least one individual with a chronic health condition,with LSG in Protection,all,b3,categorical,lsg_protection,categorical,direct_reporting
+Vulnerability,% HH with at least one individual with a chronic health condition,with LSG in Shelter,all,b3,categorical,lsg_snfi,categorical,direct_reporting
+Vulnerability,% HH with at least one individual with a chronic health condition,with LSG in WASH,all,b3,categorical,lsg_wash,categorical,direct_reporting
+Vulnerability,% HH with at least one individual with a chronic health condition,with at least one LSG,all,b3,categorical,lsg_all,categorical,direct_reporting
+Vulnerability,% HH with at least one individual with a chronic health condition,with Capacity Gap,all,b3,categorical,coping_mechanism,categorical,direct_reporting
+Vulnerability,% HH missing at least one key household or individual document ,with LSG in Education,all,b4,categorical,lsg_education,categorical,direct_reporting
+Vulnerability,% HH missing at least one key household or individual document ,with LSG in Livelihoods,all,b4,categorical,lsg_livelihoods,categorical,direct_reporting
+Vulnerability,% HH missing at least one key household or individual document ,with LSG in Food Security,all,b4,categorical,lsg_food,categorical,direct_reporting
+Vulnerability,% HH missing at least one key household or individual document ,with LSG in Health,all,b4,categorical,lsg_health,categorical,direct_reporting
+Vulnerability,% HH missing at least one key household or individual document ,with LSG in Protection,all,b4,categorical,lsg_protection,categorical,direct_reporting
+Vulnerability,% HH missing at least one key household or individual document ,with LSG in Shelter,all,b4,categorical,lsg_snfi,categorical,direct_reporting
+Vulnerability,% HH missing at least one key household or individual document ,with LSG in WASH,all,b4,categorical,lsg_wash,categorical,direct_reporting
+Vulnerability,% HH missing at least one key household or individual document ,with at least one LSG,all,b4,categorical,lsg_all,categorical,direct_reporting
+Vulnerability,% HH missing at least one key household or individual document ,with Capacity Gap,all,b4,categorical,coping_mechanism,categorical,direct_reporting
+Vulnerability,% of households not intending to return to their AoO because of security/safety-related concerns,with LSG in Education,all,b5,categorical,lsg_education,categorical,direct_reporting
+Vulnerability,% of households not intending to return to their AoO because of security/safety-related concerns,with LSG in Livelihoods,all,b5,categorical,lsg_livelihoods,categorical,direct_reporting
+Vulnerability,% of households not intending to return to their AoO because of security/safety-related concerns,with LSG in Food Security,all,b5,categorical,lsg_food,categorical,direct_reporting
+Vulnerability,% of households not intending to return to their AoO because of security/safety-related concerns,with LSG in Health,all,b5,categorical,lsg_health,categorical,direct_reporting
+Vulnerability,% of households not intending to return to their AoO because of security/safety-related concerns,with LSG in Protection,all,b5,categorical,lsg_protection,categorical,direct_reporting
+Vulnerability,% of households not intending to return to their AoO because of security/safety-related concerns,with LSG in Shelter,all,b5,categorical,lsg_snfi,categorical,direct_reporting
+Vulnerability,% of households not intending to return to their AoO because of security/safety-related concerns,with LSG in WASH,all,b5,categorical,lsg_wash,categorical,direct_reporting
+Vulnerability,% of households not intending to return to their AoO because of security/safety-related concerns,with at least one LSG,all,b5,categorical,lsg_all,categorical,direct_reporting
+Vulnerability,% of households not intending to return to their AoO because of security/safety-related concerns,with Capacity Gap,all,b5,categorical,coping_mechanism,categorical,direct_reporting
+Vulnerability,% of households without access to soap,with LSG in Education,all,b6,categorical,lsg_education,categorical,direct_reporting
+Vulnerability,% of households without access to soap,with LSG in Livelihoods,all,b6,categorical,lsg_livelihoods,categorical,direct_reporting
+Vulnerability,% of households without access to soap,with LSG in Food Security,all,b6,categorical,lsg_food,categorical,direct_reporting
+Vulnerability,% of households without access to soap,with LSG in Health,all,b6,categorical,lsg_health,categorical,direct_reporting
+Vulnerability,% of households without access to soap,with LSG in Protection,all,b6,categorical,lsg_protection,categorical,direct_reporting
+Vulnerability,% of households without access to soap,with LSG in Shelter,all,b6,categorical,lsg_snfi,categorical,direct_reporting
+Vulnerability,% of households without access to soap,with LSG in WASH,all,b6,categorical,lsg_wash,categorical,direct_reporting
+Vulnerability,% of households without access to soap,with at least one LSG,all,b6,categorical,lsg_all,categorical,direct_reporting
+Vulnerability,% of households without access to soap,with Capacity Gap,all,b6,categorical,coping_mechanism,categorical,direct_reporting
+Vulnerability,% of households without access to soap,with LSG in Education,all,b7,categorical,lsg_education,categorical,direct_reporting
+Vulnerability,% of households without access to soap,with LSG in Livelihoods,all,b7,categorical,lsg_livelihoods,categorical,direct_reporting
+Vulnerability,% of HH with at least one member above the age of 60,with LSG in Food Security,all,b7,categorical,lsg_food,categorical,direct_reporting
+Vulnerability,% of households without access to soap,with LSG in Health,all,b7,categorical,lsg_health,categorical,direct_reporting
+Vulnerability,% of HH with at least one member above the age of 60,with LSG in Protection,all,b7,categorical,lsg_protection,categorical,direct_reporting
+Vulnerability,% of households without access to soap,with LSG in Shelter,all,b7,categorical,lsg_snfi,categorical,direct_reporting
+Vulnerability,% of HH with at least one member above the age of 60,with LSG in WASH,all,b7,categorical,lsg_wash,categorical,direct_reporting
+Vulnerability,% of households without access to soap,with at least one LSG,all,b7,categorical,lsg_all,categorical,direct_reporting
+Vulnerability,% of HH with at least one member above the age of 60,with Capacity Gap,all,b7,categorical,coping_mechanism,categorical,direct_reporting
 LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Education,all,all,categorical,lsg_education,categorical,direct_reporting
 LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Livelihoods,all,all,categorical,lsg_livelihoods,categorical,direct_reporting
 LSG,Most common combinations of one or more LSG(s) among households with multi-sectoral needs,Food Security,all,all,categorical,lsg_food,categorical,direct_reporting

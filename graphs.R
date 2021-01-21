@@ -11,6 +11,7 @@ library(rlang)
 library(plotly)
 library(ggradar)
 library(UpSetR)
+library(eulerr)
 
 df <-
   read.csv("output/summary_sorted/summary_sorted_msni_all_all_all.csv")
