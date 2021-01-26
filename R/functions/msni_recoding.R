@@ -61,10 +61,8 @@ msni_recoding <- function(df, loop) {
     filter(relationship == "head")
   
   loop_head$female <-
-    case_when(
-      loop_head$sex == "female" & loop_head$age >= 18 ~ 1,
-      TRUE ~ 0
-    )
+    case_when(loop_head$sex == "female" & loop_head$age >= 18 ~ 1,
+              TRUE ~ 0)
   
   temp <- loop_head %>%
     group_by(X_uuid) %>%
@@ -144,7 +142,7 @@ msni_recoding <- function(df, loop) {
               is.na(df$vulnerability_score) ~ NA_real_,
               TRUE ~ 0)
   
-
+  
   ###################################c #########################################
   
   df$c1 <- case_when(
@@ -223,7 +221,8 @@ msni_recoding <- function(df, loop) {
     case_when(df$education_score >= 3 ~ 1,
               is.na(df$education_score) ~ NA_real_,
               TRUE ~ 0)
-  df$lsg_education_vulnerable <- ifelse(df$lsg_education == 1 & df$vulnerability_score >= 3, 1, 0)
+  df$lsg_education_vulnerable <-
+    ifelse(df$lsg_education == 1 & df$vulnerability_score >= 3, 1, 0)
   ###################################d #########################################
   
   df$d1 <- case_when(df$employment_seasonal == "yes" ~ 1,
@@ -294,7 +293,8 @@ msni_recoding <- function(df, loop) {
     case_when(df$livelihoods_score >= 3 ~ 1,
               is.na(df$livelihoods_score) ~ NA_real_,
               TRUE ~ 0)
-  df$lsg_livelihoods_vulnerable <- ifelse(df$lsg_livelihoods == 1 & df$vulnerability_score >= 3, 1, 0)
+  df$lsg_livelihoods_vulnerable <-
+    ifelse(df$lsg_livelihoods == 1 & df$vulnerability_score >= 3, 1, 0)
   
   ###################################e #########################################
   
@@ -376,7 +376,8 @@ msni_recoding <- function(df, loop) {
     case_when(df$food_security_score >= 3 ~ 1,
               is.na(df$food_security_score) ~ NA_real_,
               TRUE ~ 0)
-  df$lsg_food_vulnerable <- ifelse(df$lsg_food == 1 & df$vulnerability_score >= 3, 1, 0)
+  df$lsg_food_vulnerable <-
+    ifelse(df$lsg_food == 1 & df$vulnerability_score >= 3, 1, 0)
   
   ###################################f #########################################
   
@@ -466,7 +467,8 @@ msni_recoding <- function(df, loop) {
     case_when(df$protection_score >= 3 ~ 1,
               is.na(df$protection_score) ~ NA_real_,
               TRUE ~ 0)
-  df$lsg_protection_vulnerable <- ifelse(df$lsg_protection == 1 & df$vulnerability_score >= 3, 1, 0)
+  df$lsg_protection_vulnerable <-
+    ifelse(df$lsg_protection == 1 & df$vulnerability_score >= 3, 1, 0)
   ###################################g #########################################
   
   df$g1 <- ifelse(
@@ -510,7 +512,8 @@ msni_recoding <- function(df, loop) {
     case_when(df$health_score >= 3 ~ 1,
               is.na(df$health_score) ~ NA_real_,
               TRUE ~ 0)
-  df$lsg_health_vulnerable <- ifelse(df$lsg_health == 1 & df$vulnerability_score >= 3, 1, 0)
+  df$lsg_health_vulnerable <-
+    ifelse(df$lsg_health == 1 & df$vulnerability_score >= 3, 1, 0)
   ###################################h #########################################
   
   df$h1 <-
@@ -583,7 +586,8 @@ msni_recoding <- function(df, loop) {
   
   df$lsg_snfi <-
     case_when(df$snfi_score >= 3 ~ 1, is.na(df$snfi_score) ~ NA_real_, TRUE ~ 0)
-  df$lsg_snfi_vulnerable <- ifelse(df$lsg_snfi == 1 & df$vulnerability_score >= 3, 1, 0)
+  df$lsg_snfi_vulnerable <-
+    ifelse(df$lsg_snfi == 1 & df$vulnerability_score >= 3, 1, 0)
   ###################################i #########################################
   
   df$i1 <- ifelse(
@@ -600,13 +604,17 @@ msni_recoding <- function(df, loop) {
     0
   )
   
-  df$i2 <- ifelse(
-    df$sufficient_water_drinking == "yes" &
-      df$sufficient_water_cooking == "yes" &
-      df$sufficient_water_hygiene == "yes",
-    0,
-    1
-  )
+  df$i2 <-
+    case_when(
+      df$population_group == "idp_in_camp" &
+        (df$tank_capacity / (
+          df$num_hh_member * ifelse(df$people_share_tank == 0, 1, df$people_share_tank)
+        )) * (df$refill_times/7) < 15 ~ 1,
+      df$sufficient_water_drinking == "no" |
+        df$sufficient_water_cooking == "no" |
+        df$sufficient_water_hygiene == "no"  ~ 1,
+      TRUE ~ 0
+    )
   
   df$i3 <- ifelse(df$latrines %in% c("vip_pit", "flush"), 0, 1)
   
@@ -651,79 +659,70 @@ msni_recoding <- function(df, loop) {
   
   df$lsg_wash <-
     case_when(df$wash_score >= 3 ~ 1, is.na(df$wash_score) ~ NA_real_, TRUE ~ 0)
-  df$lsg_wash_vulnerable <- ifelse(df$lsg_wash == 1 & df$vulnerability_score >= 3, 1, 0)
+  df$lsg_wash_vulnerable <-
+    ifelse(df$lsg_wash == 1 & df$vulnerability_score >= 3, 1, 0)
   
-  df$msni_score <- max(df$education_score, df$livelihoods_score, df$food_score, df$health_score, df$protection_score, df$snfi_score, df$wash_score, na.rm = TRUE)
+  df$msni_score <-
+    max(
+      df$education_score,
+      df$livelihoods_score,
+      df$food_score,
+      df$health_score,
+      df$protection_score,
+      df$snfi_score,
+      df$wash_score,
+      na.rm = TRUE
+    )
   
   df$msni_score_4 <-
-    ifelse(
-        df$msni_score == 4,
-      1,
-      0
-    )
-
+    ifelse(df$msni_score == 4,
+           1,
+           0)
+  
   df$msni_score_3 <-
-    ifelse(
-      df$msni_score == 3,
-      1,
-      0
-    )
+    ifelse(df$msni_score == 3,
+           1,
+           0)
   
   df$msni_score_2 <-
-    ifelse(
-      df$msni_score == 2,
-      1,
-      0
-    )
+    ifelse(df$msni_score == 2,
+           1,
+           0)
   
   df$msni_score_1 <-
-    ifelse(
-      df$msni_score == 1,
-      1,
-      0
-    )
+    ifelse(df$msni_score == 1,
+           1,
+           0)
   
   df$lsg_all <- ifelse(df$msni_score >= 3, 1, 0)
   
-
-
-
+  
+  
+  
   df$female_hhh_education <-
-    case_when(
-      df$female_hhh == 1 & df$lsg_education == 1 ~ 1,
-      is.na(df$female_hhh) ~ NA_real_,
-      TRUE ~ 0
-    )
+    case_when(df$female_hhh == 1 & df$lsg_education == 1 ~ 1,
+              is.na(df$female_hhh) ~ NA_real_,
+              TRUE ~ 0)
   df$female_hhh_food <-
-    case_when(
-      df$female_hhh == 1 & df$lsg_food == 1 ~ 1,
-      is.na(df$female_hhh) ~ NA_real_,
-      TRUE ~ 0
-    )
+    case_when(df$female_hhh == 1 & df$lsg_food == 1 ~ 1,
+              is.na(df$female_hhh) ~ NA_real_,
+              TRUE ~ 0)
   df$female_hhh_health <-
-    case_when(
-      df$female_hhh == 1 & df$lsg_health == 1~ 1,
-      is.na(df$female_hhh) ~ NA_real_,
-      TRUE ~ 0
-    )
+    case_when(df$female_hhh == 1 & df$lsg_health == 1 ~ 1,
+              is.na(df$female_hhh) ~ NA_real_,
+              TRUE ~ 0)
   df$female_hhh_protection <-
-    case_when(
-      df$female_hhh == 1 & df$lsg_protection == 1~ 1,
-      is.na(df$female_hhh) ~ NA_real_,
-      TRUE ~ 0
-    )
+    case_when(df$female_hhh == 1 & df$lsg_protection == 1 ~ 1,
+              is.na(df$female_hhh) ~ NA_real_,
+              TRUE ~ 0)
   df$female_hhh_shelter <-
-    case_when(
-      df$female_hhh == 1 & df$lsg_snfi == 1~ 1,
-      is.na(df$female_hhh) ~ NA_real_,
-      TRUE ~ 0
-    )
+    case_when(df$female_hhh == 1 & df$lsg_snfi == 1 ~ 1,
+              is.na(df$female_hhh) ~ NA_real_,
+              TRUE ~ 0)
   df$female_hhh_wash <-
-    case_when(
-      df$female_hhh == 1 & df$lsg_wash == 1~ 1,
-      is.na(df$female_hhh) ~ NA_real_,
-      TRUE ~ 0
-    )
+    case_when(df$female_hhh == 1 & df$lsg_wash == 1 ~ 1,
+              is.na(df$female_hhh) ~ NA_real_,
+              TRUE ~ 0)
   df$female_hhh_lsgs <- case_when(
     sum_row(
       df$lsg_education,
@@ -733,391 +732,393 @@ msni_recoding <- function(df, loop) {
       df$lsg_protection,
       df$lsg_snfi,
       df$lsg_wash
-    ) >= 1 & df$female_hhh == 1~ 1,
+    ) >= 1 & df$female_hhh == 1 ~ 1,
     is.na(df$female_hhh) ~ NA_real_,
     TRUE ~ 0
   )
-  df$female_hhh_cg <- case_when(df$female_hhh == 1 & df$coping_mechanism == 1~ 1,
-                                is.na(df$female_hhh) ~ NA_real_,
-                                TRUE ~ 0
-  )
-
-# 
-#   df$b1_education <-
-#     ifelse(
-#       df$b1 == 1 & df$lsg_education == 1,
-#       1,
-#       0
-#     )
-#   df$b1_food <-
-#     ifelse(
-#       df$b1 == 1 & df$lsg_food == 1,
-#       1,
-#       0
-#     )
-#   df$b1_health <-
-#     ifelse(
-#       df$b1 == 1 & df$lsg_health == 1,
-#       1,
-#       0
-#     )
-#   df$b1_protection <-
-#     ifelse(
-#       df$b1 == 1 & df$lsg_protection == 1,
-#       1,
-#       0
-#     )
-#   df$b1_shelter <-
-#     ifelse(
-#       df$b1 == 1 & df$lsg_snfi == 1,
-#       1,
-#       0
-#     )
-#   df$b1_wash <-
-#     ifelse(
-#       df$b1 == 1 & df$lsg_wash == 1,
-#       1,
-#       0
-#     )
-#   df$b1_lsgs <- ifelse(
-#     sum_row(
-#       df$lsg_education,
-#       df$lsg_food,
-#       df$lsg_health,
-#       df$lsg_livelihoods,
-#       df$lsg_protection,
-#       df$lsg_snfi,
-#       df$lsg_wash
-#     ) >= 1 & df$b1 == 1, 1, 0
-#   )
-#   df$b1_cg <- ifelse(df$b1 == 1 & df$coping_mechanism == 1, 1, 0)
-#   
-#   df$b2_education <-
-#     case_when(
-#       df$b2 == 1 & df$lsg_education == 1 ~ 1,
-#       is.na(df$b2) ~ NA_real_,
-#       TRUE ~ 0
-#     )
-#   df$b2_food <-
-#     case_when(
-#       df$b2 == 1 & df$lsg_food == 1 ~ 1,
-#       is.na(df$b2) ~ NA_real_,
-#       TRUE ~ 0
-#     )
-#   df$b2_health <-
-#     case_when(
-#       df$b2 == 1 & df$lsg_health == 1 ~ 1,
-#       is.na(df$b2) ~ NA_real_,
-#       TRUE ~ 0
-#     )
-#   df$b2_protection <-
-#     case_when(
-#       df$b2 == 1 & df$lsg_protection == 1 ~ 1,
-#       is.na(df$b2) ~ NA_real_,
-#       TRUE ~ 0
-#     )
-#   df$b2_shelter <-
-#     case_when(
-#       df$b2 == 1 & df$lsg_snfi == 1 ~ 1,
-#       is.na(df$b2) ~ NA_real_,
-#       TRUE ~ 0
-#     )
-#   df$b2_wash <-
-#     case_when(
-#       df$b2 == 1 & df$lsg_wash == 1 ~ 1,
-#       is.na(df$b2) ~ NA_real_,
-#       TRUE ~ 0
-#     )
-#   df$b2_lsgs <- case_when(
-#     sum_row(
-#       df$lsg_education,
-#       df$lsg_food,
-#       df$lsg_health,
-#       df$lsg_livelihoods,
-#       df$lsg_protection,
-#       df$lsg_snfi,
-#       df$lsg_wash
-#     ) >= 1 & df$b2 == 1 ~ 1,
-#     is.na(df$b2) ~ NA_real_,
-#     TRUE ~ 0
-#   )
-#   df$b2_cg <- case_when(df$b2 == 1 & df$coping_mechanism == 1 ~ 1,
-#                      is.na(df$b2) ~ NA_real_,
-#                      TRUE ~ 0
-#   )
-#   
-#   df$b3_education <-
-#     case_when(
-#       df$b3 == 1 & df$lsg_education == 1 ~ 1,
-#       is.na(df$b3) ~ NA_real_,
-#       TRUE ~ 0
-#     )
-#   df$b3_food <-
-#     case_when(
-#       df$b3 == 1 & df$lsg_food == 1 ~ 1,
-#       is.na(df$b3) ~ NA_real_,
-#       TRUE ~ 0
-#     )
-#   df$b3_health <-
-#     case_when(
-#       df$b3 == 1 & df$lsg_health == 1 ~ 1,
-#       is.na(df$b3) ~ NA_real_,
-#       TRUE ~ 0
-#     )
-#   df$b3_protection <-
-#     case_when(
-#       df$b3 == 1 & df$lsg_protection == 1 ~ 1,
-#       is.na(df$b3) ~ NA_real_,
-#       TRUE ~ 0
-#     )
-#   df$b3_shelter <-
-#     case_when(
-#       df$b3 == 1 & df$lsg_snfi == 1 ~ 1,
-#       is.na(df$b3) ~ NA_real_,
-#       TRUE ~ 0
-#     )
-#   df$b3_wash <-
-#     case_when(
-#       df$b3 == 1 & df$lsg_wash == 1 ~ 1,
-#       is.na(df$b3) ~ NA_real_,
-#       TRUE ~ 0
-#     )
-#   df$b3_lsgs <- case_when(
-#     sum_row(
-#       df$lsg_education,
-#       df$lsg_food,
-#       df$lsg_health,
-#       df$lsg_livelihoods,
-#       df$lsg_protection,
-#       df$lsg_snfi,
-#       df$lsg_wash
-#     ) >= 1 & df$b3 == 1 ~ 1,
-#     is.na(df$b3) ~ NA_real_,
-#     TRUE ~ 0
-#   )
-#   df$b3_cg <- case_when(df$b3 == 1 & df$coping_mechanism == 1 ~ 1,
-#                      is.na(df$b3) ~ NA_real_,
-#                      TRUE ~ 0
-#   )
-#   
-#   df$b4_education <-
-#     case_when(
-#       df$b4 == 1 & df$lsg_education == 1 ~ 1,
-#       is.na(df$b4) ~ NA_real_,
-#       TRUE ~ 0
-#     )
-#   df$b4_food <-
-#     case_when(
-#       df$b4 == 1 & df$lsg_food == 1 ~ 1,
-#       is.na(df$b4) ~ NA_real_,
-#       TRUE ~ 0
-#     )
-#   df$b4_health <-
-#     case_when(
-#       df$b4 == 1 & df$lsg_health == 1 ~ 1,
-#       is.na(df$b4) ~ NA_real_,
-#       TRUE ~ 0
-#     )
-#   df$b4_protection <-
-#     case_when(
-#       df$b4 == 1 & df$lsg_protection == 1 ~ 1,
-#       is.na(df$b4) ~ NA_real_,
-#       TRUE ~ 0
-#     )
-#   df$b4_shelter <-
-#     case_when(
-#       df$b4 == 1 & df$lsg_snfi == 1 ~ 1,
-#       is.na(df$b4) ~ NA_real_,
-#       TRUE ~ 0
-#     )
-#   df$b4_wash <-
-#     case_when(
-#       df$b4 == 1 & df$lsg_wash == 1 ~ 1,
-#       is.na(df$b4) ~ NA_real_,
-#       TRUE ~ 0
-#     )
-#   df$b4_lsgs <- case_when(
-#     sum_row(
-#       df$lsg_education,
-#       df$lsg_food,
-#       df$lsg_health,
-#       df$lsg_livelihoods,
-#       df$lsg_protection,
-#       df$lsg_snfi,
-#       df$lsg_wash
-#     ) >= 1 & df$b4 == 1 ~ 1,
-#     is.na(df$b4) ~ NA_real_,
-#     TRUE ~ 0
-#   )
-#   df$b4_cg <- case_when(df$b4 == 1 & df$coping_mechanism == 1 ~ 1,
-#                      is.na(df$b4) ~ NA_real_,
-#                      TRUE ~ 0
-#   )
-#   
-#   df$b5_education <-
-#     case_when(
-#       df$b5 == 1 & df$lsg_education == 1 ~ 1,
-#       is.na(df$b5) ~ NA_real_,
-#       TRUE ~ 0
-#     )
-#   df$b5_food <-
-#     case_when(
-#       df$b5 == 1 & df$lsg_food == 1 ~ 1,
-#       is.na(df$b5) ~ NA_real_,
-#       TRUE ~ 0
-#     )
-#   df$b5_health <-
-#     case_when(
-#       df$b5 == 1 & df$lsg_health == 1 ~ 1,
-#       is.na(df$b5) ~ NA_real_,
-#       TRUE ~ 0
-#     )
-#   df$b5_protection <-
-#     case_when(
-#       df$b5 == 1 & df$lsg_protection == 1 ~ 1,
-#       is.na(df$b5) ~ NA_real_,
-#       TRUE ~ 0
-#     )
-#   df$b5_shelter <-
-#     case_when(
-#       df$b5 == 1 & df$lsg_snfi == 1 ~ 1,
-#       is.na(df$b5) ~ NA_real_,
-#       TRUE ~ 0
-#     )
-#   df$b5_wash <-
-#     case_when(
-#       df$b5 == 1 & df$lsg_wash == 1 ~ 1,
-#       is.na(df$b5) ~ NA_real_,
-#       TRUE ~ 0
-#     )
-#   df$b5_lsgs <- case_when(
-#     sum_row(
-#       df$lsg_education,
-#       df$lsg_food,
-#       df$lsg_health,
-#       df$lsg_livelihoods,
-#       df$lsg_protection,
-#       df$lsg_snfi,
-#       df$lsg_wash
-#     ) >= 1 & df$b5 == 1 ~ 1,
-#     is.na(df$b5) ~ NA_real_,
-#     TRUE ~ 0
-#   )
-#   df$b5_cg <- case_when(df$b5 == 1 & df$coping_mechanism == 1 ~ 1,
-#                      is.na(df$b5) ~ NA_real_,
-#                      TRUE ~ 0
-#   )
-#   
-#   df$b6_education <-
-#     case_when(
-#       df$b6 == 1 & df$lsg_education == 1 ~ 1,
-#       is.na(df$b6) ~ NA_real_,
-#       TRUE ~ 0
-#     )
-#   df$b6_food <-
-#     case_when(
-#       df$b6 == 1 & df$lsg_food == 1 ~ 1,
-#       is.na(df$b6) ~ NA_real_,
-#       TRUE ~ 0
-#     )
-#   df$b6_health <-
-#     case_when(
-#       df$b6 == 1 & df$lsg_health == 1 ~ 1,
-#       is.na(df$b6) ~ NA_real_,
-#       TRUE ~ 0
-#     )
-#   df$b6_protection <-
-#     case_when(
-#       df$b6 == 1 & df$lsg_protection == 1 ~ 1,
-#       is.na(df$b6) ~ NA_real_,
-#       TRUE ~ 0
-#     )
-#   df$b6_shelter <-
-#     case_when(
-#       df$b6 == 1 & df$lsg_snfi == 1 ~ 1,
-#       is.na(df$b6) ~ NA_real_,
-#       TRUE ~ 0
-#     )
-#   df$b6_wash <-
-#     case_when(
-#       df$b6 == 1 & df$lsg_wash == 1 ~ 1,
-#       is.na(df$b6) ~ NA_real_,
-#       TRUE ~ 0
-#     )
-#   df$b6_lsgs <- case_when(
-#     sum_row(
-#       df$lsg_education,
-#       df$lsg_food,
-#       df$lsg_health,
-#       df$lsg_livelihoods,
-#       df$lsg_protection,
-#       df$lsg_snfi,
-#       df$lsg_wash
-#     ) >= 1 & df$b6 == 1 ~ 1,
-#     is.na(df$b6) ~ NA_real_,
-#     TRUE ~ 0
-#   )
-#   df$b6_cg <- case_when(df$b6 == 1 & df$coping_mechanism == 1 ~ 1,
-#                      is.na(df$b6) ~ NA_real_,
-#                      TRUE ~ 0
-#   )
-#   
-#   df$b7_education <-
-#     case_when(
-#       df$b7 == 1 & df$lsg_education == 1 ~ 1,
-#       is.na(df$b7) ~ NA_real_,
-#       TRUE ~ 0
-#     )
-#   df$b7_food <-
-#     case_when(
-#       df$b7 == 1 & df$lsg_food == 1 ~ 1,
-#       is.na(df$b7) ~ NA_real_,
-#       TRUE ~ 0
-#     )
-#   df$b7_health <-
-#     case_when(
-#       df$b7 == 1 & df$lsg_health == 1 ~ 1,
-#       is.na(df$b7) ~ NA_real_,
-#       TRUE ~ 0
-#     )
-#   df$b7_protection <-
-#     case_when(
-#       df$b7 == 1 & df$lsg_protection == 1 ~ 1,
-#       is.na(df$b7) ~ NA_real_,
-#       TRUE ~ 0
-#     )
-#   df$b7_shelter <-
-#     case_when(
-#       df$b7 == 1 & df$lsg_snfi == 1 ~ 1,
-#       is.na(df$b7) ~ NA_real_,
-#       TRUE ~ 0
-#     )
-#   df$b7_wash <-
-#     case_when(
-#       df$b7 == 1 & df$lsg_wash == 1 ~ 1,
-#       is.na(df$b7) ~ NA_real_,
-#       TRUE ~ 0
-#     )
-#   df$b7_lsgs <- case_when(
-#     sum_row(
-#       df$lsg_education,
-#       df$lsg_food,
-#       df$lsg_health,
-#       df$lsg_livelihoods,
-#       df$lsg_protection,
-#       df$lsg_snfi,
-#       df$lsg_wash
-#     ) >= 1 & df$b7 == 1 ~ 1,
-#     is.na(df$b7) ~ NA_real_,
-#     TRUE ~ 0
-#   )
-#   df$b7_cg <- case_when(df$b7 == 1 & df$coping_mechanism == 1 ~ 1,
-#                      is.na(df$b7) ~ NA_real_,
-#                      TRUE ~ 0
-#   )
+  df$female_hhh_cg <-
+    case_when(
+      df$female_hhh == 1 & df$coping_mechanism == 1 ~ 1,
+      is.na(df$female_hhh) ~ NA_real_,
+      TRUE ~ 0
+    )
+  
+  #
+  #   df$b1_education <-
+  #     ifelse(
+  #       df$b1 == 1 & df$lsg_education == 1,
+  #       1,
+  #       0
+  #     )
+  #   df$b1_food <-
+  #     ifelse(
+  #       df$b1 == 1 & df$lsg_food == 1,
+  #       1,
+  #       0
+  #     )
+  #   df$b1_health <-
+  #     ifelse(
+  #       df$b1 == 1 & df$lsg_health == 1,
+  #       1,
+  #       0
+  #     )
+  #   df$b1_protection <-
+  #     ifelse(
+  #       df$b1 == 1 & df$lsg_protection == 1,
+  #       1,
+  #       0
+  #     )
+  #   df$b1_shelter <-
+  #     ifelse(
+  #       df$b1 == 1 & df$lsg_snfi == 1,
+  #       1,
+  #       0
+  #     )
+  #   df$b1_wash <-
+  #     ifelse(
+  #       df$b1 == 1 & df$lsg_wash == 1,
+  #       1,
+  #       0
+  #     )
+  #   df$b1_lsgs <- ifelse(
+  #     sum_row(
+  #       df$lsg_education,
+  #       df$lsg_food,
+  #       df$lsg_health,
+  #       df$lsg_livelihoods,
+  #       df$lsg_protection,
+  #       df$lsg_snfi,
+  #       df$lsg_wash
+  #     ) >= 1 & df$b1 == 1, 1, 0
+  #   )
+  #   df$b1_cg <- ifelse(df$b1 == 1 & df$coping_mechanism == 1, 1, 0)
+  #
+  #   df$b2_education <-
+  #     case_when(
+  #       df$b2 == 1 & df$lsg_education == 1 ~ 1,
+  #       is.na(df$b2) ~ NA_real_,
+  #       TRUE ~ 0
+  #     )
+  #   df$b2_food <-
+  #     case_when(
+  #       df$b2 == 1 & df$lsg_food == 1 ~ 1,
+  #       is.na(df$b2) ~ NA_real_,
+  #       TRUE ~ 0
+  #     )
+  #   df$b2_health <-
+  #     case_when(
+  #       df$b2 == 1 & df$lsg_health == 1 ~ 1,
+  #       is.na(df$b2) ~ NA_real_,
+  #       TRUE ~ 0
+  #     )
+  #   df$b2_protection <-
+  #     case_when(
+  #       df$b2 == 1 & df$lsg_protection == 1 ~ 1,
+  #       is.na(df$b2) ~ NA_real_,
+  #       TRUE ~ 0
+  #     )
+  #   df$b2_shelter <-
+  #     case_when(
+  #       df$b2 == 1 & df$lsg_snfi == 1 ~ 1,
+  #       is.na(df$b2) ~ NA_real_,
+  #       TRUE ~ 0
+  #     )
+  #   df$b2_wash <-
+  #     case_when(
+  #       df$b2 == 1 & df$lsg_wash == 1 ~ 1,
+  #       is.na(df$b2) ~ NA_real_,
+  #       TRUE ~ 0
+  #     )
+  #   df$b2_lsgs <- case_when(
+  #     sum_row(
+  #       df$lsg_education,
+  #       df$lsg_food,
+  #       df$lsg_health,
+  #       df$lsg_livelihoods,
+  #       df$lsg_protection,
+  #       df$lsg_snfi,
+  #       df$lsg_wash
+  #     ) >= 1 & df$b2 == 1 ~ 1,
+  #     is.na(df$b2) ~ NA_real_,
+  #     TRUE ~ 0
+  #   )
+  #   df$b2_cg <- case_when(df$b2 == 1 & df$coping_mechanism == 1 ~ 1,
+  #                      is.na(df$b2) ~ NA_real_,
+  #                      TRUE ~ 0
+  #   )
+  #
+  #   df$b3_education <-
+  #     case_when(
+  #       df$b3 == 1 & df$lsg_education == 1 ~ 1,
+  #       is.na(df$b3) ~ NA_real_,
+  #       TRUE ~ 0
+  #     )
+  #   df$b3_food <-
+  #     case_when(
+  #       df$b3 == 1 & df$lsg_food == 1 ~ 1,
+  #       is.na(df$b3) ~ NA_real_,
+  #       TRUE ~ 0
+  #     )
+  #   df$b3_health <-
+  #     case_when(
+  #       df$b3 == 1 & df$lsg_health == 1 ~ 1,
+  #       is.na(df$b3) ~ NA_real_,
+  #       TRUE ~ 0
+  #     )
+  #   df$b3_protection <-
+  #     case_when(
+  #       df$b3 == 1 & df$lsg_protection == 1 ~ 1,
+  #       is.na(df$b3) ~ NA_real_,
+  #       TRUE ~ 0
+  #     )
+  #   df$b3_shelter <-
+  #     case_when(
+  #       df$b3 == 1 & df$lsg_snfi == 1 ~ 1,
+  #       is.na(df$b3) ~ NA_real_,
+  #       TRUE ~ 0
+  #     )
+  #   df$b3_wash <-
+  #     case_when(
+  #       df$b3 == 1 & df$lsg_wash == 1 ~ 1,
+  #       is.na(df$b3) ~ NA_real_,
+  #       TRUE ~ 0
+  #     )
+  #   df$b3_lsgs <- case_when(
+  #     sum_row(
+  #       df$lsg_education,
+  #       df$lsg_food,
+  #       df$lsg_health,
+  #       df$lsg_livelihoods,
+  #       df$lsg_protection,
+  #       df$lsg_snfi,
+  #       df$lsg_wash
+  #     ) >= 1 & df$b3 == 1 ~ 1,
+  #     is.na(df$b3) ~ NA_real_,
+  #     TRUE ~ 0
+  #   )
+  #   df$b3_cg <- case_when(df$b3 == 1 & df$coping_mechanism == 1 ~ 1,
+  #                      is.na(df$b3) ~ NA_real_,
+  #                      TRUE ~ 0
+  #   )
+  #
+  #   df$b4_education <-
+  #     case_when(
+  #       df$b4 == 1 & df$lsg_education == 1 ~ 1,
+  #       is.na(df$b4) ~ NA_real_,
+  #       TRUE ~ 0
+  #     )
+  #   df$b4_food <-
+  #     case_when(
+  #       df$b4 == 1 & df$lsg_food == 1 ~ 1,
+  #       is.na(df$b4) ~ NA_real_,
+  #       TRUE ~ 0
+  #     )
+  #   df$b4_health <-
+  #     case_when(
+  #       df$b4 == 1 & df$lsg_health == 1 ~ 1,
+  #       is.na(df$b4) ~ NA_real_,
+  #       TRUE ~ 0
+  #     )
+  #   df$b4_protection <-
+  #     case_when(
+  #       df$b4 == 1 & df$lsg_protection == 1 ~ 1,
+  #       is.na(df$b4) ~ NA_real_,
+  #       TRUE ~ 0
+  #     )
+  #   df$b4_shelter <-
+  #     case_when(
+  #       df$b4 == 1 & df$lsg_snfi == 1 ~ 1,
+  #       is.na(df$b4) ~ NA_real_,
+  #       TRUE ~ 0
+  #     )
+  #   df$b4_wash <-
+  #     case_when(
+  #       df$b4 == 1 & df$lsg_wash == 1 ~ 1,
+  #       is.na(df$b4) ~ NA_real_,
+  #       TRUE ~ 0
+  #     )
+  #   df$b4_lsgs <- case_when(
+  #     sum_row(
+  #       df$lsg_education,
+  #       df$lsg_food,
+  #       df$lsg_health,
+  #       df$lsg_livelihoods,
+  #       df$lsg_protection,
+  #       df$lsg_snfi,
+  #       df$lsg_wash
+  #     ) >= 1 & df$b4 == 1 ~ 1,
+  #     is.na(df$b4) ~ NA_real_,
+  #     TRUE ~ 0
+  #   )
+  #   df$b4_cg <- case_when(df$b4 == 1 & df$coping_mechanism == 1 ~ 1,
+  #                      is.na(df$b4) ~ NA_real_,
+  #                      TRUE ~ 0
+  #   )
+  #
+  #   df$b5_education <-
+  #     case_when(
+  #       df$b5 == 1 & df$lsg_education == 1 ~ 1,
+  #       is.na(df$b5) ~ NA_real_,
+  #       TRUE ~ 0
+  #     )
+  #   df$b5_food <-
+  #     case_when(
+  #       df$b5 == 1 & df$lsg_food == 1 ~ 1,
+  #       is.na(df$b5) ~ NA_real_,
+  #       TRUE ~ 0
+  #     )
+  #   df$b5_health <-
+  #     case_when(
+  #       df$b5 == 1 & df$lsg_health == 1 ~ 1,
+  #       is.na(df$b5) ~ NA_real_,
+  #       TRUE ~ 0
+  #     )
+  #   df$b5_protection <-
+  #     case_when(
+  #       df$b5 == 1 & df$lsg_protection == 1 ~ 1,
+  #       is.na(df$b5) ~ NA_real_,
+  #       TRUE ~ 0
+  #     )
+  #   df$b5_shelter <-
+  #     case_when(
+  #       df$b5 == 1 & df$lsg_snfi == 1 ~ 1,
+  #       is.na(df$b5) ~ NA_real_,
+  #       TRUE ~ 0
+  #     )
+  #   df$b5_wash <-
+  #     case_when(
+  #       df$b5 == 1 & df$lsg_wash == 1 ~ 1,
+  #       is.na(df$b5) ~ NA_real_,
+  #       TRUE ~ 0
+  #     )
+  #   df$b5_lsgs <- case_when(
+  #     sum_row(
+  #       df$lsg_education,
+  #       df$lsg_food,
+  #       df$lsg_health,
+  #       df$lsg_livelihoods,
+  #       df$lsg_protection,
+  #       df$lsg_snfi,
+  #       df$lsg_wash
+  #     ) >= 1 & df$b5 == 1 ~ 1,
+  #     is.na(df$b5) ~ NA_real_,
+  #     TRUE ~ 0
+  #   )
+  #   df$b5_cg <- case_when(df$b5 == 1 & df$coping_mechanism == 1 ~ 1,
+  #                      is.na(df$b5) ~ NA_real_,
+  #                      TRUE ~ 0
+  #   )
+  #
+  #   df$b6_education <-
+  #     case_when(
+  #       df$b6 == 1 & df$lsg_education == 1 ~ 1,
+  #       is.na(df$b6) ~ NA_real_,
+  #       TRUE ~ 0
+  #     )
+  #   df$b6_food <-
+  #     case_when(
+  #       df$b6 == 1 & df$lsg_food == 1 ~ 1,
+  #       is.na(df$b6) ~ NA_real_,
+  #       TRUE ~ 0
+  #     )
+  #   df$b6_health <-
+  #     case_when(
+  #       df$b6 == 1 & df$lsg_health == 1 ~ 1,
+  #       is.na(df$b6) ~ NA_real_,
+  #       TRUE ~ 0
+  #     )
+  #   df$b6_protection <-
+  #     case_when(
+  #       df$b6 == 1 & df$lsg_protection == 1 ~ 1,
+  #       is.na(df$b6) ~ NA_real_,
+  #       TRUE ~ 0
+  #     )
+  #   df$b6_shelter <-
+  #     case_when(
+  #       df$b6 == 1 & df$lsg_snfi == 1 ~ 1,
+  #       is.na(df$b6) ~ NA_real_,
+  #       TRUE ~ 0
+  #     )
+  #   df$b6_wash <-
+  #     case_when(
+  #       df$b6 == 1 & df$lsg_wash == 1 ~ 1,
+  #       is.na(df$b6) ~ NA_real_,
+  #       TRUE ~ 0
+  #     )
+  #   df$b6_lsgs <- case_when(
+  #     sum_row(
+  #       df$lsg_education,
+  #       df$lsg_food,
+  #       df$lsg_health,
+  #       df$lsg_livelihoods,
+  #       df$lsg_protection,
+  #       df$lsg_snfi,
+  #       df$lsg_wash
+  #     ) >= 1 & df$b6 == 1 ~ 1,
+  #     is.na(df$b6) ~ NA_real_,
+  #     TRUE ~ 0
+  #   )
+  #   df$b6_cg <- case_when(df$b6 == 1 & df$coping_mechanism == 1 ~ 1,
+  #                      is.na(df$b6) ~ NA_real_,
+  #                      TRUE ~ 0
+  #   )
+  #
+  #   df$b7_education <-
+  #     case_when(
+  #       df$b7 == 1 & df$lsg_education == 1 ~ 1,
+  #       is.na(df$b7) ~ NA_real_,
+  #       TRUE ~ 0
+  #     )
+  #   df$b7_food <-
+  #     case_when(
+  #       df$b7 == 1 & df$lsg_food == 1 ~ 1,
+  #       is.na(df$b7) ~ NA_real_,
+  #       TRUE ~ 0
+  #     )
+  #   df$b7_health <-
+  #     case_when(
+  #       df$b7 == 1 & df$lsg_health == 1 ~ 1,
+  #       is.na(df$b7) ~ NA_real_,
+  #       TRUE ~ 0
+  #     )
+  #   df$b7_protection <-
+  #     case_when(
+  #       df$b7 == 1 & df$lsg_protection == 1 ~ 1,
+  #       is.na(df$b7) ~ NA_real_,
+  #       TRUE ~ 0
+  #     )
+  #   df$b7_shelter <-
+  #     case_when(
+  #       df$b7 == 1 & df$lsg_snfi == 1 ~ 1,
+  #       is.na(df$b7) ~ NA_real_,
+  #       TRUE ~ 0
+  #     )
+  #   df$b7_wash <-
+  #     case_when(
+  #       df$b7 == 1 & df$lsg_wash == 1 ~ 1,
+  #       is.na(df$b7) ~ NA_real_,
+  #       TRUE ~ 0
+  #     )
+  #   df$b7_lsgs <- case_when(
+  #     sum_row(
+  #       df$lsg_education,
+  #       df$lsg_food,
+  #       df$lsg_health,
+  #       df$lsg_livelihoods,
+  #       df$lsg_protection,
+  #       df$lsg_snfi,
+  #       df$lsg_wash
+  #     ) >= 1 & df$b7 == 1 ~ 1,
+  #     is.na(df$b7) ~ NA_real_,
+  #     TRUE ~ 0
+  #   )
+  #   df$b7_cg <- case_when(df$b7 == 1 & df$coping_mechanism == 1 ~ 1,
+  #                      is.na(df$b7) ~ NA_real_,
+  #                      TRUE ~ 0
+  #   )
   
   df$vulnerability_score_1 <-
-    ifelse(        
+    ifelse(
       sum_row(
         df$lsg_education,
         df$lsg_food,
@@ -1126,10 +1127,13 @@ msni_recoding <- function(df, loop) {
         df$lsg_protection,
         df$lsg_snfi,
         df$lsg_wash
-    ) >= 1 & df$vulnerability_1 == 1, 1, 0)
+      ) >= 1 & df$vulnerability_1 == 1,
+      1,
+      0
+    )
   
   df$vulnerability_score_2 <-
-    ifelse(        
+    ifelse(
       sum_row(
         df$lsg_education,
         df$lsg_food,
@@ -1138,10 +1142,13 @@ msni_recoding <- function(df, loop) {
         df$lsg_protection,
         df$lsg_snfi,
         df$lsg_wash
-      ) >= 1 & df$vulnerability_2 == 1, 1, 0)
+      ) >= 1 & df$vulnerability_2 == 1,
+      1,
+      0
+    )
   
   df$vulnerability_score_3 <-
-    ifelse(        
+    ifelse(
       sum_row(
         df$lsg_education,
         df$lsg_food,
@@ -1150,9 +1157,12 @@ msni_recoding <- function(df, loop) {
         df$lsg_protection,
         df$lsg_snfi,
         df$lsg_wash
-      ) >= 1 & df$vulnerability_3 == 1, 1, 0)
+      ) >= 1 & df$vulnerability_3 == 1,
+      1,
+      0
+    )
   df$vulnerability_score_4 <-
-    ifelse(        
+    ifelse(
       sum_row(
         df$lsg_education,
         df$lsg_food,
@@ -1161,8 +1171,11 @@ msni_recoding <- function(df, loop) {
         df$lsg_protection,
         df$lsg_snfi,
         df$lsg_wash
-      ) >= 1 & df$vulnerability_4 == 1, 1, 0)
-
+      ) >= 1 & df$vulnerability_4 == 1,
+      1,
+      0
+    )
+  
   df$cg_lsg_1 <-
     ifelse(
       df$coping_mechanism == 1 &
@@ -1194,7 +1207,7 @@ msni_recoding <- function(df, loop) {
     0
   )
   
-  df$cg_lsg_3 <- 
+  df$cg_lsg_3 <-
     ifelse(
       df$coping_mechanism == 1 |
         sum_row(
@@ -1210,7 +1223,7 @@ msni_recoding <- function(df, loop) {
       0
     )
   
-  df$cg_lsg_4 <- 
+  df$cg_lsg_4 <-
     ifelse(
       df$coping_mechanism == 0 &
         sum_row(
@@ -1225,8 +1238,8 @@ msni_recoding <- function(df, loop) {
       1,
       0
     )
-  df$seven_lsg   <- 
-    ifelse(        
+  df$seven_lsg   <-
+    ifelse(
       sum_row(
         df$lsg_education,
         df$lsg_food,
@@ -1239,8 +1252,8 @@ msni_recoding <- function(df, loop) {
       1,
       0
     )
-  df$six_lsg   <- 
-    ifelse(        
+  df$six_lsg   <-
+    ifelse(
       sum_row(
         df$lsg_education,
         df$lsg_food,
@@ -1253,8 +1266,8 @@ msni_recoding <- function(df, loop) {
       1,
       0
     )
-  df$five_lsg   <- 
-    ifelse(        
+  df$five_lsg   <-
+    ifelse(
       sum_row(
         df$lsg_education,
         df$lsg_food,
@@ -1267,8 +1280,8 @@ msni_recoding <- function(df, loop) {
       1,
       0
     )
-  df$four_lsg   <- 
-    ifelse(        
+  df$four_lsg   <-
+    ifelse(
       sum_row(
         df$lsg_education,
         df$lsg_food,
@@ -1281,8 +1294,8 @@ msni_recoding <- function(df, loop) {
       1,
       0
     )
-  df$three_lsg   <- 
-    ifelse(        
+  df$three_lsg   <-
+    ifelse(
       sum_row(
         df$lsg_education,
         df$lsg_food,
@@ -1295,8 +1308,8 @@ msni_recoding <- function(df, loop) {
       1,
       0
     )
-  df$two_lsg   <- 
-    ifelse(        
+  df$two_lsg   <-
+    ifelse(
       sum_row(
         df$lsg_education,
         df$lsg_food,
@@ -1309,8 +1322,8 @@ msni_recoding <- function(df, loop) {
       1,
       0
     )
-  df$one_lsg   <- 
-    ifelse(        
+  df$one_lsg   <-
+    ifelse(
       sum_row(
         df$lsg_education,
         df$lsg_food,
@@ -1323,8 +1336,8 @@ msni_recoding <- function(df, loop) {
       1,
       0
     )
-  df$zero_lsg   <- 
-    ifelse(        
+  df$zero_lsg   <-
+    ifelse(
       sum_row(
         df$lsg_education,
         df$lsg_food,
@@ -1337,145 +1350,670 @@ msni_recoding <- function(df, loop) {
       1,
       0
     )
-  df$lsg_vulnerable <- 
-    ifelse(      
+  df$lsg_vulnerable <-
+    ifelse(
       sum_row(
         df$lsg_education,
-        df$lsg_food,    
+        df$lsg_food,
         df$lsg_health,
         df$lsg_livelihoods,
         df$lsg_protection,
         df$lsg_snfi,
         df$lsg_wash
-        ) >= 1 & df$vulnerability_score >= 3, 1, 0)
+      ) >= 1 & df$vulnerability_score >= 3,
+      1,
+      0
+    )
   
   
-  df$lsg_education_livelihoods    <- ifelse(df$lsg_education == 1 & df$lsg_livelihoods == 1, 1, 0)
-  df$lsg_education_food           <- ifelse(df$lsg_education == 1 & df$lsg_food == 1, 1, 0)
-  df$lsg_education_protection     <- ifelse(df$lsg_education == 1 & df$lsg_protection == 1, 1, 0)
-  df$lsg_education_health         <- ifelse(df$lsg_education == 1 & df$lsg_health == 1, 1, 0)
-  df$lsg_education_snfi           <- ifelse(df$lsg_education == 1 & df$lsg_snfi == 1, 1, 0)
-  df$lsg_education_wash           <- ifelse(df$lsg_education == 1 & df$lsg_wash == 1, 1, 0)
-  df$lsg_livelihoods_food         <- ifelse(df$lsg_livelihoods == 1 & df$lsg_food == 1, 1, 0)
-  df$lsg_livelihoods_protection   <- ifelse(df$lsg_livelihoods == 1 & df$lsg_protection == 1, 1, 0)
-  df$lsg_livelihoods_health       <- ifelse(df$lsg_livelihoods == 1 & df$lsg_health == 1, 1, 0)
-  df$lsg_livelihoods_snfi         <- ifelse(df$lsg_livelihoods == 1 & df$lsg_snfi == 1, 1, 0)
-  df$lsg_livelihoods_wash         <- ifelse(df$lsg_livelihoods == 1 & df$lsg_wash == 1, 1, 0)
-  df$lsg_food_protection          <- ifelse(df$lsg_food == 1 & df$lsg_protection == 1, 1, 0)
-  df$lsg_food_health              <- ifelse(df$lsg_food == 1 & df$lsg_health == 1, 1, 0)
-  df$lsg_food_snfi                <- ifelse(df$lsg_food == 1 & df$lsg_snfi == 1, 1, 0)
-  df$lsg_food_wash                <- ifelse(df$lsg_food == 1 & df$lsg_wash == 1, 1, 0)
-  df$lsg_protection_health        <- ifelse(df$lsg_protection == 1 & df$lsg_health == 1, 1, 0)
-  df$lsg_protection_snfi          <- ifelse(df$lsg_protection == 1 & df$lsg_snfi == 1, 1, 0)
-  df$lsg_protection_wash          <- ifelse(df$lsg_protection == 1 & df$lsg_wash == 1, 1, 0)
-  df$lsg_health_snfi              <- ifelse(df$lsg_health == 1 & df$lsg_snfi == 1, 1, 0)
-  df$lsg_health_wash              <- ifelse(df$lsg_health == 1 & df$lsg_wash == 1, 1, 0)
-  df$lsg_snfi_wash                <- ifelse(df$lsg_snfi == 1 & df$lsg_wash == 1, 1, 0)
+  df$lsg_education_livelihoods    <-
+    ifelse(df$lsg_education == 1 & df$lsg_livelihoods == 1, 1, 0)
+  df$lsg_education_food           <-
+    ifelse(df$lsg_education == 1 & df$lsg_food == 1, 1, 0)
+  df$lsg_education_protection     <-
+    ifelse(df$lsg_education == 1 & df$lsg_protection == 1, 1, 0)
+  df$lsg_education_health         <-
+    ifelse(df$lsg_education == 1 & df$lsg_health == 1, 1, 0)
+  df$lsg_education_snfi           <-
+    ifelse(df$lsg_education == 1 & df$lsg_snfi == 1, 1, 0)
+  df$lsg_education_wash           <-
+    ifelse(df$lsg_education == 1 & df$lsg_wash == 1, 1, 0)
+  df$lsg_livelihoods_food         <-
+    ifelse(df$lsg_livelihoods == 1 & df$lsg_food == 1, 1, 0)
+  df$lsg_livelihoods_protection   <-
+    ifelse(df$lsg_livelihoods == 1 & df$lsg_protection == 1, 1, 0)
+  df$lsg_livelihoods_health       <-
+    ifelse(df$lsg_livelihoods == 1 & df$lsg_health == 1, 1, 0)
+  df$lsg_livelihoods_snfi         <-
+    ifelse(df$lsg_livelihoods == 1 & df$lsg_snfi == 1, 1, 0)
+  df$lsg_livelihoods_wash         <-
+    ifelse(df$lsg_livelihoods == 1 & df$lsg_wash == 1, 1, 0)
+  df$lsg_food_protection          <-
+    ifelse(df$lsg_food == 1 & df$lsg_protection == 1, 1, 0)
+  df$lsg_food_health              <-
+    ifelse(df$lsg_food == 1 & df$lsg_health == 1, 1, 0)
+  df$lsg_food_snfi                <-
+    ifelse(df$lsg_food == 1 & df$lsg_snfi == 1, 1, 0)
+  df$lsg_food_wash                <-
+    ifelse(df$lsg_food == 1 & df$lsg_wash == 1, 1, 0)
+  df$lsg_protection_health        <-
+    ifelse(df$lsg_protection == 1 & df$lsg_health == 1, 1, 0)
+  df$lsg_protection_snfi          <-
+    ifelse(df$lsg_protection == 1 & df$lsg_snfi == 1, 1, 0)
+  df$lsg_protection_wash          <-
+    ifelse(df$lsg_protection == 1 & df$lsg_wash == 1, 1, 0)
+  df$lsg_health_snfi              <-
+    ifelse(df$lsg_health == 1 & df$lsg_snfi == 1, 1, 0)
+  df$lsg_health_wash              <-
+    ifelse(df$lsg_health == 1 & df$lsg_wash == 1, 1, 0)
+  df$lsg_snfi_wash                <-
+    ifelse(df$lsg_snfi == 1 & df$lsg_wash == 1, 1, 0)
   
-  df$lsg_education_livelihoods_food      <- ifelse(df$lsg_education == 1 & df$lsg_livelihoods == 1 & df$lsg_food == 1, 1, 0)
-  df$lsg_education_livelihoods_protection<- ifelse(df$lsg_education == 1 & df$lsg_livelihoods == 1 & df$lsg_protection == 1, 1, 0)
-  df$lsg_education_livelihoods_health    <- ifelse(df$lsg_education == 1 & df$lsg_livelihoods == 1 & df$lsg_health == 1, 1, 0)
-  df$lsg_education_livelihoods_snfi      <- ifelse(df$lsg_education == 1 & df$lsg_livelihoods == 1 & df$lsg_snfi == 1, 1, 0)
-  df$lsg_education_livelihoods_wash      <- ifelse(df$lsg_education == 1 & df$lsg_livelihoods == 1 & df$lsg_wash == 1, 1, 0)
-  df$lsg_education_food_protection       <- ifelse(df$lsg_education == 1 & df$lsg_food == 1 & df$lsg_protection == 1, 1, 0)
-  df$lsg_education_food_health           <- ifelse(df$lsg_education == 1 & df$lsg_food == 1 & df$lsg_health == 1, 1, 0)
-  df$lsg_education_food_snfi             <- ifelse(df$lsg_education == 1 & df$lsg_food == 1 & df$lsg_snfi == 1, 1, 0)
-  df$lsg_education_food_wash             <- ifelse(df$lsg_education == 1 & df$lsg_food == 1 & df$lsg_wash == 1, 1, 0)
-  df$lsg_education_protection_health     <- ifelse(df$lsg_education == 1 & df$lsg_protection == 1 & df$lsg_health == 1, 1, 0)
-  df$lsg_education_protection_snfi       <- ifelse(df$lsg_education == 1 & df$lsg_protection == 1 & df$lsg_snfi == 1, 1, 0)
-  df$lsg_education_protection_wash       <- ifelse(df$lsg_education == 1 & df$lsg_protection == 1 & df$lsg_wash == 1, 1, 0)
-  df$lsg_education_health_snfi           <- ifelse(df$lsg_education == 1 & df$lsg_health == 1 & df$lsg_snfi == 1, 1, 0)
-  df$lsg_education_health_wash           <- ifelse(df$lsg_education == 1 & df$lsg_health == 1 & df$lsg_wash == 1, 1, 0)
-  df$lsg_education_snfi_wash             <- ifelse(df$lsg_education == 1 & df$lsg_snfi == 1 & df$lsg_wash == 1, 1, 0)
-  df$lsg_livelihoods_food_protection     <- ifelse(df$lsg_livelihoods == 1 & df$lsg_food == 1 & df$lsg_protection == 1, 1, 0)
-  df$lsg_livelihoods_food_health         <- ifelse(df$lsg_livelihoods == 1 & df$lsg_food == 1 & df$lsg_health == 1, 1, 0)
-  df$lsg_livelihoods_food_snfi           <- ifelse(df$lsg_livelihoods == 1 & df$lsg_food == 1 & df$lsg_snfi == 1, 1, 0)
-  df$lsg_livelihoods_food_wash           <- ifelse(df$lsg_livelihoods == 1 & df$lsg_food == 1 & df$lsg_wash == 1, 1, 0)
-  df$lsg_livelihoods_protection_health   <- ifelse(df$lsg_livelihoods == 1 & df$lsg_protection == 1 & df$lsg_health == 1, 1, 0)
-  df$lsg_livelihoods_protection_snfi     <- ifelse(df$lsg_livelihoods == 1 & df$lsg_protection == 1 & df$lsg_snfi == 1, 1, 0)
-  df$lsg_livelihoods_protection_wash     <- ifelse(df$lsg_livelihoods == 1 & df$lsg_protection == 1 & df$lsg_wash == 1, 1, 0)
-  df$lsg_livelihoods_health_snfi         <- ifelse(df$lsg_livelihoods == 1 & df$lsg_health == 1 & df$lsg_snfi == 1, 1, 0)
-  df$lsg_livelihoods_health_wash         <- ifelse(df$lsg_livelihoods == 1 & df$lsg_health == 1 & df$lsg_wash == 1, 1, 0)
-  df$lsg_livelihoods_snfi_wash           <- ifelse(df$lsg_livelihoods == 1 & df$lsg_snfi == 1 & df$lsg_wash == 1, 1, 0)
-  df$lsg_food_protection_health          <- ifelse(df$lsg_food == 1 & df$lsg_protection == 1 & df$lsg_health == 1, 1, 0)
-  df$lsg_food_protection_snfi            <- ifelse(df$lsg_food == 1 & df$lsg_protection == 1 & df$lsg_snfi == 1, 1, 0)
-  df$lsg_food_protection_wash            <- ifelse(df$lsg_food == 1 & df$lsg_protection == 1 & df$lsg_wash == 1, 1, 0)
-  df$lsg_food_health_snfi                <- ifelse(df$lsg_food == 1 & df$lsg_health == 1 & df$lsg_snfi == 1, 1, 0)
-  df$lsg_food_health_wash                <- ifelse(df$lsg_food == 1 & df$lsg_health == 1 & df$lsg_wash == 1, 1, 0)
-  df$lsg_food_snfi_wash                  <- ifelse(df$lsg_food == 1 & df$lsg_snfi == 1 & df$lsg_wash == 1, 1, 0)
-  df$lsg_protection_health_snfi          <- ifelse(df$lsg_protection == 1 & df$lsg_health == 1 & df$lsg_snfi == 1, 1, 0)
-  df$lsg_protection_health_wash          <- ifelse(df$lsg_protection == 1 & df$lsg_health == 1 & df$lsg_wash == 1, 1, 0)
-  df$lsg_protection_snfi_wash            <- ifelse(df$lsg_protection == 1 & df$lsg_snfi == 1 & df$lsg_wash == 1, 1, 0)
-  df$lsg_health_snfi_wash                <- ifelse(df$lsg_health == 1 & df$lsg_snfi == 1 & df$lsg_wash == 1, 1, 0)
+  df$lsg_education_livelihoods_food      <-
+    ifelse(df$lsg_education == 1 &
+             df$lsg_livelihoods == 1 & df$lsg_food == 1,
+           1,
+           0)
+  df$lsg_education_livelihoods_protection <-
+    ifelse(df$lsg_education == 1 &
+             df$lsg_livelihoods == 1 & df$lsg_protection == 1,
+           1,
+           0)
+  df$lsg_education_livelihoods_health    <-
+    ifelse(df$lsg_education == 1 &
+             df$lsg_livelihoods == 1 & df$lsg_health == 1,
+           1,
+           0)
+  df$lsg_education_livelihoods_snfi      <-
+    ifelse(df$lsg_education == 1 &
+             df$lsg_livelihoods == 1 & df$lsg_snfi == 1,
+           1,
+           0)
+  df$lsg_education_livelihoods_wash      <-
+    ifelse(df$lsg_education == 1 &
+             df$lsg_livelihoods == 1 & df$lsg_wash == 1,
+           1,
+           0)
+  df$lsg_education_food_protection       <-
+    ifelse(df$lsg_education == 1 &
+             df$lsg_food == 1 & df$lsg_protection == 1,
+           1,
+           0)
+  df$lsg_education_food_health           <-
+    ifelse(df$lsg_education == 1 &
+             df$lsg_food == 1 & df$lsg_health == 1, 1, 0)
+  df$lsg_education_food_snfi             <-
+    ifelse(df$lsg_education == 1 &
+             df$lsg_food == 1 & df$lsg_snfi == 1, 1, 0)
+  df$lsg_education_food_wash             <-
+    ifelse(df$lsg_education == 1 &
+             df$lsg_food == 1 & df$lsg_wash == 1, 1, 0)
+  df$lsg_education_protection_health     <-
+    ifelse(df$lsg_education == 1 &
+             df$lsg_protection == 1 & df$lsg_health == 1,
+           1,
+           0)
+  df$lsg_education_protection_snfi       <-
+    ifelse(df$lsg_education == 1 &
+             df$lsg_protection == 1 & df$lsg_snfi == 1,
+           1,
+           0)
+  df$lsg_education_protection_wash       <-
+    ifelse(df$lsg_education == 1 &
+             df$lsg_protection == 1 & df$lsg_wash == 1,
+           1,
+           0)
+  df$lsg_education_health_snfi           <-
+    ifelse(df$lsg_education == 1 &
+             df$lsg_health == 1 & df$lsg_snfi == 1, 1, 0)
+  df$lsg_education_health_wash           <-
+    ifelse(df$lsg_education == 1 &
+             df$lsg_health == 1 & df$lsg_wash == 1, 1, 0)
+  df$lsg_education_snfi_wash             <-
+    ifelse(df$lsg_education == 1 &
+             df$lsg_snfi == 1 & df$lsg_wash == 1, 1, 0)
+  df$lsg_livelihoods_food_protection     <-
+    ifelse(df$lsg_livelihoods == 1 &
+             df$lsg_food == 1 & df$lsg_protection == 1,
+           1,
+           0)
+  df$lsg_livelihoods_food_health         <-
+    ifelse(df$lsg_livelihoods == 1 &
+             df$lsg_food == 1 & df$lsg_health == 1,
+           1,
+           0)
+  df$lsg_livelihoods_food_snfi           <-
+    ifelse(df$lsg_livelihoods == 1 &
+             df$lsg_food == 1 & df$lsg_snfi == 1, 1, 0)
+  df$lsg_livelihoods_food_wash           <-
+    ifelse(df$lsg_livelihoods == 1 &
+             df$lsg_food == 1 & df$lsg_wash == 1, 1, 0)
+  df$lsg_livelihoods_protection_health   <-
+    ifelse(df$lsg_livelihoods == 1 &
+             df$lsg_protection == 1 & df$lsg_health == 1,
+           1,
+           0)
+  df$lsg_livelihoods_protection_snfi     <-
+    ifelse(df$lsg_livelihoods == 1 &
+             df$lsg_protection == 1 & df$lsg_snfi == 1,
+           1,
+           0)
+  df$lsg_livelihoods_protection_wash     <-
+    ifelse(df$lsg_livelihoods == 1 &
+             df$lsg_protection == 1 & df$lsg_wash == 1,
+           1,
+           0)
+  df$lsg_livelihoods_health_snfi         <-
+    ifelse(df$lsg_livelihoods == 1 &
+             df$lsg_health == 1 & df$lsg_snfi == 1,
+           1,
+           0)
+  df$lsg_livelihoods_health_wash         <-
+    ifelse(df$lsg_livelihoods == 1 &
+             df$lsg_health == 1 & df$lsg_wash == 1,
+           1,
+           0)
+  df$lsg_livelihoods_snfi_wash           <-
+    ifelse(df$lsg_livelihoods == 1 &
+             df$lsg_snfi == 1 & df$lsg_wash == 1, 1, 0)
+  df$lsg_food_protection_health          <-
+    ifelse(df$lsg_food == 1 &
+             df$lsg_protection == 1 & df$lsg_health == 1, 1, 0)
+  df$lsg_food_protection_snfi            <-
+    ifelse(df$lsg_food == 1 &
+             df$lsg_protection == 1 & df$lsg_snfi == 1, 1, 0)
+  df$lsg_food_protection_wash            <-
+    ifelse(df$lsg_food == 1 &
+             df$lsg_protection == 1 & df$lsg_wash == 1, 1, 0)
+  df$lsg_food_health_snfi                <-
+    ifelse(df$lsg_food == 1 &
+             df$lsg_health == 1 & df$lsg_snfi == 1, 1, 0)
+  df$lsg_food_health_wash                <-
+    ifelse(df$lsg_food == 1 &
+             df$lsg_health == 1 & df$lsg_wash == 1, 1, 0)
+  df$lsg_food_snfi_wash                  <-
+    ifelse(df$lsg_food == 1 &
+             df$lsg_snfi == 1 & df$lsg_wash == 1, 1, 0)
+  df$lsg_protection_health_snfi          <-
+    ifelse(df$lsg_protection == 1 &
+             df$lsg_health == 1 & df$lsg_snfi == 1, 1, 0)
+  df$lsg_protection_health_wash          <-
+    ifelse(df$lsg_protection == 1 &
+             df$lsg_health == 1 & df$lsg_wash == 1, 1, 0)
+  df$lsg_protection_snfi_wash            <-
+    ifelse(df$lsg_protection == 1 &
+             df$lsg_snfi == 1 & df$lsg_wash == 1, 1, 0)
+  df$lsg_health_snfi_wash                <-
+    ifelse(df$lsg_health == 1 &
+             df$lsg_snfi == 1 & df$lsg_wash == 1, 1, 0)
   
-  df$lsg_education_livelihoods_food_protection    <- ifelse(df$lsg_education == 1 & df$lsg_livelihoods == 1 & df$lsg_food == 1 & df$lsg_protection == 1, 1, 0)
-  df$lsg_education_livelihoods_food_health        <- ifelse(df$lsg_education == 1 & df$lsg_livelihoods == 1 & df$lsg_food == 1 & df$lsg_health == 1, 1, 0)
-  df$lsg_education_livelihoods_food_snfi          <- ifelse(df$lsg_education == 1 & df$lsg_livelihoods == 1 & df$lsg_food == 1 & df$lsg_snfi == 1, 1, 0)
-  df$lsg_education_livelihoods_food_wash          <- ifelse(df$lsg_education == 1 & df$lsg_livelihoods == 1 & df$lsg_food == 1 & df$lsg_wash == 1, 1, 0)
-  df$lsg_education_livelihoods_protection_health  <- ifelse(df$lsg_education == 1 & df$lsg_livelihoods == 1 & df$lsg_protection == 1 & df$lsg_health == 1, 1, 0)
-  df$lsg_education_livelihoods_protection_snfi    <- ifelse(df$lsg_education == 1 & df$lsg_livelihoods == 1 & df$lsg_protection == 1 & df$lsg_snfi == 1, 1, 0)
-  df$lsg_education_livelihoods_protection_wash    <- ifelse(df$lsg_education == 1 & df$lsg_livelihoods == 1 & df$lsg_protection == 1 & df$lsg_wash == 1, 1, 0)
-  df$lsg_education_livelihoods_health_snfi        <- ifelse(df$lsg_education == 1 & df$lsg_livelihoods == 1 & df$lsg_health == 1 & df$lsg_snfi == 1, 1, 0)
-  df$lsg_education_livelihoods_health_wash        <- ifelse(df$lsg_education == 1 & df$lsg_livelihoods == 1 & df$lsg_health == 1 & df$lsg_wash == 1, 1, 0)
-  df$lsg_education_livelihoods_snfi_wash          <- ifelse(df$lsg_education == 1 & df$lsg_livelihoods == 1 & df$lsg_snfi == 1 & df$lsg_wash == 1, 1, 0)
-  df$lsg_education_food_protection_health         <- ifelse(df$lsg_education == 1 & df$lsg_food == 1 & df$lsg_protection == 1 & df$lsg_health == 1, 1, 0)
-  df$lsg_education_food_protection_snfi           <- ifelse(df$lsg_education == 1 & df$lsg_food == 1 & df$lsg_protection == 1 & df$lsg_snfi == 1, 1, 0)
-  df$lsg_education_food_protection_wash           <- ifelse(df$lsg_education == 1 & df$lsg_food == 1 & df$lsg_protection == 1 & df$lsg_wash == 1, 1, 0)
-  df$lsg_education_food_health_snfi               <- ifelse(df$lsg_education == 1 & df$lsg_food == 1 & df$lsg_health == 1 & df$lsg_snfi == 1, 1, 0)
-  df$lsg_education_food_health_wash               <- ifelse(df$lsg_education == 1 & df$lsg_food == 1 & df$lsg_health == 1 & df$lsg_wash == 1, 1, 0)
-  df$lsg_education_food_snfi_wash                 <- ifelse(df$lsg_education == 1 & df$lsg_food == 1 & df$lsg_snfi == 1 & df$lsg_wash == 1, 1, 0)
-  df$lsg_education_protection_health_snfi         <- ifelse(df$lsg_education == 1 & df$lsg_protection == 1 & df$lsg_health == 1 & df$lsg_snfi == 1, 1, 0)
-  df$lsg_education_protection_health_wash         <- ifelse(df$lsg_education == 1 & df$lsg_protection == 1 & df$lsg_health == 1 & df$lsg_wash == 1, 1, 0)
-  df$lsg_education_protection_snfi_wash           <- ifelse(df$lsg_education == 1 & df$lsg_protection == 1 & df$lsg_snfi == 1 & df$lsg_wash == 1, 1, 0)
-  df$lsg_education_health_snfi_wash               <- ifelse(df$lsg_education == 1 & df$lsg_health == 1 & df$lsg_snfi == 1 & df$lsg_wash == 1, 1, 0)
-  df$lsg_livelihoods_food_protection_health       <- ifelse(df$lsg_livelihoods == 1 & df$lsg_food == 1 & df$lsg_protection == 1 & df$lsg_health == 1, 1, 0)
-  df$lsg_livelihoods_food_protection_snfi         <- ifelse(df$lsg_livelihoods == 1 & df$lsg_food == 1 & df$lsg_protection == 1 & df$lsg_snfi == 1, 1, 0)
-  df$lsg_livelihoods_food_protection_wash         <- ifelse(df$lsg_livelihoods == 1 & df$lsg_food == 1 & df$lsg_protection == 1 & df$lsg_wash == 1, 1, 0)
-  df$lsg_livelihoods_food_health_snfi             <- ifelse(df$lsg_livelihoods == 1 & df$lsg_food == 1 & df$lsg_health == 1 & df$lsg_snfi == 1, 1, 0)
-  df$lsg_livelihoods_food_health_wash             <- ifelse(df$lsg_livelihoods == 1 & df$lsg_food == 1 & df$lsg_health == 1 & df$lsg_wash == 1, 1, 0)
-  df$lsg_livelihoods_food_snfi_wash               <- ifelse(df$lsg_livelihoods == 1 & df$lsg_food == 1 & df$lsg_snfi == 1 & df$lsg_wash == 1, 1, 0)
-  df$lsg_livelihoods_protection_health_snfi       <- ifelse(df$lsg_livelihoods == 1 & df$lsg_protection == 1 & df$lsg_health == 1 & df$lsg_snfi == 1, 1, 0)
-  df$lsg_livelihoods_protection_health_wash       <- ifelse(df$lsg_livelihoods == 1 & df$lsg_protection == 1 & df$lsg_health == 1 & df$lsg_wash == 1, 1, 0)
-  df$lsg_livelihoods_protection_snfi_wash         <- ifelse(df$lsg_livelihoods == 1 & df$lsg_protection == 1 & df$lsg_snfi == 1 & df$lsg_wash == 1, 1, 0)
-  df$lsg_livelihoods_health_snfi_wash             <- ifelse(df$lsg_livelihoods == 1 & df$lsg_health == 1 & df$lsg_snfi == 1 & df$lsg_wash == 1, 1, 0)
-  df$lsg_food_protection_health_snfi              <- ifelse(df$lsg_food == 1 & df$lsg_protection == 1 & df$lsg_health == 1 & df$lsg_snfi == 1, 1, 0)
-  df$lsg_food_protection_health_wash              <- ifelse(df$lsg_food == 1 & df$lsg_protection == 1 & df$lsg_health == 1 & df$lsg_wash == 1, 1, 0)
-  df$lsg_food_protection_snfi_wash                <- ifelse(df$lsg_food == 1 & df$lsg_protection == 1 & df$lsg_snfi == 1 & df$lsg_wash == 1, 1, 0)
-  df$lsg_food_health_snfi_wash                    <- ifelse(df$lsg_food == 1 & df$lsg_health == 1 & df$lsg_snfi == 1 & df$lsg_wash == 1, 1, 0)
-  df$lsg_protection_health_snfi_wash              <- ifelse(df$lsg_protection == 1 & df$lsg_health == 1 & df$lsg_snfi == 1 & df$lsg_wash == 1, 1, 0)
+  df$lsg_education_livelihoods_food_protection    <-
+    ifelse(
+      df$lsg_education == 1 &
+        df$lsg_livelihoods == 1 &
+        df$lsg_food == 1 & df$lsg_protection == 1,
+      1,
+      0
+    )
+  df$lsg_education_livelihoods_food_health        <-
+    ifelse(
+      df$lsg_education == 1 &
+        df$lsg_livelihoods == 1 &
+        df$lsg_food == 1 & df$lsg_health == 1,
+      1,
+      0
+    )
+  df$lsg_education_livelihoods_food_snfi          <-
+    ifelse(df$lsg_education == 1 &
+             df$lsg_livelihoods == 1 &
+             df$lsg_food == 1 & df$lsg_snfi == 1,
+           1,
+           0)
+  df$lsg_education_livelihoods_food_wash          <-
+    ifelse(df$lsg_education == 1 &
+             df$lsg_livelihoods == 1 &
+             df$lsg_food == 1 & df$lsg_wash == 1,
+           1,
+           0)
+  df$lsg_education_livelihoods_protection_health  <-
+    ifelse(
+      df$lsg_education == 1 &
+        df$lsg_livelihoods == 1 &
+        df$lsg_protection == 1 & df$lsg_health == 1,
+      1,
+      0
+    )
+  df$lsg_education_livelihoods_protection_snfi    <-
+    ifelse(
+      df$lsg_education == 1 &
+        df$lsg_livelihoods == 1 &
+        df$lsg_protection == 1 & df$lsg_snfi == 1,
+      1,
+      0
+    )
+  df$lsg_education_livelihoods_protection_wash    <-
+    ifelse(
+      df$lsg_education == 1 &
+        df$lsg_livelihoods == 1 &
+        df$lsg_protection == 1 & df$lsg_wash == 1,
+      1,
+      0
+    )
+  df$lsg_education_livelihoods_health_snfi        <-
+    ifelse(
+      df$lsg_education == 1 &
+        df$lsg_livelihoods == 1 &
+        df$lsg_health == 1 & df$lsg_snfi == 1,
+      1,
+      0
+    )
+  df$lsg_education_livelihoods_health_wash        <-
+    ifelse(
+      df$lsg_education == 1 &
+        df$lsg_livelihoods == 1 &
+        df$lsg_health == 1 & df$lsg_wash == 1,
+      1,
+      0
+    )
+  df$lsg_education_livelihoods_snfi_wash          <-
+    ifelse(df$lsg_education == 1 &
+             df$lsg_livelihoods == 1 &
+             df$lsg_snfi == 1 & df$lsg_wash == 1,
+           1,
+           0)
+  df$lsg_education_food_protection_health         <-
+    ifelse(df$lsg_education == 1 &
+             df$lsg_food == 1 &
+             df$lsg_protection == 1 & df$lsg_health == 1,
+           1,
+           0)
+  df$lsg_education_food_protection_snfi           <-
+    ifelse(df$lsg_education == 1 &
+             df$lsg_food == 1 & df$lsg_protection == 1 & df$lsg_snfi == 1,
+           1,
+           0)
+  df$lsg_education_food_protection_wash           <-
+    ifelse(df$lsg_education == 1 &
+             df$lsg_food == 1 & df$lsg_protection == 1 & df$lsg_wash == 1,
+           1,
+           0)
+  df$lsg_education_food_health_snfi               <-
+    ifelse(df$lsg_education == 1 &
+             df$lsg_food == 1 & df$lsg_health == 1 & df$lsg_snfi == 1,
+           1,
+           0)
+  df$lsg_education_food_health_wash               <-
+    ifelse(df$lsg_education == 1 &
+             df$lsg_food == 1 & df$lsg_health == 1 & df$lsg_wash == 1,
+           1,
+           0)
+  df$lsg_education_food_snfi_wash                 <-
+    ifelse(df$lsg_education == 1 &
+             df$lsg_food == 1 & df$lsg_snfi == 1 & df$lsg_wash == 1,
+           1,
+           0)
+  df$lsg_education_protection_health_snfi         <-
+    ifelse(df$lsg_education == 1 &
+             df$lsg_protection == 1 &
+             df$lsg_health == 1 & df$lsg_snfi == 1,
+           1,
+           0)
+  df$lsg_education_protection_health_wash         <-
+    ifelse(df$lsg_education == 1 &
+             df$lsg_protection == 1 &
+             df$lsg_health == 1 & df$lsg_wash == 1,
+           1,
+           0)
+  df$lsg_education_protection_snfi_wash           <-
+    ifelse(df$lsg_education == 1 &
+             df$lsg_protection == 1 & df$lsg_snfi == 1 & df$lsg_wash == 1,
+           1,
+           0)
+  df$lsg_education_health_snfi_wash               <-
+    ifelse(df$lsg_education == 1 &
+             df$lsg_health == 1 & df$lsg_snfi == 1 & df$lsg_wash == 1,
+           1,
+           0)
+  df$lsg_livelihoods_food_protection_health       <-
+    ifelse(
+      df$lsg_livelihoods == 1 &
+        df$lsg_food == 1 &
+        df$lsg_protection == 1 & df$lsg_health == 1,
+      1,
+      0
+    )
+  df$lsg_livelihoods_food_protection_snfi         <-
+    ifelse(df$lsg_livelihoods == 1 &
+             df$lsg_food == 1 & df$lsg_protection == 1 & df$lsg_snfi == 1,
+           1,
+           0)
+  df$lsg_livelihoods_food_protection_wash         <-
+    ifelse(df$lsg_livelihoods == 1 &
+             df$lsg_food == 1 & df$lsg_protection == 1 & df$lsg_wash == 1,
+           1,
+           0)
+  df$lsg_livelihoods_food_health_snfi             <-
+    ifelse(df$lsg_livelihoods == 1 &
+             df$lsg_food == 1 & df$lsg_health == 1 & df$lsg_snfi == 1,
+           1,
+           0)
+  df$lsg_livelihoods_food_health_wash             <-
+    ifelse(df$lsg_livelihoods == 1 &
+             df$lsg_food == 1 & df$lsg_health == 1 & df$lsg_wash == 1,
+           1,
+           0)
+  df$lsg_livelihoods_food_snfi_wash               <-
+    ifelse(df$lsg_livelihoods == 1 &
+             df$lsg_food == 1 & df$lsg_snfi == 1 & df$lsg_wash == 1,
+           1,
+           0)
+  df$lsg_livelihoods_protection_health_snfi       <-
+    ifelse(
+      df$lsg_livelihoods == 1 &
+        df$lsg_protection == 1 &
+        df$lsg_health == 1 & df$lsg_snfi == 1,
+      1,
+      0
+    )
+  df$lsg_livelihoods_protection_health_wash       <-
+    ifelse(
+      df$lsg_livelihoods == 1 &
+        df$lsg_protection == 1 &
+        df$lsg_health == 1 & df$lsg_wash == 1,
+      1,
+      0
+    )
+  df$lsg_livelihoods_protection_snfi_wash         <-
+    ifelse(df$lsg_livelihoods == 1 &
+             df$lsg_protection == 1 & df$lsg_snfi == 1 & df$lsg_wash == 1,
+           1,
+           0)
+  df$lsg_livelihoods_health_snfi_wash             <-
+    ifelse(df$lsg_livelihoods == 1 &
+             df$lsg_health == 1 & df$lsg_snfi == 1 & df$lsg_wash == 1,
+           1,
+           0)
+  df$lsg_food_protection_health_snfi              <-
+    ifelse(df$lsg_food == 1 &
+             df$lsg_protection == 1 &
+             df$lsg_health == 1 & df$lsg_snfi == 1,
+           1,
+           0)
+  df$lsg_food_protection_health_wash              <-
+    ifelse(df$lsg_food == 1 &
+             df$lsg_protection == 1 &
+             df$lsg_health == 1 & df$lsg_wash == 1,
+           1,
+           0)
+  df$lsg_food_protection_snfi_wash                <-
+    ifelse(df$lsg_food == 1 &
+             df$lsg_protection == 1 & df$lsg_snfi == 1 & df$lsg_wash == 1,
+           1,
+           0)
+  df$lsg_food_health_snfi_wash                    <-
+    ifelse(df$lsg_food == 1 &
+             df$lsg_health == 1 & df$lsg_snfi == 1 & df$lsg_wash == 1,
+           1,
+           0)
+  df$lsg_protection_health_snfi_wash              <-
+    ifelse(df$lsg_protection == 1 &
+             df$lsg_health == 1 & df$lsg_snfi == 1 & df$lsg_wash == 1,
+           1,
+           0)
   
   
-  df$lsg_education_livelihoods_food_protection_health     <- ifelse(df$lsg_education == 1 & df$lsg_livelihoods == 1 & df$lsg_food == 1 & df$lsg_protection == 1 & df$lsg_health == 1, 1, 0)
-  df$lsg_education_livelihoods_food_protection_snfi       <- ifelse(df$lsg_education == 1 & df$lsg_livelihoods == 1 & df$lsg_food == 1 & df$lsg_protection == 1 & df$lsg_snfi == 1, 1, 0)
-  df$lsg_education_livelihoods_food_protection_wash       <- ifelse(df$lsg_education == 1 & df$lsg_livelihoods == 1 & df$lsg_food == 1 & df$lsg_protection == 1 & df$lsg_wash == 1, 1, 0)
-  df$lsg_education_livelihoods_food_health_snfi           <- ifelse(df$lsg_education == 1 & df$lsg_livelihoods == 1 & df$lsg_food == 1 & df$lsg_health == 1 & df$lsg_snfi == 1, 1, 0)
-  df$lsg_education_livelihoods_food_health_wash           <- ifelse(df$lsg_education == 1 & df$lsg_livelihoods == 1 & df$lsg_food == 1 & df$lsg_health == 1 & df$lsg_wash == 1, 1, 0)
-  df$lsg_education_livelihoods_food_snfi_wash             <- ifelse(df$lsg_education == 1 & df$lsg_livelihoods == 1 & df$lsg_food == 1 & df$lsg_snfi == 1 & df$lsg_wash == 1, 1, 0)
-  df$lsg_education_livelihoods_protection_health_snfi     <- ifelse(df$lsg_education == 1 & df$lsg_livelihoods == 1 & df$lsg_protection == 1 & df$lsg_health == 1 & df$lsg_snfi == 1, 1, 0)
-  df$lsg_education_livelihoods_protection_health_wash     <- ifelse(df$lsg_education == 1 & df$lsg_livelihoods == 1 & df$lsg_protection == 1 & df$lsg_health == 1 & df$lsg_wash == 1, 1, 0)
-  df$lsg_education_livelihoods_protection_snfi_wash       <- ifelse(df$lsg_education == 1 & df$lsg_livelihoods == 1 & df$lsg_protection == 1 & df$lsg_snfi == 1 & df$lsg_wash == 1, 1, 0)
-  df$lsg_education_livelihoods_health_snfi_wash           <- ifelse(df$lsg_education == 1 & df$lsg_livelihoods == 1 & df$lsg_health == 1 & df$lsg_snfi == 1 & df$lsg_wash == 1, 1, 0)
-  df$lsg_education_food_protection_health_snfi            <- ifelse(df$lsg_education == 1 & df$lsg_food == 1 & df$lsg_protection == 1 & df$lsg_health == 1 & df$lsg_snfi == 1, 1, 0)
-  df$lsg_education_food_protection_health_wash            <- ifelse(df$lsg_education == 1 & df$lsg_food == 1 & df$lsg_protection == 1 & df$lsg_health == 1 & df$lsg_wash == 1, 1, 0)
-  df$lsg_education_food_protection_snfi_wash              <- ifelse(df$lsg_education == 1 & df$lsg_food == 1 & df$lsg_protection == 1 & df$lsg_snfi == 1 & df$lsg_wash == 1, 1, 0)
-  df$lsg_education_food_health_snfi_wash                  <- ifelse(df$lsg_education == 1 & df$lsg_food == 1 & df$lsg_health == 1 & df$lsg_snfi == 1 & df$lsg_wash == 1, 1, 0)
-  df$lsg_education_protection_health_snfi_wash            <- ifelse(df$lsg_education == 1 & df$lsg_protection == 1 & df$lsg_health == 1 & df$lsg_snfi == 1 & df$lsg_wash == 1, 1, 0)
-  df$lsg_livelihoods_food_protection_health_snfi          <- ifelse(df$lsg_livelihoods == 1 & df$lsg_food == 1 & df$lsg_protection == 1 & df$lsg_health == 1 & df$lsg_snfi == 1, 1, 0)
-  df$lsg_livelihoods_food_protection_health_wash          <- ifelse(df$lsg_livelihoods == 1 & df$lsg_food == 1 & df$lsg_protection == 1 & df$lsg_health == 1 & df$lsg_wash == 1, 1, 0)
-  df$lsg_livelihoods_food_protection_snfi_wash            <- ifelse(df$lsg_livelihoods == 1 & df$lsg_food == 1 & df$lsg_protection == 1 & df$lsg_snfi == 1 & df$lsg_wash == 1, 1, 0)
-  df$lsg_livelihoods_food_health_snfi_wash                <- ifelse(df$lsg_livelihoods == 1 & df$lsg_food == 1 & df$lsg_health == 1 & df$lsg_snfi == 1 & df$lsg_wash == 1, 1, 0)
-  df$lsg_livelihoods_protection_health_snfi_wash          <- ifelse(df$lsg_livelihoods == 1 & df$lsg_protection == 1 & df$lsg_health == 1 & df$lsg_snfi == 1 & df$lsg_wash == 1, 1, 0)
-  df$lsg_food_protection_health_snfi_wash                 <- ifelse(df$lsg_food == 1 & df$lsg_protection == 1 & df$lsg_health == 1 & df$lsg_snfi == 1 & df$lsg_wash == 1, 1, 0)
+  df$lsg_education_livelihoods_food_protection_health     <-
+    ifelse(
+      df$lsg_education == 1 &
+        df$lsg_livelihoods == 1 &
+        df$lsg_food == 1 &
+        df$lsg_protection == 1 & df$lsg_health == 1,
+      1,
+      0
+    )
+  df$lsg_education_livelihoods_food_protection_snfi       <-
+    ifelse(
+      df$lsg_education == 1 &
+        df$lsg_livelihoods == 1 &
+        df$lsg_food == 1 & df$lsg_protection == 1 & df$lsg_snfi == 1,
+      1,
+      0
+    )
+  df$lsg_education_livelihoods_food_protection_wash       <-
+    ifelse(
+      df$lsg_education == 1 &
+        df$lsg_livelihoods == 1 &
+        df$lsg_food == 1 & df$lsg_protection == 1 & df$lsg_wash == 1,
+      1,
+      0
+    )
+  df$lsg_education_livelihoods_food_health_snfi           <-
+    ifelse(
+      df$lsg_education == 1 &
+        df$lsg_livelihoods == 1 &
+        df$lsg_food == 1 & df$lsg_health == 1 & df$lsg_snfi == 1,
+      1,
+      0
+    )
+  df$lsg_education_livelihoods_food_health_wash           <-
+    ifelse(
+      df$lsg_education == 1 &
+        df$lsg_livelihoods == 1 &
+        df$lsg_food == 1 & df$lsg_health == 1 & df$lsg_wash == 1,
+      1,
+      0
+    )
+  df$lsg_education_livelihoods_food_snfi_wash             <-
+    ifelse(
+      df$lsg_education == 1 &
+        df$lsg_livelihoods == 1 &
+        df$lsg_food == 1 & df$lsg_snfi == 1 & df$lsg_wash == 1,
+      1,
+      0
+    )
+  df$lsg_education_livelihoods_protection_health_snfi     <-
+    ifelse(
+      df$lsg_education == 1 &
+        df$lsg_livelihoods == 1 &
+        df$lsg_protection == 1 &
+        df$lsg_health == 1 & df$lsg_snfi == 1,
+      1,
+      0
+    )
+  df$lsg_education_livelihoods_protection_health_wash     <-
+    ifelse(
+      df$lsg_education == 1 &
+        df$lsg_livelihoods == 1 &
+        df$lsg_protection == 1 &
+        df$lsg_health == 1 & df$lsg_wash == 1,
+      1,
+      0
+    )
+  df$lsg_education_livelihoods_protection_snfi_wash       <-
+    ifelse(
+      df$lsg_education == 1 &
+        df$lsg_livelihoods == 1 &
+        df$lsg_protection == 1 & df$lsg_snfi == 1 & df$lsg_wash == 1,
+      1,
+      0
+    )
+  df$lsg_education_livelihoods_health_snfi_wash           <-
+    ifelse(
+      df$lsg_education == 1 &
+        df$lsg_livelihoods == 1 &
+        df$lsg_health == 1 & df$lsg_snfi == 1 & df$lsg_wash == 1,
+      1,
+      0
+    )
+  df$lsg_education_food_protection_health_snfi            <-
+    ifelse(
+      df$lsg_education == 1 &
+        df$lsg_food == 1 &
+        df$lsg_protection == 1 &
+        df$lsg_health == 1 & df$lsg_snfi == 1,
+      1,
+      0
+    )
+  df$lsg_education_food_protection_health_wash            <-
+    ifelse(
+      df$lsg_education == 1 &
+        df$lsg_food == 1 &
+        df$lsg_protection == 1 &
+        df$lsg_health == 1 & df$lsg_wash == 1,
+      1,
+      0
+    )
+  df$lsg_education_food_protection_snfi_wash              <-
+    ifelse(
+      df$lsg_education == 1 &
+        df$lsg_food == 1 &
+        df$lsg_protection == 1 & df$lsg_snfi == 1 & df$lsg_wash == 1,
+      1,
+      0
+    )
+  df$lsg_education_food_health_snfi_wash                  <-
+    ifelse(
+      df$lsg_education == 1 &
+        df$lsg_food == 1 &
+        df$lsg_health == 1 & df$lsg_snfi == 1 & df$lsg_wash == 1,
+      1,
+      0
+    )
+  df$lsg_education_protection_health_snfi_wash            <-
+    ifelse(
+      df$lsg_education == 1 &
+        df$lsg_protection == 1 &
+        df$lsg_health == 1 & df$lsg_snfi == 1 & df$lsg_wash == 1,
+      1,
+      0
+    )
+  df$lsg_livelihoods_food_protection_health_snfi          <-
+    ifelse(
+      df$lsg_livelihoods == 1 &
+        df$lsg_food == 1 &
+        df$lsg_protection == 1 &
+        df$lsg_health == 1 & df$lsg_snfi == 1,
+      1,
+      0
+    )
+  df$lsg_livelihoods_food_protection_health_wash          <-
+    ifelse(
+      df$lsg_livelihoods == 1 &
+        df$lsg_food == 1 &
+        df$lsg_protection == 1 &
+        df$lsg_health == 1 & df$lsg_wash == 1,
+      1,
+      0
+    )
+  df$lsg_livelihoods_food_protection_snfi_wash            <-
+    ifelse(
+      df$lsg_livelihoods == 1 &
+        df$lsg_food == 1 &
+        df$lsg_protection == 1 & df$lsg_snfi == 1 & df$lsg_wash == 1,
+      1,
+      0
+    )
+  df$lsg_livelihoods_food_health_snfi_wash                <-
+    ifelse(
+      df$lsg_livelihoods == 1 &
+        df$lsg_food == 1 &
+        df$lsg_health == 1 & df$lsg_snfi == 1 & df$lsg_wash == 1,
+      1,
+      0
+    )
+  df$lsg_livelihoods_protection_health_snfi_wash          <-
+    ifelse(
+      df$lsg_livelihoods == 1 &
+        df$lsg_protection == 1 &
+        df$lsg_health == 1 & df$lsg_snfi == 1 & df$lsg_wash == 1,
+      1,
+      0
+    )
+  df$lsg_food_protection_health_snfi_wash                 <-
+    ifelse(
+      df$lsg_food == 1 &
+        df$lsg_protection == 1 &
+        df$lsg_health == 1 & df$lsg_snfi == 1 & df$lsg_wash == 1,
+      1,
+      0
+    )
   
-  df$lsg_education_livelihoods_food_protection_health_snfi      <- ifelse(df$lsg_education == 1 & df$lsg_livelihoods == 1 & df$lsg_food == 1 & df$lsg_protection == 1 & df$lsg_health == 1 & df$lsg_snfi == 1, 1, 0)
-  df$lsg_education_livelihoods_food_protection_health_wash      <- ifelse(df$lsg_education == 1 & df$lsg_livelihoods == 1 & df$lsg_food == 1 & df$lsg_protection == 1 & df$lsg_health == 1 & df$lsg_wash == 1, 1, 0)
-  df$lsg_education_livelihoods_food_protection_snfi_wash        <- ifelse(df$lsg_education == 1 & df$lsg_livelihoods == 1 & df$lsg_food == 1 & df$lsg_protection == 1 & df$lsg_snfi == 1 & df$lsg_wash == 1, 1, 0)
-  df$lsg_education_livelihoods_food_health_snfi_wash            <- ifelse(df$lsg_education == 1 & df$lsg_livelihoods == 1 & df$lsg_food == 1 & df$lsg_health == 1 & df$lsg_snfi == 1 & df$lsg_wash == 1, 1, 0)
-  df$lsg_education_livelihoods_protection_health_snfi_wash      <- ifelse(df$lsg_education == 1 & df$lsg_livelihoods == 1 & df$lsg_protection == 1 & df$lsg_health == 1 & df$lsg_snfi == 1 & df$lsg_wash == 1, 1, 0)
-  df$lsg_education_food_protection_health_snfi_wash             <- ifelse(df$lsg_education == 1 & df$lsg_food == 1 & df$lsg_protection == 1 & df$lsg_health == 1 & df$lsg_snfi == 1 & df$lsg_wash == 1, 1, 0)
-  df$lsg_livelihoods_food_protection_health_snfi_wash           <- ifelse(df$lsg_livelihoods == 1 & df$lsg_food == 1 & df$lsg_protection == 1 & df$lsg_health == 1 & df$lsg_snfi == 1 & df$lsg_wash == 1, 1, 0)
+  df$lsg_education_livelihoods_food_protection_health_snfi      <-
+    ifelse(
+      df$lsg_education == 1 &
+        df$lsg_livelihoods == 1 &
+        df$lsg_food == 1 &
+        df$lsg_protection == 1 &
+        df$lsg_health == 1 & df$lsg_snfi == 1,
+      1,
+      0
+    )
+  df$lsg_education_livelihoods_food_protection_health_wash      <-
+    ifelse(
+      df$lsg_education == 1 &
+        df$lsg_livelihoods == 1 &
+        df$lsg_food == 1 &
+        df$lsg_protection == 1 &
+        df$lsg_health == 1 & df$lsg_wash == 1,
+      1,
+      0
+    )
+  df$lsg_education_livelihoods_food_protection_snfi_wash        <-
+    ifelse(
+      df$lsg_education == 1 &
+        df$lsg_livelihoods == 1 &
+        df$lsg_food == 1 &
+        df$lsg_protection == 1 & df$lsg_snfi == 1 & df$lsg_wash == 1,
+      1,
+      0
+    )
+  df$lsg_education_livelihoods_food_health_snfi_wash            <-
+    ifelse(
+      df$lsg_education == 1 &
+        df$lsg_livelihoods == 1 &
+        df$lsg_food == 1 &
+        df$lsg_health == 1 & df$lsg_snfi == 1 & df$lsg_wash == 1,
+      1,
+      0
+    )
+  df$lsg_education_livelihoods_protection_health_snfi_wash      <-
+    ifelse(
+      df$lsg_education == 1 &
+        df$lsg_livelihoods == 1 &
+        df$lsg_protection == 1 &
+        df$lsg_health == 1 & df$lsg_snfi == 1 & df$lsg_wash == 1,
+      1,
+      0
+    )
+  df$lsg_education_food_protection_health_snfi_wash             <-
+    ifelse(
+      df$lsg_education == 1 &
+        df$lsg_food == 1 &
+        df$lsg_protection == 1 &
+        df$lsg_health == 1 & df$lsg_snfi == 1 & df$lsg_wash == 1,
+      1,
+      0
+    )
+  df$lsg_livelihoods_food_protection_health_snfi_wash           <-
+    ifelse(
+      df$lsg_livelihoods == 1 &
+        df$lsg_food == 1 &
+        df$lsg_protection == 1 &
+        df$lsg_health == 1 & df$lsg_snfi == 1 & df$lsg_wash == 1,
+      1,
+      0
+    )
   
-  df$lsg_education_livelihoods_food_protection_health_snfi_wash <- ifelse(df$lsg_education == 1 & df$lsg_livelihoods == 1 & df$lsg_food == 1 & df$lsg_protection == 1 & df$lsg_health == 1 & df$lsg_snfi == 1 & df$lsg_wash == 1, 1, 0)
+  df$lsg_education_livelihoods_food_protection_health_snfi_wash <-
+    ifelse(
+      df$lsg_education == 1 &
+        df$lsg_livelihoods == 1 &
+        df$lsg_food == 1 &
+        df$lsg_protection == 1 &
+        df$lsg_health == 1 & df$lsg_snfi == 1 & df$lsg_wash == 1,
+      1,
+      0
+    )
   
   
   return(df)

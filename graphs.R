@@ -119,9 +119,10 @@ df_in_camp <-
     "lsg_food",
     "lsg_protection",
     "lsg_health",
-    "lsg_snfi"
+    "lsg_snfi",
+    "lsg_wash"
   )]
-df_in_camp$lsg_wash <- 0
+# df_in_camp$lsg_wash <- 0
 
 df_out_camp <-
   read.csv(

@@ -132,7 +132,7 @@ summary <-
   read.csv("output/raw_results/raw_results_msni.csv",
            stringsAsFactors = F)
 summary <- correct.zeroes(summary)
-summary <- summary %>% filter(dependent.var.value %in% c(NA, 1), independent.var.value == 1)
+summary <- summary %>% filter(dependent.var.value %in% c(NA, 1))
 write.csv(summary,
           "output/raw_results/raw_results_filtered_msni.csv",
           row.names = F)
@@ -147,7 +147,7 @@ for (agg in aggregation) {
     }
     subset <- summary %>%
       filter(repeat.var == agg, independent.var == disagg)
-    if (nrow(subset) == 0 | disagg == 0) {
+    if (nrow(subset) == 0) {
       next
     }
     groups <- unique(subset$independent.var.value)
@@ -161,7 +161,6 @@ for (agg in aggregation) {
           analysisplan,
           cluster_lookup_table,
           lookup_table,
-          severity = name == "severity",
           camp = F
         )
       df[c(which(endsWith(names(df), "_min")))] <- NULL

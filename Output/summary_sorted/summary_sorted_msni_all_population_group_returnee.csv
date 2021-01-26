@@ -1,0 +1,44 @@
+"governorate","district","lsg_all","msni_score_4","msni_score_3","msni_score_2","msni_score_1","seven_lsg","six_lsg","five_lsg","four_lsg","three_lsg","two_lsg","one_lsg","zero_lsg","lsg_education","lsg_livelihoods","lsg_food","lsg_protection","lsg_health","lsg_snfi","lsg_wash","food_security_1","food_security_2","food_security_3","food_security_4","wash_1","wash_2","wash_3","wash_4","health_1","health_2","health_3","snfi_1","snfi_2","snfi_3","snfi_4","education_1","education_2","education_3","education_4","protection_1","protection_2","protection_3","protection_4","cg_lsg_1","cg_lsg_2","lsg_vulnerable","vulnerability_score_1","vulnerability_score_2","vulnerability_score_3","vulnerability_score_4"
+"","","LSG","LSG","LSG","LSG","LSG","LSG","LSG","LSG","LSG","LSG","LSG","LSG","LSG","LSG","LSG","LSG","LSG","LSG","LSG","LSG","Food Security","Food Security","Food Security","Food Security","WASH","WASH","WASH","WASH","Health","Health","Health","Shelter","Shelter","Shelter","Shelter","Education","Education","Education","Education","Protection","Protection","Protection","Protection","Capacity Gap","Capacity Gap","Vulnerability","Vulnerability","Vulnerability","Vulnerability","Vulnerability"
+"","","% of households with multi-sectoral needs","% of households per Multi-Sectoral Needs Index (MSNI) severity score","% of households per Multi-Sectoral Needs Index (MSNI) severity score","% of households per Multi-Sectoral Needs Index (MSNI) severity score","% of households per Multi-Sectoral Needs Index (MSNI) severity score","% of households per number of sectoral LSG(s), per
+population group","% of households per number of sectoral LSG(s), per
+population group","% of households per number of sectoral LSG(s), per
+population group","% of households per number of sectoral LSG(s), per
+population group","% of households per number of sectoral LSG(s), per
+population group","% of households per number of sectoral LSG(s), per
+population group","% of households per number of sectoral LSG(s), per
+population group","% of households per number of sectoral LSG(s), per
+population group","Among households with multi-sectoral needs, % of
+households with sectoral LSG(s)","Among households with multi-sectoral needs, % of
+households with sectoral LSG(s)","Among households with multi-sectoral needs, % of
+households with sectoral LSG(s)","Among households with multi-sectoral needs, % of
+households with sectoral LSG(s)","Among households with multi-sectoral needs, % of
+households with sectoral LSG(s)","Among households with multi-sectoral needs, % of
+households with sectoral LSG(s)","Among households with multi-sectoral needs, % of
+households with sectoral LSG(s)","of households per Food Security LSG severity score, per
+population group","of households per Food Security LSG severity score, per
+population group","of households per Food Security LSG severity score, per
+population group","of households per Food Security LSG severity score, per
+population group","of households per WASH LSG severity score, per
+population group","of households per WASH LSG severity score, per
+population group","of households per WASH LSG severity score, per
+population group","of households per WASH LSG severity score, per
+population group","of households per Health LSG severity score, per
+population group","of households per Health LSG severity score, per
+population group","of households per Health LSG severity score, per
+population group","of households per Shelter LSG severity score, per
+population group","of households per Shelter LSG severity score, per
+population group","of households per Shelter LSG severity score, per
+population group","of households per Shelter LSG severity score, per
+population group","of households per Education LSG severity score, per
+population group","of households per Education LSG severity score, per
+population group","of households per Education LSG severity score, per
+population group","of households per Education LSG severity score, per
+population group","of households per Protection LSG severity score, per
+population group","of households per Protection LSG severity score, per
+population group","of households per Protection LSG severity score, per
+population group","of households per Protection LSG severity score, per
+population group","% of households with a Capacity Gap AND no LSG","% of households with a Capacity Gap AND no LSG AND with pre-existing vulnerabilities","% of households with at least one LSG and vulnerable","% of households with at least one LSG, per vulnerability severity score","% of households with at least one LSG, per vulnerability severity score","% of households with at least one LSG, per vulnerability severity score","% of households with at least one LSG, per vulnerability severity score"
+"","","% of households with multi-sectoral needs","Extreme","Severe","Stress","No or Minimal","7","6","5","4","3","2","1","0","Education","Livelihoods","Food Security","Protection","Health","SNFI","WASH","No or Minimal","Stress","Severe","Extreme","No or Minimal","Stress","Severe","Extreme","No or Minimal","Stress","Severe","No or Minimal","Stress","Severe","Extreme","No or Minimal","Stress","Severe","Extreme","No or Minimal","Stress","Severe","Extreme","% of households with a Capacity Gap AND no LSG","% of households with a Capacity Gap AND no LSG AND with pre-existing vulnerabilities","% of households with at least one LSG and vulnerable","No or Minimal","Stress","Severe","Extreme"
+"","","categorical","categorical","categorical","categorical","categorical","categorical","categorical","categorical","categorical","categorical","categorical","categorical","categorical","categorical","categorical","categorical","categorical","categorical","categorical","categorical","categorical","categorical","categorical","categorical","categorical","categorical","categorical","categorical","categorical","categorical","categorical","categorical","categorical","categorical","categorical","categorical","categorical","categorical","categorical","categorical","categorical","categorical","categorical","categorical","categorical","categorical","categorical","categorical","categorical","categorical"
+NA,NA,"1","1","0","0","0","1.20689410202558e-05","0.00167460219288042","0.00582290756563313","0.0524157540963775","0.144488275095641","0.365486783527307","0.320837928738298","0.109261679842843","0.0763450194545665","0.646748358866897","0.023912655309777","0.59338508836578","0.13437452938494","0.194670853529535","0.0757965018234911","0.358179932134863","0.61790741255536","0.00848277001707915","0.0154298852926979","0.853966372151174","0.0702371260253352","0.0543221865969435","0.0214743152265475","0.472804347049455","0.392821123565605","0.13437452938494","0.348818071765676","0.45651107470479","0.155682678046747","0.0389881754827877","0.806152056291093","0.117502924254341","0.0583659065571615","0.017979112897405","0.404960555943151","0.00165435569106858","0.541728576466912","0.0516565118988685","0.00969077985029557","0.00562768760080827","0.19092262207898","0.522906428667916","0.175315650769615","0.109259313599153","0.0816633084798271"
