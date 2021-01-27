@@ -94,6 +94,63 @@ weight_fun <- function(df) {
 #RECODING OF INDICATORS
 response_with_composites <- msni_recoding(response, loop)
 
+#Radar graph
+msni19::radar_graph(response_with_composites, 
+                    lsg = c("education_score", "livelihoods_score", "food_security_score",
+                            "protection_score", "health_score", "snfi_score", "wash_score"),
+                    lsg_labels = c(
+                      "Education",
+                      "Livelihoods",
+                      "Food \nSecurity",
+                      "Protection",
+                      "Health",
+                      "Shelter",
+                      "WASH"
+                    ),
+                    group = "population_group",
+                    group_order = c("idp_out_camp", "returnee", "idp_in_camp"),
+                    group_labels = c("Out of camp IDPs", "Returnees", "In camp IDPs"),
+                    weighting_function = weight_fun,
+                    print_plot = T,
+                    plot_name = "radarys",
+                    path = "output")
+
+py <- msni19::index_intersections(response_with_composites,
+                                  lsg =  c("education_score", "livelihoods_score", "food_security_score",
+                                           "protection_score", "health_score", "snfi_score", "wash_score"),
+                                  lsg_labels = c(
+                                    "Education",
+                                    "Livelihoods",
+                                    "FoodSecurity",
+                                    "Protection",
+                                    "Health",
+                                    "Shelter",
+                                    "WASH")
+                                    ,
+                                  weighting_function = weight_fun,
+                                  exclude_unique = F,
+                                  mutually_exclusive_sets = F,
+                                  round_to_1_percent = T,
+                                  print_plot = T,
+                                  path = "output",)
+
+print(py)
+dev.off()
+
+response_with_composites <- response_with_composites %>%
+  mutate(coping_mechanism2 = case_when(capacity_gap == 0 ~ 0,
+                                       capacity_gap == 1 ~ 3))
+
+
+msni19::venn_msni(response_with_composites, 
+                  lsg = c("education_score", "livelihoods_score", "food_security_score",
+                          "protection_score", "health_score", "snfi_score", "wash_score"),
+                  capacity_gaps = "coping_mechanism2",
+                  weighting_function = weight_fun,
+                  print_plot = T,
+                  path = "output")
+
+
 #LOAD ANALYSISPLAN
 dap_name <- "msni"
 analysisplan <-
@@ -154,6 +211,9 @@ for (agg in aggregation) {
     groups <- groups[!is.na(groups)]
     library(plyr)
     for (i in 1:length(groups)) {
+      if(groups[i] == "0"){
+        next
+      }
       df <-
         pretty.output(
           subset,
