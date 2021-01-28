@@ -804,7 +804,8 @@ msni_recoding <- function(df, loop) {
           df$lsg_livelihoods,
           df$lsg_protection,
           df$lsg_snfi,
-          df$lsg_wash
+          df$lsg_wash,
+          na.rm = TRUE
         ) == 0,
       1,
       0
@@ -836,7 +837,8 @@ msni_recoding <- function(df, loop) {
           df$lsg_livelihoods,
           df$lsg_protection,
           df$lsg_snfi,
-          df$lsg_wash
+          df$lsg_wash,
+          na.rm = TRUE
         ) >= 1,
       1,
       0
@@ -852,7 +854,8 @@ msni_recoding <- function(df, loop) {
           df$lsg_livelihoods,
           df$lsg_protection,
           df$lsg_snfi,
-          df$lsg_wash
+          df$lsg_wash,
+          na.rm = TRUE
         ) >= 1,
       1,
       0
