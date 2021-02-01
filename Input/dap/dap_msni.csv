@@ -27,6 +27,9 @@ LSG,"% of households per number of sectoral LSG(s), per
 population group",1,all,population_group,categorical,one_lsg,categorical,direct_reporting
 LSG,"% of households per number of sectoral LSG(s), per
 population group",0,all,population_group,categorical,zero_lsg,categorical,direct_reporting
+LSG,"% of households per number of sectoral LSG(s), per
+population group",0,all,all,categorical,zero_lsg,categorical,direct_reporting
+LSG,% of households with capacity gap,% of households with capacity gap,all,all,categorical,capacity_gap,categorical,direct_reporting
 LSG,"Among households with multi-sectoral needs, % of
 households with sectoral LSG(s)",Education,all,all,categorical,lsg_education,categorical,direct_reporting
 LSG,"Among households with multi-sectoral needs, % of
@@ -221,6 +224,8 @@ Capacity Gap,% of households with a Capacity Gap AND no LSG,% of households with
 Capacity Gap,% of households with a Capacity Gap AND no LSG,% of households with a Capacity Gap AND no LSG,district_mcna,all,categorical,cg_no_lsg,categorical,direct_reporting
 Capacity Gap,% of households with a Capacity Gap AND no LSG AND with pre-existing vulnerabilities,% of households with a Capacity Gap AND no LSG AND with pre-existing vulnerabilities,all,population_group,categorical,cg_no_lsg_but_vulnerable,categorical,direct_reporting
 Capacity Gap,% of households with a Capacity Gap AND at least one LSG,% of households with a Capacity Gap AND at least one LSG,all,all,categorical,cg_and_one_lsg,categorical,direct_reporting
+Capacity Gap,% of households with a Capacity Gap AND at least one LSG,% of households with a Capacity Gap AND at least one LSG,all,all,categorical,cg_or_one_lsg,categorical,direct_reporting
+Capacity Gap,% of households with a Capacity Gap AND at least one LSG,% of households with a Capacity Gap AND at least one LSG,all,all,categorical,no_cg_and_no_lsg,categorical,direct_reporting
 Capacity Gap,% of households with no Capacity Gap AND at least one LSG,% of households with no Capacity Gap AND at least one LSG,all,all,categorical,lsg_but_no_cg,categorical,direct_reporting
 Vulnerability,% of households with at least one LSG and vulnerable,% of households with at least one LSG and vulnerable,all,all,categorical,lsg_vulnerable,categorical,direct_reporting
 Vulnerability,% of households with at least one LSG and vulnerable,% of households with at least one LSG and vulnerable,all,population_group,categorical,lsg_vulnerable,categorical,direct_reporting

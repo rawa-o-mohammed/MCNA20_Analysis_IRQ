@@ -628,12 +628,14 @@ msni_recoding <- function(df, loop) {
       0
     )
   
+  
+  
   df$wash_score <-
     case_when(
       df$i1 == 1 ~ 4,
       is.na(df$i1) ~ NA_real_,
-        sum_row(df$i2, df$i3, df$i4, na.rm = TRUE) >= 2 ~ 3,
-      sum_row(df$i2, df$i3, df$i4, na.rm = TRUE) == 1 ~ 2,
+       df$i3 == 1 | sum_row(df$i2, df$i4, na.rm = TRUE) == 2 ~ 3,
+      sum_row(df$i2, df$i4, na.rm = TRUE) == 1 ~ 2,
       TRUE ~ 1
     )
   df$wash_1 <- case_when(df$wash_score == 1 ~ 1,
@@ -844,6 +846,40 @@ msni_recoding <- function(df, loop) {
       0
     )
   
+  df$cg_or_one_lsg <-
+    ifelse(
+      df$capacity_gap == 1 |
+        sum_row(
+          df$lsg_education,
+          df$lsg_food,
+          df$lsg_health,
+          df$lsg_livelihoods,
+          df$lsg_protection,
+          df$lsg_snfi,
+          df$lsg_wash,
+          na.rm = TRUE
+        ) >= 1,
+      1,
+      0
+    )
+  
+  df$no_cg_and_no_lsg <-
+    ifelse(
+      df$capacity_gap == 0 &
+        sum_row(
+          df$lsg_education,
+          df$lsg_food,
+          df$lsg_health,
+          df$lsg_livelihoods,
+          df$lsg_protection,
+          df$lsg_snfi,
+          df$lsg_wash,
+          na.rm = TRUE
+        ) == 0,
+      1,
+      0
+    )
+  
   df$lsg_but_no_cg <-
     ifelse(
       df$capacity_gap == 0 &
@@ -860,6 +896,7 @@ msni_recoding <- function(df, loop) {
       1,
       0
     )
+  
   df$seven_lsg   <-
     ifelse(
       sum_row(
