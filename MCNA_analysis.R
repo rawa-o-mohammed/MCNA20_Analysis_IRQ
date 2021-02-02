@@ -137,19 +137,6 @@ py <- msni19::index_intersections(response_with_composites,
 print(py)
 dev.off()
 
-response_with_composites <- response_with_composites %>%
-  mutate(coping_mechanism2 = case_when(capacity_gap == 0 ~ 0,
-                                       capacity_gap == 1 ~ 3))
-
-
-msni19::venn_msni(response_with_composites, 
-                  lsg = c("education_score", "livelihoods_score", "food_security_score",
-                          "protection_score", "health_score", "snfi_score", "wash_score"),
-                  capacity_gaps = "coping_mechanism2",
-                  weighting_function = weight_fun,
-                  print_plot = T,
-                  path = "output")
-
 
 #LOAD ANALYSISPLAN
 dap_name <- "msni"
