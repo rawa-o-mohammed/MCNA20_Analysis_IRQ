@@ -58,15 +58,9 @@ LSG,"Among households with multi-sectoral needs, % of
 households with sectoral LSG(s)",SNFI,all,population_group,categorical,lsg_snfi,categorical,direct_reporting
 LSG,"Among households with multi-sectoral needs, % of
 households with sectoral LSG(s)",WASH,all,population_group,categorical,lsg_wash,categorical,direct_reporting
-Food Security,"% of households with a 
-Food Security LSG.","% of households with a 
-Food Security LSG.",all,all,categorical,lsg_food,categorical,direct_reporting
-Food Security,"% of households with a 
-Food Security LSG.","% of households with a 
-Food Security LSG.",all,population_group,categorical,lsg_food,categorical,direct_reporting
-Food Security,"% of households with a 
-Food Security LSG.","% of households with a 
-Food Security LSG.",district_mcna,all,categorical,lsg_food,categorical,direct_reporting
+Food Security,% of households with a Food Security LSG.,% of households with a Food Security LSG.,all,all,categorical,lsg_food,categorical,direct_reporting
+Food Security,% of households with a Food Security LSG.,% of households with a Food Security LSG.,all,population_group,categorical,lsg_food,categorical,direct_reporting
+Food Security,% of households with a Food Security LSG.,% of households with a Food Security LSG.,district_mcna,all,categorical,lsg_food,categorical,direct_reporting
 Food Security,"of households per Food Security LSG severity score, per
 population group",No or Minimal,all,all,categorical,food_security_1,categorical,direct_reporting
 Food Security,"of households per Food Security LSG severity score, per
@@ -188,6 +182,31 @@ Education,% of HH without a functioning primary or secondary school within 2km o
 Education,"of households were found to have a Education LSG and to 
 be vulnerable","of households were found to have a Education LSG and to 
 be vulnerable",all,all,categorical,lsg_education_vulnerable,categorical,direct_reporting
+Livelihoods,% of households with an Livelihoods LSG.,% of households with an Livelihoods LSG.,all,all,categorical,lsg_livelihoods,categorical,direct_reporting
+Livelihoods,% of households with an Livelihoods LSG.,% of households with an Livelihoods LSG.,all,population_group,categorical,lsg_livelihoods,categorical,direct_reporting
+Livelihoods,% of households with an Livelihoods LSG.,% of households with an Livelihoods LSG.,district_mcna,all,categorical,lsg_livelihoods,categorical,direct_reporting
+Livelihoods,"of households per Livelihoods LSG severity score, per
+population group",No or Minimal,all,all,categorical,livelihoods_1,categorical,direct_reporting
+Livelihoods,"of households per Livelihoods LSG severity score, per
+population group",Stress,all,all,categorical,livelihoods_2,categorical,direct_reporting
+Livelihoods,"of households per Livelihoods LSG severity score, per
+population group",Severe,all,all,categorical,livelihoods_3,categorical,direct_reporting
+Livelihoods,"of households per Livelihoods LSG severity score, per
+population group",Extreme,all,all,categorical,livelihoods_4,categorical,direct_reporting
+Livelihoods,"of households per Livelihoods LSG severity score, per
+population group",No or Minimal,all,population_group,categorical,livelihoods_1,categorical,direct_reporting
+Livelihoods,"of households per Livelihoods LSG severity score, per
+population group",Stress,all,population_group,categorical,livelihoods_2,categorical,direct_reporting
+Livelihoods,"of households per Livelihoods LSG severity score, per
+population group",Severe,all,population_group,categorical,livelihoods_3,categorical,direct_reporting
+Livelihoods,"of households per Livelihoods LSG severity score, per
+population group",Extreme,all,population_group,categorical,livelihoods_4,categorical,direct_reporting
+Livelihoods,% of households with at least one member in temporary employment,At least one HH member in temporary or seasonal employment,all,all,categorical,d1,categorical,direct_reporting
+Livelihoods,% HH with at least one adult (18+) unemployed and seeking work,At least one adult in HH unemployed and seeking work,all,all,categorical,d2,categorical,direct_reporting
+Livelihoods,"% of households whose average monthly income [from employment and pension] was less than 90,000 per person a month",Income p/m is less than 90'000 IQD,all,all,categorical,d3,categorical,direct_reporting
+Livelihoods,"% HH with debt value > 505,000 IQD ","HH has total debt value > 505,000 IQD ",all,all,categorical,d4,categorical,direct_reporting
+Livelihoods,% of HH where at least one member has lost their job permanently or temporarily as a result of covid,At least one member has lost their job either permanently or temporarily as a result of COVID-19,all,all,categorical,d5,categorical,direct_reporting
+Livelihoods,"% of HH unable to afford basic basic needs (% HH taking on debt due to healthcare, food, education, or basic household expenditure)","HH unable to afford basic needs (taking on debt due to healthcare, food, education or basic household expenditure)",all,all,categorical,d6,categorical,direct_reporting
 Protection,% of households with an Protection LSG.,% of households with an Protection LSG.,all,all,categorical,lsg_protection,categorical,direct_reporting
 Protection,% of households with an Protection LSG.,% of households with an Protection LSG.,all,population_group,categorical,lsg_protection,categorical,direct_reporting
 Protection,% of households with an Protection LSG.,% of households with an Protection LSG.,district_mcna,all,categorical,lsg_protection,categorical,direct_reporting

@@ -1,40 +1,36 @@
 msni_recoding <- function(df, loop) {
   df$stress <-
-    ifelse(
+    case_when(
       df$selling_assets %in% c("no_already_did", "yes") |
         df$borrow_debt  %in% c("no_already_did", "yes") |
         df$reduce_spending %in% c("no_already_did", "yes") |
-        df$spending_savings %in% c("no_already_did", "yes")   ,
-      1,
-      0
+        df$spending_savings %in% c("no_already_did", "yes") ~ 1,
+      TRUE ~ 0
     )
   df$crisis <-
-    ifelse(
+    case_when(
       df$selling_transportation_means %in% c("no_already_did", "yes") |
         df$change_place  %in% c("no_already_did", "yes") |
-        df$child_work %in% c("no_already_did", "yes"),
-      1,
-      0
+        df$child_work %in% c("no_already_did", "yes") ~ 1,
+      TRUE ~ 0
     )
   df$emergency <-
-    ifelse(
+    case_when(
       df$child_dropout_school %in% c("no_already_did", "yes") |
         df$adult_risky  %in% c("no_already_did", "yes") |
         df$family_migrating %in% c("no_already_did", "yes") |
-        df$child_forced_marriage %in% c("no_already_did", "yes"),
-      1,
-      0
+        df$child_forced_marriage %in% c("no_already_did", "yes") ~ 1,
+      TRUE ~ 0
     )
   
   ###################################a #########################################
   df$a1 <-
-    ifelse(
+    case_when(
       df$reasons_for_debt %in%  c("basic_hh_expenditure",
                                   "health",
                                   "food",
-                                  "education"),
-      1,
-      0
+                                  "education") ~ 1,
+      TRUE ~ 0
     )
   
   df$a2 <- df$primary_livelihood.ngo_charity_assistance
@@ -45,14 +41,13 @@ msni_recoding <- function(df, loop) {
   ###################################b #########################################
   
   df$b1 <-
-    ifelse(
+    case_when(
       df$difficulty_communicating %in% c("a_lot_of_difficulty", "cannot_do_at_all") |
         df$difficulty_hearing %in% c("a_lot_of_difficulty", "cannot_do_at_all") |
         df$difficulty_remembering %in% c("a_lot_of_difficulty", "cannot_do_at_all") |
         df$difficulty_seeing %in% c("a_lot_of_difficulty", "cannot_do_at_all") |
-        df$difficulty_walking %in% c("a_lot_of_difficulty", "cannot_do_at_all"),
-      1,
-      0
+        df$difficulty_walking %in% c("a_lot_of_difficulty", "cannot_do_at_all") ~ 1,
+      TRUE ~ 0
     )
   
   loop_head <- loop %>%
@@ -83,31 +78,32 @@ msni_recoding <- function(df, loop) {
               temp$sum_health_issue[match(df$X_uuid, temp$X_uuid)] == 0 ~ 0,
               TRUE ~ NA_real_)
   
-  df$b4 <- ifelse(
+  df$b4 <- case_when(
     df$pds_card == "no" |
       df$id_card_a18 == "no" |
       df$nationality_cert_a18 == "no" |
       df$id_card_u18 == "no" |
       df$nationality_cert_u18 == "no" |
-      df$birth_cert_u18 == "no",
-    1,
-    0
+      df$birth_cert_u18 == "no" ~ 1,
+    TRUE ~ 0
   )
   
-  df$b5 <- ifelse(
+  df$b5 <- case_when(
     df$why_not_return.fear_trauma == 1 |
       df$why_not_return.lack_of_security_forces == 1 |
       df$why_not_return.presence_of_mines == 1 |
       df$why_not_return.discrimination == 1 |
-      df$why_not_return.lack_security_women == 1 ,
-    1,
-    0
+      df$why_not_return.lack_security_women == 1 ~ 1,
+    TRUE ~ 0
   )
   
-  df$b6 <- ifelse(df$access_soap == "no", 1, 0)
+  df$b6 <- case_when(df$access_soap == "no" ~ 1,
+                  TRUE ~ 0
+  )
   df$b7 <-
-    ifelse(df$female_60_calc >= 1 | df$male_60_calc >= 1, 1, 0)
-  
+    case_when(df$female_60_calc >= 1 | df$male_60_calc >= 1 ~ 1,
+              TRUE ~ 0
+    )
   #using sum_row function to sum the rows, sum_row belongs to expss library.
   df$vulnerability_score <- case_when(
     df$b1 == 1 ~ 4,
@@ -182,11 +178,10 @@ msni_recoding <- function(df, loop) {
   
   
   df$c4 <-
-    ifelse(
+    case_when(
       df$primary_school_place == "within_2km" |
-        df$secondary_school_place == "within_2km",
-      0,
-      1
+        df$secondary_school_place == "within_2km"  ~ 0,
+      TRUE ~ 1
     )
   
   df$education_score <- case_when(
@@ -220,7 +215,10 @@ msni_recoding <- function(df, loop) {
               is.na(df$education_score) ~ NA_real_,
               TRUE ~ 0)
   df$lsg_education_vulnerable <-
-    ifelse(df$lsg_education == 1 & df$vulnerability_score >= 3, 1, 0)
+    case_when(df$lsg_education == 1 &
+             df$vulnerability_score >= 3 ~ 1,
+           TRUE ~ 0
+    )
   ###################################d #########################################
   
   df$d1 <- case_when(df$employment_seasonal == "yes" ~ 1,
@@ -248,22 +246,21 @@ msni_recoding <- function(df, loop) {
               TRUE ~ NA_real_)
   
   df$d3 <-
-    ifelse(df$inc_employment_pension / df$num_hh_member < 90000, 1, 0)
-  df$d4 <- ifelse(df$how_much_debt > 505000, 1, 0)
+    case_when(df$inc_employment_pension / df$num_hh_member < 90000 ~ 1,
+              TRUE ~ 0)
+  df$d4 <- case_when(df$how_much_debt > 505000 ~ 1,
+                  TRUE ~ 0)
   df$d5 <-
-    ifelse(df$covid_loss_job_permanent >= 1 |
-             df$covid_loss_job_temp >= 1,
-           1,
-           0)
+    case_when(df$covid_loss_job_permanent >= 1 |
+                df$covid_loss_job_temp >= 1 ~ 1,
+              TRUE ~ 0)
   df$d6 <-
-    ifelse(
+    case_when(
       df$reasons_for_debt %in%  c("basic_hh_expenditure",
                                   "health",
                                   "food",
-                                  "education"),
-      1,
-      0
-    )
+                                  "education") ~ 1,
+      TRUE ~ 0)
   
   df$livelihoods_score <- case_when(
     df$d6 == 1 ~ 4,
@@ -292,7 +289,9 @@ msni_recoding <- function(df, loop) {
               is.na(df$livelihoods_score) ~ NA_real_,
               TRUE ~ 0)
   df$lsg_livelihoods_vulnerable <-
-    ifelse(df$lsg_livelihoods == 1 & df$vulnerability_score >= 3, 1, 0)
+    case_when(df$lsg_livelihoods == 1 &
+             df$vulnerability_score >= 3 ~ 1,
+             TRUE ~ 0)
   
   ###################################e #########################################
   
@@ -304,7 +303,8 @@ msni_recoding <- function(df, loop) {
                   hungry_freq,
                   not_eating,
                   not_eating_freq)
-  fsc$hhh1_1 <- ifelse(fsc$no_food == "yes", 1, 0)
+  fsc$hhh1_1 <- case_when(fsc$no_food == "yes" ~ 1,
+                       TRUE ~ 0)
   fsc <- fsc %>% mutate(
     hhh1_2 = case_when(
       no_food_freq == "rarely" ~ 1,
@@ -314,7 +314,8 @@ msni_recoding <- function(df, loop) {
     )
   )
   fsc$hhh1_3 <- fsc$hhh1_1 * fsc$hhh1_2
-  fsc$hhh2_1 <- ifelse(fsc$hungry == "yes", 1, 0)
+  fsc$hhh2_1 <- case_when(fsc$hungry == "yes" ~ 1,
+                          TRUE ~ 0)
   fsc <- fsc %>% mutate(
     hhh2_2 = case_when(
       hungry_freq == "rarely" ~ 1,
@@ -346,9 +347,12 @@ msni_recoding <- function(df, loop) {
     as.numeric(df$vegetables) + as.numeric(df$fruits) + as.numeric(df$oil_fats) * 0.5 + as.numeric(df$sweets) * 0.5
   
   
-  df$e1 <- ifelse(df$fcs <= 42, 1, 0)
-  df$e2 <- ifelse(df$food_share > 0.65, 1, 0)
-  df$e3 <- ifelse(fsc$hhs[match(df$X_uuid, fsc$X_uuid)] >= 2, 1, 0)
+  df$e1 <- case_when(df$fcs <= 42 ~ 1,
+                  TRUE ~ 0)
+  df$e2 <- case_when(df$food_share > 0.65 ~ 1,
+                  TRUE ~ 0)
+  df$e3 <- case_when(fsc$hhs[match(df$X_uuid, fsc$X_uuid)] >= 2 ~ 1,
+                  TRUE ~ 0)
   
   df$food_security_score <- case_when(
     df$e3 == 1 ~ 4,
@@ -375,7 +379,8 @@ msni_recoding <- function(df, loop) {
               is.na(df$food_security_score) ~ NA_real_,
               TRUE ~ 0)
   df$lsg_food_vulnerable <-
-    ifelse(df$lsg_food == 1 & df$vulnerability_score >= 3, 1, 0)
+    case_when(df$lsg_food == 1 & df$vulnerability_score >= 3 ~ 1,
+              TRUE ~ 0)
   
   ###################################f #########################################
   
@@ -389,11 +394,9 @@ msni_recoding <- function(df, loop) {
   )
   
   loop_child$married <-
-    ifelse(
-      loop_child$marital_status %in% c("married", "widowed", "divorced", "separated"),
-      1 ,
-      0
-    )
+    case_when(
+      loop_child$marital_status %in% c("married", "widowed", "divorced", "separated") ~ 1,
+      TRUE ~ 0)
   temp <- loop_child %>%
     group_by(X_uuid) %>%
     summarize(sum_married_child = sum(married))
@@ -403,41 +406,43 @@ msni_recoding <- function(df, loop) {
               temp$sum_married_child[match(df$X_uuid, temp$X_uuid)] == 0 ~ 0,
               TRUE ~ NA_real_)
   df$f3 <-
-    ifelse(df$adult_distress_number >= 1 |
-             df$child_distress_number >= 1,
-           1,
-           0)
+    case_when(df$adult_distress_number >= 1 |
+                df$child_distress_number >= 1 ~ 1,
+              TRUE ~ 0)
   
-  df$f4 <- ifelse(
+  df$f4 <- case_when(
     df$unsafe_areas.distribution_areas == 1 |
       df$unsafe_areas.facilities == 1 |
       df$unsafe_areas.markets == 1 |
       df$unsafe_areas.social_areas == 1 |
       df$unsafe_areas.water_points == 1 |
       df$unsafe_areas.way_to_centers == 1 |
-      df$unsafe_areas.way_to_school == 1,
-    1,
-    0
+      df$unsafe_areas.way_to_school == 1 ~ 1,
+    TRUE ~ 0
   )
   
   df$f5 <-
-    ifelse(
+    case_when(
       df$pds_card == "no" |
         df$id_card_a18 == "no" |
         df$nationality_cert_a18 == "no" |
         df$id_card_u18 == "no" |
         df$nationality_cert_u18 == "no" |
-        df$birth_cert_u18 == "no",
-      1,
-      0
-    )
+        df$birth_cert_u18 == "no" ~ 1,
+      TRUE ~ 0)
   df$f6 <-
-    ifelse(df$hlp_document == "no" | df$hh_dispute == "yes", 1, 0)
-  df$f7 <- ifelse(df$hh_risk_eviction == "yes", 1, 0)
+    case_when(df$hlp_document == "no" | df$hh_dispute == "yes" ~ 1,
+           TRUE ~ 0
+    )
+  df$f7 <- case_when(df$hh_risk_eviction == "yes" ~ 1,
+                  TRUE ~ 0
+  )
   df$f8 <-     case_when(df$not_residing == "yes" ~ 1,
                          df$not_residing %in% c("no") ~ 0,
                          TRUE ~ NA_real_)
-  df$f9 <- ifelse(df$security_incident == "yes", 1, 0)
+  df$f9 <- case_when(df$security_incident == "yes" ~ 1,
+                  TRUE ~ 0
+  )
   
   df$protection_score <- case_when(
     df$f1 == 1 | df$f2 == 1 ~ 4,
@@ -466,21 +471,27 @@ msni_recoding <- function(df, loop) {
               is.na(df$protection_score) ~ NA_real_,
               TRUE ~ 0)
   df$lsg_protection_vulnerable <-
-    ifelse(df$lsg_protection == 1 & df$vulnerability_score >= 3, 1, 0)
+    case_when(df$lsg_protection == 1 &
+             df$vulnerability_score >= 3 ~ 1,
+             TRUE ~ 0
+    )
   ###################################g #########################################
   
-  df$g1 <- ifelse(
+  df$g1 <- case_when(
     df$distance_hospital %in% c("less_15", "less_30", "less_hour") |
-      df$distance_clinic %in% c("less_15", "less_30", "less_hour"),
-    0,
-    1
+      df$distance_clinic %in% c("less_15", "less_30", "less_hour") ~ 0,
+    TRUE ~ 1
   )
   
-  df$g2 <- ifelse(df$women_specialised_services == "no", 1, 0)
+  df$g2 <- case_when(df$women_specialised_services == "no" ~ 1,
+                  TRUE ~ 0
+  )
   
   df$health_share <- df$medical_exp / df$tot_expenses
   
-  df$g3 <- ifelse(df$health_share > 0.2, 1, 0)
+  df$g3 <- case_when(df$health_share > 0.2~ 1,
+                     TRUE ~ 0
+  )
   df$g4 <-
     case_when(
       df$difficulty_accessing_services == "yes" ~ 1,
@@ -511,24 +522,22 @@ msni_recoding <- function(df, loop) {
               is.na(df$health_score) ~ NA_real_,
               TRUE ~ 0)
   df$lsg_health_vulnerable <-
-    ifelse(df$lsg_health == 1 & df$vulnerability_score >= 3, 1, 0)
+    case_when(df$lsg_health == 1 & df$vulnerability_score >= 3 ~ 1, TRUE ~ 0)
   ###################################h #########################################
   
   df$h1 <-
-    ifelse(
+    case_when(
       sum_row(
         df$shelter_better.improve_privacy,
         df$shelter_better.improve_safety,
         df$shelter_better.protect_climate,
         df$shelter_better.protec_hazards,
-        df$shelter_better.other, na.rm = TRUE
-      ) > 1,
-      1,
-      0
-    )
+        df$shelter_better.other,
+        na.rm = TRUE
+      ) > 1 ~ 1, TRUE ~ 0)
   
   df$h2 <-
-    ifelse(
+    case_when(
       sum_row(
         df$nfi_priority_needs.bedding_items,
         df$nfi_priority_needs.mattresses_sleeping_mats,
@@ -538,14 +547,12 @@ msni_recoding <- function(df, loop) {
         df$nfi_priority_needs.cooking_utensils,
         df$nfi_priority_needs.heating_cooking_fuel,
         df$nfi_priority_needs.winter_heaters,
-        df$nfi_priority_needs.other, na.rm = TRUE
-      ) >= 1,
-      1,
-      0
-    )
+        df$nfi_priority_needs.other,
+        na.rm = TRUE
+      ) >= 1 ~ 1, TRUE ~ 0)
   
   df$h3 <-
-    ifelse(
+    case_when(
       df$shelter_type %in%
         c(
           "unfinished_abandoned_building",
@@ -556,10 +563,7 @@ msni_recoding <- function(df, loop) {
           "non_residential",
           "container",
           "makeshift_shelter"
-        ),
-      1,
-      0
-    )
+        ) ~ 1, TRUE ~ 0)
   
   df$snfi_score <-
     case_when(
@@ -585,10 +589,10 @@ msni_recoding <- function(df, loop) {
   df$lsg_snfi <-
     case_when(df$snfi_score >= 3 ~ 1, is.na(df$snfi_score) ~ NA_real_, TRUE ~ 0)
   df$lsg_snfi_vulnerable <-
-    ifelse(df$lsg_snfi == 1 & df$vulnerability_score >= 3, 1, 0)
+    case_when(df$lsg_snfi == 1 & df$vulnerability_score >= 3 ~ 1, TRUE ~ 0)
   ###################################i #########################################
   
-  df$i1 <- ifelse(
+  df$i1 <- case_when(
     !df$drinking_water_source %in%
       c(
         "borehole",
@@ -597,10 +601,7 @@ msni_recoding <- function(df, loop) {
         "bottled_water",
         "network_private",
         "network_comm"
-      ),
-    1,
-    0
-  )
+      ) ~ 1, TRUE ~ 0)
   
   df$i2 <-
     case_when(
@@ -610,10 +611,10 @@ msni_recoding <- function(df, loop) {
       TRUE ~ 0
     )
   
-  df$i3 <- ifelse(df$latrines %in% c("vip_pit", "flush"), 0, 1)
+  df$i3 <- case_when(df$latrines %in% c("vip_pit", "flush") ~ 0, TRUE ~ 1)
   
   df$i4 <-
-    ifelse(
+    case_when(
       df$treat_drink_water %in% c("always", "sometimes") &
         !df$drinking_water_source %in%
         c(
@@ -623,10 +624,7 @@ msni_recoding <- function(df, loop) {
           "bottled_water",
           "network_private",
           "network_comm"
-        ),
-      1,
-      0
-    )
+        ) ~ 1, TRUE ~ 0)
   
   
   
@@ -634,7 +632,7 @@ msni_recoding <- function(df, loop) {
     case_when(
       df$i1 == 1 ~ 4,
       is.na(df$i1) ~ NA_real_,
-       df$i3 == 1 | sum_row(df$i2, df$i4, na.rm = TRUE) == 2 ~ 3,
+      df$i3 == 1 | sum_row(df$i2, df$i4, na.rm = TRUE) == 2 ~ 3,
       sum_row(df$i2, df$i4, na.rm = TRUE) == 1 ~ 2,
       TRUE ~ 1
     )
@@ -654,41 +652,54 @@ msni_recoding <- function(df, loop) {
   df$lsg_wash <-
     case_when(df$wash_score >= 3 ~ 1, is.na(df$wash_score) ~ NA_real_, TRUE ~ 0)
   df$lsg_wash_vulnerable <-
-    ifelse(df$lsg_wash == 1 & df$vulnerability_score >= 3, 1, 0)
+    case_when(df$lsg_wash == 1 & df$vulnerability_score >= 3 ~ 1, TRUE ~ 0)
   
   df$msni_score <-
-    max(
-      df$education_score,
-      df$livelihoods_score,
-      df$food_score,
-      df$health_score,
-      df$protection_score,
-      df$snfi_score,
-      df$wash_score,
-      na.rm = TRUE
+    case_when(
+      df$education_score == 4 |
+        df$livelihoods_score == 4 |
+        df$food_security_score == 4 |
+        df$health_score == 4 |
+        df$protection_score == 4 |
+        df$snfi_score == 4 |
+        df$wash_score == 4 ~ 4,
+      df$education_score == 3 |
+        df$livelihoods_score == 3 |
+        df$food_security_score == 3 |
+        df$health_score == 3 |
+        df$protection_score == 3 |
+        df$snfi_score == 3 |
+        df$wash_score == 3 ~ 3,
+      df$education_score == 2 |
+        df$livelihoods_score == 2 |
+        df$food_security_score == 2 |
+        df$health_score == 2 |
+        df$protection_score == 2 |
+        df$snfi_score == 2 |
+        df$wash_score == 2 ~ 2,
+      df$education_score == 1 |
+        df$livelihoods_score == 1 |
+        df$food_security_score == 1 |
+        df$health_score == 1 |
+        df$protection_score == 1 |
+        df$snfi_score == 1 |
+        df$wash_score == 1 ~ 1,
+      TRUE ~ NA_real_
     )
   
   df$msni_score_4 <-
-    ifelse(df$msni_score == 4,
-           1,
-           0)
+    case_when(df$msni_score == 4 ~ 1, TRUE ~ 0)
   
   df$msni_score_3 <-
-    ifelse(df$msni_score == 3,
-           1,
-           0)
+    case_when(df$msni_score == 3 ~ 1, TRUE ~ 0)
   
   df$msni_score_2 <-
-    ifelse(df$msni_score == 2,
-           1,
-           0)
+    case_when(df$msni_score == 2 ~ 1, TRUE ~ 0)
   
   df$msni_score_1 <-
-    ifelse(df$msni_score == 1,
-           1,
-           0)
+    case_when(df$msni_score == 1 ~ 1, TRUE ~ 0)
   
-  df$lsg_all <- ifelse(df$msni_score >= 3, 1, 0)
+  df$lsg_all <- case_when(df$msni_score >= 3 ~ 1, TRUE ~ 0)
   
   
   
@@ -725,20 +736,19 @@ msni_recoding <- function(df, loop) {
       df$lsg_livelihoods,
       df$lsg_protection,
       df$lsg_snfi,
-      df$lsg_wash, na.rm = TRUE
+      df$lsg_wash,
+      na.rm = TRUE
     ) >= 1 & df$female_hhh == 1 ~ 1,
     is.na(df$female_hhh) ~ NA_real_,
     TRUE ~ 0
   )
   df$female_hhh_cg <-
-    case_when(
-      df$female_hhh == 1 & df$capacity_gap == 1 ~ 1,
-      is.na(df$female_hhh) ~ NA_real_,
-      TRUE ~ 0
-    )
+    case_when(df$female_hhh == 1 & df$capacity_gap == 1 ~ 1,
+              is.na(df$female_hhh) ~ NA_real_,
+              TRUE ~ 0)
   
   df$vulnerability_score_1 <-
-    ifelse(
+    case_when(
       sum_row(
         df$lsg_education,
         df$lsg_food,
@@ -746,14 +756,12 @@ msni_recoding <- function(df, loop) {
         df$lsg_livelihoods,
         df$lsg_protection,
         df$lsg_snfi,
-        df$lsg_wash, na.rm = TRUE
-      ) >= 1 & df$vulnerability_1 == 1,
-      1,
-      0
-    )
+        df$lsg_wash,
+        na.rm = TRUE
+      ) >= 1 & df$vulnerability_1 == 1 ~ 1, TRUE ~ 0)
   
   df$vulnerability_score_2 <-
-    ifelse(
+    case_when(
       sum_row(
         df$lsg_education,
         df$lsg_food,
@@ -761,14 +769,12 @@ msni_recoding <- function(df, loop) {
         df$lsg_livelihoods,
         df$lsg_protection,
         df$lsg_snfi,
-        df$lsg_wash, na.rm = TRUE
-      ) >= 1 & df$vulnerability_2 == 1,
-      1,
-      0
-    )
+        df$lsg_wash,
+        na.rm = TRUE
+      ) >= 1 & df$vulnerability_2 == 1 ~ 1, TRUE ~ 0)
   
   df$vulnerability_score_3 <-
-    ifelse(
+    case_when(
       sum_row(
         df$lsg_education,
         df$lsg_food,
@@ -776,13 +782,11 @@ msni_recoding <- function(df, loop) {
         df$lsg_livelihoods,
         df$lsg_protection,
         df$lsg_snfi,
-        df$lsg_wash, na.rm = TRUE
-      ) >= 1 & df$vulnerability_3 == 1,
-      1,
-      0
-    )
+        df$lsg_wash,
+        na.rm = TRUE
+      ) >= 1 & df$vulnerability_3 == 1 ~ 1, TRUE ~ 0)
   df$vulnerability_score_4 <-
-    ifelse(
+    case_when(
       sum_row(
         df$lsg_education,
         df$lsg_food,
@@ -790,14 +794,12 @@ msni_recoding <- function(df, loop) {
         df$lsg_livelihoods,
         df$lsg_protection,
         df$lsg_snfi,
-        df$lsg_wash, na.rm = TRUE
-      ) >= 1 & df$vulnerability_4 == 1,
-      1,
-      0
-    )
+        df$lsg_wash,
+        na.rm = TRUE
+      ) >= 1 & df$vulnerability_4 == 1 ~ 1, TRUE ~ 0)
   
   df$cg_no_lsg <-
-    ifelse(
+    case_when(
       df$capacity_gap == 1 &
         sum_row(
           df$lsg_education,
@@ -808,12 +810,9 @@ msni_recoding <- function(df, loop) {
           df$lsg_snfi,
           df$lsg_wash,
           na.rm = TRUE
-        ) == 0,
-      1,
-      0
-    )
+        ) == 0 ~ 1, TRUE ~ 0)
   
-  df$cg_no_lsg_but_vulnerable <- ifelse(
+  df$cg_no_lsg_but_vulnerable <- case_when(
     df$capacity_gap == 1 &
       sum_row(
         df$lsg_education,
@@ -824,13 +823,10 @@ msni_recoding <- function(df, loop) {
         df$lsg_snfi,
         df$lsg_wash,
         na.rm = TRUE
-      ) == 0 & df$vulnerability_1 == 1,
-    1,
-    0
-  )
+      ) == 0 & df$vulnerability_1 == 1 ~ 1, TRUE ~ 0)
   
   df$cg_and_one_lsg <-
-    ifelse(
+    case_when(
       df$capacity_gap == 1 &
         sum_row(
           df$lsg_education,
@@ -841,13 +837,10 @@ msni_recoding <- function(df, loop) {
           df$lsg_snfi,
           df$lsg_wash,
           na.rm = TRUE
-        ) >= 1,
-      1,
-      0
-    )
+        ) >= 1 ~ 1, TRUE ~ 0)
   
   df$cg_or_one_lsg <-
-    ifelse(
+    case_when(
       df$capacity_gap == 1 |
         sum_row(
           df$lsg_education,
@@ -858,13 +851,10 @@ msni_recoding <- function(df, loop) {
           df$lsg_snfi,
           df$lsg_wash,
           na.rm = TRUE
-        ) >= 1,
-      1,
-      0
-    )
+        ) >= 1 ~ 1, TRUE ~ 0)
   
   df$no_cg_and_no_lsg <-
-    ifelse(
+    case_when(
       df$capacity_gap == 0 &
         sum_row(
           df$lsg_education,
@@ -875,13 +865,10 @@ msni_recoding <- function(df, loop) {
           df$lsg_snfi,
           df$lsg_wash,
           na.rm = TRUE
-        ) == 0,
-      1,
-      0
-    )
+        ) == 0 ~ 1, TRUE ~ 0)
   
   df$lsg_but_no_cg <-
-    ifelse(
+    case_when(
       df$capacity_gap == 0 &
         sum_row(
           df$lsg_education,
@@ -892,13 +879,10 @@ msni_recoding <- function(df, loop) {
           df$lsg_snfi,
           df$lsg_wash,
           na.rm = TRUE
-        ) >= 1,
-      1,
-      0
-    )
+        ) >= 1 ~ 1, TRUE ~ 0)
   
   df$seven_lsg   <-
-    ifelse(
+    case_when(
       sum_row(
         df$lsg_education,
         df$lsg_food,
@@ -908,12 +892,9 @@ msni_recoding <- function(df, loop) {
         df$lsg_snfi,
         df$lsg_wash,
         na.rm = TRUE
-      ) == 7,
-      1,
-      0
-    )
+      ) == 7 ~ 1, TRUE ~ 0)
   df$six_lsg   <-
-    ifelse(
+    case_when(
       sum_row(
         df$lsg_education,
         df$lsg_food,
@@ -923,12 +904,9 @@ msni_recoding <- function(df, loop) {
         df$lsg_snfi,
         df$lsg_wash,
         na.rm = TRUE
-      ) == 6,
-      1,
-      0
-    )
+      ) == 6 ~ 1, TRUE ~ 0)
   df$five_lsg   <-
-    ifelse(
+    case_when(
       sum_row(
         df$lsg_education,
         df$lsg_food,
@@ -938,12 +916,9 @@ msni_recoding <- function(df, loop) {
         df$lsg_snfi,
         df$lsg_wash,
         na.rm = TRUE
-      ) == 5,
-      1,
-      0
-    )
+      ) == 5 ~ 1, TRUE ~ 0)
   df$four_lsg   <-
-    ifelse(
+    case_when(
       sum_row(
         df$lsg_education,
         df$lsg_food,
@@ -953,12 +928,9 @@ msni_recoding <- function(df, loop) {
         df$lsg_snfi,
         df$lsg_wash,
         na.rm = TRUE
-      ) == 4,
-      1,
-      0
-    )
+      ) == 4 ~ 1, TRUE ~ 0)
   df$three_lsg   <-
-    ifelse(
+    case_when(
       sum_row(
         df$lsg_education,
         df$lsg_food,
@@ -968,12 +940,9 @@ msni_recoding <- function(df, loop) {
         df$lsg_snfi,
         df$lsg_wash,
         na.rm = TRUE
-      ) == 3,
-      1,
-      0
-    )
+      ) == 3 ~ 1, TRUE ~ 0)
   df$two_lsg   <-
-    ifelse(
+    case_when(
       sum_row(
         df$lsg_education,
         df$lsg_food,
@@ -983,12 +952,9 @@ msni_recoding <- function(df, loop) {
         df$lsg_snfi,
         df$lsg_wash,
         na.rm = TRUE
-      ) == 2,
-      1,
-      0
-    )
+      ) == 2 ~ 1, TRUE ~ 0)
   df$one_lsg   <-
-    ifelse(
+    case_when(
       sum_row(
         df$lsg_education,
         df$lsg_food,
@@ -998,12 +964,9 @@ msni_recoding <- function(df, loop) {
         df$lsg_snfi,
         df$lsg_wash,
         na.rm = TRUE
-      ) == 1,
-      1,
-      0
-    )
+      ) == 1 ~ 1, TRUE ~ 0)
   df$zero_lsg   <-
-    ifelse(
+    case_when(
       sum_row(
         df$lsg_education,
         df$lsg_food,
@@ -1013,12 +976,9 @@ msni_recoding <- function(df, loop) {
         df$lsg_snfi,
         df$lsg_wash,
         na.rm = TRUE
-      ) == 0,
-      1,
-      0
-    )
+      ) == 0 ~ 1, TRUE ~ 0)
   df$lsg_vulnerable <-
-    ifelse(
+    case_when(
       sum_row(
         df$lsg_education,
         df$lsg_food,
@@ -1028,10 +988,7 @@ msni_recoding <- function(df, loop) {
         df$lsg_snfi,
         df$lsg_wash,
         na.rm = TRUE
-      ) >= 1 & df$vulnerability_score >= 3,
-      1,
-      0
-    )
+      ) >= 1 & df$vulnerability_score >= 3 ~ 1, TRUE ~ 0)
   
   return(df)
 }
