@@ -11,72 +11,43 @@ LSG,% of households per Multi-Sectoral Needs Index (MSNI) severity score,Stress,
 LSG,% of households per Multi-Sectoral Needs Index (MSNI) severity score,No or Minimal,all,population_group,categorical,msni_score_1,categorical,direct_reporting
 LSG,% of households with multi-sectoral needs,Severe or Extreme,district_mcna,all,categorical,lsg_all,categorical,direct_reporting
 LSG,% of households per Multi-Sectoral Needs Index (MSNI) severity score,Extreme,district_mcna,all,categorical,msni_score_4,categorical,direct_reporting
-LSG,"% of households per number of sectoral LSG(s), per
-population group",7,all,population_group,categorical,seven_lsg,categorical,direct_reporting
-LSG,"% of households per number of sectoral LSG(s), per
-population group",6,all,population_group,categorical,six_lsg,categorical,direct_reporting
-LSG,"% of households per number of sectoral LSG(s), per
-population group",5,all,population_group,categorical,five_lsg,categorical,direct_reporting
-LSG,"% of households per number of sectoral LSG(s), per
-population group",4,all,population_group,categorical,four_lsg,categorical,direct_reporting
-LSG,"% of households per number of sectoral LSG(s), per
-population group",3,all,population_group,categorical,three_lsg,categorical,direct_reporting
-LSG,"% of households per number of sectoral LSG(s), per
-population group",2,all,population_group,categorical,two_lsg,categorical,direct_reporting
-LSG,"% of households per number of sectoral LSG(s), per
-population group",1,all,population_group,categorical,one_lsg,categorical,direct_reporting
-LSG,"% of households per number of sectoral LSG(s), per
-population group",0,all,population_group,categorical,zero_lsg,categorical,direct_reporting
-LSG,"% of households per number of sectoral LSG(s), per
-population group",0,all,all,categorical,zero_lsg,categorical,direct_reporting
+LSG,"% of households per number of sectoral LSG(s), per population group",7,all,population_group,categorical,seven_lsg,categorical,direct_reporting
+LSG,"% of households per number of sectoral LSG(s), per population group",6,all,population_group,categorical,six_lsg,categorical,direct_reporting
+LSG,"% of households per number of sectoral LSG(s), per population group",5,all,population_group,categorical,five_lsg,categorical,direct_reporting
+LSG,"% of households per number of sectoral LSG(s), per population group",4,all,population_group,categorical,four_lsg,categorical,direct_reporting
+LSG,"% of households per number of sectoral LSG(s), per population group",3,all,population_group,categorical,three_lsg,categorical,direct_reporting
+LSG,"% of households per number of sectoral LSG(s), per population group",2,all,population_group,categorical,two_lsg,categorical,direct_reporting
+LSG,"% of households per number of sectoral LSG(s), per population group",1,all,population_group,categorical,one_lsg,categorical,direct_reporting
+LSG,"% of households per number of sectoral LSG(s), per population group",0,all,population_group,categorical,zero_lsg,categorical,direct_reporting
+LSG,"% of households per number of sectoral LSG(s), per population group",0,all,all,categorical,zero_lsg,categorical,direct_reporting
 LSG,% of households with capacity gap,% of households with capacity gap,all,all,categorical,capacity_gap,categorical,direct_reporting
-LSG,"Among households with multi-sectoral needs, % of
-households with sectoral LSG(s)",Education,all,all,categorical,lsg_education,categorical,direct_reporting
-LSG,"Among households with multi-sectoral needs, % of
-households with sectoral LSG(s)",Livelihoods,all,all,categorical,lsg_livelihoods,categorical,direct_reporting
-LSG,"Among households with multi-sectoral needs, % of
-households with sectoral LSG(s)",Food Security,all,all,categorical,lsg_food,categorical,direct_reporting
-LSG,"Among households with multi-sectoral needs, % of
-households with sectoral LSG(s)",Protection,all,all,categorical,lsg_protection,categorical,direct_reporting
-LSG,"Among households with multi-sectoral needs, % of
-households with sectoral LSG(s)",Health,all,all,categorical,lsg_health,categorical,direct_reporting
-LSG,"Among households with multi-sectoral needs, % of
-households with sectoral LSG(s)",SNFI,all,all,categorical,lsg_snfi,categorical,direct_reporting
-LSG,"Among households with multi-sectoral needs, % of
-households with sectoral LSG(s)",WASH,all,all,categorical,lsg_wash,categorical,direct_reporting
-LSG,"Among households with multi-sectoral needs, % of
-households with sectoral LSG(s)",Education,all,population_group,categorical,lsg_education,categorical,direct_reporting
-LSG,"Among households with multi-sectoral needs, % of
-households with sectoral LSG(s)",Livelihoods,all,population_group,categorical,lsg_livelihoods,categorical,direct_reporting
-LSG,"Among households with multi-sectoral needs, % of
-households with sectoral LSG(s)",Food Security,all,population_group,categorical,lsg_food,categorical,direct_reporting
-LSG,"Among households with multi-sectoral needs, % of
-households with sectoral LSG(s)",Protection,all,population_group,categorical,lsg_protection,categorical,direct_reporting
-LSG,"Among households with multi-sectoral needs, % of
-households with sectoral LSG(s)",Health,all,population_group,categorical,lsg_health,categorical,direct_reporting
-LSG,"Among households with multi-sectoral needs, % of
-households with sectoral LSG(s)",SNFI,all,population_group,categorical,lsg_snfi,categorical,direct_reporting
+LSG,% of households with capacity gap,% of households with capacity gap,all,population_group,categorical,capacity_gap,categorical,direct_reporting
+LSG,"Among households with multi-sectoral needs, % of households with sectoral LSG(s)",Education,all,all,categorical,lsg_education,categorical,direct_reporting
+LSG,"Among households with multi-sectoral needs, % of households with sectoral LSG(s)",Livelihoods,all,all,categorical,lsg_livelihoods,categorical,direct_reporting
+LSG,"Among households with multi-sectoral needs, % of households with sectoral LSG(s)",Food Security,all,all,categorical,lsg_food,categorical,direct_reporting
+LSG,"Among households with multi-sectoral needs, % of households with sectoral LSG(s)",Protection,all,all,categorical,lsg_protection,categorical,direct_reporting
+LSG,"Among households with multi-sectoral needs, % of households with sectoral LSG(s)",Health,all,all,categorical,lsg_health,categorical,direct_reporting
+LSG,"Among households with multi-sectoral needs, % of households with sectoral LSG(s)",SNFI,all,all,categorical,lsg_snfi,categorical,direct_reporting
+LSG,"Among households with multi-sectoral needs, % of households with sectoral LSG(s)",WASH,all,all,categorical,lsg_wash,categorical,direct_reporting
+LSG,"Among households with multi-sectoral needs, % of households with sectoral LSG(s)",Education,all,population_group,categorical,lsg_education,categorical,direct_reporting
+LSG,"Among households with multi-sectoral needs, % of households with sectoral LSG(s)",Livelihoods,all,population_group,categorical,lsg_livelihoods,categorical,direct_reporting
+LSG,"Among households with multi-sectoral needs, % of households with sectoral LSG(s)",Food Security,all,population_group,categorical,lsg_food,categorical,direct_reporting
+LSG,"Among households with multi-sectoral needs, % of households with sectoral LSG(s)",Protection,all,population_group,categorical,lsg_protection,categorical,direct_reporting
+LSG,"Among households with multi-sectoral needs, % of households with sectoral LSG(s)",Health,all,population_group,categorical,lsg_health,categorical,direct_reporting
+LSG,"Among households with multi-sectoral needs, % of households with sectoral LSG(s)",SNFI,all,population_group,categorical,lsg_snfi,categorical,direct_reporting
 LSG,"Among households with multi-sectoral needs, % of
 households with sectoral LSG(s)",WASH,all,population_group,categorical,lsg_wash,categorical,direct_reporting
 Food Security,% of households with a Food Security LSG.,% of households with a Food Security LSG.,all,all,categorical,lsg_food,categorical,direct_reporting
 Food Security,% of households with a Food Security LSG.,% of households with a Food Security LSG.,all,population_group,categorical,lsg_food,categorical,direct_reporting
 Food Security,% of households with a Food Security LSG.,% of households with a Food Security LSG.,district_mcna,all,categorical,lsg_food,categorical,direct_reporting
-Food Security,"of households per Food Security LSG severity score, per
-population group",No or Minimal,all,all,categorical,food_security_1,categorical,direct_reporting
-Food Security,"of households per Food Security LSG severity score, per
-population group",Stress,all,all,categorical,food_security_2,categorical,direct_reporting
-Food Security,"of households per Food Security LSG severity score, per
-population group",Severe,all,all,categorical,food_security_3,categorical,direct_reporting
-Food Security,"of households per Food Security LSG severity score, per
-population group",Extreme,all,all,categorical,food_security_4,categorical,direct_reporting
-Food Security,"of households per Food Security LSG severity score, per
-population group",No or Minimal,all,population_group,categorical,food_security_1,categorical,direct_reporting
-Food Security,"of households per Food Security LSG severity score, per
-population group",Stress,all,population_group,categorical,food_security_2,categorical,direct_reporting
-Food Security,"of households per Food Security LSG severity score, per
-population group",Severe,all,population_group,categorical,food_security_3,categorical,direct_reporting
-Food Security,"of households per Food Security LSG severity score, per
-population group",Extreme,all,population_group,categorical,food_security_4,categorical,direct_reporting
+Food Security,"of households per Food Security LSG severity score, per population group",No or Minimal,all,all,categorical,food_security_1,categorical,direct_reporting
+Food Security,"of households per Food Security LSG severity score, per population group",Stress,all,all,categorical,food_security_2,categorical,direct_reporting
+Food Security,"of households per Food Security LSG severity score, per population group",Severe,all,all,categorical,food_security_3,categorical,direct_reporting
+Food Security,"of households per Food Security LSG severity score, per population group",Extreme,all,all,categorical,food_security_4,categorical,direct_reporting
+Food Security,"of households per Food Security LSG severity score, per population group",No or Minimal,all,population_group,categorical,food_security_1,categorical,direct_reporting
+Food Security,"of households per Food Security LSG severity score, per population group",Stress,all,population_group,categorical,food_security_2,categorical,direct_reporting
+Food Security,"of households per Food Security LSG severity score, per population group",Severe,all,population_group,categorical,food_security_3,categorical,direct_reporting
+Food Security,"of households per Food Security LSG severity score, per population group",Extreme,all,population_group,categorical,food_security_4,categorical,direct_reporting
 Food Security,Food Consumption Score (FCS),HH has borderline OR poor FCS,all,all,categorical,e1,categorical,direct_reporting
 Food Security,Food Expenditure share (FES),Food expenditure share of total expenditure is > 65%,all,all,categorical,e2,categorical,direct_reporting
 Food Security,Household Hunger Scale ,HH has moderate to severe (2 - 6) Household Hunger Score,all,all,categorical,e3,categorical,direct_reporting
@@ -210,22 +181,14 @@ Livelihoods,"% of HH unable to afford basic basic needs (% HH taking on debt due
 Protection,% of households with an Protection LSG.,% of households with an Protection LSG.,all,all,categorical,lsg_protection,categorical,direct_reporting
 Protection,% of households with an Protection LSG.,% of households with an Protection LSG.,all,population_group,categorical,lsg_protection,categorical,direct_reporting
 Protection,% of households with an Protection LSG.,% of households with an Protection LSG.,district_mcna,all,categorical,lsg_protection,categorical,direct_reporting
-Protection,"of households per Protection LSG severity score, per
-population group",No or Minimal,all,all,categorical,protection_1,categorical,direct_reporting
-Protection,"of households per Protection LSG severity score, per
-population group",Stress,all,all,categorical,protection_2,categorical,direct_reporting
-Protection,"of households per Protection LSG severity score, per
-population group",Severe,all,all,categorical,protection_3,categorical,direct_reporting
-Protection,"of households per Protection LSG severity score, per
-population group",Extreme,all,all,categorical,protection_4,categorical,direct_reporting
-Protection,"of households per Protection LSG severity score, per
-population group",No or Minimal,all,population_group,categorical,protection_1,categorical,direct_reporting
-Protection,"of households per Protection LSG severity score, per
-population group",Stress,all,population_group,categorical,protection_2,categorical,direct_reporting
-Protection,"of households per Protection LSG severity score, per
-population group",Severe,all,population_group,categorical,protection_3,categorical,direct_reporting
-Protection,"of households per Protection LSG severity score, per
-population group",Extreme,all,population_group,categorical,protection_4,categorical,direct_reporting
+Protection,"of households per Protection LSG severity score, per population group",No or Minimal,all,all,categorical,protection_1,categorical,direct_reporting
+Protection,"of households per Protection LSG severity score, per population group",Stress,all,all,categorical,protection_2,categorical,direct_reporting
+Protection,"of households per Protection LSG severity score, per population group",Severe,all,all,categorical,protection_3,categorical,direct_reporting
+Protection,"of households per Protection LSG severity score, per population group",Extreme,all,all,categorical,protection_4,categorical,direct_reporting
+Protection,"of households per Protection LSG severity score, per population group",No or Minimal,all,population_group,categorical,protection_1,categorical,direct_reporting
+Protection,"of households per Protection LSG severity score, per population group",Stress,all,population_group,categorical,protection_2,categorical,direct_reporting
+Protection,"of households per Protection LSG severity score, per population group",Severe,all,population_group,categorical,protection_3,categorical,direct_reporting
+Protection,"of households per Protection LSG severity score, per population group",Extreme,all,population_group,categorical,protection_4,categorical,direct_reporting
 Protection,% HH with at least one person under (<18) working,At least one child in HH working or contributing to HH income,all,all,categorical,f1,categorical,direct_reporting
 Protection,% of households with presence of child marriage,At least one child in HH is married,all,all,categorical,f2,categorical,direct_reporting
 Protection, % of HH reporting at least one member with psychosocial distress (proxy data with behaviour change),At least one member in HH is reporting psychosocial distress,all,all,categorical,f3,categorical,direct_reporting
@@ -235,14 +198,14 @@ Protection,% HH lacking secure tenure,HH is reporting that their house/apartment
 Protection,% HHs reporting risk of eviction,HH is reporting being at risk of eviction,all,all,categorical,f7,categorical,direct_reporting
 Protection,% of children under 18 currently not residing in the HH,At least one child not residing in HH,all,all,categorical,f8,categorical,direct_reporting
 Protection,% of HHs that have suffered incidents affecting HH members in the last 30 days,At least one member in HH has experienced a safety or security incident in the past 30 days,all,all,categorical,f9,categorical,direct_reporting
-Protection,"of households were found to have a Protection LSG and to 
-be vulnerable","of households were found to have a Protection LSG and to 
-be vulnerable",all,all,categorical,lsg_protection_vulnerable,categorical,direct_reporting
+Protection,of households were found to have a Protection LSG and to  be vulnerable,of households were found to have a Protection LSG and to  be vulnerable,all,all,categorical,lsg_protection_vulnerable,categorical,direct_reporting
 Capacity Gap,% of households with a Capacity Gap AND no LSG,% of households with a Capacity Gap AND no LSG,all,all,categorical,cg_no_lsg,categorical,direct_reporting
 Capacity Gap,% of households with a Capacity Gap AND no LSG,% of households with a Capacity Gap AND no LSG,all,population_group,categorical,cg_no_lsg,categorical,direct_reporting
 Capacity Gap,% of households with a Capacity Gap AND no LSG,% of households with a Capacity Gap AND no LSG,district_mcna,all,categorical,cg_no_lsg,categorical,direct_reporting
 Capacity Gap,% of households with a Capacity Gap AND no LSG AND with pre-existing vulnerabilities,% of households with a Capacity Gap AND no LSG AND with pre-existing vulnerabilities,all,population_group,categorical,cg_no_lsg_but_vulnerable,categorical,direct_reporting
 Capacity Gap,% of households with a Capacity Gap AND at least one LSG,% of households with a Capacity Gap AND at least one LSG,all,all,categorical,cg_and_one_lsg,categorical,direct_reporting
+Capacity Gap,% of households with a Capacity Gap AND at least one LSG,% of households with a Capacity Gap AND at least one LSG,all,population_group,categorical,cg_and_one_lsg,categorical,direct_reporting
+Capacity Gap,% of households with a Capacity Gap AND at least one LSG,% of households with a Capacity Gap AND at least one LSG,district_mcna,all,categorical,cg_and_one_lsg,categorical,direct_reporting
 Capacity Gap,% of households with a Capacity Gap AND at least one LSG,% of households with a Capacity Gap AND at least one LSG,all,all,categorical,cg_or_one_lsg,categorical,direct_reporting
 Capacity Gap,% of households with a Capacity Gap AND at least one LSG,% of households with a Capacity Gap AND at least one LSG,all,all,categorical,no_cg_and_no_lsg,categorical,direct_reporting
 Capacity Gap,% of households with no Capacity Gap AND at least one LSG,% of households with no Capacity Gap AND at least one LSG,all,all,categorical,lsg_but_no_cg,categorical,direct_reporting
@@ -335,3 +298,9 @@ Vulnerability,% of households without access to soap,with LSG in Shelter,all,b7,
 Vulnerability,% of HH with at least one member above the age of 60,with LSG in WASH,all,b7,categorical,lsg_wash,categorical,direct_reporting
 Vulnerability,% of households without access to soap,with at least one LSG,all,b7,categorical,lsg_all,categorical,direct_reporting
 Vulnerability,% of HH with at least one member above the age of 60,with Capacity Gap,all,b7,categorical,capacity_gap,categorical,direct_reporting
+Capacity Gap,Lilveihoods Coping Strategy (LCS),Stress,all,all,categorical,stress,categorical,direct_reporting
+Capacity Gap,Lilveihoods Coping Strategy (LCS),Crisis,all,all,categorical,crisis,categorical,direct_reporting
+Capacity Gap,Lilveihoods Coping Strategy (LCS),Emergency,all,all,categorical,emergency,categorical,direct_reporting
+Capacity Gap,"% of households taking dept for health, food, education or basic hh expenses","% of households taking dept for health, food, education or basic hh expenses",all,all,categorical,a1,categorical,direct_reporting
+Capacity Gap,% of households relying exclusively on humanitarian assistance as their main source of income,with Capacity Gap,all,all,categorical,a2,categorical,direct_reporting
+Capacity Gap,Lilveihoods Coping Strategy (LCS),Crisis or Emergency,all,all,categorical,a3,categorical,direct_reporting

@@ -98,7 +98,8 @@ msni_recoding <- function(df, loop) {
   )
   
   df$b6 <- case_when(df$access_soap == "no" ~ 1,
-                     TRUE ~ 0)
+                     df$access_soap == "yes" ~ 0,
+                     TRUE ~ NA_real_)
   df$b7 <-
     case_when(df$female_60_calc >= 1 | df$male_60_calc >= 1 ~ 1,
               TRUE ~ 0)
@@ -481,8 +482,7 @@ msni_recoding <- function(df, loop) {
   )
   
   df$g2 <- case_when(df$women_specialised_services == "no" ~ 1,
-                     df$women_specialised_services == "yes" ~ 0,
-                     TRUE ~ NA_real_)
+                     TRUE ~ 0)
   
   df$health_share <- df$medical_exp / df$tot_expenses
   
