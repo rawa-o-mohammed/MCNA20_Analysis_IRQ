@@ -50,24 +50,41 @@ msni_recoding <- function(df, loop) {
       TRUE ~ 0
     )
   
-  loop_head <- loop %>%
-    filter(relationship == "head")
   
-  loop_head$female <-
-    case_when(loop_head$sex == "female" & loop_head$age >= 18 ~ 1,
-              TRUE ~ 0)
-  
-  temp <- loop_head %>%
+  #fixing the problem of households not having any heads
+  loop$head <- case_when(loop$relationship == "head" ~ 1, TRUE ~ 0)
+  loop_hh <- loop %>%
     group_by(X_uuid) %>%
-    summarize(sum_female = sum(female, na.rm = TRUE))
+    summarise(num_hhh = sum(head)) %>%
+    filter(num_hhh == 0)
+  loop <- loop[order(loop$age, decreasing = TRUE),]
+  for (household in loop_hh$X_uuid) {
+    X_id <- ""
+    temp <- loop %>%
+      filter(X_uuid == household)
+    if(temp[1, "sex"] == "female"){
+      if(nrow(temp) < 2){
+        X_id <- temp[1, "X"]
+      } else if((temp[2, "sex"] == "male") & (temp[1, "age"] - temp[2, "age"]) < 10){
+        X_id <- temp[2, "X"]
+      }else {
+        X_id <- temp[1, "X"]
+      }
+    }else{
+      X_id <- temp[1, "X"]
+    }
+    loop <- loop %>%
+      mutate(relationship = case_when(X == X_id ~ "head", TRUE ~ relationship))
+  }
+  loop$is_single_head <- case_when(loop$head == 1 & loop$marital_status %in% c("divorced", "separated", "single", "widowed") ~ 1,
+                                   loop$head == 1 ~ 0,
+                                   TRUE ~ NA_real_)
   
-  df$female_hhh <-
-    case_when(temp$sum_female[match(df$X_uuid, temp$X_uuid)] >= 1 ~ 1,
-              temp$sum_female[match(df$X_uuid, temp$X_uuid)] == 0 ~ 0,
-              TRUE ~ NA_real_)
+  loop_hoh <- loop[which(loop$relationship == "head"), ]
+  df$gender_hhh <- loop_hoh$sex[match(df$X_uuid, loop_hoh$X_uuid)]
   
-  df$b2 <-
-    df$female_hhh
+  
+  df$b2 <- case_when(loop$is_single_head[match(df$X_uuid, loop$X_uuid)] == 1 & loop$sex[match(df$X_uuid, loop$X_uuid)] == "female" ~ 1, TRUE ~ 0)
   
   temp <- loop %>%
     group_by(X_uuid) %>%
@@ -145,28 +162,38 @@ msni_recoding <- function(df, loop) {
     TRUE ~ 0
   )
   
-  loop_child <- loop %>%
-    filter(age < 18)
+
   
-  loop_child$no_school <-
+  loop$is_child <-
+    case_when(loop$age < 18 & loop$age > 5 ~ 1, TRUE ~ 0)
+  
+  loop$no_school <-
     case_when(
-      loop_child$attend_formal_ed == "no" &
-        loop_child$attend_informal_ed == "no" ~ 1,
+      loop$is_child == 1 & loop$attend_formal_ed == "no" &
+        loop$attend_informal_ed == "no" ~ 1,
+      loop$is_child == 0 ~ NA_real_,
       TRUE ~ 0
     )
   
-  temp <- loop_child %>%
+  temp <- loop %>%
     group_by(X_uuid) %>%
-    summarize(sum_no_school = sum(no_school),
-              sum_child = n())
+    summarize(
+      sum_no_school = sum(no_school, na.rm = T),
+      sum_child = sum(is_child, na.rm = T)
+    )
   
   temp$all_no_school <-
-    ifelse(temp$sum_child - temp$sum_no_school == 0, 1, 0)
+    case_when(temp$sum_child == 0 ~ NA_real_,
+              temp$sum_child - temp$sum_no_school == 0 ~ 1,
+              TRUE ~ 0)
   
   df$c2 <-
-    case_when(temp$sum_no_school[match(df$X_uuid, temp$X_uuid)] >= 1 ~ 1,
-              temp$sum_no_school[match(df$X_uuid, temp$X_uuid)] == 0 ~ 0,
-              TRUE ~ NA_real_)
+    case_when(
+      temp$sum_child[match(df$X_uuid, temp$X_uuid)] == 0 ~ NA_real_,
+      temp$sum_no_school[match(df$X_uuid, temp$X_uuid)] >= 1 ~ 1,
+      temp$sum_no_school[match(df$X_uuid, temp$X_uuid)] == 0 ~ 0,
+      TRUE ~ NA_real_
+    )
   
   
   df$c3 <-
@@ -383,28 +410,48 @@ msni_recoding <- function(df, loop) {
   
   ###################################f #########################################
   
-  df$f1 <- apply(
-    df,
-    1,
-    FUN = function(x) {
-      ifelse(any(loop$age[which(loop$X_uuid == x["X_uuid"])] < 18 &
-                   loop$work[which(loop$X_uuid == x["X_uuid"])] == "yes"), 1, 0)
-    }
-  )
+  loop$child <-
+    case_when(loop$age < 18 ~ 1, TRUE ~ 0)
   
-  loop_child$married <-
+  loop$child_working <-
     case_when(
-      loop_child$marital_status %in% c("married", "widowed", "divorced", "separated") ~ 1,
+      loop$child == 1 & loop$work == "yes" ~ 1,
+      loop$child == 0 ~ NA_real_,
       TRUE ~ 0
     )
-  temp <- loop_child %>%
+  
+  loop$child_married <-
+    case_when(
+      loop$child == 1 & loop$marital_status %in% c("divorced", "widowed", "separated", "married") ~ 1,
+      loop$child == 0 ~ NA_real_,
+      TRUE ~ 0
+    )
+  
+  temp <- loop %>%
     group_by(X_uuid) %>%
-    summarize(sum_married_child = sum(married))
+    summarize(
+      sum_child_working = sum(child_working, na.rm = T),
+      sum_child_married = sum(child_married, na.rm = T),
+      sum_child = sum(child, na.rm = T)
+    )
+  
+  
+  df$f1 <-
+    case_when(
+      temp$sum_child[match(df$X_uuid, temp$X_uuid)] == 0 ~ NA_real_,
+      temp$sum_child_working[match(df$X_uuid, temp$X_uuid)] >= 1 ~ 1,
+      temp$sum_child_working[match(df$X_uuid, temp$X_uuid)] == 0 ~ 0,
+      TRUE ~ NA_real_
+    )
   
   df$f2 <-
-    case_when(temp$sum_married_child[match(df$X_uuid, temp$X_uuid)] >= 1 ~ 1,
-              temp$sum_married_child[match(df$X_uuid, temp$X_uuid)] == 0 ~ 0,
-              TRUE ~ NA_real_)
+    case_when(
+      temp$sum_child[match(df$X_uuid, temp$X_uuid)] == 0 ~ NA_real_,
+      temp$sum_child_married[match(df$X_uuid, temp$X_uuid)] >= 1 ~ 1,
+      temp$sum_child_married[match(df$X_uuid, temp$X_uuid)] == 0 ~ 0,
+      TRUE ~ NA_real_
+    )
+  
   df$f3 <-
     case_when(df$adult_distress_number >= 1 |
                 df$child_distress_number >= 1 ~ 1,
@@ -480,9 +527,11 @@ msni_recoding <- function(df, loop) {
     TRUE ~ 1
   )
   
-  df$g2 <- case_when(df$women_specialised_services == "no" ~ 1,
-                     df$women_specialised_services == "yes" ~ 0,
-                     TRUE ~ NA_real_)
+  df$g2 <- case_when(
+    df$women_specialised_services == "no" ~ 1,
+    df$women_specialised_services == "yes" ~ 0,
+    TRUE ~ NA_real_
+  )
   
   df$health_share <- df$medical_exp / df$tot_expenses
   
@@ -631,10 +680,8 @@ msni_recoding <- function(df, loop) {
     )
   
   df$i4 <-
-    case_when(
-      df$treat_drink_water %in% c("always", "sometimes") ~ 1,
-      TRUE ~ 0
-    )
+    case_when(df$treat_drink_water %in% c("always", "sometimes") ~ 1,
+              TRUE ~ 0)
   
   
   
@@ -713,7 +760,7 @@ msni_recoding <- function(df, loop) {
   df$lsg_all <- case_when(df$msni_score >= 3 ~ 1, TRUE ~ 0)
   
   
-  
+  df$female_hhh <- df$b2
   
   df$female_hhh_education <-
     case_when(df$female_hhh == 1 & df$lsg_education == 1 ~ 1,

@@ -69,7 +69,8 @@ source("R/2_prepare_samplingframe.R", local = T)
 source("R/3_area_indicators.R", local = T)
 
 
-
+a <- loop %>%
+  filter(!X_uuid %in% response$X_uuid)
 
 #STRATA WEIGHTING
 strata_weight_fun <-
@@ -86,15 +87,6 @@ weight_fun <- strata_weight_fun
 
 response$weights <- weight_fun(response)
 
-
-abc <- response %>% group_by(strata) %>% summarize(sum = n())
-sample <- left_join(samplingframe_strata, abc, by=c("stratum"="strata"))
-xyz <- unique(response[, c("strata", "weights")])
-sample <- left_join(sample, xyz, by=c("stratum"="strata"))
-sample <- sample %>%
-  filter(!is.na(sum))
-write.csv(sample, "sampling_frame.csv")
-
 #CREATE NEW FUNCTION FOR WEIGHTING
 weight_fun <- function(df) {
   df$weights
@@ -103,118 +95,170 @@ weight_fun <- function(df) {
 #RECODING OF INDICATORS
 response_with_composites <- msni_recoding(response, loop)
 
-in_camp <- response_with_composites %>% filter(population_group == "idp_in_camp")
-out_camp <- response_with_composites %>% filter(population_group == "idp_out_camp")
-returnee <- response_with_composites %>% filter(population_group == "returnee")
+in_camp <-
+  response_with_composites %>% filter(population_group == "idp_in_camp")
+out_camp <-
+  response_with_composites %>% filter(population_group == "idp_out_camp")
+returnee <-
+  response_with_composites %>% filter(population_group == "returnee")
 #Radar graph
-msni19::radar_graph(response_with_composites, 
-                    lsg = c("education_score", "livelihoods_score", "food_security_score",
-                            "protection_score", "health_score", "snfi_score", "wash_score"),
-                    lsg_labels = c(
-                      "Education",
-                      "Livelihoods",
-                      "Food \nSecurity",
-                      "Protection",
-                      "Health",
-                      "Shelter",
-                      "WASH"
-                    ),
-                    group = "population_group",
-                    group_order = c("idp_out_camp", "returnee", "idp_in_camp"),
-                    group_labels = c("Out of camp IDPs", "Returnees", "In camp IDPs"),
-                    weighting_function = weight_fun,
-                    print_plot = T,
-                    plot_name = "radarys",
-                    path = "output")
+msni19::radar_graph(
+  response_with_composites,
+  lsg = c(
+    "education_score",
+    "livelihoods_score",
+    "food_security_score",
+    "protection_score",
+    "health_score",
+    "snfi_score",
+    "wash_score"
+  ),
+  lsg_labels = c(
+    "Education",
+    "Livelihoods",
+    "Food \nSecurity",
+    "Protection",
+    "Health",
+    "Shelter",
+    "WASH"
+  ),
+  group = "population_group",
+  group_order = c("idp_out_camp", "returnee", "idp_in_camp"),
+  group_labels = c("Out of camp IDPs", "Returnees", "In camp IDPs"),
+  weighting_function = weight_fun,
+  print_plot = T,
+  plot_name = "radarys",
+  path = "output"
+)
 
-py <- msni19::index_intersections(in_camp,
-                                  lsg =  c("education_score", "livelihoods_score", "food_security_score",
-                                           "protection_score", "health_score", "snfi_score", "wash_score"),
-                                  lsg_labels = c(
-                                    "Education",
-                                    "Livelihoods",
-                                    "FoodSecurity",
-                                    "Protection",
-                                    "Health",
-                                    "Shelter",
-                                    "WASH")
-                                  ,
-                                  weighting_function = weight_fun,
-                                  exclude_unique = F,
-                                  mutually_exclusive_sets = F,
-                                  round_to_1_percent = T,
-                                  print_plot = T,
-                                  plot_name = "in_camp",
-                                  path = "output",)
-
-print(py)
-dev.off()
-
-py <- msni19::index_intersections(out_camp,
-                                  lsg =  c("education_score", "livelihoods_score", "food_security_score",
-                                           "protection_score", "health_score", "snfi_score", "wash_score"),
-                                  lsg_labels = c(
-                                    "Education",
-                                    "Livelihoods",
-                                    "FoodSecurity",
-                                    "Protection",
-                                    "Health",
-                                    "Shelter",
-                                    "WASH")
-                                  ,
-                                  weighting_function = weight_fun,
-                                  exclude_unique = F,
-                                  mutually_exclusive_sets = F,
-                                  round_to_1_percent = T,
-                                  print_plot = T,
-                                  plot_name = "out_camp",
-                                  path = "output",)
+py <- msni19::index_intersections(
+  in_camp,
+  lsg =  c(
+    "education_score",
+    "livelihoods_score",
+    "food_security_score",
+    "protection_score",
+    "health_score",
+    "snfi_score",
+    "wash_score"
+  ),
+  lsg_labels = c(
+    "Education",
+    "Livelihoods",
+    "FoodSecurity",
+    "Protection",
+    "Health",
+    "Shelter",
+    "WASH"
+  )
+  ,
+  weighting_function = weight_fun,
+  exclude_unique = F,
+  mutually_exclusive_sets = F,
+  round_to_1_percent = T,
+  print_plot = T,
+  plot_name = "in_camp",
+  path = "output",
+)
 
 print(py)
 dev.off()
 
-py <- msni19::index_intersections(returnee,
-                                  lsg =  c("education_score", "livelihoods_score", "food_security_score",
-                                           "protection_score", "health_score", "snfi_score", "wash_score"),
-                                  lsg_labels = c(
-                                    "Education",
-                                    "Livelihoods",
-                                    "FoodSecurity",
-                                    "Protection",
-                                    "Health",
-                                    "Shelter",
-                                    "WASH")
-                                  ,
-                                  weighting_function = weight_fun,
-                                  exclude_unique = F,
-                                  mutually_exclusive_sets = F,
-                                  round_to_1_percent = T,
-                                  print_plot = T,
-                                  plot_name = "returnee",
-                                  path = "output",)
+py <- msni19::index_intersections(
+  out_camp,
+  lsg =  c(
+    "education_score",
+    "livelihoods_score",
+    "food_security_score",
+    "protection_score",
+    "health_score",
+    "snfi_score",
+    "wash_score"
+  ),
+  lsg_labels = c(
+    "Education",
+    "Livelihoods",
+    "FoodSecurity",
+    "Protection",
+    "Health",
+    "Shelter",
+    "WASH"
+  )
+  ,
+  weighting_function = weight_fun,
+  exclude_unique = F,
+  mutually_exclusive_sets = F,
+  round_to_1_percent = T,
+  print_plot = T,
+  plot_name = "out_camp",
+  path = "output",
+)
 
 print(py)
 dev.off()
 
-py <- msni19::index_intersections(response_with_composites,
-                                  lsg =  c("education_score", "livelihoods_score", "food_security_score",
-                                           "protection_score", "health_score", "snfi_score", "wash_score"),
-                                  lsg_labels = c(
-                                    "Education",
-                                    "Livelihoods",
-                                    "FoodSecurity",
-                                    "Protection",
-                                    "Health",
-                                    "Shelter",
-                                    "WASH")
-                                  ,
-                                  weighting_function = weight_fun,
-                                  exclude_unique = F,
-                                  mutually_exclusive_sets = F,
-                                  round_to_1_percent = T,
-                                  print_plot = T,
-                                  plot_name = "all",
-                                  path = "output",)
+py <- msni19::index_intersections(
+  returnee,
+  lsg =  c(
+    "education_score",
+    "livelihoods_score",
+    "food_security_score",
+    "protection_score",
+    "health_score",
+    "snfi_score",
+    "wash_score"
+  ),
+  lsg_labels = c(
+    "Education",
+    "Livelihoods",
+    "FoodSecurity",
+    "Protection",
+    "Health",
+    "Shelter",
+    "WASH"
+  )
+  ,
+  weighting_function = weight_fun,
+  exclude_unique = F,
+  mutually_exclusive_sets = F,
+  round_to_1_percent = T,
+  print_plot = T,
+  plot_name = "returnee",
+  path = "output",
+)
+
+print(py)
+dev.off()
+
+py <- msni19::index_intersections(
+  response_with_composites,
+  lsg =  c(
+    "education_score",
+    "livelihoods_score",
+    "food_security_score",
+    "protection_score",
+    "health_score",
+    "snfi_score",
+    "wash_score"
+  ),
+  lsg_labels = c(
+    "Education",
+    "Livelihoods",
+    "FoodSecurity",
+    "Protection",
+    "Health",
+    "Shelter",
+    "WASH"
+  )
+  ,
+  weighting_function = weight_fun,
+  exclude_unique = F,
+  mutually_exclusive_sets = F,
+  round_to_1_percent = T,
+  print_plot = T,
+  plot_name = "all",
+  path = "output",
+)
 
 print(py)
 dev.off()
@@ -265,7 +309,7 @@ write.csv(summary,
 aggregation <- unique(analysisplan$repeat.for.variable)
 disaggregation <- unique(analysisplan$independent.variable)
 
-for (agg in aggregation) {    
+for (agg in aggregation) {
   for (disagg in disaggregation) {
     name <- sprintf("msni_%s_%s", agg, disagg)
     if (all(is.na(summary$independent.var.value))) {
@@ -280,18 +324,16 @@ for (agg in aggregation) {
     groups <- groups[!is.na(groups)]
     library(plyr)
     for (i in 1:length(groups)) {
-      if(groups[i] == "0"){
+      if (groups[i] == "0") {
         next
       }
       df <-
-        pretty.output(
-          subset,
-          groups[i],
-          analysisplan,
-          cluster_lookup_table,
-          lookup_table,
-          camp = F
-        )
+        pretty.output(subset,
+                      groups[i],
+                      analysisplan,
+                      cluster_lookup_table,
+                      lookup_table,
+                      camp = F)
       df[c(which(endsWith(names(df), "_min")))] <- NULL
       df[c(which(endsWith(names(df), "_max")))] <- NULL
       write.csv(
