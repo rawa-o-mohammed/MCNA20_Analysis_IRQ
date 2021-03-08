@@ -23,6 +23,23 @@ msni_recoding <- function(df, loop) {
       TRUE ~ 0
     )
   
+  
+  
+  df$perc_female <- as.numeric(df$tot_female) / (as.numeric(df$tot_male) + as.numeric(df$tot_female))
+  df$perc_male <- as.numeric(df$tot_male) / (as.numeric(df$tot_male) + as.numeric(df$tot_female))
+  
+  df$perc_female_0_5 <- (as.numeric(df$female_2_calc) + as.numeric(df$female_3_5_calc))/(as.numeric(df$tot_male) + as.numeric(df$tot_female))
+  df$perc_male_0_5 <- (as.numeric(df$male_2_calc) + as.numeric(df$male_3_5_calc))/(as.numeric(df$tot_male) + as.numeric(df$tot_female))
+  
+  df$perc_female_6_17 <- as.numeric(df$female_6_17_calc) / (as.numeric(df$tot_male) + as.numeric(df$tot_female))
+  df$perc_male_6_17 <- as.numeric(df$male_6_17_calc) / (as.numeric(df$tot_male) + as.numeric(df$tot_female))
+  
+  df$perc_female_18_59 <- as.numeric(df$female_18_59_calc) / (as.numeric(df$tot_male) + as.numeric(df$tot_female))
+  df$perc_male_18_59 <- as.numeric(df$male_18_59_calc) / (as.numeric(df$tot_male) + as.numeric(df$tot_female))
+  
+  df$perc_female_60 <- as.numeric(df$female_60_calc) / (as.numeric(df$tot_male) + as.numeric(df$tot_female))
+  df$perc_male_60 <- as.numeric(df$male_60_calc) / (as.numeric(df$tot_male) + as.numeric(df$tot_female))
+  
   ###################################a #########################################
   df$a1 <-
     case_when(
@@ -53,29 +70,32 @@ msni_recoding <- function(df, loop) {
   
   #fixing the problem of households not having any heads
   loop$head <- case_when(loop$relationship == "head" ~ 1, TRUE ~ 0)
-  loop_hh <- loop %>%
-    group_by(X_uuid) %>%
-    summarise(num_hhh = sum(head)) %>%
-    filter(num_hhh == 0)
-  loop <- loop[order(loop$age, decreasing = TRUE),]
-  for (household in loop_hh$X_uuid) {
-    X_id <- ""
-    temp <- loop %>%
-      filter(X_uuid == household)
-    if(temp[1, "sex"] == "female"){
-      if(nrow(temp) < 2){
-        X_id <- temp[1, "X"]
-      } else if((temp[2, "sex"] == "male") & (temp[1, "age"] - temp[2, "age"]) < 10){
-        X_id <- temp[2, "X"]
-      }else {
-        X_id <- temp[1, "X"]
-      }
-    }else{
-      X_id <- temp[1, "X"]
-    }
-    loop <- loop %>%
-      mutate(relationship = case_when(X == X_id ~ "head", TRUE ~ relationship))
-  }
+  # loop_hh <- loop %>%
+  #   group_by(X_uuid) %>%
+  #   summarise(num_hhh = sum(head)) %>%
+  #   filter(num_hhh == 0)
+  # 
+  # abc <- response %>% filter(X_uuid %in% loop_hh$X_uuid ,hhh == "no")
+  # 
+  # loop <- loop[order(loop$age, decreasing = TRUE),]
+  # for (household in loop_hh$X_uuid) {
+  #   X_id <- ""
+  #   temp <- loop %>%
+  #     filter(X_uuid == household)
+  #   if(temp[1, "sex"] == "female"){
+  #     if(nrow(temp) < 2){
+  #       X_id <- temp[1, "X"]
+  #     } else if((temp[2, "sex"] == "male") & (temp[1, "age"] - temp[2, "age"]) < 10){
+  #       X_id <- temp[2, "X"]
+  #     }else {
+  #       X_id <- temp[1, "X"]
+  #     }
+  #   }else{
+  #     X_id <- temp[1, "X"]
+  #   }
+  #   loop <- loop %>%
+  #     mutate(relationship = case_when(X == X_id ~ "head", TRUE ~ relationship))
+  # }
   loop$is_single_head <- case_when(loop$head == 1 & loop$marital_status %in% c("divorced", "separated", "single", "widowed") ~ 1,
                                    loop$head == 1 ~ 0,
                                    TRUE ~ NA_real_)

@@ -1,4 +1,14 @@
 Indicator.Group...Sector,research.question,sub.research.question,repeat.for.variable,independent.variable,independent.variable.type,dependent.variable,dependent.variable.type,hypothesis.type
+Demographic,Total Male,,all,all,categorical,perc_male,numerical,direct_reporting
+Demographic,Total Female,,all,all,categorical,perc_female,numerical,direct_reporting
+Demographic,Total Male from 0 to 5,,all,all,categorical,perc_male_0_5,numerical,direct_reporting
+Demographic,Total Female from 0 to 5,,all,all,categorical,perc_female_0_5,numerical,direct_reporting
+Demographic,Total Male from 6 to 17,,all,all,categorical,perc_male_6_17,numerical,direct_reporting
+Demographic,Total Female from 6 to 17,,all,all,categorical,perc_female_6_17,numerical,direct_reporting
+Demographic,Total Male from 18 to 59,,all,all,categorical,perc_male_18_59,numerical,direct_reporting
+Demographic,Total Female from 18 to 59,,all,all,categorical,perc_female_18_59,numerical,direct_reporting
+Demographic,Total Male above 60,,all,all,categorical,perc_male_60,numerical,direct_reporting
+Demographic,Total Male above 60,,all,all,categorical,perc_female_60,numerical,direct_reporting
 LSG,% of households with multi-sectoral needs,% of households with multi-sectoral needs,all,all,categorical,lsg_all,categorical,direct_reporting
 LSG,% of households per Multi-Sectoral Needs Index (MSNI) severity score,Extreme,all,all,categorical,msni_score_4,categorical,direct_reporting
 LSG,% of households per Multi-Sectoral Needs Index (MSNI) severity score,Severe,all,all,categorical,msni_score_3,categorical,direct_reporting
